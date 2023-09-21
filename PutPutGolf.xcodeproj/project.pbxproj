@@ -8,17 +8,33 @@
 
 /* Begin PBXBuildFile section */
 		C760EAF32AB8F7FF000DFE09 /* PutPutGolfApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EAF22AB8F7FF000DFE09 /* PutPutGolfApp.swift */; };
-		C760EAF52AB8F7FF000DFE09 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EAF42AB8F7FF000DFE09 /* ContentView.swift */; };
+		C760EAF52AB8F7FF000DFE09 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EAF42AB8F7FF000DFE09 /* MainView.swift */; };
 		C760EAF72AB8F801000DFE09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C760EAF62AB8F801000DFE09 /* Assets.xcassets */; };
 		C760EAFA2AB8F801000DFE09 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C760EAF92AB8F801000DFE09 /* Preview Assets.xcassets */; };
+		C760EB022AB8F825000DFE09 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB012AB8F825000DFE09 /* Course.swift */; };
+		C760EB042AB8F877000DFE09 /* Hole.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB032AB8F877000DFE09 /* Hole.swift */; };
+		C760EB062AB8F8D9000DFE09 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB052AB8F8D9000DFE09 /* Player.swift */; };
+		C760EB092AB8F94B000DFE09 /* ScoreCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB082AB8F94B000DFE09 /* ScoreCardView.swift */; };
+		C760EB0B2AB8F99B000DFE09 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB0A2AB8F99B000DFE09 /* MockData.swift */; };
+		C760EB0D2AB8F9FA000DFE09 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB0C2AB8F9FA000DFE09 /* Challenge.swift */; };
+		C760EB0F2ABBADD9000DFE09 /* selfie.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C760EB0E2ABBADD9000DFE09 /* selfie.jpg */; };
+		C760EB112ABBC4C9000DFE09 /* EnterScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB102ABBC4C9000DFE09 /* EnterScoreView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C760EAEF2AB8F7FF000DFE09 /* PutPutGolf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PutPutGolf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C760EAF22AB8F7FF000DFE09 /* PutPutGolfApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutPutGolfApp.swift; sourceTree = "<group>"; };
-		C760EAF42AB8F7FF000DFE09 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C760EAF42AB8F7FF000DFE09 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		C760EAF62AB8F801000DFE09 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C760EAF92AB8F801000DFE09 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C760EB012AB8F825000DFE09 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		C760EB032AB8F877000DFE09 /* Hole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hole.swift; sourceTree = "<group>"; };
+		C760EB052AB8F8D9000DFE09 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		C760EB082AB8F94B000DFE09 /* ScoreCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCardView.swift; sourceTree = "<group>"; };
+		C760EB0A2AB8F99B000DFE09 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		C760EB0C2AB8F9FA000DFE09 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
+		C760EB0E2ABBADD9000DFE09 /* selfie.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = selfie.jpg; sourceTree = "<group>"; };
+		C760EB102ABBC4C9000DFE09 /* EnterScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterScoreView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +68,10 @@
 			isa = PBXGroup;
 			children = (
 				C760EAF22AB8F7FF000DFE09 /* PutPutGolfApp.swift */,
-				C760EAF42AB8F7FF000DFE09 /* ContentView.swift */,
+				C760EB072AB8F923000DFE09 /* Views */,
+				C760EB002AB8F80F000DFE09 /* Models */,
+				C760EB0A2AB8F99B000DFE09 /* MockData.swift */,
+				C760EB0E2ABBADD9000DFE09 /* selfie.jpg */,
 				C760EAF62AB8F801000DFE09 /* Assets.xcassets */,
 				C760EAF82AB8F801000DFE09 /* Preview Content */,
 			);
@@ -65,6 +84,27 @@
 				C760EAF92AB8F801000DFE09 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C760EB002AB8F80F000DFE09 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C760EB052AB8F8D9000DFE09 /* Player.swift */,
+				C760EB012AB8F825000DFE09 /* Course.swift */,
+				C760EB032AB8F877000DFE09 /* Hole.swift */,
+				C760EB0C2AB8F9FA000DFE09 /* Challenge.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C760EB072AB8F923000DFE09 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C760EAF42AB8F7FF000DFE09 /* MainView.swift */,
+				C760EB082AB8F94B000DFE09 /* ScoreCardView.swift */,
+				C760EB102ABBC4C9000DFE09 /* EnterScoreView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +165,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C760EB0F2ABBADD9000DFE09 /* selfie.jpg in Resources */,
 				C760EAFA2AB8F801000DFE09 /* Preview Assets.xcassets in Resources */,
 				C760EAF72AB8F801000DFE09 /* Assets.xcassets in Resources */,
 			);
@@ -137,8 +178,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C760EAF52AB8F7FF000DFE09 /* ContentView.swift in Sources */,
+				C760EAF52AB8F7FF000DFE09 /* MainView.swift in Sources */,
+				C760EB042AB8F877000DFE09 /* Hole.swift in Sources */,
 				C760EAF32AB8F7FF000DFE09 /* PutPutGolfApp.swift in Sources */,
+				C760EB062AB8F8D9000DFE09 /* Player.swift in Sources */,
+				C760EB022AB8F825000DFE09 /* Course.swift in Sources */,
+				C760EB0D2AB8F9FA000DFE09 /* Challenge.swift in Sources */,
+				C760EB0B2AB8F99B000DFE09 /* MockData.swift in Sources */,
+				C760EB092AB8F94B000DFE09 /* ScoreCardView.swift in Sources */,
+				C760EB112ABBC4C9000DFE09 /* EnterScoreView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
