@@ -68,13 +68,13 @@ struct ScoreCardView: View {
                             GridRow {
                                 // Score box cells
                                 ForEach(course.holes) { hole in
-                                    ScoreBoxCell(score: player.scores[hole.number-1], hole: hole, player: player)
+                                    ScoreBoxCell(hole: hole, player: player)
                                 }
                                 
                                 TotalScoreCell(player: player)
                                 
                                 // Challenge Score cells
-                                ForEach(data.courses.first!.challenges.indices) { i in
+                                ForEach(data.courses.first!.challenges.indices, id: \.self) { i in
                                     ChallengeScoreCell(player: player, index: i)
                                 }
                                 
@@ -91,6 +91,7 @@ struct ScoreCardView: View {
     
     
 }
+
 
 struct ScoreCardView_Previews: PreviewProvider {
     static var previews: some View {
@@ -180,7 +181,7 @@ struct BlankCell: View {
     }
     
     var body: some View {
-        ForEach(0..<num) { _ in
+        ForEach(0..<num, id: \.self) { _ in
             Rectangle()
                 .fill(color)
         }
@@ -209,7 +210,6 @@ struct PlayerInfoCell: View {
 
 
 struct ScoreBoxCell: View {
-    var score: Int
     var hole: Hole
     var player: Player
     @State var showEnterScoreview: Bool = false
@@ -222,26 +222,28 @@ struct ScoreBoxCell: View {
                 .onTapGesture {
                     showEnterScoreview.toggle()
                 }
-            Text("\(score)")
+            Text(player.score(for: hole) ?? "")
             scoreType()
         }
         .sheet(isPresented: $showEnterScoreview) {
             EnterScoreView(player: player)
-                .presentationDetents([.height(300)])
+                .presentationDetents([.height(350)])
         }
         
         
     }
     
     @ViewBuilder private func scoreType() -> some View {
-        if score <= hole.par - 2 {
-            EagleScoreView()
-        } else if score == hole.par - 1 {
-            BirdieScoreView()
-        } else if score == hole.par + 1 {
-            BogieScoreView()
-        } else if score >= hole.par + 1 {
-            DoubleBogieScoreView()
+        if let strScr = player.score(for: hole), let score = Int(strScr) {
+            if score <= hole.par - 2 {
+                EagleScoreView()
+            } else if score == hole.par - 1 {
+                BirdieScoreView()
+            } else if score == hole.par + 1 {
+                BogieScoreView()
+            } else if score >= hole.par + 1 {
+                DoubleBogieScoreView()
+            }
         }
     }
 }

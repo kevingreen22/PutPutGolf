@@ -13,12 +13,7 @@ class MockData {
     
     var courses: [Course] = []
     
-    var players: [Player] = [
-        Player(name: "Kevin"),
-        Player(name: "Nell"),
-        Player(name: "Holly"),
-        Player(name: "Whitney")
-    ]
+    var players: [Player] = []
     
     private init() {        
         let holes = [
@@ -55,13 +50,20 @@ class MockData {
             Course(name: "Goat Track Country Club", location: "Walnut Creek", holes: holes, challenges: challenges)
         )
         
+        players = [
+            Player(name: "Kevin", course: courses.first!),
+            Player(name: "Nell", course: courses.first!),
+            Player(name: "Holly", course: courses.first!),
+            Player(name: "Whitney", course: courses.first!)
+        ]
+        
         for player in players {
-            for _ in 0..<21 {
-                player.scores.append(Int.random(in: 1...5))
+            for _ in 0..<Int.random(in: 0..<21) {
+                player.scores.append(String(Int.random(in: 1...5)))
             }
             
-            for _ in 0..<3 {
-                player.challengeScores.append(Int.random(in: 1...5))
+            for _ in 0..<Int.random(in: 0..<3) {
+                player.challengeScores.append(String(Int.random(in: 1...5)))
             }
             
             print(player.name)

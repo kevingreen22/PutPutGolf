@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EnterScoreView: View {
+    @Environment(\.presentationMode) var presentationMode
     @State private var score: Int = 0
     var player: Player
     
@@ -23,6 +24,7 @@ struct EnterScoreView: View {
             
             Button("Done") {
                 focused = false
+                presentationMode.wrappedValue.dismiss()
             }.bold()
         }
         .padding()
@@ -34,6 +36,6 @@ struct EnterScoreView: View {
 
 struct EnterScoreView_Previews: PreviewProvider {
     static var previews: some View {
-        EnterScoreView(player: Player(name: "Temp Player"))
+        EnterScoreView(player: Player(name: "Temp Player", course: MockData.shared.courses.first!))
     }
 }
