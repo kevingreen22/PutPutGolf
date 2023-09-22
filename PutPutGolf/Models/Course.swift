@@ -11,6 +11,7 @@ struct Course: Codable, Identifiable {
     var id = UUID()
     var name: String
     var location: String
+    var difficulty: Difficulty
     var holes: [Hole]
     var challenges: [Challenge]
     

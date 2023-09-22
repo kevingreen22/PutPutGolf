@@ -11,7 +11,9 @@ import SwiftUI
 struct PutPutGolfApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView()
+            if let url = URL(string: "https://my.apiendpoint.courses") {
+                CoursesHomeView(url: url)
+            }
         }
     }
 }

@@ -227,7 +227,7 @@ struct ScoreBoxCell: View {
         }
         .sheet(isPresented: $showEnterScoreview) {
             EnterScoreView(player: player)
-                .presentationDetents([.height(350)])
+                .presentationDetents([.height(400)])
         }
         
         

@@ -7,7 +7,12 @@
 
 import Foundation
 
-class MockData {
+protocol MockDataProtocol {
+    var courses: [Course] { get }
+    var players: [Player] { get }
+}
+
+class MockData: MockDataProtocol {
     
     static var shared = MockData()
     
@@ -47,7 +52,7 @@ class MockData {
         ]
         
         courses.append(
-            Course(name: "Goat Track Country Club", location: "Walnut Creek", holes: holes, challenges: challenges)
+            Course(name: "Goat Track Country Club", location: "Walnut Creek", difficulty: .easy, holes: holes, challenges: challenges)
         )
         
         players = [
@@ -70,10 +75,5 @@ class MockData {
             print(player.scores)
             print(player.challengeScores)
         }
-        
-        
-        
     }
-    
-    
 }
