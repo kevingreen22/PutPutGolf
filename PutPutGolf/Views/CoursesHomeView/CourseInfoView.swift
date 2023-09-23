@@ -18,21 +18,35 @@ struct CourseInfoView: View {
                     .scaledToFill()
                     .frame(height: 300)
                     .opacity(0.3)
+                    .overlay(alignment: .bottomLeading) {
+                        Text("\(course.name)")
+                            .font(.largeTitle)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.white)
+                            .lineLimit(2)
+                            .padding(.leading)
+                    }
+            }
+                        
+            List {
+                Section("Course Stats") {
+                    DifficultyCell(difficulty: course.difficulty, text: "\(course.difficulty.rawValue)")
+                    
+                    HoleCell(iconName: "flag.circle.fill", text: "\(course.holes.count)")
+                    
+                    ChallengeInfoCell(iconName: "trophy.circle.fill", text: "\(course.challenges.count)")
+                }
                 
-                VStack {
-                    Spacer()
-                    Text("\(course.name)")
-                        .font(.largeTitle)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.white)
+                Section("Course Rules") {
+                    ForEach(course.rules, id: \.self) { rule in
+                        Text("• \(rule)")
+                    }
                 }
             }
+            .listStyle(.sidebar)
+            .frame(height: 800)
             
-            List { // Stats
-                DifficultyCell(difficulty: course.difficulty, text: "\(course.difficulty.rawValue)")
-                HoleCell(iconName: "flag.circle.fill", text: "\(course.holes.count) Hole")
-                ChallengeInfoCell(iconName: "trophy.circle.fill", text: "\(course.challenges.count) Challenge")
-            }.frame(height: 500)
+            
         }
         .overlay(alignment: .bottom) {
             Button {
@@ -67,7 +81,7 @@ struct DifficultyCell: View {
             switch difficulty {
             case .easy:
                 difficultyIcon("circle.circle.fill")
-                    .foregroundColor(.white)
+                    .foregroundColor(.green)
             case .medium:
                 difficultyIcon("square.circle.fill")
                     .foregroundColor(.blue)
@@ -80,7 +94,17 @@ struct DifficultyCell: View {
             }
             
             Text(text)
-        }.padding(.horizontal)
+                .font(.title)
+            
+            Spacer()
+            
+            Button {
+                
+            } label: {
+                Image(systemName: "info.circle")
+                    .foregroundColor(.blue)
+            }
+        }
     }
     
     private func difficultyIcon(_ name: String) -> some View {
@@ -88,6 +112,7 @@ struct DifficultyCell: View {
             .resizable()
             .scaledToFit()
             .frame(height: 50)
+            .padding(.trailing)
     }
 }
 
@@ -103,10 +128,20 @@ struct HoleCell: View {
                 .scaledToFit()
                 .foregroundColor(.green)
                 .frame(height: 50)
+                .padding(.trailing)
             
             Text(text)
                 .font(.title)
-        }.padding(.horizontal)
+            
+            Spacer()
+            
+            Button {
+                
+            } label: {
+                Image(systemName: "info.circle")
+                    .foregroundColor(.blue)
+            }
+        }
     }
 }
 
@@ -122,10 +157,20 @@ struct ChallengeInfoCell: View {
                 .scaledToFit()
                 .foregroundColor(.yellow)
                 .frame(height: 50)
+                .padding(.trailing)
             
             Text(text)
                 .font(.title)
-        }.padding(.horizontal)
+            
+            Spacer()
+            
+            Button {
+                
+            } label: {
+                Image(systemName: "info.circle")
+                    .foregroundColor(.blue)
+            }
+        }
     }
 }
 
