@@ -28,8 +28,6 @@ struct Course: Codable, Hashable, Equatable, Identifiable {
     }
     
     
-    
-    
     static func == (lhs: Course, rhs: Course) -> Bool {
         return lhs.difficulty == rhs.difficulty &&
         lhs.holes == rhs.holes &&

@@ -35,22 +35,6 @@ struct CourseListCell: View {
                     Text("\(course.location)")
                         .font(.title2)
                 }
-                
-//                HStack {
-//                    Image(systemName: "flag.circle.fill")
-//                        .resizable()
-//                        .scaledToFit()
-//                        .foregroundColor(.blue)
-//                    Text("\(course.holes.count) Hole")
-//                }
-//
-//                HStack {
-//                    Image(systemName: "trophy.circle.fill")
-//                        .resizable()
-//                        .scaledToFit()
-//                        .foregroundColor(.yellow)
-//                    Text("\(course.challenges.count) Challenge")
-//                }
             }.frame(height: 200)
         }
     }

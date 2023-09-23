@@ -104,7 +104,7 @@ struct ScoreCardView_Previews: PreviewProvider {
 
 
 
-struct StandardTextCell: View {
+fileprivate struct StandardTextCell: View {
     var title: String
     var color: Color = .white
     var textColor: Color = .black
@@ -121,7 +121,7 @@ struct StandardTextCell: View {
 }
 
 
-struct ChallengeCell: View {
+fileprivate struct ChallengeCell: View {
     var challenge: Challenge
     
     var body: some View {
@@ -141,7 +141,7 @@ struct ChallengeCell: View {
 }
 
 
-struct HoleParNumberCell: View {
+fileprivate struct HoleParNumberCell: View {
     var hole: Hole
     
     var body: some View {
@@ -156,7 +156,7 @@ struct HoleParNumberCell: View {
 }
 
 
-struct TotalParCell: View {
+fileprivate struct TotalParCell: View {
     var course: Course
     
     var body: some View {
@@ -171,7 +171,7 @@ struct TotalParCell: View {
 }
 
 
-struct BlankCell: View {
+fileprivate struct BlankCell: View {
     var num: Int
     var color: Color
     
@@ -189,7 +189,7 @@ struct BlankCell: View {
 }
 
 
-struct PlayerInfoCell: View {
+fileprivate struct PlayerInfoCell: View {
     var player: Player
     
     var body: some View {
@@ -209,7 +209,7 @@ struct PlayerInfoCell: View {
 }
 
 
-struct ScoreBoxCell: View {
+fileprivate struct ScoreBoxCell: View {
     var hole: Hole
     var player: Player
     @State var showEnterScoreview: Bool = false
@@ -249,7 +249,7 @@ struct ScoreBoxCell: View {
 }
 
 
-struct TotalScoreCell: View {
+fileprivate struct TotalScoreCell: View {
     var player: Player
     
     var body: some View {
@@ -262,7 +262,7 @@ struct TotalScoreCell: View {
 }
 
 
-struct ChallengeScoreCell: View {
+fileprivate struct ChallengeScoreCell: View {
     var player: Player
     var index: Int
     
@@ -277,7 +277,7 @@ struct ChallengeScoreCell: View {
 }
 
 
-struct FinalTotalScore: View {
+fileprivate struct FinalTotalScore: View {
     var player: Player
     
     var body: some View {
@@ -300,7 +300,7 @@ struct FinalTotalScore: View {
 
 
 
-struct EagleScoreView: View {
+fileprivate struct EagleScoreView: View {
     var body: some View {
         ZStack {
             Circle()
@@ -314,7 +314,7 @@ struct EagleScoreView: View {
 }
 
 
-struct BirdieScoreView: View {
+fileprivate struct BirdieScoreView: View {
     var body: some View {
         Circle()
             .stroke(.black, lineWidth: 1)
@@ -323,7 +323,7 @@ struct BirdieScoreView: View {
 }
 
 
-struct BogieScoreView: View {
+fileprivate struct BogieScoreView: View {
     var body: some View {
         Rectangle()
             .fill(Color.clear)
@@ -334,7 +334,7 @@ struct BogieScoreView: View {
 }
 
 
-struct DoubleBogieScoreView: View {
+fileprivate struct DoubleBogieScoreView: View {
     var body: some View {
         ZStack {
             Rectangle()
