@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CourseInfoView: View {
     var course: Course
+    @State var infoItem: InfoItem?
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -30,11 +31,11 @@ struct CourseInfoView: View {
                         
             List {
                 Section("Course Stats") {
-                    DifficultyCell(difficulty: course.difficulty, text: "\(course.difficulty.rawValue)")
+                    DifficultyCell(difficulty: course.difficulty, text: "\(course.difficulty.rawValue)", infoItem: $infoItem)
                     
-                    HoleCell(iconName: "flag.circle.fill", text: "\(course.holes.count)")
+                    HoleCell(iconName: "flag.circle.fill", text: "\(course.holes.count)", infoItem: $infoItem)
                     
-                    ChallengeInfoCell(iconName: "trophy.circle.fill", text: "\(course.challenges.count)")
+                    ChallengeInfoCell(iconName: "trophy.circle.fill", text: "\(course.challenges.count)", infoItem: $infoItem)
                 }
                 
                 Section("Course Rules") {
@@ -60,6 +61,11 @@ struct CourseInfoView: View {
             .buttonStyle(.borderedProminent)
             .buttonBorderShape(.capsule)
         }
+        
+        .sheet(item: $infoItem) { item in
+            InfoItemView(item: item)
+                .presentationDetents([.height(300)])
+        }
     }
 }
 
@@ -71,10 +77,45 @@ struct CourseInfoView_Previews: PreviewProvider {
 
 
 
+struct InfoItem: Identifiable {
+    var id = UUID()
+    var title: String
+    var text: InfoItemText
+}
+
+struct InfoItemView: View {
+    var item: InfoItem
+    
+    var body: some View {
+        ScrollView {
+            Text(item.title)
+                .font(.title)
+                .padding(.top)
+            
+            Text(item.text.rawValue)
+                .font(.title3)
+                .foregroundColor(.gray)
+                .padding()
+        }
+    }
+}
+
+enum InfoItemText: String {
+    case difficulty = "The level of difficulty of the course. There are 4 levels, easy, medium, hard, and very hard. Depending on your Putter's experience level will depend on how challenging the course will be for you."
+    
+    case numOfHoles = "This denotes the total number of holes on the course. Not including \"Game Changer\" holes. Each hole will have it's par rating at the begining of the hole for your information as well as along the top of the score card."
+    
+    case numOfChallenges = "This denotes the total number of \"Game Changer\" holes on the course. These holes are scored in different ways (i.e. Timed, Race, Closest, etc.). Each Game Changer hole will have instructions to tell you how to play and how the scoring is calculated. These holes can change the outcome of the game big time!"
+}
+
+
+
+
 
 struct DifficultyCell: View {
     var difficulty: Difficulty
     var text: String
+    @Binding var infoItem: InfoItem?
     
     var body: some View {
         HStack {
@@ -99,7 +140,7 @@ struct DifficultyCell: View {
             Spacer()
             
             Button {
-                
+                self.infoItem = InfoItem(title: "Difficulty Level", text: .difficulty)
             } label: {
                 Image(systemName: "info.circle")
                     .foregroundColor(.blue)
@@ -120,6 +161,7 @@ struct DifficultyCell: View {
 struct HoleCell: View {
     var iconName: String
     var text: String
+    @Binding var infoItem: InfoItem?
     
     var body: some View {
         HStack {
@@ -136,7 +178,7 @@ struct HoleCell: View {
             Spacer()
             
             Button {
-                
+                self.infoItem = InfoItem(title: "Number Of Holes", text: InfoItemText.numOfHoles)
             } label: {
                 Image(systemName: "info.circle")
                     .foregroundColor(.blue)
@@ -149,6 +191,7 @@ struct HoleCell: View {
 struct ChallengeInfoCell: View {
     var iconName: String
     var text: String
+    @Binding var infoItem: InfoItem?
     
     var body: some View {
         HStack {
@@ -165,7 +208,7 @@ struct ChallengeInfoCell: View {
             Spacer()
             
             Button {
-                
+                self.infoItem = InfoItem(title: "Number of Game Changers", text: InfoItemText.numOfChallenges)
             } label: {
                 Image(systemName: "info.circle")
                     .foregroundColor(.blue)
@@ -173,6 +216,8 @@ struct ChallengeInfoCell: View {
         }
     }
 }
+
+
 
 
 
