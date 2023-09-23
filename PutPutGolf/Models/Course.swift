@@ -13,6 +13,7 @@ struct Course: Codable, Hashable, Equatable, Identifiable {
     var name: String
     var location: String
     var address: String
+    var imageData: Data
     var difficulty: Difficulty
     var holes: [Hole]
     var challenges: [Challenge]
@@ -30,12 +31,11 @@ struct Course: Codable, Hashable, Equatable, Identifiable {
     
     
     static func == (lhs: Course, rhs: Course) -> Bool {
-        return lhs.name == rhs.name &&
-        lhs.location == rhs.location &&
-        lhs.address == rhs.address &&
-        lhs.difficulty == rhs.difficulty &&
+        return lhs.difficulty == rhs.difficulty &&
         lhs.holes == rhs.holes &&
-        lhs.challenges == rhs.challenges &&
-        lhs.rules == rhs.rules
+        lhs.challenges == rhs.challenges
     }
 }
+
+
+
