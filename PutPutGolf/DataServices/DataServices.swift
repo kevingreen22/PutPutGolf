@@ -31,7 +31,6 @@ class ProductionDataService: DataServiceProtocol {
 
 
 class MockDataService<T>: DataServiceProtocol where T: MockDataProtocol {
-//    let mockData = MockData.shared.courses
     let mockCourses: [Course]
     let mockPlayers: [Player]
     

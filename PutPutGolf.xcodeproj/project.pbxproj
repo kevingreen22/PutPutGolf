@@ -22,6 +22,8 @@
 		C760EB142ABD0898000DFE09 /* ScoreCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB132ABD0898000DFE09 /* ScoreCardViewModel.swift */; };
 		C760EB172ABE0AD6000DFE09 /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB162ABE0AD6000DFE09 /* DataServices.swift */; };
 		C760EB1A2ABE0C1A000DFE09 /* CoursesHomeViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB192ABE0C1A000DFE09 /* CoursesHomeViewViewModel.swift */; };
+		C760EB1C2ABF5761000DFE09 /* CourseListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB1B2ABF5761000DFE09 /* CourseListCell.swift */; };
+		C760EB1E2ABF57B8000DFE09 /* CourseInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB1D2ABF57B8000DFE09 /* CourseInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,8 @@
 		C760EB132ABD0898000DFE09 /* ScoreCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCardViewModel.swift; sourceTree = "<group>"; };
 		C760EB162ABE0AD6000DFE09 /* DataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
 		C760EB192ABE0C1A000DFE09 /* CoursesHomeViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesHomeViewViewModel.swift; sourceTree = "<group>"; };
+		C760EB1B2ABF5761000DFE09 /* CourseListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListCell.swift; sourceTree = "<group>"; };
+		C760EB1D2ABF57B8000DFE09 /* CourseInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInfoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +140,8 @@
 			children = (
 				C760EAF42AB8F7FF000DFE09 /* CoursesHomeView.swift */,
 				C760EB192ABE0C1A000DFE09 /* CoursesHomeViewViewModel.swift */,
+				C760EB1B2ABF5761000DFE09 /* CourseListCell.swift */,
+				C760EB1D2ABF57B8000DFE09 /* CourseInfoView.swift */,
 			);
 			path = CoursesHomeView;
 			sourceTree = "<group>";
@@ -212,9 +218,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C760EAF52AB8F7FF000DFE09 /* CoursesHomeView.swift in Sources */,
+				C760EB1C2ABF5761000DFE09 /* CourseListCell.swift in Sources */,
 				C760EB1A2ABE0C1A000DFE09 /* CoursesHomeViewViewModel.swift in Sources */,
 				C760EB142ABD0898000DFE09 /* ScoreCardViewModel.swift in Sources */,
 				C760EB042AB8F877000DFE09 /* Hole.swift in Sources */,
+				C760EB1E2ABF57B8000DFE09 /* CourseInfoView.swift in Sources */,
 				C760EAF32AB8F7FF000DFE09 /* PutPutGolfApp.swift in Sources */,
 				C760EB062AB8F8D9000DFE09 /* Player.swift in Sources */,
 				C760EB172ABE0AD6000DFE09 /* DataServices.swift in Sources */,

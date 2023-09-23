@@ -13,8 +13,12 @@ class CoursesHomeViewViewModel: ObservableObject {
     var cancellables: Set<AnyCancellable> = []
     @Published var coursesData: [Course] = []
     
-    init(url: URL) {
-        self.dataService = ProductionDataService(url: url)
+    init(url: URL?) {
+        if let url = url {
+            self.dataService = ProductionDataService(url: url)
+        } else {
+            self.dataService = MockDataService(mockData: MockData.shared)
+        }
         loadCourses()
     }
     

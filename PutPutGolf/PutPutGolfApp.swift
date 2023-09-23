@@ -9,11 +9,11 @@ import SwiftUI
 
 @main
 struct PutPutGolfApp: App {
+    let url = URL(string: "https://my.apiendpoint.courses")
+    
     var body: some Scene {
         WindowGroup {
-            if let url = URL(string: "https://my.apiendpoint.courses") {
-                CoursesHomeView(url: url)
-            }
+            CoursesHomeView(url: nil)
         }
     }
 }

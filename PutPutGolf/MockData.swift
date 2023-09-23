@@ -52,7 +52,7 @@ class MockData: MockDataProtocol {
         ]
         
         courses.append(
-            Course(name: "Goat Track Country Club", location: "Walnut Creek", difficulty: .easy, holes: holes, challenges: challenges)
+            Course(name: "Goat Track Country Club", location: "Walnut Creek, Ca", address: "24.23423454234, 290.343422", difficulty: .easy, holes: holes, challenges: challenges, rules: ["rule 1","rule 2","rule 3","rule 4","rule 5","rule 6"])
         )
         
         players = [

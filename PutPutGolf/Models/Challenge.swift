@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Challenge: Codable, Identifiable {
+struct Challenge: Codable, Hashable, Equatable, Identifiable {
     var id = UUID()
     var name: String
     var rules: String

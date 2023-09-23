@@ -10,22 +10,34 @@ import SwiftUI
 struct CoursesHomeView: View {
     @StateObject private var vm: CoursesHomeViewViewModel
     
-    init(url: URL) {
+    init(url: URL?) {
         _vm = StateObject(wrappedValue: CoursesHomeViewViewModel(url: url))
     }
     
     var body: some View {
-        List(vm.coursesData, rowContent: { course in
-            Text("\(course.name)")
-            Text("\(course.location)")
-            Text("\(course.holes.count)")
-            Text("\(course.challenges.count)")
-        })
+        NavigationStack {
+            List(vm.coursesData, rowContent: { course in
+                NavigationLink(value: course) {
+                    CourseListCell(course: course)
+                }
+            })
+            
+            .navigationTitle("Putter's Country Clubs")
+            .navigationDestination(for: Course.self) { course in
+                CourseInfoView(course: course)
+            }
+        }
+        
+        
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
+    static let url = URL(string: "")
+    
     static var previews: some View {
-        CoursesHomeView(url: URL(string: "")!)
+        CoursesHomeView(url: url)
     }
 }
+
+
