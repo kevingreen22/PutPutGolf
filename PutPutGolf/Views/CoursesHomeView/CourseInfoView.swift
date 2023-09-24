@@ -13,21 +13,26 @@ struct CourseInfoView: View {
     
     var body: some View {
         ScrollView(showsIndicators: false) {
-            ZStack { // Header
-                Image(systemName: "photo")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: 300)
-                    .opacity(0.3)
-                    .overlay(alignment: .bottomLeading) {
+            Image(systemName: "photo")
+                .resizable()
+                .scaledToFill()
+                .frame(height: 300)
+                .opacity(0.3)
+                .overlay(alignment: .bottomLeading) {
+                    VStack(alignment: .leading) {
                         Text("\(course.name)")
                             .font(.largeTitle)
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
                             .lineLimit(2)
                             .padding(.leading)
+                        
+                        Text(course.location)
+                            .font(.title2)
+                            .foregroundColor(.white)
+                            .padding(.leading)
                     }
-            }
+                }
                         
             List {
                 Section("Course Stats") {
@@ -45,7 +50,8 @@ struct CourseInfoView: View {
                 }
             }
             .listStyle(.sidebar)
-            .frame(height: 800)
+            .frame(height: 1000)
+            .scrollDisabled(true)
             
             
         }
@@ -60,6 +66,7 @@ struct CourseInfoView: View {
             .controlSize(.large)
             .buttonStyle(.borderedProminent)
             .buttonBorderShape(.capsule)
+            .shadow(radius: 10)
         }
         
         .sheet(item: $infoItem) { item in
@@ -81,6 +88,7 @@ struct InfoItem: Identifiable {
     var id = UUID()
     var title: String
     var text: InfoItemText
+    var iconName: String
 }
 
 struct InfoItemView: View {
@@ -88,24 +96,31 @@ struct InfoItemView: View {
     
     var body: some View {
         ScrollView {
-            Text(item.title)
-                .font(.title)
-                .padding(.top)
+            HStack(alignment: .bottom) {
+                Image(systemName: item.iconName)
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .offset(y: -3)
+                
+                Text(item.title)
+                    .font(.title)
+                    .padding(.top)
+            }
             
             Text(item.text.rawValue)
                 .font(.title3)
                 .foregroundColor(.gray)
-                .padding()
+                .padding(.horizontal)
         }
     }
 }
 
 enum InfoItemText: String {
-    case difficulty = "The level of difficulty of the course. There are 4 levels, easy, medium, hard, and very hard. Depending on your Putter's experience level will depend on how challenging the course will be for you."
+    case difficulty = "The level of difficulty of the course. There are 4 levels,\n \"●\"-easy,\n \"■\"-medium,\n \"▲\"-hard,\n \"♦︎\"-very hard\n Depending on your Putter's Golf Club experience level will depend on how challenging the course will be for you."
     
     case numOfHoles = "This denotes the total number of holes on the course. Not including \"Game Changer\" holes. Each hole will have it's par rating at the begining of the hole for your information as well as along the top of the score card."
     
-    case numOfChallenges = "This denotes the total number of \"Game Changer\" holes on the course. These holes are scored in different ways (i.e. Timed, Race, Closest, etc.). Each Game Changer hole will have instructions to tell you how to play and how the scoring is calculated. These holes can change the outcome of the game big time!"
+    case numOfChallenges = "This denotes the total number of \"Game Changer\" holes on the course. Game Changers are unique putting challenges that add an extra layer of competition. These holes do not have numbers but are marked with checkered race flags. Each Game Changer hole will have instructions to tell you how to play and how the scoring is calculated. These holes can change the outcome of the game big time!"
 }
 
 
@@ -136,11 +151,11 @@ struct DifficultyCell: View {
             
             Text(text)
                 .font(.title)
-            
+
             Spacer()
             
             Button {
-                self.infoItem = InfoItem(title: "Difficulty Level", text: .difficulty)
+                self.infoItem = InfoItem(title: "Difficulty Level", text: .difficulty, iconName: "diamond.circle.fill")
             } label: {
                 Image(systemName: "info.circle")
                     .foregroundColor(.blue)
@@ -178,7 +193,7 @@ struct HoleCell: View {
             Spacer()
             
             Button {
-                self.infoItem = InfoItem(title: "Number Of Holes", text: InfoItemText.numOfHoles)
+                self.infoItem = InfoItem(title: "Number Of Holes", text: InfoItemText.numOfHoles, iconName: "flag.circle.fill")
             } label: {
                 Image(systemName: "info.circle")
                     .foregroundColor(.blue)
@@ -208,7 +223,7 @@ struct ChallengeInfoCell: View {
             Spacer()
             
             Button {
-                self.infoItem = InfoItem(title: "Number of Game Changers", text: InfoItemText.numOfChallenges)
+                self.infoItem = InfoItem(title: "Number of Game Changers", text: InfoItemText.numOfChallenges, iconName: "trophy.circle.fill")
             } label: {
                 Image(systemName: "info.circle")
                     .foregroundColor(.blue)

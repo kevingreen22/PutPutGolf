@@ -52,7 +52,24 @@ class MockData: MockDataProtocol {
         ]
         
         courses.append(
-            Course(name: "Goat Track Country Club", location: "Walnut Creek, Ca", address: "24.23423454234, 290.343422", imageData: Data(), difficulty: .hard, holes: holes, challenges: challenges, rules: ["rule 1","rule 2","rule 3","rule 4","rule 5","rule 6"])
+            Course(
+                name: "Goat Track Country Club",
+                location: "Walnut Creek, Ca",
+                address: "24.23423454234, 290.343422",
+                imageData: Data(),
+                difficulty: .hard,
+                holes: holes,
+                challenges: challenges,
+                rules: [
+                "This area and activity can be dangerous and poses risk of injury; we do not provide supervision. By entering you acknowledge and argree that you assume all risks on behalf of your party.",
+                "Never rais the club abouve your knees; no wild swinging.",
+                "Watch your step; the playing field is uneven.",
+                "Do not stand on railings. No climbing.",
+                "Do not try to retrieve lost balls; please ask for a replacement.",
+                "You will be responsible for any damage caused by malicious swinging or throwing of the club or ball.",
+                "We will deny entrance or expel people who are drunk, unruly,m and/or do damage with no refunds.",
+                "Players Assume All Risks."
+            ])
         )
         
         players = [
