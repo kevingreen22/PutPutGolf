@@ -27,10 +27,15 @@ struct CourseInfoView: View {
                             .lineLimit(2)
                             .padding(.leading)
                         
-                        Text(course.location)
-                            .font(.title2)
-                            .foregroundColor(.white)
-                            .padding(.leading)
+                        Button {
+                            // get directions
+                            
+                        } label: {
+                            Text(course.location)
+                                .font(.title2)
+                                .fontWeight(.thin)
+                                .padding(.leading)
+                        }
                     }
                 }
                         
