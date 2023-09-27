@@ -1,5 +1,5 @@
 //
-//  CoursesHomeViewViewModel.swift
+//  CoursesViewModel.swift
 //  PutPutGolf
 //
 //  Created by Kevin Green on 9/22/23.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-class CoursesHomeViewViewModel: ObservableObject {
+class CoursesViewModel: ObservableObject {
     var dataService: DataServiceProtocol
     var cancellables: Set<AnyCancellable> = []
     @Published var coursesData: [Course] = []
@@ -17,7 +17,7 @@ class CoursesHomeViewViewModel: ObservableObject {
         if let url = url {
             self.dataService = ProductionDataService(url: url)
         } else {
-            self.dataService = MockDataService(mockData: MockData.shared)
+            self.dataService = MockDataService(mockData: MockData.instance)
         }
         loadCourses()
     }
