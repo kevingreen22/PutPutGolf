@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		C760EAF32AB8F7FF000DFE09 /* PutPutGolfApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EAF22AB8F7FF000DFE09 /* PutPutGolfApp.swift */; };
-		C760EAF52AB8F7FF000DFE09 /* CoursesHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EAF42AB8F7FF000DFE09 /* CoursesHomeView.swift */; };
 		C760EAF72AB8F801000DFE09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C760EAF62AB8F801000DFE09 /* Assets.xcassets */; };
 		C760EAFA2AB8F801000DFE09 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C760EAF92AB8F801000DFE09 /* Preview Assets.xcassets */; };
 		C760EB022AB8F825000DFE09 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB012AB8F825000DFE09 /* Course.swift */; };
@@ -21,15 +20,16 @@
 		C760EB112ABBC4C9000DFE09 /* EnterScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB102ABBC4C9000DFE09 /* EnterScoreView.swift */; };
 		C760EB142ABD0898000DFE09 /* ScoreCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB132ABD0898000DFE09 /* ScoreCardViewModel.swift */; };
 		C760EB172ABE0AD6000DFE09 /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB162ABE0AD6000DFE09 /* DataServices.swift */; };
-		C760EB1A2ABE0C1A000DFE09 /* CoursesHomeViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB192ABE0C1A000DFE09 /* CoursesHomeViewViewModel.swift */; };
+		C760EB1A2ABE0C1A000DFE09 /* CoursesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB192ABE0C1A000DFE09 /* CoursesViewModel.swift */; };
 		C760EB1C2ABF5761000DFE09 /* CourseListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB1B2ABF5761000DFE09 /* CourseListCell.swift */; };
 		C760EB1E2ABF57B8000DFE09 /* CourseInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB1D2ABF57B8000DFE09 /* CourseInfoView.swift */; };
+		C760EB202AC135A8000DFE09 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB1F2AC135A8000DFE09 /* MainView.swift */; };
+		C7A9BA902AC4AA3100A69B81 /* CousesMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A9BA8F2AC4AA3100A69B81 /* CousesMapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C760EAEF2AB8F7FF000DFE09 /* PutPutGolf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PutPutGolf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C760EAF22AB8F7FF000DFE09 /* PutPutGolfApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutPutGolfApp.swift; sourceTree = "<group>"; };
-		C760EAF42AB8F7FF000DFE09 /* CoursesHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesHomeView.swift; sourceTree = "<group>"; };
 		C760EAF62AB8F801000DFE09 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C760EAF92AB8F801000DFE09 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C760EB012AB8F825000DFE09 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
@@ -42,9 +42,11 @@
 		C760EB102ABBC4C9000DFE09 /* EnterScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterScoreView.swift; sourceTree = "<group>"; };
 		C760EB132ABD0898000DFE09 /* ScoreCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCardViewModel.swift; sourceTree = "<group>"; };
 		C760EB162ABE0AD6000DFE09 /* DataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
-		C760EB192ABE0C1A000DFE09 /* CoursesHomeViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesHomeViewViewModel.swift; sourceTree = "<group>"; };
+		C760EB192ABE0C1A000DFE09 /* CoursesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewModel.swift; sourceTree = "<group>"; };
 		C760EB1B2ABF5761000DFE09 /* CourseListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListCell.swift; sourceTree = "<group>"; };
 		C760EB1D2ABF57B8000DFE09 /* CourseInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInfoView.swift; sourceTree = "<group>"; };
+		C760EB1F2AC135A8000DFE09 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		C7A9BA8F2AC4AA3100A69B81 /* CousesMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CousesMapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,10 +80,9 @@
 			isa = PBXGroup;
 			children = (
 				C760EAF22AB8F7FF000DFE09 /* PutPutGolfApp.swift */,
-				C760EB152ABE0AB3000DFE09 /* DataServices */,
 				C760EB072AB8F923000DFE09 /* Views */,
 				C760EB002AB8F80F000DFE09 /* Models */,
-				C760EB0A2AB8F99B000DFE09 /* MockData.swift */,
+				C760EB152ABE0AB3000DFE09 /* DataServices */,
 				C760EB0E2ABBADD9000DFE09 /* selfie.jpg */,
 				C760EAF62AB8F801000DFE09 /* Assets.xcassets */,
 				C760EAF82AB8F801000DFE09 /* Preview Content */,
@@ -104,6 +105,7 @@
 				C760EB012AB8F825000DFE09 /* Course.swift */,
 				C760EB032AB8F877000DFE09 /* Hole.swift */,
 				C760EB0C2AB8F9FA000DFE09 /* Challenge.swift */,
+				C760EB0A2AB8F99B000DFE09 /* MockData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -111,20 +113,21 @@
 		C760EB072AB8F923000DFE09 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C760EB182ABE0BEB000DFE09 /* CoursesHomeView */,
-				C760EB122ABD0879000DFE09 /* ScoreCard */,
+				C760EB1F2AC135A8000DFE09 /* MainView.swift */,
+				C760EB182ABE0BEB000DFE09 /* Courses Views */,
+				C760EB122ABD0879000DFE09 /* ScoreCard Views */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		C760EB122ABD0879000DFE09 /* ScoreCard */ = {
+		C760EB122ABD0879000DFE09 /* ScoreCard Views */ = {
 			isa = PBXGroup;
 			children = (
 				C760EB082AB8F94B000DFE09 /* ScoreCardView.swift */,
-				C760EB102ABBC4C9000DFE09 /* EnterScoreView.swift */,
 				C760EB132ABD0898000DFE09 /* ScoreCardViewModel.swift */,
+				C760EB212AC2523F000DFE09 /* SubViews */,
 			);
-			path = ScoreCard;
+			path = "ScoreCard Views";
 			sourceTree = "<group>";
 		};
 		C760EB152ABE0AB3000DFE09 /* DataServices */ = {
@@ -135,15 +138,31 @@
 			path = DataServices;
 			sourceTree = "<group>";
 		};
-		C760EB182ABE0BEB000DFE09 /* CoursesHomeView */ = {
+		C760EB182ABE0BEB000DFE09 /* Courses Views */ = {
 			isa = PBXGroup;
 			children = (
-				C760EAF42AB8F7FF000DFE09 /* CoursesHomeView.swift */,
-				C760EB192ABE0C1A000DFE09 /* CoursesHomeViewViewModel.swift */,
-				C760EB1B2ABF5761000DFE09 /* CourseListCell.swift */,
-				C760EB1D2ABF57B8000DFE09 /* CourseInfoView.swift */,
+				C7A9BA8F2AC4AA3100A69B81 /* CousesMapView.swift */,
+				C760EB192ABE0C1A000DFE09 /* CoursesViewModel.swift */,
+				C760EB222AC2527F000DFE09 /* SubViews */,
 			);
-			path = CoursesHomeView;
+			path = "Courses Views";
+			sourceTree = "<group>";
+		};
+		C760EB212AC2523F000DFE09 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				C760EB102ABBC4C9000DFE09 /* EnterScoreView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		C760EB222AC2527F000DFE09 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				C760EB1D2ABF57B8000DFE09 /* CourseInfoView.swift */,
+				C760EB1B2ABF5761000DFE09 /* CourseListCell.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,14 +236,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C760EAF52AB8F7FF000DFE09 /* CoursesHomeView.swift in Sources */,
+				C760EB202AC135A8000DFE09 /* MainView.swift in Sources */,
 				C760EB1C2ABF5761000DFE09 /* CourseListCell.swift in Sources */,
-				C760EB1A2ABE0C1A000DFE09 /* CoursesHomeViewViewModel.swift in Sources */,
+				C760EB1A2ABE0C1A000DFE09 /* CoursesViewModel.swift in Sources */,
 				C760EB142ABD0898000DFE09 /* ScoreCardViewModel.swift in Sources */,
 				C760EB042AB8F877000DFE09 /* Hole.swift in Sources */,
 				C760EB1E2ABF57B8000DFE09 /* CourseInfoView.swift in Sources */,
 				C760EAF32AB8F7FF000DFE09 /* PutPutGolfApp.swift in Sources */,
 				C760EB062AB8F8D9000DFE09 /* Player.swift in Sources */,
+				C7A9BA902AC4AA3100A69B81 /* CousesMapView.swift in Sources */,
 				C760EB172ABE0AD6000DFE09 /* DataServices.swift in Sources */,
 				C760EB022AB8F825000DFE09 /* Course.swift in Sources */,
 				C760EB0D2AB8F9FA000DFE09 /* Challenge.swift in Sources */,
