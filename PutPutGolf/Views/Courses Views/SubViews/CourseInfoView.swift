@@ -28,8 +28,7 @@ struct CourseInfoView: View {
                             .padding(.leading)
                         
                         Button {
-                            // get directions
-                            
+                            getDirections()
                         } label: {
                             Text(course.location)
                                 .font(.title2)
@@ -81,6 +80,17 @@ struct CourseInfoView: View {
                 .presentationDragIndicator(.visible)
         }
     }
+    
+    
+    fileprivate func getDirections() {
+        let directionsURL = URL(string: "maps://?saddr=&daddr=\(course.address[0]),\(course.address[1])")
+        if let url = directionsURL, UIApplication.shared.canOpenURL(url) {
+            print("\(type(of: self)).\(#function) - opening maps with directions: \(url)")
+              UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
+    
 }
 
 struct CourseInfoView_Previews: PreviewProvider {
