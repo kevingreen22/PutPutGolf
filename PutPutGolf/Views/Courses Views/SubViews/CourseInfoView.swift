@@ -9,18 +9,17 @@ import SwiftUI
 
 struct CourseInfoView: View {
     var course: Course
-    @State private var image: Image!
+    @State private var image: Image = Image(systemName: "photo") /* Image("placeholder") */
     @State private var infoItem: InfoItem?
     
     init(course: Course) {
         self.course = course
-        self.infoItem = infoItem
         
         if let data = course.imageData, let img = UIImage(data: data) {
             image = Image(uiImage: img)
-        } else {
-            image = Image(uiImage: UIImage(systemName: "photo")! /* Image("placeholder") */)
         }
+        
+        self.infoItem = infoItem
     }
     
     var body: some View {
