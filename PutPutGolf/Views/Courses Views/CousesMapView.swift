@@ -116,8 +116,9 @@ struct CoursesMapView: View {
             if let course = selectedCourse {
                 CourseInfoView(course: course)
                     .presentationDetents([
-                        .height(550),
                         .height(300),
+                        .height(550),
+                        .height(70),
                     ])
             }
         }

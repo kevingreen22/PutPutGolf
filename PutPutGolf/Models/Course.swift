@@ -11,9 +11,9 @@ import MapKit
 struct Course: Codable, Hashable, Equatable, Identifiable {
     var id = UUID()
     var name: String
-    var location: String
-    var address: [Float]
-    var imageData: Data
+    var address: String
+    var location: [Float]
+    var imageData: Data?
     var difficulty: Difficulty
     var holes: [Hole]
     var challenges: [Challenge]

@@ -57,8 +57,8 @@ class MockData: MockDataProtocol {
         courses.append(contentsOf: [
             Course(
                 name: "Goat Track Country Club",
-                location: "Martinez, Ca",
-                address: [24.23423454234, 290.343422],
+                address: "Martinez, Ca",
+                location: [24.23423454234, 290.343422],
                 imageData: Data(),
                 difficulty: .hard,
                 holes: holes,
@@ -75,8 +75,8 @@ class MockData: MockDataProtocol {
             ]),
             Course(
                 name: "Goat Track Country Club",
-                location: "Palo Alto, Ca",
-                address: [24.23423454234, 290.343422],
+                address: "Palo Alto, Ca",
+                location: [24.23423454234, 290.343422],
                 imageData: Data(),
                 difficulty: .hard,
                 holes: holes,
@@ -93,8 +93,8 @@ class MockData: MockDataProtocol {
             ]),
             Course(
                 name: "Goat Track Country Club",
-                location: "Walnut Creek, Ca",
-                address: [24.23423454234, 290.343422],
+                address: "Walnut Creek, Ca",
+                location: [24.23423454234, 290.343422],
                 imageData: Data(),
                 difficulty: .hard,
                 holes: holes,
@@ -111,8 +111,8 @@ class MockData: MockDataProtocol {
             ]),
             Course(
                 name: "Goat Track Country Club",
-                location: "Alameda, Ca",
-                address: [24.23423454234, 290.343422],
+                address: "Alameda, Ca",
+                location: [24.23423454234, 290.343422],
                 imageData: Data(),
                 difficulty: .hard,
                 holes: holes,

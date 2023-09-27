@@ -9,16 +9,28 @@ import SwiftUI
 
 struct CourseInfoView: View {
     var course: Course
+    @State private var image: Image!
     @State private var infoItem: InfoItem?
+    
+    init(course: Course) {
+        self.course = course
+        self.infoItem = infoItem
+        
+        if let data = course.imageData, let img = UIImage(data: data) {
+            image = Image(uiImage: img)
+        } else {
+            image = Image(uiImage: UIImage(systemName: "photo")! /* Image("placeholder") */)
+        }
+    }
     
     var body: some View {
         ScrollView(showsIndicators: false) {
-            Image(systemName: "photo")
+            image
                 .resizable()
                 .scaledToFill()
                 .frame(height: 300)
                 .opacity(0.3)
-                .overlay(alignment: .bottomLeading) {
+                .overlay(alignment: .topLeading) {
                     VStack(alignment: .leading) {
                         Text("\(course.name)")
                             .font(.largeTitle)
@@ -26,16 +38,31 @@ struct CourseInfoView: View {
                             .foregroundColor(.white)
                             .lineLimit(2)
                             .padding(.leading)
-                        
                         Button {
                             getDirections()
                         } label: {
-                            Text(course.location)
+                            Text(course.address)
                                 .font(.title2)
                                 .fontWeight(.thin)
                                 .padding(.leading)
                         }
                     }
+                }
+                .overlay(alignment: .top) {
+                    Button {
+                        // action to play the selected course
+                        // ideally start a new ScoreCardView setup here
+                        
+                    } label: {
+                        Text("Play Course")
+                            .font(.largeTitle)
+                            .fontWeight(.semibold)
+                    }
+                    .controlSize(.large)
+                    .buttonStyle(.borderedProminent)
+                    .buttonBorderShape(.capsule)
+                    .shadow(radius: 10)
+                    .offset(y: 125)
                 }
                 .padding(.top)
             
@@ -58,22 +85,7 @@ struct CourseInfoView: View {
             .frame(height: 1000)
             .scrollDisabled(true)
         }
-        .overlay(alignment: .top) {
-            Button {
-                // action to play the selected course
-                // ideally start a new ScoreCardView setup here
-                
-            } label: {
-                Text("Play Course")
-                    .font(.largeTitle)
-                    .fontWeight(.semibold)
-            }
-            .controlSize(.large)
-            .buttonStyle(.borderedProminent)
-            .buttonBorderShape(.capsule)
-            .shadow(radius: 10)
-            .offset(y: 125)
-        }
+        
         .sheet(item: $infoItem) { item in
             InfoItemView(item: item)
                 .presentationDetents([.height(300)])
@@ -83,13 +95,12 @@ struct CourseInfoView: View {
     
     
     fileprivate func getDirections() {
-        let directionsURL = URL(string: "maps://?saddr=&daddr=\(course.address[0]),\(course.address[1])")
+        let directionsURL = URL(string: "maps://?saddr=&daddr=\(course.location[0]),\(course.location[1])")
         if let url = directionsURL, UIApplication.shared.canOpenURL(url) {
             print("\(type(of: self)).\(#function) - opening maps with directions: \(url)")
               UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
-    
     
 }
 

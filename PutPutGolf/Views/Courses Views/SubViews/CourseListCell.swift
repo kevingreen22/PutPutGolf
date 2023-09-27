@@ -32,7 +32,7 @@ struct CourseListCell: View {
                         .resizable()
                         .scaledToFit()
                         .foregroundColor(.red)
-                    Text("\(course.location)")
+                    Text("\(course.address)")
                         .font(.title2)
                 }
             }.frame(height: 200)
