@@ -12,7 +12,7 @@ struct Course: Codable, Hashable, Equatable, Identifiable {
     var id = UUID()
     var name: String
     var location: String
-    var address: String
+    var address: [Float]
     var imageData: Data
     var difficulty: Difficulty
     var holes: [Hole]

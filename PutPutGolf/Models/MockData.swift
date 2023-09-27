@@ -14,13 +14,14 @@ protocol MockDataProtocol {
 
 class MockData: MockDataProtocol {
     
-    static var shared = MockData()
+    static var instance = MockData()
     
     var courses: [Course] = []
     
     var players: [Player] = []
     
-    private init() {        
+    private init() {
+        // creates holes for course
         let holes = [
             Hole(number: 1, par: 2, difficulty: .medium),
             Hole(number: 2, par: 3, difficulty: .hard),
@@ -45,17 +46,73 @@ class MockData: MockDataProtocol {
             Hole(number: 21, par: 1, difficulty: .medium)
         ]
         
+        // creates challenges for course
         let challenges = [
             Challenge(name: "Time Trial", rules: "there are the rules for time trials", difficulty: .easy),
             Challenge(name: "Closest To the Hole", rules: "there are the rules for time trials", difficulty: .medium),
             Challenge(name: "First In wins.", rules: "there are the rules for time trials", difficulty: .hard),
         ]
         
-        courses.append(
+        // puts courses in to courses property array
+        courses.append(contentsOf: [
+            Course(
+                name: "Goat Track Country Club",
+                location: "Martinez, Ca",
+                address: [24.23423454234, 290.343422],
+                imageData: Data(),
+                difficulty: .hard,
+                holes: holes,
+                challenges: challenges,
+                rules: [
+                "This area and activity can be dangerous and poses risk of injury; we do not provide supervision. By entering you acknowledge and argree that you assume all risks on behalf of your party.",
+                "Never rais the club abouve your knees; no wild swinging.",
+                "Watch your step; the playing field is uneven.",
+                "Do not stand on railings. No climbing.",
+                "Do not try to retrieve lost balls; please ask for a replacement.",
+                "You will be responsible for any damage caused by malicious swinging or throwing of the club or ball.",
+                "We will deny entrance or expel people who are drunk, unruly,m and/or do damage with no refunds.",
+                "Players Assume All Risks."
+            ]),
+            Course(
+                name: "Goat Track Country Club",
+                location: "Palo Alto, Ca",
+                address: [24.23423454234, 290.343422],
+                imageData: Data(),
+                difficulty: .hard,
+                holes: holes,
+                challenges: challenges,
+                rules: [
+                "This area and activity can be dangerous and poses risk of injury; we do not provide supervision. By entering you acknowledge and argree that you assume all risks on behalf of your party.",
+                "Never rais the club abouve your knees; no wild swinging.",
+                "Watch your step; the playing field is uneven.",
+                "Do not stand on railings. No climbing.",
+                "Do not try to retrieve lost balls; please ask for a replacement.",
+                "You will be responsible for any damage caused by malicious swinging or throwing of the club or ball.",
+                "We will deny entrance or expel people who are drunk, unruly,m and/or do damage with no refunds.",
+                "Players Assume All Risks."
+            ]),
             Course(
                 name: "Goat Track Country Club",
                 location: "Walnut Creek, Ca",
-                address: "24.23423454234, 290.343422",
+                address: [24.23423454234, 290.343422],
+                imageData: Data(),
+                difficulty: .hard,
+                holes: holes,
+                challenges: challenges,
+                rules: [
+                "This area and activity can be dangerous and poses risk of injury; we do not provide supervision. By entering you acknowledge and argree that you assume all risks on behalf of your party.",
+                "Never rais the club abouve your knees; no wild swinging.",
+                "Watch your step; the playing field is uneven.",
+                "Do not stand on railings. No climbing.",
+                "Do not try to retrieve lost balls; please ask for a replacement.",
+                "You will be responsible for any damage caused by malicious swinging or throwing of the club or ball.",
+                "We will deny entrance or expel people who are drunk, unruly,m and/or do damage with no refunds.",
+                "Players Assume All Risks."
+            ]),
+            Course(
+                name: "Goat Track Country Club",
+                location: "Alameda, Ca",
+                address: [24.23423454234, 290.343422],
                 imageData: Data(),
                 difficulty: .hard,
                 holes: holes,
@@ -70,8 +127,9 @@ class MockData: MockDataProtocol {
                 "We will deny entrance or expel people who are drunk, unruly,m and/or do damage with no refunds.",
                 "Players Assume All Risks."
             ])
-        )
+        ])
         
+        // creates players
         players = [
             Player(name: "Kevin", course: courses.first!),
             Player(name: "Nell", course: courses.first!),
@@ -79,6 +137,7 @@ class MockData: MockDataProtocol {
             Player(name: "Whitney", course: courses.first!)
         ]
         
+        // creates player scores
         for player in players {
             for _ in 0..<Int.random(in: 0..<21) {
                 player.scores.append(String(Int.random(in: 1...5)))
@@ -92,5 +151,6 @@ class MockData: MockDataProtocol {
             print(player.scores)
             print(player.challengeScores)
         }
+        
     }
 }
