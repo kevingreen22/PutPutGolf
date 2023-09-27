@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CourseInfoView: View {
     var course: Course
-    @State var infoItem: InfoItem?
+    @State private var infoItem: InfoItem?
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -38,7 +38,8 @@ struct CourseInfoView: View {
                         }
                     }
                 }
-                        
+                .padding(.top)
+            
             List {
                 Section("Course Stats") {
                     DifficultyCell(difficulty: course.difficulty, text: "\(course.difficulty.rawValue)", infoItem: $infoItem)
@@ -57,12 +58,12 @@ struct CourseInfoView: View {
             .listStyle(.sidebar)
             .frame(height: 1000)
             .scrollDisabled(true)
-            
-            
         }
-        .overlay(alignment: .bottom) {
+        .overlay(alignment: .top) {
             Button {
-                //
+                // action to play the selected course
+                // ideally start a new ScoreCardView setup here
+                
             } label: {
                 Text("Play Course")
                     .font(.largeTitle)
@@ -72,11 +73,12 @@ struct CourseInfoView: View {
             .buttonStyle(.borderedProminent)
             .buttonBorderShape(.capsule)
             .shadow(radius: 10)
+            .offset(y: 125)
         }
-        
         .sheet(item: $infoItem) { item in
             InfoItemView(item: item)
                 .presentationDetents([.height(300)])
+                .presentationDragIndicator(.visible)
         }
     }
 }
@@ -129,9 +131,6 @@ enum InfoItemText: String {
 }
 
 
-
-
-
 struct DifficultyCell: View {
     var difficulty: Difficulty
     var text: String
@@ -156,7 +155,7 @@ struct DifficultyCell: View {
             
             Text(text)
                 .font(.title)
-
+            
             Spacer()
             
             Button {
@@ -176,7 +175,6 @@ struct DifficultyCell: View {
             .padding(.trailing)
     }
 }
-
 
 struct HoleCell: View {
     var iconName: String
@@ -206,7 +204,6 @@ struct HoleCell: View {
         }
     }
 }
-
 
 struct ChallengeInfoCell: View {
     var iconName: String
