@@ -22,10 +22,10 @@ public struct CoursesMapInfo {
 struct CoursesMapView: View {
     @StateObject private var vm: CoursesViewModel
     @State private var rotation: CoursesMapInfo.Degrees = .left
+    @State private var screenSize: CGSize = .zero
     @State private var title: String?
     @State private var showCourseInfo: Bool = false
-    @State private var selectedCourse: Course?
-    @State private var screenSize: CGSize = .zero
+    
     
     init(url: URL?) {
         _vm = StateObject(wrappedValue: CoursesViewModel(url: url))
@@ -65,9 +65,10 @@ struct CoursesMapView: View {
                 .position(x: 70, y: 500)
                 .onTapGesture {
                     withAnimation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 1)) {
-                        self.selectedCourse = MockData.instance.courses[0]
+//                        self.selectedCourse = MockData.instance.courses[0]
+                        vm.setSelectedCourse()
                         rotation = .left
-                        title = self.selectedCourse?.name
+                        title = vm.selectedCourse?.name
                         showCourseInfo = true
                     }
                 }
@@ -78,9 +79,10 @@ struct CoursesMapView: View {
                 .position(x: 120, y: 700)
                 .onTapGesture {
                     withAnimation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 1)) {
-                        self.selectedCourse = MockData.instance.courses[1]
+//                        self.selectedCourse = MockData.instance.courses[1]
+                        vm.setSelectedCourse()
                         rotation = .leftMid
-                        title = self.selectedCourse?.name
+                        title = vm.selectedCourse?.name
                         showCourseInfo = true
                     }
                 }
@@ -91,9 +93,10 @@ struct CoursesMapView: View {
                 .position(x: 300, y: 700)
                 .onTapGesture {
                     withAnimation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 1)) {
-                        self.selectedCourse = MockData.instance.courses[2]
+//                        self.selectedCourse = MockData.instance.courses[2]
+                        vm.setSelectedCourse()
                         rotation = .rightMid
-                        title = selectedCourse?.name
+                        title = vm.selectedCourse?.name
                         showCourseInfo = true
                     }
                 }
@@ -104,24 +107,26 @@ struct CoursesMapView: View {
                 .position(x: 365, y: 500)
                 .onTapGesture {
                     withAnimation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 1)) {
-                        self.selectedCourse = MockData.instance.courses[3]
+//                        self.selectedCourse = MockData.instance.courses[3]
+                        vm.setSelectedCourse()
                         rotation = .right
-                        title = selectedCourse?.name
+                        title = vm.selectedCourse?.name
                         showCourseInfo = true
                     }
                 }
         }
         
         .sheet(isPresented: $showCourseInfo) {
-            if let course = selectedCourse {
-                CourseInfoView(course: course)
-                    .presentationDetents([
-                        .height(300),
-                        .height(550),
-                        .height(70),
-                    ])
-            }
+            CourseInfoView(course: $vm.selectedCourse)
+                .presentationDetents([
+                    .height(550),
+                    .height(300),
+                    .height(70),
+                ])
+                .presentationBackgroundInteraction(.enabled)
+                .presentationCornerRadius(30)
         }
+        
         .overlay(
             GeometryReader { proxy in
                 Color.clear.preference(key: SizePreferenceKey.self, value: proxy.size)

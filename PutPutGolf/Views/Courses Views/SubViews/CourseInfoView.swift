@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct CourseInfoView: View {
-    var course: Course
+    @Binding var course: Course!
     @State private var image: Image = Image(systemName: "photo") /* Image("placeholder") */
     @State private var infoItem: InfoItem?
     
-    init(course: Course) {
-        self.course = course
+    init(course: Binding<Course?>) {
+        _course = course
         
-        if let data = course.imageData, let img = UIImage(data: data) {
+        if let course = course.wrappedValue, let data = course.imageData, let img = UIImage(data: data) {
             image = Image(uiImage: img)
         }
         
@@ -94,18 +94,24 @@ struct CourseInfoView: View {
     
     
     fileprivate func getDirections() {
-        let directionsURL = URL(string: "maps://?saddr=&daddr=\(course.location[0]),\(course.location[1])")
-        if let url = directionsURL, UIApplication.shared.canOpenURL(url) {
-            print("\(type(of: self)).\(#function) - opening maps with directions: \(url)")
-              UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        if course != nil {
+            let longitude = course!.location[1]
+            let latitude = course!.location[0]
+            let directionsURL = URL(string: "maps://?saddr=&daddr=\(longitude),\(latitude)")
+            if let url = directionsURL, UIApplication.shared.canOpenURL(url) {
+                print("\(type(of: self)).\(#function) - opening maps with directions: \(url)")
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
         }
     }
     
 }
 
 struct CourseInfoView_Previews: PreviewProvider {
+    static let course: Binding<Course?> = .constant(MockData.instance.courses.first!)
+    
     static var previews: some View {
-        CourseInfoView(course: MockData.instance.courses.first!)
+        CourseInfoView(course: course)
     }
 }
 

@@ -12,6 +12,7 @@ class CoursesViewModel: ObservableObject {
     var dataService: DataServiceProtocol
     var cancellables: Set<AnyCancellable> = []
     @Published var coursesData: [Course] = []
+    @Published var selectedCourse: Course? 
     
     init(url: URL?) {
         if let url = url {
@@ -19,6 +20,7 @@ class CoursesViewModel: ObservableObject {
         } else {
             self.dataService = MockDataService(mockData: MockData.instance)
         }
+        
         loadCourses()
     }
     
@@ -29,7 +31,19 @@ class CoursesViewModel: ObservableObject {
             } receiveValue: { [weak self] courses in
                 guard let self = self else { return }
                 self.coursesData = courses
+                self.selectedCourse = courses.first!
             }
+            .store(in: &cancellables)
+    }
+    
+    func setSelectedCourse() {
+        selectedCourse
+            .publisher
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] newValue in
+                guard let self = self else { return }
+                self.selectedCourse = newValue
+            })
             .store(in: &cancellables)
     }
     

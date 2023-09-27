@@ -74,7 +74,7 @@ class MockData: MockDataProtocol {
                 "Players Assume All Risks."
             ]),
             Course(
-                name: "Goat Track Country Club",
+                name: "Sheep Track Country Club",
                 address: "Palo Alto, Ca",
                 location: [24.23423454234, 290.343422],
                 imageData: Data(),
@@ -92,7 +92,7 @@ class MockData: MockDataProtocol {
                 "Players Assume All Risks."
             ]),
             Course(
-                name: "Goat Track Country Club",
+                name: "Cow Track Country Club",
                 address: "Walnut Creek, Ca",
                 location: [24.23423454234, 290.343422],
                 imageData: Data(),
@@ -110,7 +110,7 @@ class MockData: MockDataProtocol {
                 "Players Assume All Risks."
             ]),
             Course(
-                name: "Goat Track Country Club",
+                name: "Pig Track Country Club",
                 address: "Alameda, Ca",
                 location: [24.23423454234, 290.343422],
                 imageData: Data(),
