@@ -43,6 +43,6 @@ struct CourseListCell: View {
 
 struct CourseListCell_Previews: PreviewProvider {
     static var previews: some View {
-        CourseListCell(course: MockData.shared.courses.first!)
+        CourseListCell(course: MockData.instance.courses.first!)
     }
 }

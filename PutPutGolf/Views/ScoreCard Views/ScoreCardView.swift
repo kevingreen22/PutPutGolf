@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ScoreCardView: View {
-    let data = MockData.shared
-    let course = MockData.shared.courses.first!
+    let data = MockData.instance
+    let course = MockData.instance.courses.first!
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {

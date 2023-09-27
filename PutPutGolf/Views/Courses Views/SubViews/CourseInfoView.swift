@@ -83,7 +83,7 @@ struct CourseInfoView: View {
 
 struct CourseInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        CourseInfoView(course: MockData.shared.courses.first!)
+        CourseInfoView(course: MockData.instance.courses.first!)
     }
 }
 
