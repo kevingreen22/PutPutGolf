@@ -10,7 +10,12 @@ import Combine
 
 class ScoreCardViewModel: ObservableObject {
     @Published var score: String = ""
+    @Published var players: [Player] = []
     var cancellables: Set<AnyCancellable> = []
+    
+    
+    
+    
     
     func updateScore(player: Player, hole: Hole) {
         

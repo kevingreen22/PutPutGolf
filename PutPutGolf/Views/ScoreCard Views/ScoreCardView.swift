@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct ScoreCardView: View {
-    let data = MockData.instance
-    let course = MockData.instance.courses.first!
+    @StateObject var vm: ScoreCardViewModel
+    @Binding var course: Course
+    
+    init(course: Binding<Course>) {
+        _vm = StateObject(wrappedValue: ScoreCardViewModel())
+        _course = course
+    }
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -23,7 +28,7 @@ struct ScoreCardView: View {
                             .border(Color.black)
                         
                         // Hole number
-                        ForEach(data.courses.first!.holes) { hole in
+                        ForEach(course.holes) { hole in
                             StandardTextCell(title: "\(hole.number)", color: .green, textColor: .white)
                                 .border(Color.black)
                         }
@@ -33,7 +38,7 @@ struct ScoreCardView: View {
                             .border(Color.black)
                         
                         // Challenges desc.
-                        ForEach(data.courses.first!.challenges) { challenge in
+                        ForEach(course.challenges) { challenge in
                             ChallengeCell(challenge: challenge)
                         }
                         
@@ -51,17 +56,17 @@ struct ScoreCardView: View {
                         StandardTextCell(title: "Par", color: .brown, textColor: .white)
 
                         // Hole par cells
-                        ForEach(data.courses.first!.holes) { hole in
+                        ForEach(course.holes) { hole in
                             HoleParNumberCell(hole: hole)
                         }
                         
-                        TotalParCell(course: data.courses.first!)
+                        TotalParCell(course: course)
                     }
                     .frame(width: 80, height: 30)
                     .border(Color.black)
                     
                     // Player's row & scores
-                    ForEach(data.players, id: \.id) { player in
+                    ForEach(vm.players, id: \.id) { player in
                         GridRow {
                             PlayerInfoCell(player: player)
                             
@@ -74,7 +79,7 @@ struct ScoreCardView: View {
                                 TotalScoreCell(player: player)
                                 
                                 // Challenge Score cells
-                                ForEach(data.courses.first!.challenges.indices, id: \.self) { i in
+                                ForEach(course.challenges.indices, id: \.self) { i in
                                     ChallengeScoreCell(player: player, index: i)
                                 }
                                 
@@ -95,9 +100,7 @@ struct ScoreCardView: View {
 
 struct ScoreCardView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            ScoreCardView()
-        }
+        ScoreCardView(course: .constant(MockData.instance.courses[0]))
     }
 }
 

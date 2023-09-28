@@ -16,6 +16,7 @@
 		C74CB2562AC6038900AC53D7 /* CourseMapIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB2552AC6038900AC53D7 /* CourseMapIcon.swift */; };
 		C74CB2582AC6046000AC53D7 /* CourseMapBallAndClubIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB2572AC6046000AC53D7 /* CourseMapBallAndClubIcon.swift */; };
 		C74CB25A2AC6056700AC53D7 /* CoursesMapInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB2592AC6056700AC53D7 /* CoursesMapInfo.swift */; };
+		C74CB25C2AC62D6500AC53D7 /* ScoreCardsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB25B2AC62D6500AC53D7 /* ScoreCardsList.swift */; };
 		C760EAF32AB8F7FF000DFE09 /* PutPutGolfApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EAF22AB8F7FF000DFE09 /* PutPutGolfApp.swift */; };
 		C760EAF72AB8F801000DFE09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C760EAF62AB8F801000DFE09 /* Assets.xcassets */; };
 		C760EAFA2AB8F801000DFE09 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C760EAF92AB8F801000DFE09 /* Preview Assets.xcassets */; };
@@ -46,6 +47,7 @@
 		C74CB2552AC6038900AC53D7 /* CourseMapIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseMapIcon.swift; sourceTree = "<group>"; };
 		C74CB2572AC6046000AC53D7 /* CourseMapBallAndClubIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseMapBallAndClubIcon.swift; sourceTree = "<group>"; };
 		C74CB2592AC6056700AC53D7 /* CoursesMapInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesMapInfo.swift; sourceTree = "<group>"; };
+		C74CB25B2AC62D6500AC53D7 /* ScoreCardsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCardsList.swift; sourceTree = "<group>"; };
 		C760EAEF2AB8F7FF000DFE09 /* PutPutGolf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PutPutGolf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C760EAF22AB8F7FF000DFE09 /* PutPutGolfApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutPutGolfApp.swift; sourceTree = "<group>"; };
 		C760EAF62AB8F801000DFE09 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				C760EB1F2AC135A8000DFE09 /* MainView.swift */,
 				C760EB182ABE0BEB000DFE09 /* Courses Views */,
 				C760EB122ABD0879000DFE09 /* ScoreCard Views */,
+				C74CB25B2AC62D6500AC53D7 /* ScoreCardsList.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				C760EB0B2AB8F99B000DFE09 /* MockData.swift in Sources */,
 				C760EB092AB8F94B000DFE09 /* ScoreCardView.swift in Sources */,
 				C74CB2582AC6046000AC53D7 /* CourseMapBallAndClubIcon.swift in Sources */,
+				C74CB25C2AC62D6500AC53D7 /* ScoreCardsList.swift in Sources */,
 				C760EB112ABBC4C9000DFE09 /* EnterScoreView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
