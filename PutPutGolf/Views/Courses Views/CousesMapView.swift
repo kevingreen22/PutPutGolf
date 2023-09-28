@@ -8,12 +8,8 @@
 import SwiftUI
 
 struct CoursesMapView: View {
-    @StateObject private var vm: CoursesViewModel
+    @EnvironmentObject var vm: CoursesViewModel
     @State private var screenSize: CGSize = .zero
-    
-    init(url: URL?) {
-        _vm = StateObject(wrappedValue: CoursesViewModel(url: url))
-    }
     
     var body: some View {
         ZStack {
@@ -52,7 +48,8 @@ struct CoursesMapView: View {
 
 struct CoursesMapView_Previews: PreviewProvider {
     static var previews: some View {
-        CoursesMapView(url: nil)
+        CoursesMapView()
+            .environmentObject(CoursesViewModel(url: nil))
     }
 }
 

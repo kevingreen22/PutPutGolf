@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct MainView: View {
-    let courseAPIurl = URL(string: "https://my.apiEndpoint.courses")
+    @EnvironmentObject var vm: CoursesViewModel
     
     var body: some View {
         TabView {
-            CoursesMapView(url: nil)
+            CoursesMapView()
+                .environmentObject(vm)
                 .tabItem {
                     Label("Courses", systemImage: "figure.golf")
                 }
             
-            ScoreCardView()
+            ScoreCardsList()
                 .tabItem {
                     Label("Scorecards", systemImage: "menucard.fill")
                 }
