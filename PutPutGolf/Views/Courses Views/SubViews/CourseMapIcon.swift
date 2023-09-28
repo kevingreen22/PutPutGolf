@@ -13,16 +13,6 @@ struct CourseMapIcon: View {
     var placement: (CoursesMapInfo.RotationDegrees, CGPoint)
     
     var body: some View {
-//        Circle()
-//            .foregroundColor(.gray)
-//            .frame(width: 100, height: 100)
-//            .position(placement.1)
-//            .onTapGesture {
-//                withAnimation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 1)) {
-//                    vm.rotation = placement.0
-//                    vm.showCourseInfo = true
-//                }
-//            }
         ZStack {
             image
                 .resizable()
