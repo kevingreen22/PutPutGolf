@@ -8,9 +8,24 @@
 import SwiftUI
 
 public struct CoursesMapInfo {
-    var degrees: [Degrees] = [.left,.leftMid,.rightMid,.right]
+    static var iconPlacement: [(RotationDegrees, CGPoint)] = [
+        (.left,iconPositions[0]),
+        (.leftMid,iconPositions[1]),
+        (.rightMid,iconPositions[2]),
+        (.right,iconPositions[3])
+    ]
     
-    enum Degrees: Double {
+    static private var iconPositions: [CGPoint] = [
+        CGPoint(x: 70, y: 500),
+        CGPoint(x: 120, y: 700),
+        CGPoint(x: 300, y: 700),
+        CGPoint(x: 365, y: 500)
+    ]
+    
+    static private var degrees: [RotationDegrees] = [.none,.left,.leftMid,.rightMid,.right]
+    
+    public enum RotationDegrees: Double {
+        case none = 0
         case left = 27
         case leftMid = 10.0
         case rightMid = -10.0
@@ -21,11 +36,7 @@ public struct CoursesMapInfo {
 
 struct CoursesMapView: View {
     @StateObject private var vm: CoursesViewModel
-    @State private var rotation: CoursesMapInfo.Degrees = .left
     @State private var screenSize: CGSize = .zero
-    @State private var title: String?
-    @State private var showCourseInfo: Bool = false
-    
     
     init(url: URL?) {
         _vm = StateObject(wrappedValue: CoursesViewModel(url: url))
@@ -35,88 +46,16 @@ struct CoursesMapView: View {
         ZStack {
             Color.green.edgesIgnoringSafeArea(.top)
             
-            Circle()
-                .foregroundColor(.blue)
-                .frame(width: 200, height: 200)
-                .background {
-                    Rectangle()
-                        .foregroundColor(.gray)
-                        .frame(width: 20, height: 400)
-                        .rotationEffect(.degrees(rotation.rawValue))
-                }
-                .overlay {
-                    Text("\(title ?? "Select a Course")")
-                        .font(.largeTitle)
-                        .foregroundColor(.white)
-                        .frame(width: 300)
-                        .padding()
-                        .background{
-                            Image(systemName: "rectangle.fill")
-                                .resizable()
-                                .foregroundColor(.red)
-                        }
-                }
-                .position(x: screenSize.width/2, y: screenSize.height/4)
+            CourseMapBallAndClubIcon(screenSize: $screenSize)
+                .environmentObject(vm)
             
-            
-            Circle()
-                .foregroundColor(.gray)
-                .frame(width: 100, height: 100)
-                .position(x: 70, y: 500)
-                .onTapGesture {
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 1)) {
-//                        self.selectedCourse = MockData.instance.courses[0]
-                        vm.setSelectedCourse()
-                        rotation = .left
-                        title = vm.selectedCourse?.name
-                        showCourseInfo = true
-                    }
-                }
-            
-            Circle()
-                .foregroundColor(.gray)
-                .frame(width: 100, height: 100)
-                .position(x: 120, y: 700)
-                .onTapGesture {
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 1)) {
-//                        self.selectedCourse = MockData.instance.courses[1]
-                        vm.setSelectedCourse()
-                        rotation = .leftMid
-                        title = vm.selectedCourse?.name
-                        showCourseInfo = true
-                    }
-                }
-            
-            Circle()
-                .foregroundColor(.gray)
-                .frame(width: 100, height: 100)
-                .position(x: 300, y: 700)
-                .onTapGesture {
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 1)) {
-//                        self.selectedCourse = MockData.instance.courses[2]
-                        vm.setSelectedCourse()
-                        rotation = .rightMid
-                        title = vm.selectedCourse?.name
-                        showCourseInfo = true
-                    }
-                }
-            
-            Circle()
-                .foregroundColor(.gray)
-                .frame(width: 100, height: 100)
-                .position(x: 365, y: 500)
-                .onTapGesture {
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 1)) {
-//                        self.selectedCourse = MockData.instance.courses[3]
-                        vm.setSelectedCourse()
-                        rotation = .right
-                        title = vm.selectedCourse?.name
-                        showCourseInfo = true
-                    }
-                }
+            ForEach(0..<vm.coursesData.count) { index in
+                CourseMapIcon(placement: CoursesMapInfo.iconPlacement[index])
+                    .environmentObject(vm)
+            }
         }
         
-        .sheet(isPresented: $showCourseInfo) {
+        .sheet(isPresented: $vm.showCourseInfo) {
             CourseInfoView(course: $vm.selectedCourse)
                 .presentationDetents([
                     .height(550),
@@ -146,6 +85,53 @@ struct CoursesMapView_Previews: PreviewProvider {
 
 
 
+struct CourseMapBallAndClubIcon: View {
+    @EnvironmentObject var vm: CoursesViewModel
+    @Binding var screenSize: CGSize
+    
+    var body: some View {
+        Circle()
+            .foregroundColor(.blue)
+            .frame(width: 200, height: 200)
+            .background {
+                Rectangle()
+                    .foregroundColor(.gray)
+                    .frame(width: 20, height: 400)
+                    .rotationEffect(.degrees(vm.rotation.rawValue))
+            }
+            .overlay {
+                Text("\(vm.title ?? "Select a Course")")
+                    .font(.largeTitle)
+                    .foregroundColor(.white)
+                    .frame(width: 300)
+                    .padding()
+                    .background{
+                        Image(systemName: "rectangle.fill")
+                            .resizable()
+                            .foregroundColor(.red)
+                    }
+            }
+            .position(x: screenSize.width/2, y: screenSize.height/4)
+    }
+}
+
+struct CourseMapIcon: View {
+    @EnvironmentObject var vm: CoursesViewModel
+    var placement: (CoursesMapInfo.RotationDegrees, CGPoint)
+    
+    var body: some View {
+        Circle()
+            .foregroundColor(.gray)
+            .frame(width: 100, height: 100)
+            .position(placement.1)
+            .onTapGesture {
+                withAnimation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 1)) {
+                    vm.rotation = placement.0
+                    vm.showCourseInfo = true
+                }
+            }
+    }
+}
 
 
 struct SizePreferenceKey: PreferenceKey {

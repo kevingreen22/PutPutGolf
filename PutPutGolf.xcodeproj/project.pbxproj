@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C74CB2452AC4F6C400AC53D7 /* golf_ball.png in Resources */ = {isa = PBXBuildFile; fileRef = C74CB2442AC4F6C300AC53D7 /* golf_ball.png */; };
+		C74CB2472AC4F7E500AC53D7 /* golf_ball_2.png in Resources */ = {isa = PBXBuildFile; fileRef = C74CB2462AC4F7E500AC53D7 /* golf_ball_2.png */; };
 		C760EAF32AB8F7FF000DFE09 /* PutPutGolfApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EAF22AB8F7FF000DFE09 /* PutPutGolfApp.swift */; };
 		C760EAF72AB8F801000DFE09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C760EAF62AB8F801000DFE09 /* Assets.xcassets */; };
 		C760EAFA2AB8F801000DFE09 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C760EAF92AB8F801000DFE09 /* Preview Assets.xcassets */; };
@@ -29,6 +31,8 @@
 
 /* Begin PBXFileReference section */
 		C74CB2432AC4CD1000AC53D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C74CB2442AC4F6C300AC53D7 /* golf_ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = golf_ball.png; sourceTree = "<group>"; };
+		C74CB2462AC4F7E500AC53D7 /* golf_ball_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = golf_ball_2.png; sourceTree = "<group>"; };
 		C760EAEF2AB8F7FF000DFE09 /* PutPutGolf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PutPutGolf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C760EAF22AB8F7FF000DFE09 /* PutPutGolfApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutPutGolfApp.swift; sourceTree = "<group>"; };
 		C760EAF62AB8F801000DFE09 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -85,6 +89,8 @@
 				C760EB072AB8F923000DFE09 /* Views */,
 				C760EB002AB8F80F000DFE09 /* Models */,
 				C760EB152ABE0AB3000DFE09 /* DataServices */,
+				C74CB2442AC4F6C300AC53D7 /* golf_ball.png */,
+				C74CB2462AC4F7E500AC53D7 /* golf_ball_2.png */,
 				C760EB0E2ABBADD9000DFE09 /* selfie.jpg */,
 				C760EAF62AB8F801000DFE09 /* Assets.xcassets */,
 				C760EAF82AB8F801000DFE09 /* Preview Content */,
@@ -225,6 +231,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C74CB2472AC4F7E500AC53D7 /* golf_ball_2.png in Resources */,
+				C74CB2452AC4F6C400AC53D7 /* golf_ball.png in Resources */,
 				C760EB0F2ABBADD9000DFE09 /* selfie.jpg in Resources */,
 				C760EAFA2AB8F801000DFE09 /* Preview Assets.xcassets in Resources */,
 				C760EAF72AB8F801000DFE09 /* Assets.xcassets in Resources */,
@@ -388,8 +396,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -418,8 +426,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

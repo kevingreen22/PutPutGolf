@@ -11,8 +11,13 @@ import Combine
 class CoursesViewModel: ObservableObject {
     var dataService: DataServiceProtocol
     var cancellables: Set<AnyCancellable> = []
-    @Published var coursesData: [Course] = []
-    @Published var selectedCourse: Course? 
+    var coursesData: [Course] = []
+    
+    @Published var selectedCourse: Course?
+    @Published var rotation: CoursesMapInfo.RotationDegrees = .none
+    @Published var title: String?
+    @Published var showCourseInfo: Bool = false
+   
     
     init(url: URL?) {
         if let url = url {
@@ -22,29 +27,53 @@ class CoursesViewModel: ObservableObject {
         }
         
         loadCourses()
+        setSelectedCourse()
     }
     
     func loadCourses() {
         dataService.getCourses()
             .sink { _ in
-                
+                // error or success
             } receiveValue: { [weak self] courses in
                 guard let self = self else { return }
                 self.coursesData = courses
-                self.selectedCourse = courses.first!
             }
             .store(in: &cancellables)
     }
     
+    
     func setSelectedCourse() {
-        selectedCourse
-            .publisher
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] newValue in
+        $rotation
+            .sink { [weak self] degree in
                 guard let self = self else { return }
-                self.selectedCourse = newValue
-            })
+                switch degree {
+                case .left:
+                    let course = self.coursesData[0]
+                    self.selectedCourse = course
+                    self.title = course.name
+                    
+                case .leftMid:
+                    let course = self.coursesData[1]
+                    self.selectedCourse = course
+                    self.title = course.name
+                    
+                case .rightMid:
+                    let course = self.coursesData[2]
+                    self.selectedCourse = course
+                    self.title = course.name
+                    
+                case .right:
+                    let course = self.coursesData[3]
+                    self.selectedCourse = course
+                    self.title = course.name
+                    
+                case .none:
+                    self.selectedCourse = nil
+                    self.title = nil
+                }
+            }
             .store(in: &cancellables)
     }
     
 }
+
