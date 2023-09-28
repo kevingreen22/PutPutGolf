@@ -10,9 +10,12 @@
 		C74CB2492AC6000800AC53D7 /* putter_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = C74CB2482AC6000800AC53D7 /* putter_banner.png */; };
 		C74CB24B2AC601C000AC53D7 /* plain_ball.png in Resources */ = {isa = PBXBuildFile; fileRef = C74CB24A2AC601C000AC53D7 /* plain_ball.png */; };
 		C74CB2512AC6021D00AC53D7 /* closeup_ball_hole.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C74CB24D2AC6021D00AC53D7 /* closeup_ball_hole.jpg */; };
-		C74CB2522AC6021D00AC53D7 /* martinez.JPG in Resources */ = {isa = PBXBuildFile; fileRef = C74CB24E2AC6021D00AC53D7 /* martinez.JPG */; };
-		C74CB2532AC6021D00AC53D7 /* walnut_creek.JPG in Resources */ = {isa = PBXBuildFile; fileRef = C74CB24F2AC6021D00AC53D7 /* walnut_creek.JPG */; };
+		C74CB2522AC6021D00AC53D7 /* martinez.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C74CB24E2AC6021D00AC53D7 /* martinez.jpg */; };
+		C74CB2532AC6021D00AC53D7 /* walnut_creek.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C74CB24F2AC6021D00AC53D7 /* walnut_creek.jpg */; };
 		C74CB2542AC6021D00AC53D7 /* alameda.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C74CB2502AC6021D00AC53D7 /* alameda.jpg */; };
+		C74CB2562AC6038900AC53D7 /* CourseMapIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB2552AC6038900AC53D7 /* CourseMapIcon.swift */; };
+		C74CB2582AC6046000AC53D7 /* CourseMapBallAndClubIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB2572AC6046000AC53D7 /* CourseMapBallAndClubIcon.swift */; };
+		C74CB25A2AC6056700AC53D7 /* CoursesMapInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB2592AC6056700AC53D7 /* CoursesMapInfo.swift */; };
 		C760EAF32AB8F7FF000DFE09 /* PutPutGolfApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EAF22AB8F7FF000DFE09 /* PutPutGolfApp.swift */; };
 		C760EAF72AB8F801000DFE09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C760EAF62AB8F801000DFE09 /* Assets.xcassets */; };
 		C760EAFA2AB8F801000DFE09 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C760EAF92AB8F801000DFE09 /* Preview Assets.xcassets */; };
@@ -37,9 +40,12 @@
 		C74CB2482AC6000800AC53D7 /* putter_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = putter_banner.png; sourceTree = "<group>"; };
 		C74CB24A2AC601C000AC53D7 /* plain_ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plain_ball.png; sourceTree = "<group>"; };
 		C74CB24D2AC6021D00AC53D7 /* closeup_ball_hole.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = closeup_ball_hole.jpg; sourceTree = "<group>"; };
-		C74CB24E2AC6021D00AC53D7 /* martinez.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = martinez.JPG; sourceTree = "<group>"; };
-		C74CB24F2AC6021D00AC53D7 /* walnut_creek.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = walnut_creek.JPG; sourceTree = "<group>"; };
+		C74CB24E2AC6021D00AC53D7 /* martinez.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = martinez.jpg; sourceTree = "<group>"; };
+		C74CB24F2AC6021D00AC53D7 /* walnut_creek.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = walnut_creek.jpg; sourceTree = "<group>"; };
 		C74CB2502AC6021D00AC53D7 /* alameda.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = alameda.jpg; sourceTree = "<group>"; };
+		C74CB2552AC6038900AC53D7 /* CourseMapIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseMapIcon.swift; sourceTree = "<group>"; };
+		C74CB2572AC6046000AC53D7 /* CourseMapBallAndClubIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseMapBallAndClubIcon.swift; sourceTree = "<group>"; };
+		C74CB2592AC6056700AC53D7 /* CoursesMapInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesMapInfo.swift; sourceTree = "<group>"; };
 		C760EAEF2AB8F7FF000DFE09 /* PutPutGolf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PutPutGolf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C760EAF22AB8F7FF000DFE09 /* PutPutGolfApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutPutGolfApp.swift; sourceTree = "<group>"; };
 		C760EAF62AB8F801000DFE09 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,9 +80,9 @@
 		C74CB24C2AC601EF00AC53D7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				C74CB24E2AC6021D00AC53D7 /* martinez.JPG */,
+				C74CB24E2AC6021D00AC53D7 /* martinez.jpg */,
 				C74CB2502AC6021D00AC53D7 /* alameda.jpg */,
-				C74CB24F2AC6021D00AC53D7 /* walnut_creek.JPG */,
+				C74CB24F2AC6021D00AC53D7 /* walnut_creek.jpg */,
 				C74CB24A2AC601C000AC53D7 /* plain_ball.png */,
 				C74CB24D2AC6021D00AC53D7 /* closeup_ball_hole.jpg */,
 				C74CB2482AC6000800AC53D7 /* putter_banner.png */,
@@ -169,6 +175,7 @@
 				C7A9BA8F2AC4AA3100A69B81 /* CousesMapView.swift */,
 				C760EB192ABE0C1A000DFE09 /* CoursesViewModel.swift */,
 				C760EB222AC2527F000DFE09 /* SubViews */,
+				C74CB2592AC6056700AC53D7 /* CoursesMapInfo.swift */,
 			);
 			path = "Courses Views";
 			sourceTree = "<group>";
@@ -184,6 +191,8 @@
 		C760EB222AC2527F000DFE09 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				C74CB2572AC6046000AC53D7 /* CourseMapBallAndClubIcon.swift */,
+				C74CB2552AC6038900AC53D7 /* CourseMapIcon.swift */,
 				C760EB1D2ABF57B8000DFE09 /* CourseInfoView.swift */,
 				C760EB1B2ABF5761000DFE09 /* CourseListCell.swift */,
 			);
@@ -250,8 +259,8 @@
 			files = (
 				C760EAFA2AB8F801000DFE09 /* Preview Assets.xcassets in Resources */,
 				C74CB2512AC6021D00AC53D7 /* closeup_ball_hole.jpg in Resources */,
-				C74CB2522AC6021D00AC53D7 /* martinez.JPG in Resources */,
-				C74CB2532AC6021D00AC53D7 /* walnut_creek.JPG in Resources */,
+				C74CB2522AC6021D00AC53D7 /* martinez.jpg in Resources */,
+				C74CB2532AC6021D00AC53D7 /* walnut_creek.jpg in Resources */,
 				C74CB2542AC6021D00AC53D7 /* alameda.jpg in Resources */,
 				C760EAF72AB8F801000DFE09 /* Assets.xcassets in Resources */,
 				C74CB2492AC6000800AC53D7 /* putter_banner.png in Resources */,
@@ -277,9 +286,12 @@
 				C7A9BA902AC4AA3100A69B81 /* CousesMapView.swift in Sources */,
 				C760EB172ABE0AD6000DFE09 /* DataServices.swift in Sources */,
 				C760EB022AB8F825000DFE09 /* Course.swift in Sources */,
+				C74CB2562AC6038900AC53D7 /* CourseMapIcon.swift in Sources */,
 				C760EB0D2AB8F9FA000DFE09 /* Challenge.swift in Sources */,
+				C74CB25A2AC6056700AC53D7 /* CoursesMapInfo.swift in Sources */,
 				C760EB0B2AB8F99B000DFE09 /* MockData.swift in Sources */,
 				C760EB092AB8F94B000DFE09 /* ScoreCardView.swift in Sources */,
+				C74CB2582AC6046000AC53D7 /* CourseMapBallAndClubIcon.swift in Sources */,
 				C760EB112ABBC4C9000DFE09 /* EnterScoreView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
