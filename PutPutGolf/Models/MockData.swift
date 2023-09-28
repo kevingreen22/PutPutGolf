@@ -64,15 +64,25 @@ class MockData: MockDataProtocol {
                 holes: holes,
                 challenges: challenges,
                 rules: [
-                "This area and activity can be dangerous and poses risk of injury; we do not provide supervision. By entering you acknowledge and argree that you assume all risks on behalf of your party.",
-                "Never rais the club abouve your knees; no wild swinging.",
-                "Watch your step; the playing field is uneven.",
-                "Do not stand on railings. No climbing.",
-                "Do not try to retrieve lost balls; please ask for a replacement.",
-                "You will be responsible for any damage caused by malicious swinging or throwing of the club or ball.",
-                "We will deny entrance or expel people who are drunk, unruly,m and/or do damage with no refunds.",
-                "Players Assume All Risks."
-            ]),
+                    "This area and activity can be dangerous and poses risk of injury; we do not provide supervision. By entering you acknowledge and argree that you assume all risks on behalf of your party.",
+                    "Never rais the club abouve your knees; no wild swinging.",
+                    "Watch your step; the playing field is uneven.",
+                    "Do not stand on railings. No climbing.",
+                    "Do not try to retrieve lost balls; please ask for a replacement.",
+                    "You will be responsible for any damage caused by malicious swinging or throwing of the club or ball.",
+                    "We will deny entrance or expel people who are drunk, unruly,m and/or do damage with no refunds.",
+                    "Players Assume All Risks."
+                ],
+                hours: [
+                    "Monday: Closed",
+                    "Tuesday: Closed",
+                    "Wednesday: Closed",
+                    "Thursday: 3pm - 7pm",
+                    "Friday: 3pm - 8pm",
+                    "Saturday: 12:30pm - 7:30pm",
+                    "Sunday: 11:30am - 6pm",
+                    "*Hours are weather permitting. Rain, high heat or extreme cold may cause us to close. Please call ahead if you are unsure if we may not be open. \nGolfers welcome to begin playing up to 15 minutes before close"
+                ]),
             Course(
                 name: "Sheep Track Country Club",
                 address: "Palo Alto, Ca",
@@ -82,15 +92,25 @@ class MockData: MockDataProtocol {
                 holes: holes,
                 challenges: challenges,
                 rules: [
-                "This area and activity can be dangerous and poses risk of injury; we do not provide supervision. By entering you acknowledge and argree that you assume all risks on behalf of your party.",
-                "Never rais the club abouve your knees; no wild swinging.",
-                "Watch your step; the playing field is uneven.",
-                "Do not stand on railings. No climbing.",
-                "Do not try to retrieve lost balls; please ask for a replacement.",
-                "You will be responsible for any damage caused by malicious swinging or throwing of the club or ball.",
-                "We will deny entrance or expel people who are drunk, unruly,m and/or do damage with no refunds.",
-                "Players Assume All Risks."
-            ]),
+                    "This area and activity can be dangerous and poses risk of injury; we do not provide supervision. By entering you acknowledge and argree that you assume all risks on behalf of your party.",
+                    "Never rais the club abouve your knees; no wild swinging.",
+                    "Watch your step; the playing field is uneven.",
+                    "Do not stand on railings. No climbing.",
+                    "Do not try to retrieve lost balls; please ask for a replacement.",
+                    "You will be responsible for any damage caused by malicious swinging or throwing of the club or ball.",
+                    "We will deny entrance or expel people who are drunk, unruly,m and/or do damage with no refunds.",
+                    "Players Assume All Risks."
+                ],
+                hours: [
+                    "Monday: Closed",
+                    "Tuesday: Closed",
+                    "Wednesday: Closed",
+                    "Thursday: 3pm - 7pm",
+                    "Friday: 3pm - 8pm",
+                    "Saturday: 12:30pm - 7:30pm",
+                    "Sunday: 11:30am - 6pm",
+                    "*Hours are weather permitting. Rain, high heat or extreme cold may cause us to close. Please call ahead if you are unsure if we may not be open. \nGolfers welcome to begin playing up to 15 minutes before close"
+                ]),
             Course(
                 name: "Cow Track Country Club",
                 address: "Walnut Creek, Ca",
@@ -100,15 +120,25 @@ class MockData: MockDataProtocol {
                 holes: holes,
                 challenges: challenges,
                 rules: [
-                "This area and activity can be dangerous and poses risk of injury; we do not provide supervision. By entering you acknowledge and argree that you assume all risks on behalf of your party.",
-                "Never rais the club abouve your knees; no wild swinging.",
-                "Watch your step; the playing field is uneven.",
-                "Do not stand on railings. No climbing.",
-                "Do not try to retrieve lost balls; please ask for a replacement.",
-                "You will be responsible for any damage caused by malicious swinging or throwing of the club or ball.",
-                "We will deny entrance or expel people who are drunk, unruly,m and/or do damage with no refunds.",
-                "Players Assume All Risks."
-            ]),
+                    "This area and activity can be dangerous and poses risk of injury; we do not provide supervision. By entering you acknowledge and argree that you assume all risks on behalf of your party.",
+                    "Never rais the club abouve your knees; no wild swinging.",
+                    "Watch your step; the playing field is uneven.",
+                    "Do not stand on railings. No climbing.",
+                    "Do not try to retrieve lost balls; please ask for a replacement.",
+                    "You will be responsible for any damage caused by malicious swinging or throwing of the club or ball.",
+                    "We will deny entrance or expel people who are drunk, unruly,m and/or do damage with no refunds.",
+                    "Players Assume All Risks."
+                ],
+                hours: [
+                    "Monday: Closed",
+                    "Tuesday: Closed",
+                    "Wednesday: Closed",
+                    "Thursday: 3pm - 7pm",
+                    "Friday: 3pm - 8pm",
+                    "Saturday: 12:30pm - 7:30pm",
+                    "Sunday: 11:30am - 6pm",
+                    "*Hours are weather permitting. Rain, high heat or extreme cold may cause us to close. Please call ahead if you are unsure if we may not be open. \nGolfers welcome to begin playing up to 15 minutes before close"
+                ]),
             Course(
                 name: "Pig Track Country Club",
                 address: "Alameda, Ca",
@@ -118,15 +148,25 @@ class MockData: MockDataProtocol {
                 holes: holes,
                 challenges: challenges,
                 rules: [
-                "This area and activity can be dangerous and poses risk of injury; we do not provide supervision. By entering you acknowledge and argree that you assume all risks on behalf of your party.",
-                "Never rais the club abouve your knees; no wild swinging.",
-                "Watch your step; the playing field is uneven.",
-                "Do not stand on railings. No climbing.",
-                "Do not try to retrieve lost balls; please ask for a replacement.",
-                "You will be responsible for any damage caused by malicious swinging or throwing of the club or ball.",
-                "We will deny entrance or expel people who are drunk, unruly,m and/or do damage with no refunds.",
-                "Players Assume All Risks."
-            ])
+                    "This area and activity can be dangerous and poses risk of injury; we do not provide supervision. By entering you acknowledge and argree that you assume all risks on behalf of your party.",
+                    "Never rais the club abouve your knees; no wild swinging.",
+                    "Watch your step; the playing field is uneven.",
+                    "Do not stand on railings. No climbing.",
+                    "Do not try to retrieve lost balls; please ask for a replacement.",
+                    "You will be responsible for any damage caused by malicious swinging or throwing of the club or ball.",
+                    "We will deny entrance or expel people who are drunk, unruly,m and/or do damage with no refunds.",
+                    "Players Assume All Risks."
+                ],
+                hours: [
+                    "Monday: Closed",
+                    "Tuesday: Closed",
+                    "Wednesday: Closed",
+                    "Thursday: 3pm - 7pm",
+                    "Friday: 3pm - 8pm",
+                    "Saturday: 12:30pm - 7:30pm",
+                    "Sunday: 11:30am - 6pm",
+                    "*Hours are weather permitting. Rain, high heat or extreme cold may cause us to close. Please call ahead if you are unsure if we may not be open. \nGolfers welcome to begin playing up to 15 minutes before close"
+                ])
         ])
         
         // creates players

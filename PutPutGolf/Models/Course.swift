@@ -7,6 +7,7 @@
 
 import Foundation
 import MapKit
+import SwiftUI
 
 struct Course: Codable, Hashable, Equatable, Identifiable {
     var id = UUID()
@@ -18,6 +19,7 @@ struct Course: Codable, Hashable, Equatable, Identifiable {
     var holes: [Hole]
     var challenges: [Challenge]
     var rules: [String]
+    var hours: [String]
     
     func totalPar() -> Int {
         var totalPar = 0
@@ -25,6 +27,12 @@ struct Course: Codable, Hashable, Equatable, Identifiable {
             totalPar += hole.par
         }
         return totalPar
+    }
+    
+    
+    func getImage() -> Image {
+        guard let data = self.imageData, let img = UIImage(data: data) else { return Image(systemName: "placeholder") }
+            return Image(uiImage: img)
     }
     
     
