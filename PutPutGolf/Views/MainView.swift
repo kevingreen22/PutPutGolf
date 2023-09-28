@@ -20,7 +20,7 @@ struct MainView: View {
             
             ScoreCardsList()
                 .tabItem {
-                    Label("Scorecards", systemImage: "menucard.fill")
+                    Label("Score Cards", systemImage: "menucard.fill")
                 }
         }
     }
@@ -29,6 +29,7 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
+            .environmentObject(CoursesViewModel(url: nil))
     }
 }
 

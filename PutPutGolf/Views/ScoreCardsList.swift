@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ScoreCardsList: View {
+//    var scoreCards: [ScoreCards]
+        
     var body: some View {
         List {
             Text("Score Cards List")
@@ -20,3 +22,5 @@ struct ScoreCardsList_Previews: PreviewProvider {
         ScoreCardsList()
     }
 }
+
+
