@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C74CB2452AC4F6C400AC53D7 /* golf_ball.png in Resources */ = {isa = PBXBuildFile; fileRef = C74CB2442AC4F6C300AC53D7 /* golf_ball.png */; };
-		C74CB2472AC4F7E500AC53D7 /* golf_ball_2.png in Resources */ = {isa = PBXBuildFile; fileRef = C74CB2462AC4F7E500AC53D7 /* golf_ball_2.png */; };
+		C74CB2492AC6000800AC53D7 /* putter_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = C74CB2482AC6000800AC53D7 /* putter_banner.png */; };
+		C74CB24B2AC601C000AC53D7 /* plain_ball.png in Resources */ = {isa = PBXBuildFile; fileRef = C74CB24A2AC601C000AC53D7 /* plain_ball.png */; };
+		C74CB2512AC6021D00AC53D7 /* closeup_ball_hole.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C74CB24D2AC6021D00AC53D7 /* closeup_ball_hole.jpg */; };
+		C74CB2522AC6021D00AC53D7 /* martinez.JPG in Resources */ = {isa = PBXBuildFile; fileRef = C74CB24E2AC6021D00AC53D7 /* martinez.JPG */; };
+		C74CB2532AC6021D00AC53D7 /* walnut_creek.JPG in Resources */ = {isa = PBXBuildFile; fileRef = C74CB24F2AC6021D00AC53D7 /* walnut_creek.JPG */; };
+		C74CB2542AC6021D00AC53D7 /* alameda.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C74CB2502AC6021D00AC53D7 /* alameda.jpg */; };
 		C760EAF32AB8F7FF000DFE09 /* PutPutGolfApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EAF22AB8F7FF000DFE09 /* PutPutGolfApp.swift */; };
 		C760EAF72AB8F801000DFE09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C760EAF62AB8F801000DFE09 /* Assets.xcassets */; };
 		C760EAFA2AB8F801000DFE09 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C760EAF92AB8F801000DFE09 /* Preview Assets.xcassets */; };
@@ -18,7 +22,6 @@
 		C760EB092AB8F94B000DFE09 /* ScoreCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB082AB8F94B000DFE09 /* ScoreCardView.swift */; };
 		C760EB0B2AB8F99B000DFE09 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB0A2AB8F99B000DFE09 /* MockData.swift */; };
 		C760EB0D2AB8F9FA000DFE09 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB0C2AB8F9FA000DFE09 /* Challenge.swift */; };
-		C760EB0F2ABBADD9000DFE09 /* selfie.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C760EB0E2ABBADD9000DFE09 /* selfie.jpg */; };
 		C760EB112ABBC4C9000DFE09 /* EnterScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB102ABBC4C9000DFE09 /* EnterScoreView.swift */; };
 		C760EB142ABD0898000DFE09 /* ScoreCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB132ABD0898000DFE09 /* ScoreCardViewModel.swift */; };
 		C760EB172ABE0AD6000DFE09 /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB162ABE0AD6000DFE09 /* DataServices.swift */; };
@@ -31,8 +34,12 @@
 
 /* Begin PBXFileReference section */
 		C74CB2432AC4CD1000AC53D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		C74CB2442AC4F6C300AC53D7 /* golf_ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = golf_ball.png; sourceTree = "<group>"; };
-		C74CB2462AC4F7E500AC53D7 /* golf_ball_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = golf_ball_2.png; sourceTree = "<group>"; };
+		C74CB2482AC6000800AC53D7 /* putter_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = putter_banner.png; sourceTree = "<group>"; };
+		C74CB24A2AC601C000AC53D7 /* plain_ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plain_ball.png; sourceTree = "<group>"; };
+		C74CB24D2AC6021D00AC53D7 /* closeup_ball_hole.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = closeup_ball_hole.jpg; sourceTree = "<group>"; };
+		C74CB24E2AC6021D00AC53D7 /* martinez.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = martinez.JPG; sourceTree = "<group>"; };
+		C74CB24F2AC6021D00AC53D7 /* walnut_creek.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = walnut_creek.JPG; sourceTree = "<group>"; };
+		C74CB2502AC6021D00AC53D7 /* alameda.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = alameda.jpg; sourceTree = "<group>"; };
 		C760EAEF2AB8F7FF000DFE09 /* PutPutGolf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PutPutGolf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C760EAF22AB8F7FF000DFE09 /* PutPutGolfApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutPutGolfApp.swift; sourceTree = "<group>"; };
 		C760EAF62AB8F801000DFE09 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -43,7 +50,6 @@
 		C760EB082AB8F94B000DFE09 /* ScoreCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCardView.swift; sourceTree = "<group>"; };
 		C760EB0A2AB8F99B000DFE09 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		C760EB0C2AB8F9FA000DFE09 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
-		C760EB0E2ABBADD9000DFE09 /* selfie.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = selfie.jpg; sourceTree = "<group>"; };
 		C760EB102ABBC4C9000DFE09 /* EnterScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterScoreView.swift; sourceTree = "<group>"; };
 		C760EB132ABD0898000DFE09 /* ScoreCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCardViewModel.swift; sourceTree = "<group>"; };
 		C760EB162ABE0AD6000DFE09 /* DataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
@@ -65,6 +71,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C74CB24C2AC601EF00AC53D7 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C74CB24E2AC6021D00AC53D7 /* martinez.JPG */,
+				C74CB2502AC6021D00AC53D7 /* alameda.jpg */,
+				C74CB24F2AC6021D00AC53D7 /* walnut_creek.JPG */,
+				C74CB24A2AC601C000AC53D7 /* plain_ball.png */,
+				C74CB24D2AC6021D00AC53D7 /* closeup_ball_hole.jpg */,
+				C74CB2482AC6000800AC53D7 /* putter_banner.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		C760EAE62AB8F7FF000DFE09 = {
 			isa = PBXGroup;
 			children = (
@@ -89,9 +108,7 @@
 				C760EB072AB8F923000DFE09 /* Views */,
 				C760EB002AB8F80F000DFE09 /* Models */,
 				C760EB152ABE0AB3000DFE09 /* DataServices */,
-				C74CB2442AC4F6C300AC53D7 /* golf_ball.png */,
-				C74CB2462AC4F7E500AC53D7 /* golf_ball_2.png */,
-				C760EB0E2ABBADD9000DFE09 /* selfie.jpg */,
+				C74CB24C2AC601EF00AC53D7 /* Images */,
 				C760EAF62AB8F801000DFE09 /* Assets.xcassets */,
 				C760EAF82AB8F801000DFE09 /* Preview Content */,
 			);
@@ -231,11 +248,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C74CB2472AC4F7E500AC53D7 /* golf_ball_2.png in Resources */,
-				C74CB2452AC4F6C400AC53D7 /* golf_ball.png in Resources */,
-				C760EB0F2ABBADD9000DFE09 /* selfie.jpg in Resources */,
 				C760EAFA2AB8F801000DFE09 /* Preview Assets.xcassets in Resources */,
+				C74CB2512AC6021D00AC53D7 /* closeup_ball_hole.jpg in Resources */,
+				C74CB2522AC6021D00AC53D7 /* martinez.JPG in Resources */,
+				C74CB2532AC6021D00AC53D7 /* walnut_creek.JPG in Resources */,
+				C74CB2542AC6021D00AC53D7 /* alameda.jpg in Resources */,
 				C760EAF72AB8F801000DFE09 /* Assets.xcassets in Resources */,
+				C74CB2492AC6000800AC53D7 /* putter_banner.png in Resources */,
+				C74CB24B2AC601C000AC53D7 /* plain_ball.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
