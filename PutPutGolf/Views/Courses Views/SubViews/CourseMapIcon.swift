@@ -38,7 +38,7 @@ struct CourseMapIcon: View {
 
 struct CourseMapIcon_Previews: PreviewProvider {
     static var previews: some View {
-        CourseMapIcon(image: MockData.instance.courses.first!.getImage(), placement: CoursesMapInfo.iconPlacement[0])
+        CourseMapIcon(image: MockData.instance.courses[0].getImage(), placement: CoursesMapInfo.iconPlacement[0])
             .environmentObject(CoursesViewModel(url: nil))
     }
 }

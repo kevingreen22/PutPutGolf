@@ -8,8 +8,7 @@
 import Foundation
 
 struct ScoreCard: Codable, Equatable, Hashable {
-    typealias Scores = Int
     var id = UUID()
     var course: Course
-    var players: [Player : [Scores]]
+    var scores: [Player : [Int]]
 }

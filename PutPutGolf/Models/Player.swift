@@ -13,7 +13,6 @@ class Player: Codable, Equatable, Hashable, Identifiable {
     var imageData: Data?
     var scores: [String] = []
     var challengeScores: [String] = []
-    var savedScoreCards: [ScoreCard] = []
     
     init(name: String, course: Course) {
         self.name = name
@@ -57,7 +56,6 @@ class Player: Codable, Equatable, Hashable, Identifiable {
         hasher.combine(imageData)
         hasher.combine(scores)
         hasher.combine(challengeScores)
-        hasher.combine(savedScoreCards)
     }
     
     static func == (lhs: Player, rhs: Player) -> Bool {
@@ -65,8 +63,7 @@ class Player: Codable, Equatable, Hashable, Identifiable {
         lhs.name == rhs.name &&
         lhs.imageData == rhs.imageData &&
         lhs.scores == rhs.scores &&
-        lhs.challengeScores == rhs.challengeScores &&
-        lhs.savedScoreCards == rhs.savedScoreCards
+        lhs.challengeScores == rhs.challengeScores
     }
     
 }

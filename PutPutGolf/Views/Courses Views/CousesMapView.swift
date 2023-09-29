@@ -18,7 +18,7 @@ struct CoursesMapView: View {
             CourseMapBallAndClubIcon(screenSize: $screenSize)
                 .environmentObject(vm)
             
-            ForEach(0..<vm.coursesData.count) { index in
+            ForEach(0..<vm.coursesData.count, id: \.self) { index in
                 CourseMapIcon(image: vm.coursesData[index].getImage(), placement: CoursesMapInfo.iconPlacement[index])
                     .environmentObject(vm)
             }

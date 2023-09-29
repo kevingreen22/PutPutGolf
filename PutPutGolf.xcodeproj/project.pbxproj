@@ -140,8 +140,8 @@
 				C760EB012AB8F825000DFE09 /* Course.swift */,
 				C760EB032AB8F877000DFE09 /* Hole.swift */,
 				C760EB0C2AB8F9FA000DFE09 /* Challenge.swift */,
-				C760EB0A2AB8F99B000DFE09 /* MockData.swift */,
 				C74CB25D2AC6399E00AC53D7 /* ScoreCard.swift */,
+				C760EB0A2AB8F99B000DFE09 /* MockData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -152,7 +152,6 @@
 				C760EB1F2AC135A8000DFE09 /* MainView.swift */,
 				C760EB182ABE0BEB000DFE09 /* Courses Views */,
 				C760EB122ABD0879000DFE09 /* ScoreCard Views */,
-				C74CB25B2AC62D6500AC53D7 /* ScoreCardsList.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -162,6 +161,7 @@
 			children = (
 				C760EB082AB8F94B000DFE09 /* ScoreCardView.swift */,
 				C760EB132ABD0898000DFE09 /* ScoreCardViewModel.swift */,
+				C74CB25B2AC62D6500AC53D7 /* ScoreCardsList.swift */,
 				C760EB212AC2523F000DFE09 /* SubViews */,
 			);
 			path = "ScoreCard Views";

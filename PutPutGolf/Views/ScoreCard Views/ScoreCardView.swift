@@ -9,11 +9,11 @@ import SwiftUI
 
 struct ScoreCardView: View {
     @StateObject var vm: ScoreCardViewModel
-    @Binding var course: Course
+    var course: Course
     
-    init(course: Binding<Course>) {
+    init(course: Course) {
         _vm = StateObject(wrappedValue: ScoreCardViewModel())
-        _course = course
+        self.course = course
     }
     
     var body: some View {
@@ -100,7 +100,7 @@ struct ScoreCardView: View {
 
 struct ScoreCardView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoreCardView(course: .constant(MockData.instance.courses[0]))
+        ScoreCardView(course: MockData.instance.courses[0])
     }
 }
 

@@ -18,10 +18,17 @@ struct MainView: View {
                     Label("Courses", systemImage: "figure.golf")
                 }
             
-            ScoreCardsList()
-                .tabItem {
-                    Label("Score Cards", systemImage: "menucard.fill")
-                }
+            if let course = vm.selectedCourse {
+                ScoreCardView(course: course)
+                    .tabItem {
+                        Label("Score Card", systemImage: "menucard.fill")
+                    }
+            } else {
+                ScoreCardsList()
+                    .tabItem {
+                        Label("Score Card", systemImage: "menucard.fill")
+                    }
+            }
         }
     }
 }
