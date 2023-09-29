@@ -54,20 +54,13 @@ class MockData: MockDataProtocol {
             Challenge(name: "First In wins.", rules: "there are the rules for time trials", difficulty: .hard),
         ]
         
-        // converting images to data
-        guard let img1: Data = UIImage(contentsOfFile: "martinez")?.jpegData(compressionQuality: 1),
-              let img2: Data = UIImage(contentsOfFile: "walnut_creek")?.jpegData(compressionQuality: 1),
-              let img3: Data = UIImage(contentsOfFile: "alameda")?.jpegData(compressionQuality: 1)
-//                ,let img3: Data = UIImage(contentsOfFile: "palo_alto")?.jpegData(compressionQuality: 1),
-        else { return }
-        
         // puts courses in to courses property array
         courses.append(contentsOf: [
             Course(
                 name: "Goat Track Country Club",
                 address: "Martinez, Ca",
                 location: [24.23423454234, 290.343422],
-                imageData: img1,
+                imageData: UIImage(contentsOfFile: "martinez")?.jpegData(compressionQuality: 1)!,
                 difficulty: .hard,
                 holes: holes,
                 challenges: challenges,
@@ -95,7 +88,7 @@ class MockData: MockDataProtocol {
                 name: "Cow Track Country Club",
                 address: "Walnut Creek, Ca",
                 location: [24.23423454234, 290.343422],
-                imageData: img2,
+                imageData: UIImage(contentsOfFile: "walnut_creek")?.jpegData(compressionQuality: 1)!,
                 difficulty: .hard,
                 holes: holes,
                 challenges: challenges,
@@ -123,7 +116,7 @@ class MockData: MockDataProtocol {
                 name: "Pig Track Country Club",
                 address: "Alameda, Ca",
                 location: [24.23423454234, 290.343422],
-                imageData: img3,
+                imageData: UIImage(contentsOfFile: "alameda")?.jpegData(compressionQuality: 1)!,
                 difficulty: .hard,
                 holes: holes,
                 challenges: challenges,
@@ -151,7 +144,7 @@ class MockData: MockDataProtocol {
                 name: "Sheep Track Country Club",
                 address: "Palo Alto, Ca",
                 location: [24.23423454234, 290.343422],
-                imageData: Data(),
+                imageData: Data(), /* let img3: Data = UIImage(contentsOfFile: "palo_alto")?.jpegData(compressionQuality: 1) */
                 difficulty: .hard,
                 holes: holes,
                 challenges: challenges,
@@ -175,8 +168,17 @@ class MockData: MockDataProtocol {
                     "Sunday: 11:30am - 6pm",
                     "*Hours are weather permitting. Rain, high heat or extreme cold may cause us to close. Please call ahead if you are unsure if we may not be open. \nGolfers welcome to begin playing up to 15 minutes before close"
                 ])
-
         ])
+        
+        // creates saved score cards
+//        var savedScoreCards = [
+//            ScoreCard(course: courses[0], scores: [
+//                Player(name: "Kevin", course: courses.first!) : [
+//                    1,2,3,2,1,3,4,5,6,3,4,3,3,2,3,3,3,4,5,2,3,3,2
+//                ]
+//            ])
+//        ]
+        
         
         // creates players
         players = [
