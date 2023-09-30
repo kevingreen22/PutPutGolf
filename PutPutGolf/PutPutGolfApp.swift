@@ -12,12 +12,13 @@ struct PutPutGolfApp: App {
     @StateObject var coursesVM: CoursesViewModel
     
     init() {
-        _coursesVM = StateObject(wrappedValue: CoursesViewModel(url: URL(string: "https://my.apiEndpoint.courses")))
+        let url = URL(string: "https://my.apiEndpoint.courses")
+        _coursesVM = StateObject(wrappedValue: CoursesViewModel(url: url))
     }
     
     var body: some Scene {
         WindowGroup {
-            MainView()
+            CoursesMapView()
                 .environmentObject(coursesVM)
         }
     }

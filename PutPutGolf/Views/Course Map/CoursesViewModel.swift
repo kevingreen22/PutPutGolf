@@ -17,7 +17,7 @@ class CoursesViewModel: ObservableObject {
     @Published var rotation: CoursesMapInfo.RotationDegrees = .none
     @Published var title: String?
     @Published var showCourseInfo: Bool = false
-   
+    @Published var path: [Course] = []
     
     init(url: URL?) {
         if let url = url {
@@ -34,6 +34,7 @@ class CoursesViewModel: ObservableObject {
         dataService.getCourses()
             .sink { _ in
                 // error or success
+                
             } receiveValue: { [weak self] courses in
                 guard let self = self else { return }
                 self.coursesData = courses
