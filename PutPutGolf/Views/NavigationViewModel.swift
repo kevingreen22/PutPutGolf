@@ -8,7 +8,7 @@
 import SwiftUI
 
 class NavigationViewModel: ObservableObject {
-    @Published var path: [Int] = []
+    @Published var path: [Course] = []
     
     
 }

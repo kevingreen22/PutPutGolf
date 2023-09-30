@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SetupPlayersView: View {
+    @EnvironmentObject var navVM: NavigationViewModel
     @StateObject var vm = SetupPlayerViewModel()
     @State private var profileImage: Image = Image(systemName: "circle.fill")
     var navTag: Int = 1

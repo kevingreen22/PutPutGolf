@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct CourseInfoView: View {
-    @EnvironmentObject var vm: CoursesViewModel
+    @EnvironmentObject var navVM: NavigationViewModel
+    @EnvironmentObject var courseVM: CoursesViewModel
     @Binding var course: Course!
     @State private var image: Image = Image(systemName: "photo") /* Image("placeholder") */
     @State private var infoItem: InfoItem?
@@ -49,21 +50,10 @@ struct CourseInfoView: View {
                     }
                 }
                 .overlay(alignment: .top) {
-//                    NavigationLink(value: course) {
-//                        Text("Play Course")
-//                            .font(.largeTitle)
-//                            .fontWeight(.semibold)
-//                            .controlSize(.large)
-//                            .buttonStyle(.borderedProminent)
-//                            .buttonBorderShape(.capsule)
-//                            .shadow(radius: 10)
-//                    }
-//                    .offset(y: 125)
-
                     Button {
                         // Navigate to PlayerSetup here
-                        vm.path.append(course)
-                        vm.showCourseInfo = false
+                        navVM.path.append(course)
+                        courseVM.showCourseInfo = false
                     } label: {
                         Text("Play Course")
                             .font(.largeTitle)

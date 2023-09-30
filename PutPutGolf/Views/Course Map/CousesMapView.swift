@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CoursesMapView: View {
+    @EnvironmentObject var navVM: NavigationViewModel
     @EnvironmentObject var courseVM: CoursesViewModel
     @State private var screenSize: CGSize = .zero
     
@@ -28,6 +29,7 @@ struct CoursesMapView: View {
             
             .sheet(isPresented: $courseVM.showCourseInfo) {
                 CourseInfoView(course: $courseVM.selectedCourse)
+                    .environmentObject(navVM)
                     .environmentObject(courseVM)
                     .presentationDetents([
                         .height(550),
@@ -41,6 +43,7 @@ struct CoursesMapView: View {
             
             .navigationDestination(for: Course.self) { value in
                 SetupPlayersView()
+                    .environmentObject(navVM)
             }
             
             .navigationBarTitleDisplayMode(.large)
