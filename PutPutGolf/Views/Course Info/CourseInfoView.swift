@@ -115,6 +115,7 @@ struct CourseInfoView_Previews: PreviewProvider {
     static var previews: some View {
         CourseInfoView(course: course)
             .environmentObject(CoursesViewModel(url: nil))
+            .environmentObject(NavigationViewModel())
     }
 }
 

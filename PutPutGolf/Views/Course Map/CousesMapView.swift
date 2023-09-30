@@ -65,6 +65,7 @@ struct CoursesMapView_Previews: PreviewProvider {
     static var previews: some View {
         CoursesMapView()
             .environmentObject(CoursesViewModel(url: nil))
+            .environmentObject(NavigationViewModel())
     }
 }
 

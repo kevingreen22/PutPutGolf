@@ -52,6 +52,7 @@ struct SetupPlayersView: View {
 struct SetupPlayersView_Previews: PreviewProvider {
     static var previews: some View {
         SetupPlayersView()
+            .environmentObject(SetupPlayerViewModel())
             .environmentObject(NavigationViewModel())
     }
 }

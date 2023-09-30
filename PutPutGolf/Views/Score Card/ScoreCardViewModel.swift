@@ -10,7 +10,7 @@ import Combine
 
 class ScoreCardViewModel: ObservableObject {
     @Published var score: String = ""
-    @Published var players: [Player] = []
+    @Published var players: [Player] = MockData.instance.players
     var cancellables: Set<AnyCancellable> = []
     
     

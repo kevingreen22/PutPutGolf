@@ -7,19 +7,22 @@
 
 import SwiftUI
 
-struct ScoreCardsList: View {
+struct SavedScoreCards: View {
 //    var scoreCards: [ScoreCards]
         
     var body: some View {
         List {
-            Text("Score Cards List")
+//            ForEach(MockData.instance.players[0].savedScoreCards, id: \.self) { savedCard in
+//                Text(savedCard.course.name)
+//            }
+            Text("score card list")
         }
     }
 }
 
 struct ScoreCardsList_Previews: PreviewProvider {
     static var previews: some View {
-        ScoreCardsList()
+        SavedScoreCards()
     }
 }
 
