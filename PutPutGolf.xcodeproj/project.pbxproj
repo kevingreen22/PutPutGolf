@@ -20,7 +20,7 @@
 		C74CB25E2AC6399E00AC53D7 /* ScoreCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB25D2AC6399E00AC53D7 /* ScoreCard.swift */; };
 		C74CB2602AC7429D00AC53D7 /* SetupPlayersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB25F2AC7429D00AC53D7 /* SetupPlayersView.swift */; };
 		C74CB2632AC7477800AC53D7 /* SetupPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB2622AC7477800AC53D7 /* SetupPlayerViewModel.swift */; };
-		C74CB2662AC886DB00AC53D7 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB2652AC886DB00AC53D7 /* File.swift */; };
+		C74CB2662AC886DB00AC53D7 /* UIImageStringConversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB2652AC886DB00AC53D7 /* UIImageStringConversions.swift */; };
 		C74CB2702AC892C000AC53D7 /* NavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB26F2AC892C000AC53D7 /* NavigationViewModel.swift */; };
 		C760EAF32AB8F7FF000DFE09 /* PutPutGolfApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EAF22AB8F7FF000DFE09 /* PutPutGolfApp.swift */; };
 		C760EAF72AB8F801000DFE09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C760EAF62AB8F801000DFE09 /* Assets.xcassets */; };
@@ -55,7 +55,7 @@
 		C74CB25D2AC6399E00AC53D7 /* ScoreCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCard.swift; sourceTree = "<group>"; };
 		C74CB25F2AC7429D00AC53D7 /* SetupPlayersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupPlayersView.swift; sourceTree = "<group>"; };
 		C74CB2622AC7477800AC53D7 /* SetupPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupPlayerViewModel.swift; sourceTree = "<group>"; };
-		C74CB2652AC886DB00AC53D7 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		C74CB2652AC886DB00AC53D7 /* UIImageStringConversions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageStringConversions.swift; sourceTree = "<group>"; };
 		C74CB26F2AC892C000AC53D7 /* NavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewModel.swift; sourceTree = "<group>"; };
 		C760EAEF2AB8F7FF000DFE09 /* PutPutGolf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PutPutGolf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C760EAF22AB8F7FF000DFE09 /* PutPutGolfApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutPutGolfApp.swift; sourceTree = "<group>"; };
@@ -112,7 +112,7 @@
 		C74CB2642AC886CE00AC53D7 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				C74CB2652AC886DB00AC53D7 /* File.swift */,
+				C74CB2652AC886DB00AC53D7 /* UIImageStringConversions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -336,7 +336,7 @@
 				C760EB142ABD0898000DFE09 /* ScoreCardViewModel.swift in Sources */,
 				C74CB25E2AC6399E00AC53D7 /* ScoreCard.swift in Sources */,
 				C760EB042AB8F877000DFE09 /* Hole.swift in Sources */,
-				C74CB2662AC886DB00AC53D7 /* File.swift in Sources */,
+				C74CB2662AC886DB00AC53D7 /* UIImageStringConversions.swift in Sources */,
 				C760EB1E2ABF57B8000DFE09 /* CourseInfoView.swift in Sources */,
 				C74CB2602AC7429D00AC53D7 /* SetupPlayersView.swift in Sources */,
 				C760EAF32AB8F7FF000DFE09 /* PutPutGolfApp.swift in Sources */,
