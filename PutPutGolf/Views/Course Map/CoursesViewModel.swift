@@ -17,7 +17,6 @@ class CoursesViewModel: ObservableObject {
     @Published var rotation: CoursesMapInfo.RotationDegrees = .none
     @Published var title: String?
     @Published var showCourseInfo: Bool = false
-    @Published var path: [Course] = []
     
     init(url: URL?) {
         if let url = url {

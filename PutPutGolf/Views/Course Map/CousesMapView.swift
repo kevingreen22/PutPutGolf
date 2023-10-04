@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct CoursesMapView: View {
-    @EnvironmentObject var navVM: NavigationViewModel
+    @EnvironmentObject var navVM: NavigationStore
     @EnvironmentObject var courseVM: CoursesViewModel
     @State private var screenSize: CGSize = .zero
     
-    
     var body: some View {
-        NavigationStack(path: $courseVM.path) {
+        NavigationStack(path: $navVM.path) {
             ZStack {
                 Color.green.ignoresSafeArea()
                 
@@ -41,10 +40,29 @@ struct CoursesMapView: View {
                     .interactiveDismissDisabled()
             }
             
-            .navigationDestination(for: Course.self) { value in
-                SetupPlayersView()
-                    .environmentObject(navVM)
-            }
+            // Navigation destinations via a Course
+//            .navigationDestination(for: Course.self) { course in
+////                if $courseVM.newPlayers.isEmpty {
+//                    SetupPlayersView(course)
+//                        .environmentObject(navVM)
+////                } else {
+////                    ScoreCardView(course: course)
+////                        .environmentObject(navVM)
+////                }
+//            }
+            
+            .navigationDestination(for: Int.self, destination: { navID in
+                if let course = courseVM.selectedCourse {
+                    switch navID {
+                    case 1:
+                        SetupPlayersView(course)
+                    case 2:
+                        ScoreCardView(course: course)
+                    default:
+                        CoursesMapView()
+                    }
+                }
+            })
             
             .navigationBarTitleDisplayMode(.large)
             
@@ -65,7 +83,7 @@ struct CoursesMapView_Previews: PreviewProvider {
     static var previews: some View {
         CoursesMapView()
             .environmentObject(CoursesViewModel(url: nil))
-            .environmentObject(NavigationViewModel())
+            .environmentObject(NavigationStore())
     }
 }
 
@@ -77,5 +95,33 @@ struct SizePreferenceKey: PreferenceKey {
     static var defaultValue: CGSize = .zero
     static func reduce(value: inout CGSize, nextValue: () -> CGSize) {
         value = nextValue()
+    }
+}
+
+
+
+struct CoursesMapInfo {
+    static var iconPlacement: [(RotationDegrees, CGPoint)] = [
+        (.left,iconPositions[0]),
+        (.leftMid,iconPositions[1]),
+        (.rightMid,iconPositions[2]),
+        (.right,iconPositions[3])
+    ]
+    
+    static private var iconPositions: [CGPoint] = [
+        CGPoint(x: 70, y: 500),
+        CGPoint(x: 120, y: 700),
+        CGPoint(x: 300, y: 700),
+        CGPoint(x: 365, y: 500)
+    ]
+    
+    static private var degrees: [RotationDegrees] = [.none,.left,.leftMid,.rightMid,.right]
+    
+    public enum RotationDegrees: Double {
+        case none = 0
+        case left = 27
+        case leftMid = 10.0
+        case rightMid = -10.0
+        case right = -27
     }
 }

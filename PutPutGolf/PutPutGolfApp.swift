@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct PutPutGolfApp: App {
     @StateObject var coursesVM: CoursesViewModel
-    @StateObject var navVM: NavigationViewModel = NavigationViewModel()
+    @StateObject var navVM: NavigationStore = NavigationStore()
     
     init() {
         let url = URL(string: "https://my.apiEndpoint.courses")

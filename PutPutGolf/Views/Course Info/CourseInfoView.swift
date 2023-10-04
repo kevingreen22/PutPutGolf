@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct CourseInfoView: View {
-    @EnvironmentObject var navVM: NavigationViewModel
+    @EnvironmentObject var navVM: NavigationStore
     @EnvironmentObject var courseVM: CoursesViewModel
     @Binding var course: Course!
-    @State private var image: Image = Image(systemName: "photo") /* Image("placeholder") */
+    @State private var courseImage: Image = Image(systemName: "photo") /* Image("placeholder") */
     @State private var infoItem: InfoItem?
     
     init(course: Binding<Course?>) {
         _course = course
         
         if let course = course.wrappedValue, let data = course.imageData, let img = UIImage(data: data) {
-            image = Image(uiImage: img)
+            courseImage = Image(uiImage: img)
         }
         
         self.infoItem = infoItem
@@ -26,7 +26,7 @@ struct CourseInfoView: View {
     
     var body: some View {
         ScrollView(showsIndicators: false) {
-            image
+            courseImage
                 .resizable()
                 .scaledToFill()
                 .frame(height: 300)
@@ -52,7 +52,7 @@ struct CourseInfoView: View {
                 .overlay(alignment: .top) {
                     Button {
                         // Navigate to PlayerSetup here
-                        navVM.path.append(course)
+                        navVM.path.append(1)
                         courseVM.showCourseInfo = false
                     } label: {
                         Text("Play Course")
@@ -115,7 +115,7 @@ struct CourseInfoView_Previews: PreviewProvider {
     static var previews: some View {
         CourseInfoView(course: course)
             .environmentObject(CoursesViewModel(url: nil))
-            .environmentObject(NavigationViewModel())
+            .environmentObject(NavigationStore())
     }
 }
 

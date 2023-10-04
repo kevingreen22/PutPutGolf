@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct ScoreCardView: View {
+    @Environment(\.presentationMode) var presentationMode
     @StateObject var vm: ScoreCardViewModel
     var course: Course
+    var navID: Int = 2
+    
     
     init(course: Course) {
         _vm = StateObject(wrappedValue: ScoreCardViewModel())
@@ -92,6 +95,8 @@ struct ScoreCardView: View {
                 }
             }
         }
+        
+        .toolbar(.hidden, for: .navigationBar)
     }
     
     
