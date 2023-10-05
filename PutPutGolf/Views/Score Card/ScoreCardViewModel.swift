@@ -13,19 +13,21 @@ class ScoreCardViewModel: ObservableObject {
     var players: [Player]
     var isResumingGame: Bool = false
     @Published var scores: [[String]] = [[]]
-    var cancellables: Set<AnyCancellable> = []
     
     init(course: Course, players: [Player], isResumingGame: Bool = false) {
         self.course = course
         self.players = players
         
-        // inits scores with the proper size of array
+        initScoresArray()
+    }
+    
+    
+    /// Inits scores with the proper size of array.
+    func initScoresArray() {
         // For new game.
-        self.scores = Array(repeating: [], count: players.count)
-        for i in players.indices {
-            scores[i] = Array(repeating: "", count: course.holes.count + course.challenges.count)
-        }
-            
+        self.scores = Array(repeating: Array(repeating: "", count: course.holes.count + course.challenges.count), count: players.count)
+        print("\(type(of: self)).\(#function).scores: \(scores)")
+
         if isResumingGame {
             for (i,player) in players.enumerated() {
                 for (j,score) in player.scores.enumerated() {
@@ -33,7 +35,13 @@ class ScoreCardViewModel: ObservableObject {
                 }
             }
         }
-        
+    }
+    
+    func update(_ score: String, playerIndex: Int, holeIndex: Int) {
+        print("playerIndex: \(playerIndex)")
+        print("holeIndex: \(holeIndex)")
+        scores[playerIndex][holeIndex] = score
+        print("\(type(of: self)).\(#function).scores: \(scores)")
     }
     
 }

@@ -187,7 +187,7 @@ class MockData: MockDataProtocol {
         
         // creates player scores
         for player in players {
-            print(player.name)
+//            print(player.name)
             
             for _ in 0..<Int.random(in: 0..<21) {
                 player.scores.append(String(Int.random(in: 1...5)))
@@ -197,8 +197,8 @@ class MockData: MockDataProtocol {
                 player.challengeScores.append(String(Int.random(in: 1...5)))
             }
             
-            print(player.scores)
-            print(player.challengeScores)
+//            print(player.scores)
+//            print(player.challengeScores)
         }
         
     }

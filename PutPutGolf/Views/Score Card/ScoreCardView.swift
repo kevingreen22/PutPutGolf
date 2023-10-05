@@ -78,6 +78,7 @@ struct ScoreCardView: View {
                                 // Score box cells
                                 ForEach(course.holes) { hole in
                                     ScoreBoxCell(playerIndex: getPlayerIndex(player), hole: hole)
+                                        .environmentObject(vm)
                                 }
                                 
                                 TotalScoreCell(player: player)
@@ -228,7 +229,7 @@ fileprivate struct PlayerInfoCell: View {
     }
 }
 
-
+// Score Box Cell
 fileprivate struct ScoreBoxCell: View {
     @EnvironmentObject var vm: ScoreCardViewModel
     @State private var score: String = ""
@@ -250,20 +251,16 @@ fileprivate struct ScoreBoxCell: View {
                 .font(.largeTitle)
                 .fontWeight(.semibold)
                 .keyboardType(.numberPad)
-                
+                .onSubmit {
+                    focusScoreBox = false
+                    print("onSubmit")
+                    vm.update(score, playerIndex: playerIndex, holeIndex: hole.number-1)
+                }
+            
             strokeType()
         }
         
         .submitLabel(.return)
-        
-        .onSubmit {
-            focusScoreBox = false
-            let holeIndex = hole.number-1
-            print("playerIndex: \(playerIndex)")
-            print("holeIndex: \(holeIndex)")
-            vm.scores[playerIndex][holeIndex] = score
-        }
-            
     }
     
     @ViewBuilder private func strokeType() -> some View {
