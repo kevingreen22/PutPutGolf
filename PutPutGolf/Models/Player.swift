@@ -20,6 +20,14 @@ class Player: Codable, Equatable, Hashable, Identifiable {
         challengeScores = Array(repeating: "", count: course.challenges.count)
     }
     
+    init(name: String, image: UIImage?, course: Course) {
+        self.name = name
+        self.imageData = image?.jpegData(compressionQuality: 1)
+        scores = Array(repeating: "", count: course.holes.count)
+        challengeScores = Array(repeating: "", count: course.challenges.count)
+    }
+    
+    
     func total() -> Int {
         var total = 0
         for score in scores {
@@ -45,9 +53,15 @@ class Player: Codable, Equatable, Hashable, Identifiable {
         return image
     }
     
-    func score(for hole: Hole) -> String? {
-        return self.scores[hole.number-1]
-    }
+//    func setScore(_ score: String, for hole: Hole) {
+//        self.scores[hole.number-1] = score
+//    }
+    
+//    func getScore(for hole: Hole) -> String? {
+//        return self.scores[hole.number-1]
+//    }
+
+    
     
     
     func hash(into hasher: inout Hasher) {

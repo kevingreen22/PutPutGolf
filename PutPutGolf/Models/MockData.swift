@@ -21,6 +21,13 @@ class MockData: MockDataProtocol {
     
     var players: [Player] = []
     
+    var newPlayers: [NewPlayer] = [
+        NewPlayer(name: "Kevin"),
+        NewPlayer(name: "Nell"),
+        NewPlayer(name: "Holly"),
+        NewPlayer(name: "Whit")
+    ]
+    
     private init() {
         // creates holes for course
         let holes = [
@@ -170,16 +177,6 @@ class MockData: MockDataProtocol {
                 ])
         ])
         
-        // creates saved score cards
-//        var savedScoreCards = [
-//            ScoreCard(course: courses[0], scores: [
-//                Player(name: "Kevin", course: courses.first!) : [
-//                    1,2,3,2,1,3,4,5,6,3,4,3,3,2,3,3,3,4,5,2,3,3,2
-//                ]
-//            ])
-//        ]
-        
-        
         // creates players
         players = [
             Player(name: "Kevin", course: courses.first!),
@@ -190,6 +187,8 @@ class MockData: MockDataProtocol {
         
         // creates player scores
         for player in players {
+            print(player.name)
+            
             for _ in 0..<Int.random(in: 0..<21) {
                 player.scores.append(String(Int.random(in: 1...5)))
             }
@@ -198,7 +197,6 @@ class MockData: MockDataProtocol {
                 player.challengeScores.append(String(Int.random(in: 1...5)))
             }
             
-            print(player.name)
             print(player.scores)
             print(player.challengeScores)
         }

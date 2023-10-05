@@ -19,7 +19,7 @@ struct PutPutGolfApp: App {
     
     var body: some Scene {
         WindowGroup {
-            CoursesMapView()
+            CoursesMap()
                 .environmentObject(coursesVM)
                 .environmentObject(navVM)
         }

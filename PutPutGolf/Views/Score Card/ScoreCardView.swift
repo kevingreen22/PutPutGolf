@@ -11,13 +11,14 @@ struct ScoreCardView: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject var vm: ScoreCardViewModel
     var course: Course
-    var navID: Int = 2
+    var players: [Player]
     
-    
-    init(course: Course) {
-        _vm = StateObject(wrappedValue: ScoreCardViewModel())
+    init(course: Course, players: [Player], isResumingGame resuming: Bool = false) {
+        _vm = StateObject(wrappedValue: ScoreCardViewModel(course: course, players: players, isResumingGame: resuming))
         self.course = course
+        self.players = players
     }
+    
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -69,14 +70,14 @@ struct ScoreCardView: View {
                     .border(Color.black)
                     
                     // Player's row & scores
-                    ForEach(vm.players, id: \.id) { player in
+                    ForEach(players, id: \.id) { player in
                         GridRow {
                             PlayerInfoCell(player: player)
                             
                             GridRow {
                                 // Score box cells
                                 ForEach(course.holes) { hole in
-                                    ScoreBoxCell(hole: hole, player: player)
+                                    ScoreBoxCell(playerIndex: getPlayerIndex(player), hole: hole)
                                 }
                                 
                                 TotalScoreCell(player: player)
@@ -99,13 +100,24 @@ struct ScoreCardView: View {
         .toolbar(.hidden, for: .navigationBar)
     }
     
+    func getPlayerIndex(_ player: Player) -> Int {
+        guard let player = self.players.firstIndex(of: player) else { return 0 }
+        return player
+    }
     
 }
 
 
 struct ScoreCardView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoreCardView(course: MockData.instance.courses[0])
+        ScoreCardView(
+            course: MockData.instance.courses[0],
+            players: MockData.instance.players
+        )
+        .environmentObject(ScoreCardViewModel(
+            course: MockData.instance.courses[0],
+            players: MockData.instance.players)
+        )
     }
 }
 
@@ -218,31 +230,44 @@ fileprivate struct PlayerInfoCell: View {
 
 
 fileprivate struct ScoreBoxCell: View {
+    @EnvironmentObject var vm: ScoreCardViewModel
+    @State private var score: String = ""
+    @FocusState var focusScoreBox
+    var playerIndex: Int
     var hole: Hole
-    var player: Player
-    @State var showEnterScoreview: Bool = false
+    
+    init(playerIndex: Int, hole: Hole) {
+        self.playerIndex = playerIndex
+        self.hole = hole
+    }
+    
     
     var body: some View {
         ZStack {
-            Rectangle()
-                .fill(Color.white)
-                .frame(width: 80, height: 100)
-                .onTapGesture {
-                    showEnterScoreview.toggle()
-                }
-            Text(player.score(for: hole) ?? "")
-            scoreType()
-        }
-        .sheet(isPresented: $showEnterScoreview) {
-            EnterScoreView(player: player)
-                .presentationDetents([.height(400)])
+            TextField("", text: $score)
+                .foregroundColor(setScoreTextColor())
+                .multilineTextAlignment(.center)
+                .font(.largeTitle)
+                .fontWeight(.semibold)
+                .keyboardType(.numberPad)
+                
+            strokeType()
         }
         
+        .submitLabel(.return)
         
+        .onSubmit {
+            focusScoreBox = false
+            let holeIndex = hole.number-1
+            print("playerIndex: \(playerIndex)")
+            print("holeIndex: \(holeIndex)")
+            vm.scores[playerIndex][holeIndex] = score
+        }
+            
     }
     
-    @ViewBuilder private func scoreType() -> some View {
-        if let strScr = player.score(for: hole), let score = Int(strScr) {
+    @ViewBuilder private func strokeType() -> some View {
+        if let score = Int(score) {
             if score <= hole.par - 2 {
                 EagleScoreView()
             } else if score == hole.par - 1 {
@@ -253,6 +278,21 @@ fileprivate struct ScoreBoxCell: View {
                 DoubleBogieScoreView()
             }
         }
+    }
+    
+    fileprivate func setScoreTextColor() -> Color {
+        if let score = Int(score) {
+            if score <= hole.par - 2 {
+                return Color.green
+            } else if score == hole.par - 1 {
+                return Color.green
+            } else if score == hole.par + 1 {
+                return Color.red
+            } else if score >= hole.par + 1 {
+                return Color.red
+            }
+        }
+        return Color.black
     }
 }
 
@@ -296,12 +336,6 @@ fileprivate struct FinalTotalScore: View {
         }
     }
 }
-
-
-
-
-
-
 
 
 

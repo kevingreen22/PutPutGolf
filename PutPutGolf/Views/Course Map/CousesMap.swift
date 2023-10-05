@@ -1,5 +1,5 @@
 //
-//  CoursesMapView.swift
+//  CoursesMap.swift
 //  PutPutGolf
 //
 //  Created by Kevin Green on 9/27/23.
@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-struct CoursesMapView: View {
+struct CoursesMap: View {
     @EnvironmentObject var navVM: NavigationStore
     @EnvironmentObject var courseVM: CoursesViewModel
     @State private var screenSize: CGSize = .zero
+    
     
     var body: some View {
         NavigationStack(path: $navVM.path) {
@@ -27,7 +28,7 @@ struct CoursesMapView: View {
             }
             
             .sheet(isPresented: $courseVM.showCourseInfo) {
-                CourseInfoView(course: $courseVM.selectedCourse)
+                CourseInfo(course: $courseVM.selectedCourse)
                     .environmentObject(navVM)
                     .environmentObject(courseVM)
                     .presentationDetents([
@@ -40,29 +41,12 @@ struct CoursesMapView: View {
                     .interactiveDismissDisabled()
             }
             
-            // Navigation destinations via a Course
-//            .navigationDestination(for: Course.self) { course in
-////                if $courseVM.newPlayers.isEmpty {
-//                    SetupPlayersView(course)
-//                        .environmentObject(navVM)
-////                } else {
-////                    ScoreCardView(course: course)
-////                        .environmentObject(navVM)
-////                }
-//            }
-            
-            .navigationDestination(for: Int.self, destination: { navID in
+            .navigationDestination(for: Int.self) { navID in
                 if let course = courseVM.selectedCourse {
-                    switch navID {
-                    case 1:
-                        SetupPlayersView(course)
-                    case 2:
-                        ScoreCardView(course: course)
-                    default:
-                        CoursesMapView()
-                    }
+                    SetupPlayers(course)
                 }
-            })
+            }
+            
             
             .navigationBarTitleDisplayMode(.large)
             
@@ -79,9 +63,9 @@ struct CoursesMapView: View {
     }
 }
 
-struct CoursesMapView_Previews: PreviewProvider {
+struct CoursesMap_Previews: PreviewProvider {
     static var previews: some View {
-        CoursesMapView()
+        CoursesMap()
             .environmentObject(CoursesViewModel(url: nil))
             .environmentObject(NavigationStore())
     }

@@ -14,6 +14,7 @@ class CoursesViewModel: ObservableObject {
     var coursesData: [Course] = []
     
     @Published var selectedCourse: Course?
+    var players: [Player]?
     @Published var rotation: CoursesMapInfo.RotationDegrees = .none
     @Published var title: String?
     @Published var showCourseInfo: Bool = false
@@ -73,6 +74,20 @@ class CoursesViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellables)
+    }
+    
+    
+    
+    func getDirections() {
+        if let course = selectedCourse {
+            let longitude = course.location[1]
+            let latitude = course.location[0]
+            let directionsURL = URL(string: "maps://?saddr=&daddr=\(longitude),\(latitude)")
+            if let url = directionsURL, UIApplication.shared.canOpenURL(url) {
+                print("\(type(of: self)).\(#function) - opening maps with directions: \(url)")
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
     }
     
 }

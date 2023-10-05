@@ -10,7 +10,7 @@ import Combine
 
 class SetupPlayerViewModel: ObservableObject {
     @Published var playerName: String = ""
-    @Published var profileImage: Image = Image(systemName: "person.fill")
+    @Published var profileImage: UIImage = UIImage()
     @Published var textFieldDidSubmit: Bool = false
     @Published var newPlayers: [NewPlayer] = []
     @FocusState var focusedTextField
@@ -37,7 +37,7 @@ class SetupPlayerViewModel: ObservableObject {
                     
                     // Then clears the playerName binding and profileImage.
                     self.playerName = ""
-                    self.profileImage = Image(systemName: "person.fill")
+                    self.profileImage = UIImage()
                 }
             }
             .store(in: &cancellables)
@@ -53,7 +53,17 @@ class SetupPlayerViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
-        
+    
+    
+    /// Creates and array of Player objects from a NewPlayer object.
+    func createPlayers(on course: Course) -> [Player] {
+        var players: [Player] = []
+        for player in newPlayers {
+            players.append(Player(name: player.name, image: player.image, course: course))
+        }
+        return players
+    }
+    
 }
 
 
@@ -61,10 +71,11 @@ class SetupPlayerViewModel: ObservableObject {
 struct NewPlayer: Hashable, Identifiable {
     var id: UUID = UUID()
     var name: String
-    var image: Image?
+    var image: UIImage?
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
         hasher.combine(name)
+        hasher.combine(image)
     }
 }

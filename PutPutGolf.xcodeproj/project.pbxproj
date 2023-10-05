@@ -17,7 +17,7 @@
 		C74CB2582AC6046000AC53D7 /* CourseMapBallAndClubIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB2572AC6046000AC53D7 /* CourseMapBallAndClubIcon.swift */; };
 		C74CB25C2AC62D6500AC53D7 /* SavedScoreCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB25B2AC62D6500AC53D7 /* SavedScoreCards.swift */; };
 		C74CB25E2AC6399E00AC53D7 /* ScoreCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB25D2AC6399E00AC53D7 /* ScoreCard.swift */; };
-		C74CB2602AC7429D00AC53D7 /* SetupPlayersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB25F2AC7429D00AC53D7 /* SetupPlayersView.swift */; };
+		C74CB2602AC7429D00AC53D7 /* SetupPlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB25F2AC7429D00AC53D7 /* SetupPlayers.swift */; };
 		C74CB2632AC7477800AC53D7 /* SetupPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB2622AC7477800AC53D7 /* SetupPlayerViewModel.swift */; };
 		C74CB2662AC886DB00AC53D7 /* UIImageStringConversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB2652AC886DB00AC53D7 /* UIImageStringConversions.swift */; };
 		C74CB2702AC892C000AC53D7 /* NavigationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB26F2AC892C000AC53D7 /* NavigationStore.swift */; };
@@ -34,8 +34,8 @@
 		C760EB142ABD0898000DFE09 /* ScoreCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB132ABD0898000DFE09 /* ScoreCardViewModel.swift */; };
 		C760EB172ABE0AD6000DFE09 /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB162ABE0AD6000DFE09 /* DataServices.swift */; };
 		C760EB1A2ABE0C1A000DFE09 /* CoursesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB192ABE0C1A000DFE09 /* CoursesViewModel.swift */; };
-		C760EB1E2ABF57B8000DFE09 /* CourseInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB1D2ABF57B8000DFE09 /* CourseInfoView.swift */; };
-		C7A9BA902AC4AA3100A69B81 /* CousesMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A9BA8F2AC4AA3100A69B81 /* CousesMapView.swift */; };
+		C760EB1E2ABF57B8000DFE09 /* CourseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB1D2ABF57B8000DFE09 /* CourseInfo.swift */; };
+		C7A9BA902AC4AA3100A69B81 /* CousesMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A9BA8F2AC4AA3100A69B81 /* CousesMap.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +50,7 @@
 		C74CB2572AC6046000AC53D7 /* CourseMapBallAndClubIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseMapBallAndClubIcon.swift; sourceTree = "<group>"; };
 		C74CB25B2AC62D6500AC53D7 /* SavedScoreCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedScoreCards.swift; sourceTree = "<group>"; };
 		C74CB25D2AC6399E00AC53D7 /* ScoreCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCard.swift; sourceTree = "<group>"; };
-		C74CB25F2AC7429D00AC53D7 /* SetupPlayersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupPlayersView.swift; sourceTree = "<group>"; };
+		C74CB25F2AC7429D00AC53D7 /* SetupPlayers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupPlayers.swift; sourceTree = "<group>"; };
 		C74CB2622AC7477800AC53D7 /* SetupPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupPlayerViewModel.swift; sourceTree = "<group>"; };
 		C74CB2652AC886DB00AC53D7 /* UIImageStringConversions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageStringConversions.swift; sourceTree = "<group>"; };
 		C74CB26F2AC892C000AC53D7 /* NavigationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStore.swift; sourceTree = "<group>"; };
@@ -68,8 +68,8 @@
 		C760EB132ABD0898000DFE09 /* ScoreCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCardViewModel.swift; sourceTree = "<group>"; };
 		C760EB162ABE0AD6000DFE09 /* DataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
 		C760EB192ABE0C1A000DFE09 /* CoursesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewModel.swift; sourceTree = "<group>"; };
-		C760EB1D2ABF57B8000DFE09 /* CourseInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInfoView.swift; sourceTree = "<group>"; };
-		C7A9BA8F2AC4AA3100A69B81 /* CousesMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CousesMapView.swift; sourceTree = "<group>"; };
+		C760EB1D2ABF57B8000DFE09 /* CourseInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInfo.swift; sourceTree = "<group>"; };
+		C7A9BA8F2AC4AA3100A69B81 /* CousesMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CousesMap.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +99,7 @@
 		C74CB2612AC7475D00AC53D7 /* Setup Player Views */ = {
 			isa = PBXGroup;
 			children = (
-				C74CB25F2AC7429D00AC53D7 /* SetupPlayersView.swift */,
+				C74CB25F2AC7429D00AC53D7 /* SetupPlayers.swift */,
 				C74CB2622AC7477800AC53D7 /* SetupPlayerViewModel.swift */,
 			);
 			path = "Setup Player Views";
@@ -113,28 +113,12 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		C74CB2672AC88EF700AC53D7 /* Course Info */ = {
-			isa = PBXGroup;
-			children = (
-				C760EB1D2ABF57B8000DFE09 /* CourseInfoView.swift */,
-				C74CB2692AC8900B00AC53D7 /* SubViews */,
-			);
-			path = "Course Info";
-			sourceTree = "<group>";
-		};
 		C74CB2682AC88F5100AC53D7 /* Score Card List */ = {
 			isa = PBXGroup;
 			children = (
 				C74CB25B2AC62D6500AC53D7 /* SavedScoreCards.swift */,
 			);
 			path = "Score Card List";
-			sourceTree = "<group>";
-		};
-		C74CB2692AC8900B00AC53D7 /* SubViews */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SubViews;
 			sourceTree = "<group>";
 		};
 		C760EAE62AB8F7FF000DFE09 = {
@@ -158,6 +142,7 @@
 			children = (
 				C74CB2432AC4CD1000AC53D7 /* Info.plist */,
 				C760EAF22AB8F7FF000DFE09 /* PutPutGolfApp.swift */,
+				C74CB26F2AC892C000AC53D7 /* NavigationStore.swift */,
 				C760EB072AB8F923000DFE09 /* Views */,
 				C760EB002AB8F80F000DFE09 /* Models */,
 				C760EB152ABE0AB3000DFE09 /* DataServices */,
@@ -194,11 +179,9 @@
 			isa = PBXGroup;
 			children = (
 				C760EB182ABE0BEB000DFE09 /* Course Map */,
-				C74CB2672AC88EF700AC53D7 /* Course Info */,
 				C74CB2612AC7475D00AC53D7 /* Setup Player Views */,
 				C760EB122ABD0879000DFE09 /* Score Card */,
 				C74CB2682AC88F5100AC53D7 /* Score Card List */,
-				C74CB26F2AC892C000AC53D7 /* NavigationStore.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -224,7 +207,8 @@
 		C760EB182ABE0BEB000DFE09 /* Course Map */ = {
 			isa = PBXGroup;
 			children = (
-				C7A9BA8F2AC4AA3100A69B81 /* CousesMapView.swift */,
+				C7A9BA8F2AC4AA3100A69B81 /* CousesMap.swift */,
+				C760EB1D2ABF57B8000DFE09 /* CourseInfo.swift */,
 				C760EB192ABE0C1A000DFE09 /* CoursesViewModel.swift */,
 				C760EB222AC2527F000DFE09 /* SubViews */,
 			);
@@ -330,11 +314,11 @@
 				C74CB25E2AC6399E00AC53D7 /* ScoreCard.swift in Sources */,
 				C760EB042AB8F877000DFE09 /* Hole.swift in Sources */,
 				C74CB2662AC886DB00AC53D7 /* UIImageStringConversions.swift in Sources */,
-				C760EB1E2ABF57B8000DFE09 /* CourseInfoView.swift in Sources */,
-				C74CB2602AC7429D00AC53D7 /* SetupPlayersView.swift in Sources */,
+				C760EB1E2ABF57B8000DFE09 /* CourseInfo.swift in Sources */,
+				C74CB2602AC7429D00AC53D7 /* SetupPlayers.swift in Sources */,
 				C760EAF32AB8F7FF000DFE09 /* PutPutGolfApp.swift in Sources */,
 				C760EB062AB8F8D9000DFE09 /* Player.swift in Sources */,
-				C7A9BA902AC4AA3100A69B81 /* CousesMapView.swift in Sources */,
+				C7A9BA902AC4AA3100A69B81 /* CousesMap.swift in Sources */,
 				C760EB172ABE0AD6000DFE09 /* DataServices.swift in Sources */,
 				C760EB022AB8F825000DFE09 /* Course.swift in Sources */,
 				C74CB2632AC7477800AC53D7 /* SetupPlayerViewModel.swift in Sources */,

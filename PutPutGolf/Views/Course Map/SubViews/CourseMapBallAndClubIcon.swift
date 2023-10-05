@@ -40,7 +40,10 @@ struct CourseMapBallAndClubIcon: View {
 
 struct CourseMapBallAndClubIcon_Previews: PreviewProvider {
     static var previews: some View {
-        CourseMapBallAndClubIcon(screenSize: .constant(CGSize(width: 400, height: 1000)))
+//        CourseMapBallAndClubIcon(screenSize: .constant(CGSize(width: 400, height: 1000)))
+//            .environmentObject(CoursesViewModel(url: nil))
+        CoursesMap()
             .environmentObject(CoursesViewModel(url: nil))
+            .environmentObject(NavigationStore())
     }
 }

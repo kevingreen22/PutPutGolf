@@ -1,5 +1,5 @@
 //
-//  CourseInfoView.swift
+//  CourseInfo.swift
 //  PutPutGolf
 //
 //  Created by Kevin Green on 9/23/23.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct CourseInfoView: View {
+struct CourseInfo: View {
     @EnvironmentObject var navVM: NavigationStore
-    @EnvironmentObject var courseVM: CoursesViewModel
+    @EnvironmentObject var coursesVM: CoursesViewModel
     @Binding var course: Course!
     @State private var courseImage: Image = Image(systemName: "photo") /* Image("placeholder") */
     @State private var infoItem: InfoItem?
@@ -40,7 +40,7 @@ struct CourseInfoView: View {
                             .lineLimit(2)
                             .padding(.leading)
                         Button {
-                            getDirections()
+                            coursesVM.getDirections()
                         } label: {
                             Text(course.address)
                                 .font(.title2)
@@ -53,7 +53,7 @@ struct CourseInfoView: View {
                     Button {
                         // Navigate to PlayerSetup here
                         navVM.path.append(1)
-                        courseVM.showCourseInfo = false
+                        coursesVM.showCourseInfo = false
                     } label: {
                         Text("Play Course")
                             .font(.largeTitle)
@@ -94,26 +94,13 @@ struct CourseInfoView: View {
         }
     }
     
-    
-    fileprivate func getDirections() {
-        if course != nil {
-            let longitude = course!.location[1]
-            let latitude = course!.location[0]
-            let directionsURL = URL(string: "maps://?saddr=&daddr=\(longitude),\(latitude)")
-            if let url = directionsURL, UIApplication.shared.canOpenURL(url) {
-                print("\(type(of: self)).\(#function) - opening maps with directions: \(url)")
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            }
-        }
-    }
-    
 }
 
-struct CourseInfoView_Previews: PreviewProvider {
+struct CourseInfo_Previews: PreviewProvider {
     static let course: Binding<Course?> = .constant(MockData.instance.courses.first!)
     
     static var previews: some View {
-        CourseInfoView(course: course)
+        CourseInfo(course: course)
             .environmentObject(CoursesViewModel(url: nil))
             .environmentObject(NavigationStore())
     }

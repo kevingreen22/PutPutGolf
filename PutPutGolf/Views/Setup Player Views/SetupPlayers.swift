@@ -1,5 +1,5 @@
 //
-//  SetupPlayersView.swift
+//  SetupPlayers.swift
 //  PutPutGolf
 //
 //  Created by Kevin Green on 9/29/23.
@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct SetupPlayersView: View {
+struct SetupPlayers: View {
     @EnvironmentObject var navVM: NavigationStore
+    @EnvironmentObject var coursesVM: CoursesViewModel
     @StateObject var vm = SetupPlayerViewModel()
     var course: Course
     var navID: Int = 1
@@ -17,9 +18,10 @@ struct SetupPlayersView: View {
         self.course = course
     }
     
+    
     var body: some View {
         VStack {
-            vm.profileImage
+            Image(uiImage: vm.profileImage)
                 .resizable()
                 .scaleEffect(0.7)
                 .foregroundColor(.gray)
@@ -66,11 +68,12 @@ struct SetupPlayersView: View {
         .navigationTitle("Setup Players")
         .onAppear { vm.focusedTextField = true }
         
+        // LETS PUTT! button
         .overlay(alignment: .bottom) {
-            // LETS PUTT! button
             Button {
-                // Show score card here
-                navVM.path.append(2)
+                // Navigate to ScoreCard here
+                let players = vm.createPlayers(on: course)
+                navVM.path.append(players)
             } label: {
                 VStack {
                     if vm.newPlayers.count > 0 {
@@ -91,15 +94,20 @@ struct SetupPlayersView: View {
             .buttonBorderShape(.capsule)
             .controlSize(.large)
         }
+        
+        .navigationDestination(for: [Player].self) { players in
+            ScoreCardView(course: course, players: players)
+        }
     }
     
 }
 
 struct SetupPlayersView_Previews: PreviewProvider {
     static var previews: some View {
-        SetupPlayersView(MockData.instance.courses[0])
+        SetupPlayers(MockData.instance.courses[0])
             .environmentObject(SetupPlayerViewModel())
             .environmentObject(NavigationStore())
+            .environmentObject(CoursesViewModel(url: nil))
     }
 }
 
@@ -117,7 +125,7 @@ fileprivate struct EditButtonOverlay: ViewModifier {
                 } label: {
                     Text("Edit")
                         .font(.title2)
-                        .foregroundColor(.blue)
+                        .foregroundColor(.white)
                         .offset(y: 5)
                         .padding()
                 }
@@ -136,10 +144,10 @@ fileprivate struct EditButtonOverlay: ViewModifier {
 
 
 fileprivate struct ProfileImageThumb: View {
-    @Binding var image: Image
+    @Binding var image: UIImage
     
     var body: some View {
-        image
+        Image(uiImage: image)
             .foregroundColor(.clear)
             .frame(width: 50, height: 50)
             .clipShape(Circle())
