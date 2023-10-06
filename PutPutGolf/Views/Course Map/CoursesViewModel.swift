@@ -80,9 +80,7 @@ class CoursesViewModel: ObservableObject {
     
     func getDirections() {
         if let course = selectedCourse {
-            let longitude = course.location[1]
-            let latitude = course.location[0]
-            let directionsURL = URL(string: "maps://?saddr=&daddr=\(longitude),\(latitude)")
+            let directionsURL = URL(string: "maps://?saddr=&daddr=\(course.latitude),\(course.longitude)")
             if let url = directionsURL, UIApplication.shared.canOpenURL(url) {
                 print("\(type(of: self)).\(#function) - opening maps with directions: \(url)")
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)

@@ -66,7 +66,9 @@ class MockData: MockDataProtocol {
             Course(
                 name: "Goat Track Country Club",
                 address: "Martinez, Ca",
-                location: [24.23423454234, 290.343422],
+//                location: [24.23423454234, 290.343422],
+                latitude: 38.0194,
+                longitude: -122.1341,
                 imageData: UIImage(contentsOfFile: "martinez")?.jpegData(compressionQuality: 1)!,
                 difficulty: .hard,
                 holes: holes,
@@ -94,7 +96,9 @@ class MockData: MockDataProtocol {
             Course(
                 name: "Cow Track Country Club",
                 address: "Walnut Creek, Ca",
-                location: [24.23423454234, 290.343422],
+//                location: [24.23423454234, 290.343422],
+                latitude: 37.9101,
+                longitude: -122.0652,
                 imageData: UIImage(contentsOfFile: "walnut_creek")?.jpegData(compressionQuality: 1)!,
                 difficulty: .hard,
                 holes: holes,
@@ -122,7 +126,9 @@ class MockData: MockDataProtocol {
             Course(
                 name: "Pig Track Country Club",
                 address: "Alameda, Ca",
-                location: [24.23423454234, 290.343422],
+//                location: [24.23423454234, 290.343422],
+                latitude: 37.7799,
+                longitude: -122.2822,
                 imageData: UIImage(contentsOfFile: "alameda")?.jpegData(compressionQuality: 1)!,
                 difficulty: .hard,
                 holes: holes,
@@ -150,7 +156,9 @@ class MockData: MockDataProtocol {
             Course(
                 name: "Sheep Track Country Club",
                 address: "Palo Alto, Ca",
-                location: [24.23423454234, 290.343422],
+//                location: [24.23423454234, 290.343422],
+                latitude: 37.4419,
+                longitude: -122.1430,
                 imageData: Data(), /* let img3: Data = UIImage(contentsOfFile: "palo_alto")?.jpegData(compressionQuality: 1) */
                 difficulty: .hard,
                 holes: holes,

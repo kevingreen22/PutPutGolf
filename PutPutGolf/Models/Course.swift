@@ -8,12 +8,22 @@
 import Foundation
 import MapKit
 import SwiftUI
+import MapKit
 
 struct Course: Codable, Hashable, Equatable, Identifiable {
     var id = UUID()
     var name: String
     var address: String
-    var location: [Float]
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
+    var coordinates: CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+    var location: CLLocation {
+        return CLLocation(latitude: latitude, longitude: longitude)
+    }
+//    var location: [Float]
+//    var location: CLLocationCoordinate2D
     var imageData: Data?
     var difficulty: Difficulty
     var holes: [Hole]
@@ -45,3 +55,21 @@ struct Course: Codable, Hashable, Equatable, Identifiable {
 
 
 
+//extension CLLocationCoordinate2D: Codable {
+//    public enum CodingKeys: String, CodingKey {
+//        case latitude
+//        case longitude
+//    }
+//
+//    public func encode(to encoder: Encoder) throws {
+//        var container = encoder.container(keyedBy: CodingKeys.self)
+//        try container.encode(latitude, forKey: .latitude)
+//        try container.encode(longitude, forKey: .longitude)
+//        }
+//
+//    public init(from decoder: Decoder) throws {
+//        let values = try decoder.container(keyedBy: CodingKeys.self)
+//        latitude = try values.decode(Double.self, forKey: .latitude)
+//        longitude = try values.decode(Double.self, forKey: .longitude)
+//    }
+//}
