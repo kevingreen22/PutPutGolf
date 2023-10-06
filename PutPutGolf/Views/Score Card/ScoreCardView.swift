@@ -49,11 +49,11 @@ struct ScoreCardView: View {
                         // Final total footer
                         StandardTextCell(title: "Final", color: .green, textColor: .white)
                             .font(.title)
-                            .frame(height: 60)
+                            .frame(height: 150)
                             .border(Color.black)
                             .offset(y: 15)
                     }
-                    .frame(width: 80, height: 30)
+                    .frame(width: 80, height: 60)
                     
                     // Par row
                     GridRow {
@@ -66,7 +66,7 @@ struct ScoreCardView: View {
                         
                         TotalParCell(course: course)
                     }
-                    .frame(width: 80, height: 30)
+                    .frame(width: 80, height: 60)
                     .border(Color.black)
                     
                     // Player's row & scores
@@ -92,7 +92,7 @@ struct ScoreCardView: View {
                             }
                         }
                     }
-                    .frame(width: 80, height: 100)
+                    .frame(width: 80, height: 120)
                     .border(Color.black)
                 }
             }
@@ -135,7 +135,8 @@ fileprivate struct StandardTextCell: View {
             Rectangle()
                 .fill(color)
             Text(title)
-                .bold()
+                .font(.title)
+                .fontWeight(.semibold)
                 .foregroundColor(textColor)
         }
     }
@@ -149,15 +150,15 @@ fileprivate struct ChallengeCell: View {
         ZStack {
             Rectangle()
                 .fill(Color.green)
-                .frame(height: 60)
+                
             Text("\(challenge.name)")
-                .bold()
+                .fontWeight(.semibold)
                 .foregroundColor(.white)
                 .padding(2)
-                .lineLimit(2)
         }
         .border(Color.black)
         .offset(y: 15)
+        .frame(height: 150)
     }
 }
 
@@ -170,7 +171,8 @@ fileprivate struct HoleParNumberCell: View {
             Rectangle()
                 .fill(Color.brown)
             Text("\(hole.par)")
-                .bold()
+                .font(.title)
+                .fontWeight(.semibold)
                 .foregroundColor(.white)
         }
     }
@@ -185,7 +187,8 @@ fileprivate struct TotalParCell: View {
             Rectangle()
                 .fill(Color.brown)
             Text("\(course.totalPar())")
-                .bold()
+                .font(.title)
+                .fontWeight(.semibold)
                 .foregroundColor(.white)
         }
     }
@@ -302,6 +305,8 @@ fileprivate struct TotalScoreCell: View {
             Rectangle()
                 .fill(Color.white)
             Text("\(player.total())")
+                .font(.title)
+                .fontWeight(.semibold)
         }
     }
 }
@@ -316,7 +321,10 @@ fileprivate struct ChallengeScoreCell: View {
             Rectangle()
                 .fill(Color.white)
             Text("\(player.challengeScores[index])")
+                .font(.title)
+                .fontWeight(.semibold)
         }
+//        .frame(width: 120)
     }
     
 }
@@ -330,6 +338,8 @@ fileprivate struct FinalTotalScore: View {
             Rectangle()
                 .fill(Color.white)
             Text("\(player.finalTotal())")
+                .font(.title)
+                .fontWeight(.semibold)
         }
     }
 }
