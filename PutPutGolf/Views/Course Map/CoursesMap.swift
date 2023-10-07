@@ -9,45 +9,55 @@ import SwiftUI
 
 struct CoursesMap: View {
     @EnvironmentObject var navVM: NavigationStore
-    @EnvironmentObject var courseVM: CoursesViewModel
+    @EnvironmentObject var coursesVM: CoursesViewModel
     @State private var screenSize: CGSize = .zero
     
     
     var body: some View {
         NavigationStack(path: $navVM.path) {
+//            ZStack {
+//                Color.green.ignoresSafeArea()
+//                
+//                CourseMapBallAndClubIcon(screenSize: $screenSize)
+//                    .environmentObject(courseVM)
+//                
+//                ForEach(0..<courseVM.coursesData.count, id: \.self) { index in
+//                    CourseMapIcon(image: courseVM.coursesData[index].getImage(), placement: CoursesMapInfo.iconPlacement[index])
+//                        .environmentObject(courseVM)
+//                }
+//            }
+            
             ZStack {
-                Color.green.ignoresSafeArea()
+                MyMap()
+                    .environmentObject(coursesVM)
                 
-                CourseMapBallAndClubIcon(screenSize: $screenSize)
-                    .environmentObject(courseVM)
-                
-                ForEach(0..<courseVM.coursesData.count, id: \.self) { index in
-                    CourseMapIcon(image: courseVM.coursesData[index].getImage(), placement: CoursesMapInfo.iconPlacement[index])
-                        .environmentObject(courseVM)
+                VStack(spacing: 0) {
+                    headerBar.padding()
+                    Spacer()
+                    
                 }
             }
             
-            .sheet(isPresented: $courseVM.showCourseInfo) {
-                CourseInfo(course: $courseVM.selectedCourse)
+            .sheet(isPresented: .constant(true)) {
+                CourseInfo(course: $coursesVM.selectedCourse)
                     .environmentObject(navVM)
-                    .environmentObject(courseVM)
+                    .environmentObject(coursesVM)
                     .presentationDetents([
                         .height(550),
                         .height(300),
                         .height(70)
-                    ], selection: .constant(.height(300)))
+                    ], selection: .constant(.height(70)))
                     .presentationBackgroundInteraction(.enabled)
                     .presentationCornerRadius(40)
                     .interactiveDismissDisabled()
             }
             
+            // Navigation
             .navigationDestination(for: Int.self) { navID in
-                if let course = courseVM.selectedCourse {
+                if let course = coursesVM.selectedCourse {
                     SetupPlayers(course)
                 }
             }
-            
-            
             .navigationBarTitleDisplayMode(.large)
             
             // Screen size
@@ -79,6 +89,38 @@ struct SizePreferenceKey: PreferenceKey {
     static var defaultValue: CGSize = .zero
     static func reduce(value: inout CGSize, nextValue: () -> CGSize) {
         value = nextValue()
+    }
+}
+
+
+
+extension CoursesMap {
+    
+    private var headerBar: some View {
+        VStack {
+            Button(action: coursesVM.toggleCoursesList) {
+                Text(coursesVM.selectedCourse?.name ?? "")
+                    .font(.title2)
+                    .fontWeight(.black)
+                    .foregroundColor(.primary)
+                    .frame(height: 55)
+                    .frame(maxWidth: .infinity)
+                    .animation(.none, value: coursesVM.selectedCourse)
+                    .overlay (alignment: .leading) {
+                        Image (systemName: "arrow.down")
+                            .font (.headline)
+                            .foregroundColor(.primary)
+                            .padding()
+                            .rotationEffect(Angle(degrees: coursesVM.showCoursesList ? 180 : 0))
+                    }
+            }
+            if coursesVM.showCoursesList {
+                CoursesList()
+            }
+        }
+        .background(.thickMaterial)
+        .cornerRadius(10)
+        .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 15)
     }
 }
 

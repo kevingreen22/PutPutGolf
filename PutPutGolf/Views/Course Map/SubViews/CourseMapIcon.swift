@@ -21,8 +21,8 @@ struct CourseMapIcon: View {
                 .position(placement.1)
                 .onTapGesture {
                     withAnimation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 1)) {
-                        vm.rotation = placement.0
-                        vm.showCourseInfo = true
+//                        vm.rotation = placement.0
+//                        vm.showCourseInfo = true
                     }
                 }
                 .shadow(color: .gray, radius: 5)

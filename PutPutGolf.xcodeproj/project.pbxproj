@@ -35,7 +35,9 @@
 		C760EB172ABE0AD6000DFE09 /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB162ABE0AD6000DFE09 /* DataServices.swift */; };
 		C760EB1A2ABE0C1A000DFE09 /* CoursesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB192ABE0C1A000DFE09 /* CoursesViewModel.swift */; };
 		C760EB1E2ABF57B8000DFE09 /* CourseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB1D2ABF57B8000DFE09 /* CourseInfo.swift */; };
-		C7A9BA902AC4AA3100A69B81 /* CousesMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A9BA8F2AC4AA3100A69B81 /* CousesMap.swift */; };
+		C77B0CB72AD0809500F3E1C5 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77B0CB62AD0809500F3E1C5 /* Map.swift */; };
+		C7A9BA902AC4AA3100A69B81 /* CoursesMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A9BA8F2AC4AA3100A69B81 /* CoursesMap.swift */; };
+		C7CDAF9B2AD1E8CD006C0886 /* CoursesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CDAF9A2AD1E8CD006C0886 /* CoursesList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,7 +71,9 @@
 		C760EB162ABE0AD6000DFE09 /* DataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
 		C760EB192ABE0C1A000DFE09 /* CoursesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewModel.swift; sourceTree = "<group>"; };
 		C760EB1D2ABF57B8000DFE09 /* CourseInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInfo.swift; sourceTree = "<group>"; };
-		C7A9BA8F2AC4AA3100A69B81 /* CousesMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CousesMap.swift; sourceTree = "<group>"; };
+		C77B0CB62AD0809500F3E1C5 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		C7A9BA8F2AC4AA3100A69B81 /* CoursesMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesMap.swift; sourceTree = "<group>"; };
+		C7CDAF9A2AD1E8CD006C0886 /* CoursesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +186,7 @@
 				C74CB2612AC7475D00AC53D7 /* Setup Player Views */,
 				C760EB122ABD0879000DFE09 /* Score Card */,
 				C74CB2682AC88F5100AC53D7 /* Score Card List */,
+				C77B0CB62AD0809500F3E1C5 /* Map.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -207,7 +212,7 @@
 		C760EB182ABE0BEB000DFE09 /* Course Map */ = {
 			isa = PBXGroup;
 			children = (
-				C7A9BA8F2AC4AA3100A69B81 /* CousesMap.swift */,
+				C7A9BA8F2AC4AA3100A69B81 /* CoursesMap.swift */,
 				C760EB1D2ABF57B8000DFE09 /* CourseInfo.swift */,
 				C760EB192ABE0C1A000DFE09 /* CoursesViewModel.swift */,
 				C760EB222AC2527F000DFE09 /* SubViews */,
@@ -228,6 +233,7 @@
 			children = (
 				C74CB2572AC6046000AC53D7 /* CourseMapBallAndClubIcon.swift */,
 				C74CB2552AC6038900AC53D7 /* CourseMapIcon.swift */,
+				C7CDAF9A2AD1E8CD006C0886 /* CoursesList.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -260,7 +266,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					C760EAEE2AB8F7FF000DFE09 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -312,13 +318,14 @@
 				C760EB1A2ABE0C1A000DFE09 /* CoursesViewModel.swift in Sources */,
 				C760EB142ABD0898000DFE09 /* ScoreCardViewModel.swift in Sources */,
 				C74CB25E2AC6399E00AC53D7 /* ScoreCard.swift in Sources */,
+				C7CDAF9B2AD1E8CD006C0886 /* CoursesList.swift in Sources */,
 				C760EB042AB8F877000DFE09 /* Hole.swift in Sources */,
 				C74CB2662AC886DB00AC53D7 /* UIImageStringConversions.swift in Sources */,
 				C760EB1E2ABF57B8000DFE09 /* CourseInfo.swift in Sources */,
 				C74CB2602AC7429D00AC53D7 /* SetupPlayers.swift in Sources */,
 				C760EAF32AB8F7FF000DFE09 /* PutPutGolfApp.swift in Sources */,
 				C760EB062AB8F8D9000DFE09 /* Player.swift in Sources */,
-				C7A9BA902AC4AA3100A69B81 /* CousesMap.swift in Sources */,
+				C7A9BA902AC4AA3100A69B81 /* CoursesMap.swift in Sources */,
 				C760EB172ABE0AD6000DFE09 /* DataServices.swift in Sources */,
 				C760EB022AB8F825000DFE09 /* Course.swift in Sources */,
 				C74CB2632AC7477800AC53D7 /* SetupPlayerViewModel.swift in Sources */,
@@ -326,6 +333,7 @@
 				C760EB0D2AB8F9FA000DFE09 /* Challenge.swift in Sources */,
 				C760EB0B2AB8F99B000DFE09 /* MockData.swift in Sources */,
 				C760EB092AB8F94B000DFE09 /* ScoreCardView.swift in Sources */,
+				C77B0CB72AD0809500F3E1C5 /* Map.swift in Sources */,
 				C74CB2582AC6046000AC53D7 /* CourseMapBallAndClubIcon.swift in Sources */,
 				C74CB25C2AC62D6500AC53D7 /* SavedScoreCards.swift in Sources */,
 				C760EB112ABBC4C9000DFE09 /* EnterScoreView.swift in Sources */,
@@ -371,6 +379,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -431,6 +440,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -464,8 +474,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -473,9 +484,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kevinGreen.PutPutGolf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -494,8 +508,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -503,9 +518,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kevinGreen.PutPutGolf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
