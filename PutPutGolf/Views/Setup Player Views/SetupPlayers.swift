@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SetupPlayers: View {
     @EnvironmentObject var navVM: NavigationStore
-    @EnvironmentObject var coursesVM: CoursesViewModel
     @StateObject var vm = SetupPlayerViewModel()
     var course: Course
     var navID: Int = 1
@@ -21,97 +20,127 @@ struct SetupPlayers: View {
     
     var body: some View {
         VStack {
-            Image(uiImage: vm.profileImage)
-                .resizable()
-                .scaleEffect(0.7)
-                .foregroundColor(.gray)
-                .modifier(EditButtonOverlay())
-            
-            TextField("Enter Player Name", text: $vm.playerName)
-                .focused(vm.$focusedTextField)
-                .font(.largeTitle)
-                .multilineTextAlignment(.center)
-                .padding()
-                .keyboardType(.namePhonePad)
-                .submitLabel(.next)
-                .toolbar {
-                    ToolbarItemGroup(placement: .keyboard) {
-                        Button("Done") {
-                            vm.focusedTextField = false
-                        }
-                    }
-                }
-                .onSubmit { vm.textFieldDidSubmit = true }
-            
+            profileImageChooser
+            playerNameTextField
             Spacer()
-            
-            List {
-                ForEach($vm.newPlayers, id: \.self) { player in
-                    HStack {
-                        ProfileImageThumb(image: $vm.profileImage)
-                        Text("\(player.name.wrappedValue)")
-                            .font(.title)
-                    }
-                }
-                .onMove { indexSet, offset in
-                    vm.newPlayers.move(fromOffsets: indexSet, toOffset: offset)
-                }
-                .onDelete { indexSet in
-                    vm.newPlayers.remove(atOffsets: indexSet)
-                }
-            }
-            
+            playerList
         }
-        .animation(.easeInOut, value: vm.playerName)
-        .animation(.easeInOut, value: vm.profileImage)
-        .padding(.top)
-        .navigationTitle("Setup Players")
-        .onAppear { vm.focusedTextField = true }
         
         // LETS PUTT! button
         .overlay(alignment: .bottom) {
-            Button {
-                // Navigate to ScoreCard here
-                let players = vm.createPlayers(on: course)
-                navVM.path.append(players)
-            } label: {
-                VStack {
-                    if vm.newPlayers.count > 0 {
-                        Image("plain_ball")
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                            .animation(.easeInOut(duration: 1.0), value: vm.newPlayers)
-                    }
-                    Text("Let's Putt!")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .padding()
-                }
-            }
-            .disabled(vm.newPlayers.count < 1)
-            .padding(.top)
-            .buttonStyle(.borderedProminent)
-            .buttonBorderShape(.capsule)
-            .controlSize(.large)
+            letsPuttButton
         }
         
+        .animation(.easeInOut, value: vm.playerName)
+        .animation(.easeInOut, value: vm.profileImage)
+        .padding(.top)
+        .onAppear { vm.focusedTextField = true }
+        .navigationTitle("Setup Players")
         .navigationDestination(for: [Player].self) { players in
             ScoreCardView(course: course, players: players)
         }
+        
     }
-    
 }
 
 struct SetupPlayersView_Previews: PreviewProvider {
     static var previews: some View {
-        SetupPlayers(MockData.instance.courses[0])
+        SetupPlayers(MockData().courses[0])
             .environmentObject(SetupPlayerViewModel())
             .environmentObject(NavigationStore())
-            .environmentObject(CoursesViewModel(url: nil))
+            .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: MockData())))
     }
 }
 
 
+
+
+extension SetupPlayers {
+    
+    fileprivate var profileImageChooser: some View {
+        Image(uiImage: vm.profileImage)
+            .resizable()
+            .scaleEffect(0.7)
+            .foregroundColor(.gray)
+            .modifier(EditButtonOverlay())
+    }
+    
+    fileprivate var playerNameTextField: some View {
+        TextField("Enter Player Name", text: $vm.playerName)
+            .focused(vm.$focusedTextField)
+            .font(.largeTitle)
+            .multilineTextAlignment(.center)
+            .padding()
+            .keyboardType(.namePhonePad)
+            .submitLabel(.next)
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Button("Done") {
+                        vm.focusedTextField = false
+                    }
+                }
+            }
+            .onSubmit { vm.textFieldDidSubmit = true }
+    }
+    
+    fileprivate var playerList: some View {
+        List {
+            ForEach($vm.newPlayers, id: \.self) { player in
+                HStack {
+                    profileImageThumb(image: $vm.profileImage)
+                    Text("\(player.name.wrappedValue)")
+                        .font(.title)
+                }
+            }
+            .onMove { indexSet, offset in
+                vm.newPlayers.move(fromOffsets: indexSet, toOffset: offset)
+            }
+            .onDelete { indexSet in
+                vm.newPlayers.remove(atOffsets: indexSet)
+            }
+        }
+    }
+    
+    fileprivate func profileImageThumb(image: Binding<UIImage>) -> some View {
+        Image(uiImage: image.wrappedValue)
+            .foregroundColor(.clear)
+            .frame(width: 50, height: 50)
+            .clipShape(Circle())
+            .padding(3)
+            .overlay { Circle() .stroke(lineWidth: 2) }
+            .onTapGesture {
+                // choose profile photo here
+                
+            }
+    }
+    
+    fileprivate var letsPuttButton: some View {
+        Button {
+            // Navigate to ScoreCard here
+            let players = vm.createPlayers(on: course)
+            navVM.path.append(players)
+        } label: {
+            VStack {
+                if vm.newPlayers.count > 0 {
+                    Image("plain_ball")
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                        .animation(.easeInOut(duration: 1.0), value: vm.newPlayers)
+                }
+                Text("Let's Putt!")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .padding()
+            }
+        }
+        .disabled(vm.newPlayers.count < 1)
+        .padding(.top)
+        .buttonStyle(.borderedProminent)
+        .buttonBorderShape(.capsule)
+        .controlSize(.large)
+    }
+    
+}
 
 
 fileprivate struct EditButtonOverlay: ViewModifier {
@@ -139,26 +168,5 @@ fileprivate struct EditButtonOverlay: ViewModifier {
             .clipShape(Circle())
             .padding(3)
             .overlay { Circle() .stroke(lineWidth: 2) } // border
-    }
-}
-
-
-fileprivate struct ProfileImageThumb: View {
-    @Binding var image: UIImage
-    
-    var body: some View {
-        Image(uiImage: image)
-            .foregroundColor(.clear)
-            .frame(width: 50, height: 50)
-            .clipShape(Circle())
-            .padding(3)
-            .overlay {
-                Circle()
-                    .stroke(lineWidth: 2)
-            }
-            .onTapGesture {
-                // choose profile photo here
-                
-            }
     }
 }

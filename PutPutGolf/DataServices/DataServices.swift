@@ -33,14 +33,27 @@ class ProductionDataService: DataServiceProtocol {
 class MockDataService<T>: DataServiceProtocol where T: MockDataProtocol {
     let mockCourses: [Course]
     let mockPlayers: [Player]
+    let mockNewPayers: [NewPlayer]
     
     init(mockData: T) {
         self.mockCourses = mockData.courses
         self.mockPlayers = mockData.players
+        self.mockNewPayers = mockData.newPlayers
     }
     
     func getCourses() -> AnyPublisher<[Course], Error> {
         Just(mockCourses)
+            .tryMap({ $0 })
+            .eraseToAnyPublisher()
+    }
+    
+    func getPlayers() -> AnyPublisher<[Player], Error> {
+        Just(mockPlayers)
+            .tryMap({ $0 })
+            .eraseToAnyPublisher()
+    }
+    func getNewPlayers() -> AnyPublisher<[NewPlayer], Error> {
+        Just(mockNewPayers)
             .tryMap({ $0 })
             .eraseToAnyPublisher()
     }

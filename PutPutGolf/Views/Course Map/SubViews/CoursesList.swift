@@ -28,7 +28,7 @@ struct CoursesList: View {
 
 #Preview {
     CoursesList()
-        .environmentObject(CoursesViewModel(url: nil))
+        .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: MockData())))
 }
 
 
@@ -37,7 +37,7 @@ struct CoursesList: View {
 
 extension CoursesList {
     
-    func listRowView(course: Course) -> some View {
+    fileprivate func listRowView(course: Course) -> some View {
         HStack {
             course.getImage()
                 .resizable()
@@ -46,24 +46,14 @@ extension CoursesList {
                 .clipShape(Circle())
             
             VStack(alignment: .leading) {
-                Text(course.name)
+                Text(course.address)
                     .font(.headline)
                 Text(course.difficulty.rawValue)
                     .font(.subheadline)
-                    .foregroundStyle(getColor(for: course.difficulty))
+                    .foregroundStyle(Difficulty.color(for: course.difficulty))
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
     
-    
-    fileprivate func getColor(for difficulty: Difficulty) -> Color {
-        switch difficulty {
-        case .easy: Color.green
-        case .medium: Color.primary
-        case .hard: Color.yellow
-        case .veryHard: Color.red
-        }
-    }
-        
 }

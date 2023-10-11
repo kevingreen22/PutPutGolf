@@ -17,36 +17,30 @@ class CoursesViewModel: ObservableObject {
     @Published var coursesData: [Course] = []
     
     // Current coures on map
-    @Published var selectedCourse: Course? { didSet { updateMapRegion(course: selectedCourse ?? coursesData.first!) } }
+    @Published var selectedCourse: Course! { didSet { updateMapRegion(course: selectedCourse ?? Course()) } }
     
     // Current region on map
     @Published var mapRegion: MKCoordinateRegion = MKCoordinateRegion()
 //    @Published var mapRegioniOS17: MapCameraPosition = MKCoordinateRegion()
-    let mapSpan = MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
+    let mapSpan = MKCoordinateSpan(latitudeDelta: 0.6, longitudeDelta: 0.6)
     
     
 //    @Published var rotation: CoursesMapInfo.RotationDegrees = .none
 //    var players: [Player]?
-    @Published var title: String?
+//    @Published var title: String?
 
     // Show list of courses
     @Published var showCoursesList: Bool = false
 
     // Show course info sheet
-    @Published var showCourseInfo: Bool = true
+    @Published var showCourseInfo: Bool = false
 
-    init(url: URL?) {
-        if let url = url {
-            self.dataService = ProductionDataService(url: url)
-        } else {
-            self.dataService = MockDataService(mockData: MockData.instance)
-        }
-        
+    init(dataService: DataServiceProtocol) {
+        self.dataService = dataService
         loadCourses()
-        self.selectedCourse = coursesData.first!
-        updateMapRegion(course: coursesData.first!)
-//        setSelectedCourse()
-        
+        guard let firstCourse = coursesData.first else { return }
+        selectedCourse = firstCourse
+        updateMapRegion(course: firstCourse)
     }
     
     private func loadCourses() {
@@ -63,7 +57,8 @@ class CoursesViewModel: ObservableObject {
     
     func updateMapRegion(course: Course) {
         withAnimation(.easeInOut) {
-            mapRegion = MKCoordinateRegion(center: course.coordinates, span: mapSpan)
+//            mapRegion = MKCoordinateRegion(center: course.coordinates, span: mapSpan)
+            mapRegion = MKCoordinateRegion(coordinates: coursesData.map({ $0.coordinates}))
         }
     }
     
@@ -142,8 +137,8 @@ class CoursesViewModel: ObservableObject {
     }
     
     func getDirections() {
-        if let course = selectedCourse {
-            let directionsURL = URL(string: "maps://?saddr=&daddr=\(course.latitude),\(course.longitude)")
+        if let selectedCourse = selectedCourse {
+            let directionsURL = URL(string: "maps://?saddr=&daddr=\(selectedCourse.latitude),\(selectedCourse.longitude)")
             if let url = directionsURL, UIApplication.shared.canOpenURL(url) {
                 print("\(type(of: self)).\(#function) - opening maps with directions: \(url)")
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)

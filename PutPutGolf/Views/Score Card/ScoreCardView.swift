@@ -24,100 +24,25 @@ struct ScoreCardView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             ScrollView(.vertical, showsIndicators: false) {
                 Grid(horizontalSpacing: -1, verticalSpacing: -1) {
-                    
-                    // Hole-num row
-                    GridRow {
-                        // Header cell
-                        StandardTextCell(title: "Hole", color: .green, textColor: .white)
-                            .border(Color.black)
-                        
-                        // Hole number
-                        ForEach(course.holes) { hole in
-                            StandardTextCell(title: "\(hole.number)", color: .green, textColor: .white)
-                                .border(Color.black)
-                        }
-                        
-                        // TOT footer
-                        StandardTextCell(title: "TOT", color: .green, textColor: .white)
-                            .border(Color.black)
-                        
-                        // Challenges desc.
-                        ForEach(course.challenges) { challenge in
-                            ChallengeCell(challenge: challenge)
-                        }
-                        
-                        // Final total footer
-                        StandardTextCell(title: "Final", color: .green, textColor: .white)
-                            .font(.title)
-                            .frame(height: 150)
-                            .border(Color.black)
-                            .offset(y: 15)
-                    }
-                    .frame(width: 80, height: 60)
-                    
-                    // Par row
-                    GridRow {
-                        StandardTextCell(title: "Par", color: .brown, textColor: .white)
-
-                        // Hole par cells
-                        ForEach(course.holes) { hole in
-                            HoleParNumberCell(hole: hole)
-                        }
-                        
-                        TotalParCell(course: course)
-                    }
-                    .frame(width: 80, height: 60)
-                    .border(Color.black)
-                    
-                    // Player's row & scores
-                    ForEach(players, id: \.id) { player in
-                        GridRow {
-                            PlayerInfoCell(player: player)
-                            
-                            GridRow {
-                                // Score box cells
-                                ForEach(course.holes) { hole in
-                                    ScoreBoxCell(playerIndex: getPlayerIndex(player), hole: hole)
-                                        .environmentObject(vm)
-                                }
-                                
-                                TotalScoreCell(player: player)
-                                
-                                // Challenge Score cells
-                                ForEach(course.challenges.indices, id: \.self) { i in
-                                    ChallengeScoreCell(player: player, index: i)
-                                }
-                                
-                                FinalTotalScore(player: player)
-                            }
-                        }
-                    }
-                    .frame(width: 80, height: 120)
-                    .border(Color.black)
+                    holeNumRow
+                    parRow
+                    playersRowAndScores
                 }
             }
         }
-        
         .toolbar(.hidden, for: .navigationBar)
     }
-    
-    func getPlayerIndex(_ player: Player) -> Int {
-        guard let player = self.players.firstIndex(of: player) else { return 0 }
-        return player
-    }
-    
 }
-
 
 struct ScoreCardView_Previews: PreviewProvider {
     static var previews: some View {
         ScoreCardView(
-            course: MockData.instance.courses[0],
-            players: MockData.instance.players
+            course: MockData().courses[0],
+            players: MockData().players
         )
         .environmentObject(ScoreCardViewModel(
-            course: MockData.instance.courses[0],
-            players: MockData.instance.players)
+            course: MockData().courses[0],
+            players: MockData().players)
         )
     }
 }
@@ -125,6 +50,96 @@ struct ScoreCardView_Previews: PreviewProvider {
 
 
 
+
+
+extension ScoreCardView {
+    
+    fileprivate var holeNumRow: some View {
+        // Hole-num row
+        GridRow {
+            // Header cell
+            StandardTextCell(title: "Hole", color: .green, textColor: .white)
+                .border(Color.black)
+            
+            // Hole number
+            ForEach(course.holes) { hole in
+                StandardTextCell(title: "\(hole.number)", color: .green, textColor: .white)
+                    .border(Color.black)
+            }
+            
+            // TOT footer
+            StandardTextCell(title: "TOT", color: .green, textColor: .white)
+                .border(Color.black)
+            
+            // Challenges desc.
+            ForEach(course.challenges) { challenge in
+                ChallengeCell(challenge: challenge)
+            }
+            
+            // Final total footer
+            StandardTextCell(title: "Final", color: .green, textColor: .white)
+                .font(.title)
+                .frame(height: 150)
+                .border(Color.black)
+                .offset(y: 15)
+        }
+        .frame(width: 80, height: 60)
+    }
+    
+    fileprivate var parRow: some View {
+        // Par row
+        GridRow {
+            StandardTextCell(title: "Par", color: .brown, textColor: .white)
+
+            // Hole par cells
+            ForEach(course.holes) { hole in
+                HoleParNumberCell(hole: hole)
+            }
+            
+            TotalParCell(course: course)
+        }
+        .frame(width: 80, height: 60)
+        .border(Color.black)
+    }
+    
+    fileprivate var playersRowAndScores: some View {
+        // Player's row & scores
+        ForEach(players, id: \.id) { player in
+            GridRow {
+                PlayerInfoCell(player: player)
+                
+                GridRow {
+                    // Score box cells
+                    ForEach(course.holes) { hole in
+                        ScoreBoxCell(playerIndex: getPlayerIndex(player), hole: hole)
+                            .environmentObject(vm)
+                    }
+                    
+                    TotalScoreCell(player: player)
+                    
+                    // Challenge Score cells
+                    ForEach(course.challenges.indices, id: \.self) { i in
+                        ChallengeScoreCell(player: player, index: i)
+                    }
+                    
+                    FinalTotalScore(player: player)
+                }
+            }
+        }
+        .frame(width: 80, height: 120)
+        .border(Color.black)
+    }
+    
+    fileprivate func getPlayerIndex(_ player: Player) -> Int {
+        guard let player = self.players.firstIndex(of: player) else { return 0 }
+        return player
+    }
+
+}
+
+
+
+// Custom cell Views
 fileprivate struct StandardTextCell: View {
     var title: String
     var color: Color = .white
@@ -141,7 +156,6 @@ fileprivate struct StandardTextCell: View {
         }
     }
 }
-
 
 fileprivate struct ChallengeCell: View {
     var challenge: Challenge
@@ -162,7 +176,6 @@ fileprivate struct ChallengeCell: View {
     }
 }
 
-
 fileprivate struct HoleParNumberCell: View {
     var hole: Hole
     
@@ -178,7 +191,6 @@ fileprivate struct HoleParNumberCell: View {
     }
 }
 
-
 fileprivate struct TotalParCell: View {
     var course: Course
     
@@ -193,7 +205,6 @@ fileprivate struct TotalParCell: View {
         }
     }
 }
-
 
 fileprivate struct BlankCell: View {
     var num: Int
@@ -211,7 +222,6 @@ fileprivate struct BlankCell: View {
         }
     }
 }
-
 
 fileprivate struct PlayerInfoCell: View {
     var player: Player
@@ -232,7 +242,6 @@ fileprivate struct PlayerInfoCell: View {
     }
 }
 
-// Score Box Cell
 fileprivate struct ScoreBoxCell: View {
     @EnvironmentObject var vm: ScoreCardViewModel
     @State private var score: String = ""
@@ -296,7 +305,6 @@ fileprivate struct ScoreBoxCell: View {
     }
 }
 
-
 fileprivate struct TotalScoreCell: View {
     var player: Player
     
@@ -310,7 +318,6 @@ fileprivate struct TotalScoreCell: View {
         }
     }
 }
-
 
 fileprivate struct ChallengeScoreCell: View {
     var player: Player
@@ -329,7 +336,6 @@ fileprivate struct ChallengeScoreCell: View {
     
 }
 
-
 fileprivate struct FinalTotalScore: View {
     var player: Player
     
@@ -344,11 +350,7 @@ fileprivate struct FinalTotalScore: View {
     }
 }
 
-
-
-
-
-
+// Custom score identifier views
 fileprivate struct EagleScoreView: View {
     var body: some View {
         ZStack {
@@ -362,7 +364,6 @@ fileprivate struct EagleScoreView: View {
     }
 }
 
-
 fileprivate struct BirdieScoreView: View {
     var body: some View {
         Circle()
@@ -370,7 +371,6 @@ fileprivate struct BirdieScoreView: View {
             .padding()
     }
 }
-
 
 fileprivate struct BogieScoreView: View {
     var body: some View {
@@ -381,7 +381,6 @@ fileprivate struct BogieScoreView: View {
             .padding()
     }
 }
-
 
 fileprivate struct DoubleBogieScoreView: View {
     var body: some View {

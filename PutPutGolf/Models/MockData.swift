@@ -11,12 +11,11 @@ import UIKit
 protocol MockDataProtocol {
     var courses: [Course] { get }
     var players: [Player] { get }
+    var newPlayers: [NewPlayer] { get }
 }
 
-class MockData: MockDataProtocol {
-    
-    static var instance = MockData()
-    
+public class MockData: MockDataProtocol {
+        
     var courses: [Course] = []
     
     var players: [Player] = []
@@ -28,7 +27,7 @@ class MockData: MockDataProtocol {
         NewPlayer(name: "Whit")
     ]
     
-    private init() {
+    init() {
         // creates holes for course
         let holes = [
             Hole(number: 1, par: 2, difficulty: .medium),
@@ -65,12 +64,11 @@ class MockData: MockDataProtocol {
         courses.append(contentsOf: [
             Course(
                 name: "Goat Track Country Club",
-                address: "Martinez, Ca",
-//                location: [24.23423454234, 290.343422],
-                latitude: 38.0194,
-                longitude: -122.1341,
-                imageData: UIImage(contentsOfFile: "martinez")?.jpegData(compressionQuality: 1)!,
-                difficulty: .hard,
+                address: "Walnut Creek, Ca",
+                latitude: 37.9101,
+                longitude: -122.0652,
+                imageData: UIImage(named: "walnut_creek")?.jpegData(compressionQuality: 1)!,
+                difficulty: .medium,
                 holes: holes,
                 challenges: challenges,
                 rules: [
@@ -95,12 +93,11 @@ class MockData: MockDataProtocol {
                 ]),
             Course(
                 name: "Cow Track Country Club",
-                address: "Walnut Creek, Ca",
-//                location: [24.23423454234, 290.343422],
-                latitude: 37.9101,
-                longitude: -122.0652,
-                imageData: UIImage(contentsOfFile: "walnut_creek")?.jpegData(compressionQuality: 1)!,
-                difficulty: .hard,
+                address: "Martinez, Ca",
+                latitude: 38.0194,
+                longitude: -122.1341,
+                imageData: UIImage(named: "martinez")?.jpegData(compressionQuality: 1)!,
+                difficulty: .easy,
                 holes: holes,
                 challenges: challenges,
                 rules: [
@@ -126,10 +123,9 @@ class MockData: MockDataProtocol {
             Course(
                 name: "Pig Track Country Club",
                 address: "Alameda, Ca",
-//                location: [24.23423454234, 290.343422],
                 latitude: 37.7799,
                 longitude: -122.2822,
-                imageData: UIImage(contentsOfFile: "alameda")?.jpegData(compressionQuality: 1)!,
+                imageData: UIImage(named: "alameda")?.jpegData(compressionQuality: 1)!,
                 difficulty: .hard,
                 holes: holes,
                 challenges: challenges,
@@ -156,11 +152,10 @@ class MockData: MockDataProtocol {
             Course(
                 name: "Sheep Track Country Club",
                 address: "Palo Alto, Ca",
-//                location: [24.23423454234, 290.343422],
                 latitude: 37.4419,
                 longitude: -122.1430,
-                imageData: Data(), /* let img3: Data = UIImage(contentsOfFile: "palo_alto")?.jpegData(compressionQuality: 1) */
-                difficulty: .hard,
+                imageData: UIImage(named: "palo_alto")?.jpegData(compressionQuality: 1),
+                difficulty: .easy,
                 holes: holes,
                 challenges: challenges,
                 rules: [

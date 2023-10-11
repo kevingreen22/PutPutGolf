@@ -13,8 +13,12 @@ struct PutPutGolfApp: App {
     @StateObject var navVM: NavigationStore = NavigationStore()
     
     init() {
-        let url = URL(string: "https://my.apiEndpoint.courses")
-        _coursesVM = StateObject(wrappedValue: CoursesViewModel(url: url))
+//        guard let url = URL(string: "https://my.apiEndpoint.courses") else { return }
+//        let dataService = ProductionDataService(url: url)
+//        _coursesVM = StateObject(wrappedValue: CoursesViewModel(dataService: dataService) )
+        
+        let dataService = MockDataService(mockData: MockData())
+        _coursesVM = StateObject(wrappedValue: CoursesViewModel(dataService: dataService) )
     }
     
     var body: some Scene {

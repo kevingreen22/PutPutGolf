@@ -16,20 +16,50 @@ struct Course: Codable, Hashable, Equatable, Identifiable {
     var address: String
     var latitude: Double = 0.0
     var longitude: Double = 0.0
-    var coordinates: CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-    }
-    var location: CLLocation {
-        return CLLocation(latitude: latitude, longitude: longitude)
-    }
-//    var location: [Float]
-//    var location: CLLocationCoordinate2D
     var imageData: Data?
     var difficulty: Difficulty
     var holes: [Hole]
     var challenges: [Challenge]
     var rules: [String]
     var hours: [String]
+    var coordinates: CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+    var location: CLLocation {
+        return CLLocation(latitude: latitude, longitude: longitude)
+    }
+    
+    init(name: String, address: String, latitude: Double, longitude: Double, imageData: Data? = nil, difficulty: Difficulty, holes: [Hole], challenges: [Challenge], rules: [String], hours: [String]) {
+        self.id = UUID()
+        self.name = name
+        self.address = address
+        self.latitude = latitude
+        self.longitude = longitude
+        self.imageData = imageData
+        self.difficulty = difficulty
+        self.holes = holes
+        self.challenges = challenges
+        self.rules = rules
+        self.hours = hours
+    }
+    
+    
+    /// Initialzes a blank Course.
+    init() {
+        self.id = UUID()
+        self.name = "Unknown"
+        self.address = "Unknown"
+        self.latitude = 0
+        self.longitude = 0
+        self.imageData = nil
+        self.difficulty = .easy
+        self.holes = []
+        self.challenges = []
+        self.rules = []
+        self.hours = []
+    }
+    
+    
     
     func totalPar() -> Int {
         var totalPar = 0
@@ -41,35 +71,17 @@ struct Course: Codable, Hashable, Equatable, Identifiable {
     
     
     func getImage() -> Image {
-        guard let data = self.imageData, let img = UIImage(data: data) else { return Image(systemName: "photo.fill") }
-            return Image(uiImage: img)
+        guard let data = self.imageData,
+                let img = UIImage(data: data) else {
+            return Image(systemName: "photo.fill")
+        }
+        return Image(uiImage: img)
     }
     
-    
+    // Equatable
     static func == (lhs: Course, rhs: Course) -> Bool {
         return lhs.difficulty == rhs.difficulty &&
         lhs.holes == rhs.holes &&
         lhs.challenges == rhs.challenges
     }
 }
-
-
-
-//extension CLLocationCoordinate2D: Codable {
-//    public enum CodingKeys: String, CodingKey {
-//        case latitude
-//        case longitude
-//    }
-//
-//    public func encode(to encoder: Encoder) throws {
-//        var container = encoder.container(keyedBy: CodingKeys.self)
-//        try container.encode(latitude, forKey: .latitude)
-//        try container.encode(longitude, forKey: .longitude)
-//        }
-//
-//    public init(from decoder: Decoder) throws {
-//        let values = try decoder.container(keyedBy: CodingKeys.self)
-//        latitude = try values.decode(Double.self, forKey: .latitude)
-//        longitude = try values.decode(Double.self, forKey: .longitude)
-//    }
-//}

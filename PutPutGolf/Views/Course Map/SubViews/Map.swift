@@ -37,7 +37,8 @@ struct MyMap: View {
                 MapAnnotation(coordinate: course.coordinates) {
                     CourseAnnotationItem(course: course)
                         .scaleEffect(coursesVM.selectedCourse == course ? 1.0 : 0.7)
-                        .shadow(radius: 10)
+                        .shadow(radius: coursesVM.selectedCourse == course ? 10 : 5)
+                        .grayscale(coursesVM.selectedCourse == course ? 0.0 : 1.0)
                         .onTapGesture {
                             withAnimation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 1)) {
                                 coursesVM.selectedCourse = course
@@ -53,15 +54,11 @@ struct MyMap: View {
 struct Map_Previews: PreviewProvider {
     static var previews: some View {
         MyMap()
-            .environmentObject(CoursesViewModel(url: nil))
-        CourseAnnotationItem(course: MockData.instance.courses.first!)
+            .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: MockData())))
+        
+        CourseAnnotationItem(course: MockData().courses.first!)
     }
 }
-
-
-
-
-
 
 
 
@@ -77,10 +74,11 @@ struct CourseAnnotationItem: View {
             .overlay {
                 course.getImage()
                     .resizable()
+                    .scaledToFill()
                     .clipShape(Circle())
-                    .scaledToFit()
+                    .padding(3)
             }
-            .background { Color.white.clipShape(Circle()) }
+            .background(Color.white.clipShape(Circle()))
             .frame(width: 60, height: 60)
     }
 }

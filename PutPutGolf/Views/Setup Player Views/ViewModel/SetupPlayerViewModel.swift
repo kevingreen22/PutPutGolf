@@ -9,13 +9,12 @@ import SwiftUI
 import Combine
 
 class SetupPlayerViewModel: ObservableObject {
+    @Published var newPlayers: [NewPlayer] = []
     @Published var playerName: String = ""
     @Published var profileImage: UIImage = UIImage()
     @Published var textFieldDidSubmit: Bool = false
-    @Published var newPlayers: [NewPlayer] = []
     @FocusState var focusedTextField
     var cancellables: Set<AnyCancellable> = []
-    
     
     init() {
         focusedTextField = true

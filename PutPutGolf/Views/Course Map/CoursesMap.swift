@@ -15,42 +15,29 @@ struct CoursesMap: View {
     
     var body: some View {
         NavigationStack(path: $navVM.path) {
-//            ZStack {
-//                Color.green.ignoresSafeArea()
-//                
-//                CourseMapBallAndClubIcon(screenSize: $screenSize)
-//                    .environmentObject(courseVM)
-//                
-//                ForEach(0..<courseVM.coursesData.count, id: \.self) { index in
-//                    CourseMapIcon(image: courseVM.coursesData[index].getImage(), placement: CoursesMapInfo.iconPlacement[index])
-//                        .environmentObject(courseVM)
-//                }
-//            }
-            
             ZStack {
-                MyMap()
-                    .environmentObject(coursesVM)
+                MyMap().environmentObject(coursesVM)
                 
                 VStack(spacing: 0) {
                     headerBar.padding()
                     Spacer()
-                    
+                    ZStack {
+                        ForEach(coursesVM.coursesData) { course in
+                            if coursesVM.selectedCourse == course {
+                                courseInfoPanel
+                            }
+                        }
+                    }
                 }
             }
             
-            .sheet(isPresented: .constant(true)) {
+            .sheet(isPresented: $coursesVM.showCourseInfo) {
                 CourseInfo(course: $coursesVM.selectedCourse)
                     .environmentObject(navVM)
                     .environmentObject(coursesVM)
-                    .presentationDetents([
-                        .height(550),
-                        .height(300),
-                        .height(70)
-                    ], selection: .constant(.height(70)))
-                    .presentationBackgroundInteraction(.enabled)
-                    .presentationCornerRadius(40)
-                    .interactiveDismissDisabled()
+                    .presentationCornerRadius(20)
             }
+            
             
             // Navigation
             .navigationDestination(for: Int.self) { navID in
@@ -76,7 +63,7 @@ struct CoursesMap: View {
 struct CoursesMap_Previews: PreviewProvider {
     static var previews: some View {
         CoursesMap()
-            .environmentObject(CoursesViewModel(url: nil))
+            .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: MockData())))
             .environmentObject(NavigationStore())
     }
 }
@@ -93,13 +80,12 @@ struct SizePreferenceKey: PreferenceKey {
 }
 
 
-
 extension CoursesMap {
     
-    private var headerBar: some View {
+    fileprivate var headerBar: some View {
         VStack {
             Button(action: coursesVM.toggleCoursesList) {
-                Text(coursesVM.selectedCourse?.name ?? "")
+                Text(coursesVM.selectedCourse?.address ?? "Unknown")
                     .font(.title2)
                     .fontWeight(.black)
                     .foregroundColor(.primary)
@@ -122,32 +108,13 @@ extension CoursesMap {
         .cornerRadius(10)
         .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 15)
     }
-}
-
-
-
-struct CoursesMapInfo {
-    static var iconPlacement: [(RotationDegrees, CGPoint)] = [
-        (.left,iconPositions[0]),
-        (.leftMid,iconPositions[1]),
-        (.rightMid,iconPositions[2]),
-        (.right,iconPositions[3])
-    ]
     
-    static private var iconPositions: [CGPoint] = [
-        CGPoint(x: 70, y: 500),
-        CGPoint(x: 120, y: 700),
-        CGPoint(x: 300, y: 700),
-        CGPoint(x: 365, y: 500)
-    ]
-    
-    static private var degrees: [RotationDegrees] = [.none,.left,.leftMid,.rightMid,.right]
-    
-    public enum RotationDegrees: Double {
-        case none = 0
-        case left = 27
-        case leftMid = 10.0
-        case rightMid = -10.0
-        case right = -27
+    fileprivate var courseInfoPanel: some View {
+        CourseInfoPanel(course: $coursesVM.selectedCourse)
+                    .shadow(color: .black.opacity(0.3), radius: 20)
+                    .padding(.horizontal)
+                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
     }
+    
 }
+

@@ -13,6 +13,7 @@ class ScoreCardViewModel: ObservableObject {
     var players: [Player]
     var isResumingGame: Bool = false
     @Published var scores: [[String]] = [[]]
+    @FocusState var focusScoreBox
     
     init(course: Course, players: [Player], isResumingGame: Bool = false) {
         self.course = course
