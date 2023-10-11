@@ -36,7 +36,6 @@
 		C77B0CB72AD0809500F3E1C5 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77B0CB62AD0809500F3E1C5 /* Map.swift */; };
 		C7A9BA902AC4AA3100A69B81 /* CoursesMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A9BA8F2AC4AA3100A69B81 /* CoursesMap.swift */; };
 		C7CDAF9B2AD1E8CD006C0886 /* CoursesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CDAF9A2AD1E8CD006C0886 /* CoursesList.swift */; };
-		C7CDAFA32AD4E94F006C0886 /* MKCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CDAFA22AD4E94F006C0886 /* MKCoordinate.swift */; };
 		C7CDAFA52AD5CCCA006C0886 /* CourseInfoPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CDAFA42AD5CCCA006C0886 /* CourseInfoPanel.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,7 +71,6 @@
 		C77B0CB62AD0809500F3E1C5 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		C7A9BA8F2AC4AA3100A69B81 /* CoursesMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesMap.swift; sourceTree = "<group>"; };
 		C7CDAF9A2AD1E8CD006C0886 /* CoursesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesList.swift; sourceTree = "<group>"; };
-		C7CDAFA22AD4E94F006C0886 /* MKCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKCoordinate.swift; sourceTree = "<group>"; };
 		C7CDAFA42AD5CCCA006C0886 /* CourseInfoPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInfoPanel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,7 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				C74CB2652AC886DB00AC53D7 /* UIImageStringConversions.swift */,
-				C7CDAFA22AD4E94F006C0886 /* MKCoordinate.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -351,7 +348,6 @@
 				C760EB142ABD0898000DFE09 /* ScoreCardViewModel.swift in Sources */,
 				C74CB25E2AC6399E00AC53D7 /* ScoreCard.swift in Sources */,
 				C7CDAF9B2AD1E8CD006C0886 /* CoursesList.swift in Sources */,
-				C7CDAFA32AD4E94F006C0886 /* MKCoordinate.swift in Sources */,
 				C760EB042AB8F877000DFE09 /* Hole.swift in Sources */,
 				C74CB2662AC886DB00AC53D7 /* UIImageStringConversions.swift in Sources */,
 				C760EB1E2ABF57B8000DFE09 /* CourseInfo.swift in Sources */,

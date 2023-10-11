@@ -17,24 +17,24 @@ class CoursesViewModel: ObservableObject {
     @Published var coursesData: [Course] = []
     
     // Current coures on map
-    @Published var selectedCourse: Course! { didSet { updateMapRegion(course: selectedCourse ?? Course()) } }
+    @Published var selectedCourse: Course! {
+        didSet {
+            updateMapRegion(course: selectedCourse ?? Course())
+        }
+    }
     
     // Current region on map
     @Published var mapRegion: MKCoordinateRegion = MKCoordinateRegion()
 //    @Published var mapRegioniOS17: MapCameraPosition = MKCoordinateRegion()
     let mapSpan = MKCoordinateSpan(latitudeDelta: 0.6, longitudeDelta: 0.6)
     
-    
-//    @Published var rotation: CoursesMapInfo.RotationDegrees = .none
-//    var players: [Player]?
-//    @Published var title: String?
-
     // Show list of courses
     @Published var showCoursesList: Bool = false
 
     // Show course info sheet
     @Published var showCourseInfo: Bool = false
 
+    
     init(dataService: DataServiceProtocol) {
         self.dataService = dataService
         loadCourses()
@@ -57,52 +57,9 @@ class CoursesViewModel: ObservableObject {
     
     func updateMapRegion(course: Course) {
         withAnimation(.easeInOut) {
-//            mapRegion = MKCoordinateRegion(center: course.coordinates, span: mapSpan)
-            mapRegion = MKCoordinateRegion(coordinates: coursesData.map({ $0.coordinates}))
+            mapRegion = MKCoordinateRegion(center: course.coordinates, span: mapSpan)
         }
     }
-    
-//    func setSelectedCourse() {
-//        $selectedCourse
-//            .sink { [weak self] course in
-//                guard let self = self else { return }
-//                self.title = course?.name ?? nil
-//            }
-//            .store(in: &cancellables)
-//    }
-
-//    func setSelectedCourse() {
-//        $rotation
-//            .sink { [weak self] degree in
-//                guard let self = self else { return }
-//                switch degree {
-//                case .left:
-//                    let course = self.coursesData[0]
-//                    self.selectedCourse = course
-//                    self.title = course.name
-//                    
-//                case .leftMid:
-//                    let course = self.coursesData[1]
-//                    self.selectedCourse = course
-//                    self.title = course.name
-//                    
-//                case .rightMid:
-//                    let course = self.coursesData[2]
-//                    self.selectedCourse = course
-//                    self.title = course.name
-//                    
-//                case .right:
-//                    let course = self.coursesData[3]
-//                    self.selectedCourse = course
-//                    self.title = course.name
-//                    
-//                case .none:
-//                    self.selectedCourse = nil
-//                    self.title = nil
-//                }
-//            }
-//            .store(in: &cancellables)
-//    }
     
     func toggleCoursesList() {
         withAnimation(.easeInOut) {
