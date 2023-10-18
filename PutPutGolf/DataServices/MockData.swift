@@ -16,18 +16,15 @@ protocol MockDataProtocol {
 
 public class MockData: MockDataProtocol {
         
+    static let instance: MockData = MockData()
+    
     var courses: [Course] = []
     
     var players: [Player] = []
     
-    var newPlayers: [NewPlayer] = [
-        NewPlayer(name: "Kevin"),
-        NewPlayer(name: "Nell"),
-        NewPlayer(name: "Holly"),
-        NewPlayer(name: "Whit")
-    ]
+    var newPlayers: [NewPlayer] = []
     
-    init() {
+    private init() {
         // creates holes for course
         let holes = [
             Hole(number: 1, par: 2, difficulty: .medium),
@@ -43,14 +40,14 @@ public class MockData: MockDataProtocol {
             Hole(number: 11, par: 3, difficulty: .veryHard),
             Hole(number: 12, par: 2, difficulty: .medium),
             Hole(number: 13, par: 2, difficulty: .medium),
-            Hole(number: 14, par: 2, difficulty: .medium),
+            Hole(number: 14, par: 2, difficulty: .easy),
             Hole(number: 15, par: 2, difficulty: .medium),
-            Hole(number: 16, par: 2, difficulty: .medium),
-            Hole(number: 17, par: 2, difficulty: .medium),
+            Hole(number: 16, par: 2, difficulty: .easy),
+            Hole(number: 17, par: 2, difficulty: .easy),
             Hole(number: 18, par: 1, difficulty: .medium),
             Hole(number: 19, par: 2, difficulty: .medium),
-            Hole(number: 20, par: 2, difficulty: .medium),
-            Hole(number: 21, par: 1, difficulty: .medium)
+            Hole(number: 20, par: 2, difficulty: .hard),
+            Hole(number: 21, par: 1, difficulty: .easy)
         ]
         
         // creates challenges for course
@@ -180,6 +177,14 @@ public class MockData: MockDataProtocol {
                 ])
         ])
         
+        // creates new players
+        newPlayers = [
+            NewPlayer(name: "Kevin"),
+            NewPlayer(name: "Nell"),
+            NewPlayer(name: "Holly"),
+            NewPlayer(name: "Whit")
+        ]
+        
         // creates players
         players = [
             Player(name: "Kevin", course: courses.first!),
@@ -190,8 +195,6 @@ public class MockData: MockDataProtocol {
         
         // creates player scores
         for player in players {
-//            print(player.name)
-            
             for _ in 0..<Int.random(in: 0..<21) {
                 player.scores.append(String(Int.random(in: 1...5)))
             }
@@ -199,9 +202,6 @@ public class MockData: MockDataProtocol {
             for _ in 0..<Int.random(in: 0..<3) {
                 player.challengeScores.append(String(Int.random(in: 1...5)))
             }
-            
-//            print(player.scores)
-//            print(player.challengeScores)
         }
         
     }

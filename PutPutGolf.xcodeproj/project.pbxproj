@@ -37,6 +37,7 @@
 		C7A9BA902AC4AA3100A69B81 /* CoursesMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A9BA8F2AC4AA3100A69B81 /* CoursesMap.swift */; };
 		C7CDAF9B2AD1E8CD006C0886 /* CoursesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CDAF9A2AD1E8CD006C0886 /* CoursesList.swift */; };
 		C7CDAFA52AD5CCCA006C0886 /* CourseInfoPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CDAFA42AD5CCCA006C0886 /* CourseInfoPanel.swift */; };
+		C7E24CE52AE0A36600A3D473 /* KGImageChooser in Frameworks */ = {isa = PBXBuildFile; productRef = C7E24CE42AE0A36600A3D473 /* KGImageChooser */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7E24CE52AE0A36600A3D473 /* KGImageChooser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,7 +147,6 @@
 				C74CB2432AC4CD1000AC53D7 /* Info.plist */,
 				C760EAF22AB8F7FF000DFE09 /* PutPutGolfApp.swift */,
 				C74CB26F2AC892C000AC53D7 /* NavigationStore.swift */,
-				C7CDAF9C2AD21540006C0886 /* ViewModels */,
 				C760EB072AB8F923000DFE09 /* Views */,
 				C760EB002AB8F80F000DFE09 /* Models */,
 				C760EB152ABE0AB3000DFE09 /* DataServices */,
@@ -173,7 +174,6 @@
 				C760EB0C2AB8F9FA000DFE09 /* Challenge.swift */,
 				C760EB052AB8F8D9000DFE09 /* Player.swift */,
 				C74CB25D2AC6399E00AC53D7 /* ScoreCard.swift */,
-				C760EB0A2AB8F99B000DFE09 /* MockData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -203,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				C760EB162ABE0AD6000DFE09 /* DataServices.swift */,
+				C760EB0A2AB8F99B000DFE09 /* MockData.swift */,
 			);
 			path = DataServices;
 			sourceTree = "<group>";
@@ -234,13 +235,6 @@
 				C7CDAFA42AD5CCCA006C0886 /* CourseInfoPanel.swift */,
 			);
 			path = SubViews;
-			sourceTree = "<group>";
-		};
-		C7CDAF9C2AD21540006C0886 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		C7CDAF9D2AD21578006C0886 /* ViewModel */ = {
@@ -283,6 +277,9 @@
 			dependencies = (
 			);
 			name = PutPutGolf;
+			packageProductDependencies = (
+				C7E24CE42AE0A36600A3D473 /* KGImageChooser */,
+			);
 			productName = PutPutGolf;
 			productReference = C760EAEF2AB8F7FF000DFE09 /* PutPutGolf.app */;
 			productType = "com.apple.product-type.application";
@@ -311,6 +308,9 @@
 				Base,
 			);
 			mainGroup = C760EAE62AB8F7FF000DFE09;
+			packageReferences = (
+				C7E24CE32AE0A36600A3D473 /* XCRemoteSwiftPackageReference "KGImageChooser" */,
+			);
 			productRefGroup = C760EAF02AB8F7FF000DFE09 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -577,6 +577,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C7E24CE32AE0A36600A3D473 /* XCRemoteSwiftPackageReference "KGImageChooser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kevingreen22/KGImageChooser";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C7E24CE42AE0A36600A3D473 /* KGImageChooser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C7E24CE32AE0A36600A3D473 /* XCRemoteSwiftPackageReference "KGImageChooser" */;
+			productName = KGImageChooser;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C760EAE72AB8F7FF000DFE09 /* Project object */;
 }
