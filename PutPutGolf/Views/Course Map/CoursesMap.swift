@@ -31,6 +31,27 @@ struct CoursesMap: View {
                 }
             }
             
+            // Show current game button
+            .overlay(alignment: .topTrailing) {
+                Button {
+                    // show current-game/last played score card
+                    
+                } label: {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.white.opacity(0.7))
+                        .frame(width: 50, height: 50)
+                        .overlay {
+                            Image(systemName: "map")
+                                .font(.title)
+                        }
+                        .padding()
+                }
+                .offset(y: 70)
+                .shadow(radius: 20)
+//                .disabled(vm.course != nil ? false : true)
+            }
+
+            
             .sheet(isPresented: $coursesVM.showCourseInfo) {
                 CourseInfo(course: $coursesVM.selectedCourse)
                     .environmentObject(navVM)
