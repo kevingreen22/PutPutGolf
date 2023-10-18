@@ -7,12 +7,14 @@
 
 import UIKit
 
-class Player: Codable, Equatable, Hashable, Identifiable {
+class Player: Codable, Equatable, Hashable, Comparable, Identifiable {
     var id = UUID()
     var name: String
     var imageData: Data?
-    var scores: [String] = []
-    var challengeScores: [String] = []
+    var scores: [String] = [] // used only for current/resuming a game
+    var challengeScores: [String] = [] // used only for current/resuming a game
+    var savedScoreCards: [ScoreCard] = []
+
     
     init(name: String, course: Course) {
         self.name = name
@@ -27,57 +29,49 @@ class Player: Codable, Equatable, Hashable, Identifiable {
         challengeScores = Array(repeating: "", count: course.challenges.count)
     }
     
-    
-    func total() -> Int {
-        var total = 0
-        for score in scores {
-            if let scr = Int(score) {
-                total += scr
-            }
-        }
-        return total
-    }
-    
-    func finalTotal() -> Int {
-        var total = 0
-        for score in challengeScores {
-            if let scr = Int(score) {
-                total += scr
-            }
-        }
-        return total
-    }
 
     func getImage() -> UIImage {
         guard let imgData = self.imageData, let image = UIImage(data: imgData) else { return UIImage(systemName: "person.fill")! }
         return image
     }
     
-//    func setScore(_ score: String, for hole: Hole) {
-//        self.scores[hole.number-1] = score
-//    }
-    
-//    func getScore(for hole: Hole) -> String? {
-//        return self.scores[hole.number-1]
-//    }
-
     
     
+    var total: String {
+        let scores: [String] = scores.map({ $0 })
+        return scores.reduce("", +)
+    }
     
+    
+    var finalTotal: String {
+        var scores: [String] = scores.map({ $0 })
+        let chal: [String] = challengeScores.map({ $0 })
+        let tot: [String] = scores + chal
+        return tot.reduce("", +)
+    }
+    
+    
+    
+    
+    
+    // Hashable
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
         hasher.combine(name)
         hasher.combine(imageData)
-        hasher.combine(scores)
-        hasher.combine(challengeScores)
     }
     
+    // Equatable
     static func == (lhs: Player, rhs: Player) -> Bool {
         return lhs.id == rhs.id &&
         lhs.name == rhs.name &&
-        lhs.imageData == rhs.imageData &&
-        lhs.scores == rhs.scores &&
-        lhs.challengeScores == rhs.challengeScores
+        lhs.imageData == rhs.imageData
+    }
+    
+    // Comparable
+    static func < (lhs: Player, rhs: Player) -> Bool {
+        return lhs.id < rhs.id &&
+        lhs.name < rhs.name
     }
     
 }
