@@ -78,6 +78,7 @@ struct CourseAnnotationItem: View {
                 course.getImage()
                     .resizable()
                     .scaledToFill()
+                    .saturation(3.0)
                     .clipShape(Circle())
                     .padding(3)
             }
