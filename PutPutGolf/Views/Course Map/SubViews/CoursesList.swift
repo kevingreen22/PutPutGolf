@@ -27,8 +27,9 @@ struct CoursesList: View {
 }
 
 #Preview {
-    CoursesList()
-        .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: MockData())))
+    let mockData = MockData.instance
+    return CoursesList()
+        .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: mockData)))
 }
 
 

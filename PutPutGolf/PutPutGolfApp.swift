@@ -17,8 +17,8 @@ struct PutPutGolfApp: App {
 //        let dataService = ProductionDataService(url: url)
 //        _coursesVM = StateObject(wrappedValue: CoursesViewModel(dataService: dataService) )
         
-        let dataService = MockDataService(mockData: MockData())
-        _coursesVM = StateObject(wrappedValue: CoursesViewModel(dataService: dataService) )
+        let dataService = MockDataService(mockData: MockData.instance)
+        _coursesVM = StateObject(wrappedValue: CoursesViewModel(dataService: dataService))
     }
     
     var body: some Scene {

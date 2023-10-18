@@ -44,11 +44,11 @@ struct CourseInfo: View {
 }
 
 struct CourseInfo_Previews: PreviewProvider {
-    static let course: Binding<Course?> = .constant(MockData().courses.first!)
+    static let mockData = MockData.instance
     
     static var previews: some View {
-        CourseInfo(course: course)
-            .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: MockData())))
+        CourseInfo(course: .constant(mockData.courses.first!))
+            .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: mockData)))
             .environmentObject(NavigationStore())
     }
 }

@@ -44,11 +44,13 @@ struct SetupPlayers: View {
 }
 
 struct SetupPlayersView_Previews: PreviewProvider {
+    static let mockdata = MockData.instance
+    
     static var previews: some View {
-        SetupPlayers(MockData().courses[0])
+        SetupPlayers(MockData.instance.courses[0])
             .environmentObject(SetupPlayerViewModel())
             .environmentObject(NavigationStore())
-            .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: MockData())))
+            .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: mockdata)))
     }
 }
 

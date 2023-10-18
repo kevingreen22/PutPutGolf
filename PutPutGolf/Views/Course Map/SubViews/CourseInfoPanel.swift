@@ -35,11 +35,12 @@ struct CourseInfoPanel: View {
 }
 
 #Preview {
-    ZStack {
+    let mockData = MockData.instance
+    return ZStack {
         Color.green.ignoresSafeArea()
-        CourseInfoPanel(course: .constant(MockData().courses[0]))
+        CourseInfoPanel(course: .constant(mockData.courses[0]))
             .padding()
-            .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: MockData())))
+            .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: mockData)))
             .environmentObject(NavigationStore())
     }
 }

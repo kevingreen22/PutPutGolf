@@ -35,14 +35,13 @@ struct ScoreCardView: View {
 }
 
 struct ScoreCardView_Previews: PreviewProvider {
+    static let data = MockData.instance
+    
     static var previews: some View {
         ScoreCardView(
-            course: MockData().courses[0],
-            players: MockData().players
-        )
-        .environmentObject(ScoreCardViewModel(
-            course: MockData().courses[0],
-            players: MockData().players)
+            course: data.courses[0],
+            players: data.players,
+            isResumingGame: true
         )
     }
 }

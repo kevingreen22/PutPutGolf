@@ -53,10 +53,13 @@ struct MyMap: View {
 
 struct Map_Previews: PreviewProvider {
     static var previews: some View {
-        MyMap()
-            .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: MockData())))
-        
-        CourseAnnotationItem(course: MockData().courses.first!)
+        let mockData = MockData.instance
+        return Group {
+            MyMap()
+                .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: mockData)))
+            
+            CourseAnnotationItem(course: mockData.courses.first!)
+        }
     }
 }
 
