@@ -52,9 +52,6 @@ struct ScoreCardView_Previews: PreviewProvider {
 
 
 
-
-
-
 extension ScoreCardView {
     
     fileprivate var holeNumRow: some View {
@@ -114,14 +111,14 @@ extension ScoreCardView {
                 GridRow {
                     // Score box cells
                     ForEach(vm.course.holes) { hole in
-                        ScoreBoxCell(holeScore: $vm.players[idx].scores[hole.number-1], hole: hole)
+                        ScoreBoxCell(holeScore: $vm.players[idx].scores[hole.number-1], hole: hole, playerColor:vm.players[idx].color)
                     }
                     
                     TotalScoreCell(totalScore: $vm.totals[idx])
 
                     // Challenge Score cells
                     ForEach(vm.course.challenges.indices, id: \.self) { i in
-                        ChallengeScoreCell(challengeScore: $vm.players[idx].challengeScores[i])
+                        ChallengeScoreCell(challengeScore: $vm.players[idx].challengeScores[i], playerColor: vm.players[idx].color)
                     }
                     
                     FinalTotalScore(finalTotalScore: $vm.finalTotals[idx])
@@ -240,10 +237,18 @@ fileprivate struct PlayerInfoCell: View {
     
     var body: some View {
         ZStack {
-            Rectangle().fill(Color.white)
+            Rectangle()
+                .fill(Color.white)
+                .overlay(alignment: .bottom) {
+                    Rectangle()
+                        .fill(player.color.gradient)
+                        .frame(height: 10)
+                        .blur(radius: 3)
+                }
+            
             VStack {
                 Circle()
-                    .stroke(.black, lineWidth: 1)
+                    .stroke(player.color, lineWidth: 2)
                     .overlay {
                         Image(uiImage: player.getImage())
                             .resizable()
@@ -262,11 +267,19 @@ fileprivate struct PlayerInfoCell: View {
 fileprivate struct ScoreBoxCell: View {
     @Binding var holeScore: String
     var hole: Hole
+    var playerColor: Color
     @FocusState var focusScoreBox
     
     var body: some View {
         ZStack {
-            Rectangle().fill(Color.white)
+            Rectangle()
+                .fill(Color.white)
+                .overlay(alignment: .bottom) {
+                    Rectangle()
+                        .fill(playerColor.gradient)
+                        .frame(height: 10)
+                        .blur(radius: 3)
+                }
             
             TextField("", text: $holeScore)
                 .foregroundColor(setScoreTextColor())
@@ -342,11 +355,19 @@ fileprivate struct TotalScoreCell: View {
 
 fileprivate struct ChallengeScoreCell: View {
     @Binding var challengeScore: String
+    var playerColor: Color
     @FocusState var focusScoreBox
     
     var body: some View {
         ZStack {
-            Rectangle().fill(Color.white)
+            Rectangle()
+                .fill(Color.white)
+                .overlay(alignment: .bottom) {
+                    Rectangle()
+                        .fill(playerColor.gradient)
+                        .frame(height: 10)
+                        .blur(radius: 3)
+                }
             
             TextField("", text: $challengeScore)
                 .fixedSize(horizontal: true, vertical: false)
