@@ -30,8 +30,8 @@ struct CourseInfo: View {
                 .overlay(alignment: .top) {
                     playCourseButton
                 }
-            
-            infoList
+            stats
+            courseRules
         }
         
         .sheet(item: $infoItem) { item in
@@ -77,11 +77,15 @@ extension CourseInfo {
         courseImage
             .resizable()
             .scaledToFill()
+            .overlay {
+                Rectangle()
+                    .fill(LinearGradient(colors: [.black,.clear,.clear], startPoint: .top, endPoint: .bottom))
+            }
             .overlay(alignment: .topLeading) {
-                Text("\(course.name)")
+                Text("\(course.address)")
                     .font(.title)
                     .fontWeight(.semibold)
-                    .foregroundColor(.primary)
+                    .foregroundColor(.white)
                     .lineLimit(2)
                     .padding()
             }
@@ -89,7 +93,8 @@ extension CourseInfo {
                     Button {
                         coursesVM.getDirections()
                     } label: {
-                        Text("Directions")
+                        Image(systemName: "arrow.uturn.right.circle.fill")
+                        Text("Go")
                             .font(.title3)
                             .fontWeight(.thin)
                     }
@@ -116,16 +121,27 @@ extension CourseInfo {
         .offset(y: 125)
     }
     
-    fileprivate var infoList: some View {
-        List {
-            Section("Course Stats") {
-                difficultyCell(difficulty: course.difficulty, text: "\(course.difficulty.rawValue)", infoItem: $infoItem)
-                
-                holeCell(iconName: "flag.circle.fill", text: "\(course.holes.count)", infoItem: $infoItem)
-                
-                challengeInfoCell(iconName: "trophy.circle.fill", text: "\(course.challenges.count)", infoItem: $infoItem)
-            }
+    fileprivate var stats: some View {
+        HStack(alignment: .top) {
+            difficultyCell(difficulty: course.difficulty, text: "\(course.difficulty.rawValue)", infoItem: $infoItem)
+                .padding(.leading)
             
+            Divider()
+            Spacer()
+            
+            holeCell(iconName: "flag.circle.fill", text: "\(course.holes.count)", infoItem: $infoItem)
+            
+            Spacer()
+            Divider()
+            
+            challengeInfoCell(iconName: "trophy.circle.fill", text: "\(course.challenges.count)", infoItem: $infoItem)
+                .padding(.trailing)
+        }
+
+    }
+    
+    fileprivate var courseRules: some View {
+        List {
             Section("Course Rules") {
                 ForEach(course.rules, id: \.self) { rule in
                     Text("• \(rule)")
@@ -158,75 +174,60 @@ extension CourseInfo {
     }
     
     fileprivate func difficultyCell(difficulty: Difficulty, text: String, infoItem: Binding<InfoItem?>) -> some View {
-        HStack {
+        VStack {
+            Text("Difficulty")
+                .foregroundStyle(Color.gray)
+            
             Difficulty.icon(difficulty)
                 .resizable()
-                .foregroundColor(Difficulty.color(for: difficulty))
                 .scaledToFit()
-                .frame(height: 50)
-                .padding(.trailing)
+                .frame(width: 50)
+                .foregroundColor(Difficulty.color(for: difficulty))
             
             Text(text)
                 .font(.title)
-            
-            Spacer()
-            
-            Button {
-                self.infoItem = InfoItem(title: "Difficulty Level", text: .difficulty, iconName: "diamond.circle.fill")
-            } label: {
-                Image(systemName: "info.circle")
-                    .foregroundColor(.blue)
-            }
+        }
+        .onTapGesture {
+            self.infoItem = InfoItem(title: "Difficulty Level", text: .difficulty, iconName: "diamond.circle.fill")
         }
     }
     
-    
     fileprivate  func holeCell(iconName: String, text: String, infoItem: Binding<InfoItem?>) -> some View {
-        HStack {
+        VStack {
+            Text("Holes")
+                .foregroundStyle(Color.gray)
+            
             Image(systemName: iconName)
                 .resizable()
                 .scaledToFit()
                 .foregroundColor(.green)
                 .frame(height: 50)
-                .padding(.trailing)
             
             Text(text)
                 .font(.title)
-            
-            Spacer()
-            
-            Button {
-                self.infoItem = InfoItem(title: "Number Of Holes", text: InfoItemText.numOfHoles, iconName: "flag.circle.fill")
-            } label: {
-                Image(systemName: "info.circle")
-                    .foregroundColor(.blue)
-            }
         }
-
+        .onTapGesture {
+            self.infoItem = InfoItem(title: "Number Of Holes", text: InfoItemText.numOfHoles, iconName: "flag.circle.fill")
+        }
     }
     
     fileprivate func challengeInfoCell(iconName: String, text: String, infoItem: Binding<InfoItem?>) -> some View {
-        HStack {
+        VStack {
+            Text("Challenges")
+                .foregroundStyle(Color.gray)
+            
             Image(systemName: iconName)
                 .resizable()
                 .scaledToFit()
                 .foregroundColor(.yellow)
                 .frame(height: 50)
-                .padding(.trailing)
             
             Text(text)
                 .font(.title)
-            
-            Spacer()
-            
-            Button {
-                self.infoItem = InfoItem(title: "Number of Game Changers", text: InfoItemText.numOfChallenges, iconName: "trophy.circle.fill")
-            } label: {
-                Image(systemName: "info.circle")
-                    .foregroundColor(.blue)
-            }
         }
-
+        .onTapGesture {
+            self.infoItem = InfoItem(title: "Number of Game Changers", text: InfoItemText.numOfChallenges, iconName: "trophy.circle.fill")
+        }
     }
     
 }
