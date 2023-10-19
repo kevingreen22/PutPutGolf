@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import UIKit
+import SwiftUI
 
 protocol MockDataProtocol {
     var courses: [Course] { get }
@@ -195,6 +195,8 @@ public class MockData: MockDataProtocol {
         
         // creates player scores
         for player in players {
+            player.color = Color.random()
+            
             for _ in 0..<Int.random(in: 0..<21) {
                 player.scores.append(String(Int.random(in: 1...5)))
             }
