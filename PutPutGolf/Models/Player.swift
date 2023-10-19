@@ -10,21 +10,23 @@ import SwiftUI
 class Player: Codable, Equatable, Hashable, Comparable, Identifiable {
     var id = UUID()
     var name: String
-    var color: Color = Color.clear
+    var color: Color
     var imageData: Data?
     var scores: [String] = [] // used only for current/resuming a game
     var challengeScores: [String] = [] // used only for current/resuming a game
     var savedScoreCards: [ScoreCard] = []
 
     
-    init(name: String, course: Course) {
+    init(name: String, color: Color = .gray, course: Course) {
         self.name = name
+        self.color = color
         scores = Array(repeating: "", count: course.holes.count)
         challengeScores = Array(repeating: "", count: course.challenges.count)
     }
     
-    init(name: String, image: UIImage?, course: Course) {
+    init(name: String, image: UIImage?, color: Color = .gray, course: Course) {
         self.name = name
+        self.color = color
         self.imageData = image?.jpegData(compressionQuality: 1)
         scores = Array(repeating: "", count: course.holes.count)
         challengeScores = Array(repeating: "", count: course.challenges.count)
