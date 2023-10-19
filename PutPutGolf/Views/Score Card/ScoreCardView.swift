@@ -6,31 +6,35 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ScoreCardView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var navVM: NavigationStore
     @StateObject var vm: ScoreCardViewModel
-    var course: Course
-    var players: [Player]
     
     init(course: Course, players: [Player], isResumingGame resuming: Bool = false) {
         _vm = StateObject(wrappedValue: ScoreCardViewModel(course: course, players: players, isResumingGame: resuming))
-        self.course = course
-        self.players = players
     }
     
     
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            ScrollView(.vertical, showsIndicators: false) {
-                Grid(horizontalSpacing: -1, verticalSpacing: -1) {
-                    holeNumRow
-                    parRow
-                    playersRowAndScores
+        ZStack {
+            Color.red.ignoresSafeArea()
+            ScrollView(.horizontal, showsIndicators: false) {
+                ScrollView(.vertical, showsIndicators: false) {
+                    Grid(horizontalSpacing: -1, verticalSpacing: -1) {
+                        holeNumRow
+                        parRow
+                        playersRowAndScores
+                    }
                 }
             }
+            .padding(.top)
+            .toolbar(.hidden, for: .navigationBar)
+            .overlay(alignment: .bottomTrailing) {
+                closeButton.padding(.trailing)
+            }
         }
-        .toolbar(.hidden, for: .navigationBar)
     }
 }
 
@@ -61,7 +65,7 @@ extension ScoreCardView {
                 .border(Color.black)
             
             // Hole number
-            ForEach(course.holes) { hole in
+            ForEach(vm.course.holes) { hole in
                 StandardTextCell(title: "\(hole.number)", color: .green, textColor: .white)
                     .border(Color.black)
             }
@@ -71,16 +75,16 @@ extension ScoreCardView {
                 .border(Color.black)
             
             // Challenges desc.
-            ForEach(course.challenges) { challenge in
+            ForEach(vm.course.challenges) { challenge in
                 ChallengeCell(challenge: challenge)
             }
             
             // Final total footer
             StandardTextCell(title: "Final", color: .green, textColor: .white)
                 .font(.title)
-                .frame(height: 150)
+                .frame(height: 120)
                 .border(Color.black)
-                .offset(y: 15)
+                .offset(y: 30)
         }
         .frame(width: 80, height: 60)
     }
@@ -91,11 +95,11 @@ extension ScoreCardView {
             StandardTextCell(title: "Par", color: .brown, textColor: .white)
 
             // Hole par cells
-            ForEach(course.holes) { hole in
+            ForEach(vm.course.holes) { hole in
                 HoleParNumberCell(hole: hole)
             }
             
-            TotalParCell(course: course)
+            TotalParCell(course: vm.course)
         }
         .frame(width: 80, height: 60)
         .border(Color.black)
@@ -103,37 +107,45 @@ extension ScoreCardView {
     
     fileprivate var playersRowAndScores: some View {
         // Player's row & scores
-        ForEach(players, id: \.id) { player in
+        ForEach($vm.players.indices, id: \.self) { idx in
             GridRow {
-                PlayerInfoCell(player: player)
+                PlayerInfoCell(player: $vm.players[idx])
                 
                 GridRow {
                     // Score box cells
-                    ForEach(course.holes) { hole in
-                        ScoreBoxCell(playerIndex: getPlayerIndex(player), hole: hole)
-                            .environmentObject(vm)
+                    ForEach(vm.course.holes) { hole in
+                        ScoreBoxCell(holeScore: $vm.players[idx].scores[hole.number-1], hole: hole)
                     }
                     
-                    TotalScoreCell(player: player)
-                    
+                    TotalScoreCell(totalScore: $vm.totals[idx])
+
                     // Challenge Score cells
-                    ForEach(course.challenges.indices, id: \.self) { i in
-                        ChallengeScoreCell(player: player, index: i)
+                    ForEach(vm.course.challenges.indices, id: \.self) { i in
+                        ChallengeScoreCell(challengeScore: $vm.players[idx].challengeScores[i])
                     }
                     
-                    FinalTotalScore(player: player)
+                    FinalTotalScore(finalTotalScore: $vm.finalTotals[idx])
                 }
             }
         }
         .frame(width: 80, height: 120)
         .border(Color.black)
     }
-    
-    fileprivate func getPlayerIndex(_ player: Player) -> Int {
-        guard let player = self.players.firstIndex(of: player) else { return 0 }
-        return player
-    }
 
+    fileprivate var closeButton: some View {
+        Button {
+            navVM.path = NavigationPath()
+        } label: {
+            Image(systemName: "xmark")
+                .font(.largeTitle)
+                .foregroundStyle(Color.white)
+                .padding(8)
+                .background(Color.gray.opacity(0.8).blur(radius: 3.0))
+                .shadow(radius: 10)
+                .clipShape(Circle())
+        }
+    }
+    
 }
 
 
@@ -141,16 +153,18 @@ extension ScoreCardView {
 // Custom cell Views
 fileprivate struct StandardTextCell: View {
     var title: String
+    var font: Font = .title
+    var fontWeight: Font.Weight = .semibold
     var color: Color = .white
     var textColor: Color = .black
     
     var body: some View {
         ZStack {
-            Rectangle()
-                .fill(color)
+            Rectangle().fill(color)
+            
             Text(title)
-                .font(.title)
-                .fontWeight(.semibold)
+                .font(font)
+                .fontWeight(fontWeight)
                 .foregroundColor(textColor)
         }
     }
@@ -163,15 +177,15 @@ fileprivate struct ChallengeCell: View {
         ZStack {
             Rectangle()
                 .fill(Color.green)
+                .border(Color.black)
                 
             Text("\(challenge.name)")
                 .fontWeight(.semibold)
                 .foregroundColor(.white)
                 .padding(2)
         }
-        .border(Color.black)
-        .offset(y: 15)
-        .frame(height: 150)
+        .offset(y: 30)
+        .frame(height: 120)
     }
 }
 
@@ -180,8 +194,8 @@ fileprivate struct HoleParNumberCell: View {
     
     var body: some View {
         ZStack {
-            Rectangle()
-                .fill(Color.brown)
+            Rectangle().fill(Color.brown)
+            
             Text("\(hole.par)")
                 .font(.title)
                 .fontWeight(.semibold)
@@ -195,8 +209,8 @@ fileprivate struct TotalParCell: View {
     
     var body: some View {
         ZStack {
-            Rectangle()
-                .fill(Color.brown)
+            Rectangle().fill(Color.brown)
+            
             Text("\(course.totalPar())")
                 .font(.title)
                 .fontWeight(.semibold)
@@ -216,66 +230,74 @@ fileprivate struct BlankCell: View {
     
     var body: some View {
         ForEach(0..<num, id: \.self) { _ in
-            Rectangle()
-                .fill(color)
+            Rectangle().fill(color)
         }
     }
 }
 
 fileprivate struct PlayerInfoCell: View {
-    var player: Player
+    @Binding var player: Player
     
     var body: some View {
-        VStack {
-            Circle()
-                .stroke(.black, lineWidth: 1)
-                .overlay {
-                    Image(uiImage: player.getImage())
-                        .resizable()
-                        .clipShape(Circle())
-                        .padding(2)
-                }
-                .frame(width: 40, height: 40)
-            Text("\(player.name)")
+        ZStack {
+            Rectangle().fill(Color.white)
+            VStack {
+                Circle()
+                    .stroke(.black, lineWidth: 1)
+                    .overlay {
+                        Image(uiImage: player.getImage())
+                            .resizable()
+                            .clipShape(Circle())
+                            .padding(2)
+                    }
+                    .frame(width: 40, height: 40)
+                    .background(Color.white.clipShape(Circle()))
+                    
+                Text("\(player.name)")
+            }
         }
     }
 }
 
 fileprivate struct ScoreBoxCell: View {
-    @EnvironmentObject var vm: ScoreCardViewModel
-    @State private var score: String = ""
-    @FocusState var focusScoreBox
-    var playerIndex: Int
+    @Binding var holeScore: String
     var hole: Hole
-    
-    init(playerIndex: Int, hole: Hole) {
-        self.playerIndex = playerIndex
-        self.hole = hole
-    }
-    
+    @FocusState var focusScoreBox
     
     var body: some View {
         ZStack {
-            TextField("", text: $score)
+            Rectangle().fill(Color.white)
+            
+            TextField("", text: $holeScore)
                 .foregroundColor(setScoreTextColor())
                 .multilineTextAlignment(.center)
                 .font(.largeTitle)
                 .fontWeight(.semibold)
-                .keyboardType(.numberPad)
-                .onSubmit {
-                    focusScoreBox = false
-                    print("onSubmit")
-                    vm.update(score, playerIndex: playerIndex, holeIndex: hole.number-1)
-                }
+                .keyboardType(.decimalPad)
+                .background(Color.white)
             
             strokeType()
         }
         
-        .submitLabel(.return)
+        // keyboard upper done button
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button {
+                    focusScoreBox = false
+                } label: {
+                    Text("Done")
+                        .fontWeight(.semibold)
+                }
+                Spacer()
+            }
+        }
+        
+        .onAppear { focusScoreBox = true }
     }
     
-    @ViewBuilder private func strokeType() -> some View {
-        if let score = Int(score) {
+    @ViewBuilder fileprivate func strokeType() -> some View {
+        if let score = Int(holeScore) {
             if score <= hole.par - 2 {
                 EagleScoreView()
             } else if score == hole.par - 1 {
@@ -289,7 +311,7 @@ fileprivate struct ScoreBoxCell: View {
     }
     
     fileprivate func setScoreTextColor() -> Color {
-        if let score = Int(score) {
+        if let score = Int(holeScore) {
             if score <= hole.par - 2 {
                 return Color.green
             } else if score == hole.par - 1 {
@@ -305,13 +327,13 @@ fileprivate struct ScoreBoxCell: View {
 }
 
 fileprivate struct TotalScoreCell: View {
-    var player: Player
+    @Binding var totalScore: Int
     
     var body: some View {
         ZStack {
-            Rectangle()
-                .fill(Color.white)
-            Text("\(player.total())")
+            Rectangle().fill(Color.gray)
+            
+            Text("\(totalScore)")
                 .font(.title)
                 .fontWeight(.semibold)
         }
@@ -319,30 +341,48 @@ fileprivate struct TotalScoreCell: View {
 }
 
 fileprivate struct ChallengeScoreCell: View {
-    var player: Player
-    var index: Int
+    @Binding var challengeScore: String
+    @FocusState var focusScoreBox
     
     var body: some View {
         ZStack {
-            Rectangle()
-                .fill(Color.white)
-            Text("\(player.challengeScores[index])")
-                .font(.title)
+            Rectangle().fill(Color.white)
+            
+            TextField("", text: $challengeScore)
+                .fixedSize(horizontal: true, vertical: false)
+                .multilineTextAlignment(.center)
+                .font(.largeTitle)
                 .fontWeight(.semibold)
+                .keyboardType(.decimalPad)
+                .background(Color.white)
         }
-//        .frame(width: 120)
+        
+        // keyboard upper done button
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button {
+                    focusScoreBox = false
+                } label: {
+                    Text("Done")
+                        .fontWeight(.semibold)
+                }
+                Spacer()
+            }
+        }
+        
+        .onAppear { focusScoreBox = true }
     }
-    
 }
 
 fileprivate struct FinalTotalScore: View {
-    var player: Player
+    @Binding var finalTotalScore: Int
     
     var body: some View {
         ZStack {
-            Rectangle()
-                .fill(Color.white)
-            Text("\(player.finalTotal())")
+            Rectangle().fill(Color.gray)
+            
+            Text("\(finalTotalScore)")
                 .font(.title)
                 .fontWeight(.semibold)
         }
