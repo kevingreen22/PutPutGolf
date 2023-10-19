@@ -9,12 +9,12 @@ import SwiftUI
 import Combine
 import MapKit
 
-class CoursesViewModel: ObservableObject {
+@MainActor class CoursesViewModel: ObservableObject {
     var dataService: DataServiceProtocol
     var cancellables: Set<AnyCancellable> = []
     
     // All loaded courses
-    @Published var coursesData: [Course] = []
+    var coursesData: [Course] = []
     
     // Current coures on map
     @Published var selectedCourse: Course! {
@@ -55,7 +55,7 @@ class CoursesViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func updateMapRegion(course: Course) {
+    @MainActor func updateMapRegion(course: Course) {
         withAnimation(.easeInOut) {
             mapRegion = MKCoordinateRegion(center: course.coordinates, span: mapSpan)
         }
