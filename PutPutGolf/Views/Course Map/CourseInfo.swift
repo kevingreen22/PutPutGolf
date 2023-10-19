@@ -135,7 +135,7 @@ extension CourseInfo {
             Divider()
             
             challengeInfoCell(iconName: "trophy.circle.fill", text: "\(course.challenges.count)", infoItem: $infoItem)
-                .padding(.trailing)
+                .padding(.trailing, 20)
         }
 
     }
@@ -176,7 +176,7 @@ extension CourseInfo {
     fileprivate func difficultyCell(difficulty: Difficulty, text: String, infoItem: Binding<InfoItem?>) -> some View {
         VStack {
             Text("Difficulty")
-                .foregroundStyle(Color.gray)
+                .foregroundStyle(Color.primary)
             
             Difficulty.icon(difficulty)
                 .resizable()
@@ -185,7 +185,8 @@ extension CourseInfo {
                 .foregroundColor(Difficulty.color(for: difficulty))
             
             Text(text)
-                .font(.title)
+                .font(.title2)
+                .foregroundStyle(Color.gray)
         }
         .onTapGesture {
             self.infoItem = InfoItem(title: "Difficulty Level", text: .difficulty, iconName: "diamond.circle.fill")
@@ -195,7 +196,7 @@ extension CourseInfo {
     fileprivate  func holeCell(iconName: String, text: String, infoItem: Binding<InfoItem?>) -> some View {
         VStack {
             Text("Holes")
-                .foregroundStyle(Color.gray)
+                .foregroundStyle(Color.primary)
             
             Image(systemName: iconName)
                 .resizable()
@@ -204,7 +205,8 @@ extension CourseInfo {
                 .frame(height: 50)
             
             Text(text)
-                .font(.title)
+                .font(.title2)
+                .foregroundStyle(Color.gray)
         }
         .onTapGesture {
             self.infoItem = InfoItem(title: "Number Of Holes", text: InfoItemText.numOfHoles, iconName: "flag.circle.fill")
@@ -214,7 +216,7 @@ extension CourseInfo {
     fileprivate func challengeInfoCell(iconName: String, text: String, infoItem: Binding<InfoItem?>) -> some View {
         VStack {
             Text("Challenges")
-                .foregroundStyle(Color.gray)
+                .foregroundStyle(Color.primary)
             
             Image(systemName: iconName)
                 .resizable()
@@ -223,7 +225,8 @@ extension CourseInfo {
                 .frame(height: 50)
             
             Text(text)
-                .font(.title)
+                .font(.title2)
+                .foregroundStyle(Color.gray)
         }
         .onTapGesture {
             self.infoItem = InfoItem(title: "Number of Game Changers", text: InfoItemText.numOfChallenges, iconName: "trophy.circle.fill")
