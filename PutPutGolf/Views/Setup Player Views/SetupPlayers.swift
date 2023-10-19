@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import KGImageChooser
 
 struct SetupPlayers: View {
     @EnvironmentObject var navVM: NavigationStore
@@ -39,8 +40,12 @@ struct SetupPlayers: View {
                     ScoreCardView(course: course, players: players)
                 }
             }
+            .fullScreenCover(isPresented: $vm.showImageChooser) {
+                KGCameraImageChooser(uiImage: $vm.profileImage)
+            }
         }
         .ignoresSafeArea(.keyboard) // this coupled with the GeometryReader makes it so the view doesn't move up when the key board is shown.
+        
     }
 }
 
@@ -61,14 +66,15 @@ struct SetupPlayersView_Previews: PreviewProvider {
 extension SetupPlayers {
     
     fileprivate var profileImage: some View {
-        Image(uiImage: vm.profileImage)
+        Image(uiimage: vm.profileImage)
             .resizable()
+            .frame(width: 150, height: 150)
             .scaledToFit()
-            .padding()
+            .foregroundStyle(vm.profileImage == nil ? Color.gray.opacity(0.5) : Color.clear)
             .background { Color.white }
             .modifier(EditButtonOverlay(size: CGSize(width: 150, height: 150)))
-            .overlay { Circle() .stroke(lineWidth: 3) } // border
-            .frame(width: 150, height: 150)
+            .environmentObject(vm)
+            .overlay { Circle().stroke(lineWidth: 3) } // border
     }
     
     fileprivate var playerNameTextField: some View {
@@ -85,19 +91,25 @@ extension SetupPlayers {
                     Button {
                         focusedTextField = false
                     } label: {
-                        Text("Done")
-                            .fontWeight(.semibold)
+                        Text("Done").fontWeight(.semibold)
                     }
                 }
             }
-            .onSubmit { vm.textFieldDidSubmit = true; focusedTextField = true }
+            .overlay(alignment: .topTrailing) {
+                ColorPicker("", selection: $vm.pickedColor, supportsOpacity: false)
+                    .offset(x: -100, y: -25)
+            }
+            .onSubmit {
+                vm.textFieldDidSubmit = true
+                focusedTextField = true
+            }
     }
     
     fileprivate var playerList: some View {
         List {
             ForEach($vm.newPlayers, id: \.self) { player in
                 HStack {
-                    profileImageThumb(image: $vm.profileImage)
+                    profileImageThumb(image: player.image.wrappedValue, color: player.color.wrappedValue)
                     Text("\(player.name.wrappedValue)")
                         .font(.title)
                         .padding(.leading)
@@ -116,19 +128,15 @@ extension SetupPlayers {
         .frame(minHeight: 300)
     }
     
-    fileprivate func profileImageThumb(image: Binding<UIImage>) -> some View {
-        Button {
-            // choose profile photo here
-            
-        } label: {
-            Image(uiImage: image.wrappedValue)
-                .frame(width: 50, height: 50)
-                .background(Color.white)
-                .clipShape(Circle())
-                .padding(3)
-                .overlay { Circle() .stroke(lineWidth: 2) }
-        }
-        .foregroundStyle(Color.primary)
+    fileprivate func profileImageThumb(image: UIImage?, color: Color) -> some View {
+        Image(uiimage: image)
+            .resizable()
+            .frame(width: 50, height: 50)
+            .foregroundStyle(image == nil ? Color.gray : Color.clear)
+            .background(Color.white)
+            .clipShape(Circle())
+            .padding(3)
+            .overlay { Circle().stroke(color, lineWidth: 2) }
     }
     
     fileprivate var letsPuttButton: some View {
@@ -153,16 +161,16 @@ extension SetupPlayers {
 
 
 fileprivate struct EditButtonOverlay: ViewModifier {
+    @EnvironmentObject var vm: SetupPlayerViewModel
     var size: CGSize
     
     func body(content: Content) -> some View {
         content
             .overlay(alignment: .bottom) {
                 Button {
-                    // choose profile photo here
-                    
+                    vm.showImageChooser = true
                 } label: {
-                    Text("Edit")
+                    Image(systemName: "square.and.pencil")
                         .font(.title2)
                         .foregroundColor(.white)
                         .offset(y: -5)
@@ -178,3 +186,4 @@ fileprivate struct EditButtonOverlay: ViewModifier {
             .padding(3)
     }
 }
+

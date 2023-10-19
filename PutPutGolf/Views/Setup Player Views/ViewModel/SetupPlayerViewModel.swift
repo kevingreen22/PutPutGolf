@@ -10,6 +10,7 @@ import Combine
 
 class SetupPlayerViewModel: ObservableObject {
     @Published var newPlayers: [NewPlayer] = []
+    @Published var profileImage: UIImage?
     @Published var playerName: String = ""
     @Published var pickedColor: Color = Color.random()
 
@@ -21,7 +22,7 @@ class SetupPlayerViewModel: ObservableObject {
         textFieldDidSubmitSubscriber()
     }
     
-    func setupTextFieldDidSubmitSubscriber() {
+    func textFieldDidSubmitSubscriber() {
         $textFieldDidSubmit
             .sink { [weak self] didSubmit in
                 guard let self = self else { return }
