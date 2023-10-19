@@ -38,6 +38,8 @@
 		C7CDAF9B2AD1E8CD006C0886 /* CoursesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CDAF9A2AD1E8CD006C0886 /* CoursesList.swift */; };
 		C7CDAFA52AD5CCCA006C0886 /* CourseInfoPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CDAFA42AD5CCCA006C0886 /* CourseInfoPanel.swift */; };
 		C7E24CE52AE0A36600A3D473 /* KGImageChooser in Frameworks */ = {isa = PBXBuildFile; productRef = C7E24CE42AE0A36600A3D473 /* KGImageChooser */; };
+		C7E24CE72AE1D63700A3D473 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E24CE62AE1D63700A3D473 /* Image.swift */; };
+		C7E24CE92AE1D68A00A3D473 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E24CE82AE1D68A00A3D473 /* Color.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +75,8 @@
 		C7A9BA8F2AC4AA3100A69B81 /* CoursesMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesMap.swift; sourceTree = "<group>"; };
 		C7CDAF9A2AD1E8CD006C0886 /* CoursesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesList.swift; sourceTree = "<group>"; };
 		C7CDAFA42AD5CCCA006C0886 /* CourseInfoPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInfoPanel.swift; sourceTree = "<group>"; };
+		C7E24CE62AE1D63700A3D473 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		C7E24CE82AE1D68A00A3D473 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +117,8 @@
 			isa = PBXGroup;
 			children = (
 				C74CB2652AC886DB00AC53D7 /* UIImageStringConversions.swift */,
+				C7E24CE62AE1D63700A3D473 /* Image.swift */,
+				C7E24CE82AE1D68A00A3D473 /* Color.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -345,8 +351,10 @@
 			files = (
 				C74CB2702AC892C000AC53D7 /* NavigationStore.swift in Sources */,
 				C760EB1A2ABE0C1A000DFE09 /* CoursesViewModel.swift in Sources */,
+				C7E24CE72AE1D63700A3D473 /* Image.swift in Sources */,
 				C760EB142ABD0898000DFE09 /* ScoreCardViewModel.swift in Sources */,
 				C74CB25E2AC6399E00AC53D7 /* ScoreCard.swift in Sources */,
+				C7E24CE92AE1D68A00A3D473 /* Color.swift in Sources */,
 				C7CDAF9B2AD1E8CD006C0886 /* CoursesList.swift in Sources */,
 				C760EB042AB8F877000DFE09 /* Hole.swift in Sources */,
 				C74CB2662AC886DB00AC53D7 /* UIImageStringConversions.swift in Sources */,
