@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "kgimagechooser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kevingreen22/KGImageChooser",
+      "state" : {
+        "branch" : "main",
+        "revision" : "bea2ea7f106fa7c8db9b364448f811b061f87f3c"
+      }
+    }
+  ],
+  "version" : 2
+}
