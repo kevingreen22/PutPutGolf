@@ -11,14 +11,14 @@ import Combine
 class SetupPlayerViewModel: ObservableObject {
     @Published var newPlayers: [NewPlayer] = []
     @Published var playerName: String = ""
-    @Published var profileImage: UIImage = UIImage()
+    @Published var pickedColor: Color = Color.random()
+
     @Published var textFieldDidSubmit: Bool = false
-    @FocusState var focusedTextField
+    @Published var showImageChooser: Bool = false
     var cancellables: Set<AnyCancellable> = []
     
     init() {
-        focusedTextField = true
-        setupTextFieldDidSubmitSubscriber()
+        textFieldDidSubmitSubscriber()
     }
     
     func setupTextFieldDidSubmitSubscriber() {
@@ -31,12 +31,13 @@ class SetupPlayerViewModel: ObservableObject {
                     return player.name == self?.playerName
                 }) {
                     // Initializes a NewPlayer object and appends it to the newPlayers property.
-                    let newPlayer = NewPlayer(name: playerName, image: profileImage)
+                    let newPlayer = NewPlayer(name: playerName, image: profileImage, color: self.pickedColor)
                     self.newPlayers.append(newPlayer)
                     
                     // Then clears the playerName binding and profileImage.
                     self.playerName = ""
-                    self.profileImage = UIImage()
+                    self.profileImage = nil
+                    self.pickedColor = Color.random()
                 }
             }
             .store(in: &cancellables)
@@ -71,10 +72,12 @@ struct NewPlayer: Hashable, Identifiable {
     var id: UUID = UUID()
     var name: String
     var image: UIImage?
+    var color: Color
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
         hasher.combine(name)
         hasher.combine(image)
+        hasher.combine(color)
     }
 }

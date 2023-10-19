@@ -179,10 +179,10 @@ public class MockData: MockDataProtocol {
         
         // creates new players
         newPlayers = [
-            NewPlayer(name: "Kevin"),
-            NewPlayer(name: "Nell"),
-            NewPlayer(name: "Holly"),
-            NewPlayer(name: "Whit")
+            NewPlayer(name: "Kevin", color: .random()),
+            NewPlayer(name: "Nell", color: .random()),
+            NewPlayer(name: "Holly", color: .random()),
+            NewPlayer(name: "Whit", color: .random())
         ]
         
         // creates players

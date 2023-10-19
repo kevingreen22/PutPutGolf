@@ -5,11 +5,12 @@
 //  Created by Kevin Green on 9/18/23.
 //
 
-import UIKit
+import SwiftUI
 
 class Player: Codable, Equatable, Hashable, Comparable, Identifiable {
     var id = UUID()
     var name: String
+    var color: Color = Color.clear
     var imageData: Data?
     var scores: [String] = [] // used only for current/resuming a game
     var challengeScores: [String] = [] // used only for current/resuming a game
@@ -58,6 +59,7 @@ class Player: Codable, Equatable, Hashable, Comparable, Identifiable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
         hasher.combine(name)
+        hasher.combine(color)
         hasher.combine(imageData)
     }
     
@@ -65,6 +67,7 @@ class Player: Codable, Equatable, Hashable, Comparable, Identifiable {
     static func == (lhs: Player, rhs: Player) -> Bool {
         return lhs.id == rhs.id &&
         lhs.name == rhs.name &&
+        lhs.color == rhs.color &&
         lhs.imageData == rhs.imageData
     }
     
