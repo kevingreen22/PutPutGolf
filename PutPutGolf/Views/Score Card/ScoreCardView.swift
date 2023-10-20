@@ -290,24 +290,17 @@ fileprivate struct ScoreBoxCell: View {
                 .fontWeight(.semibold)
                 .keyboardType(.decimalPad)
                 .background(Color.white)
+                .toolbar { // keyboard upper done button
+                    ToolbarItemGroup(placement: .keyboard) {
+                        Spacer()
+                        Button("Done") {
+                            focusScoreBox = false
+                        }
+                    }
+                }
             
             strokeType()
         }
-        
-        // keyboard upper done button
-        .toolbar {
-            ToolbarItemGroup(placement: .keyboard) {
-                Spacer()
-                Button {
-                    focusScoreBox = false
-                } label: {
-                    Text("Done")
-                        .fontWeight(.semibold)
-                }
-                Spacer()
-            }
-        }
-        
         .onAppear { focusScoreBox = true }
     }
     

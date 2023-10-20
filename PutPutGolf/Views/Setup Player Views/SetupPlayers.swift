@@ -107,13 +107,11 @@ extension SetupPlayers {
             .padding()
             .keyboardType(.namePhonePad)
             .submitLabel(.next)
-            .toolbar {
+            .toolbar { // keyboard upper done button
                 ToolbarItemGroup(placement: .keyboard) {
                     Spacer()
-                    Button {
+                    Button("Done") {
                         focusedTextField = false
-                    } label: {
-                        Text("Done").fontWeight(.semibold)
                     }
                 }
             }
