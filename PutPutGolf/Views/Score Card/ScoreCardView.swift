@@ -255,10 +255,12 @@ fileprivate struct PlayerInfoCell: View {
                             .clipShape(Circle())
                             .padding(2)
                     }
-                    .frame(width: 40, height: 40)
                     .background(Color.white.clipShape(Circle()))
+                    .padding([.horizontal, .top], 8)
                     
                 Text("\(player.name)")
+                    .font(.title2)
+                    .padding(.bottom, 10)
             }
         }
     }

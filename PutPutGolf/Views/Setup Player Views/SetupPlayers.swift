@@ -68,13 +68,35 @@ extension SetupPlayers {
     fileprivate var profileImage: some View {
         Image(uiimage: vm.profileImage)
             .resizable()
+            .scaledToFill()
             .frame(width: 150, height: 150)
-            .scaledToFit()
             .foregroundStyle(vm.profileImage == nil ? Color.gray.opacity(0.5) : Color.clear)
             .background { Color.white }
-            .modifier(EditButtonOverlay(size: CGSize(width: 150, height: 150)))
-            .environmentObject(vm)
+            .clipShape(Circle())
+            .shadow(radius: 10)
             .overlay { Circle().stroke(lineWidth: 3) } // border
+            .overlay(alignment: .bottom) {
+                HStack {
+                    Button(action: { vm.showImageChooser = true }, label: {
+                        Image(systemName: "pencil")
+                            .resizable()
+                            .foregroundStyle(Color.primary)
+                            .frame(width: 15, height: 15)
+                            .background(
+                                Circle()
+                                    .fill(Color.white)
+                                    .frame(width: 27, height: 27)
+                            )
+                            .shadow(radius: 5)
+                            .offset(x: 7)
+                    })
+                    Spacer()
+                    ColorPicker("", selection: $vm.pickedColor, supportsOpacity: false)
+                        .shadow(radius: 5)
+                }
+                .offset(y: -10)
+            } // edit & color buttons
+            .environmentObject(vm)
     }
     
     fileprivate var playerNameTextField: some View {
@@ -94,10 +116,6 @@ extension SetupPlayers {
                         Text("Done").fontWeight(.semibold)
                     }
                 }
-            }
-            .overlay(alignment: .topTrailing) {
-                ColorPicker("", selection: $vm.pickedColor, supportsOpacity: false)
-                    .offset(x: -100, y: -25)
             }
             .onSubmit {
                 vm.textFieldDidSubmit = true
@@ -131,6 +149,7 @@ extension SetupPlayers {
     fileprivate func profileImageThumb(image: UIImage?, color: Color) -> some View {
         Image(uiimage: image)
             .resizable()
+            .scaledToFill()
             .frame(width: 50, height: 50)
             .foregroundStyle(image == nil ? Color.gray : Color.clear)
             .background(Color.white)
@@ -157,33 +176,5 @@ extension SetupPlayers {
         .controlSize(.large)
     }
     
-}
-
-
-fileprivate struct EditButtonOverlay: ViewModifier {
-    @EnvironmentObject var vm: SetupPlayerViewModel
-    var size: CGSize
-    
-    func body(content: Content) -> some View {
-        content
-            .overlay(alignment: .bottom) {
-                Button {
-                    vm.showImageChooser = true
-                } label: {
-                    Image(systemName: "square.and.pencil")
-                        .font(.title2)
-                        .foregroundColor(.white)
-                        .offset(y: -5)
-                }
-                .background(alignment: .bottom) {
-                    Color.gray
-                        .frame(width: size.width, height: size.width/4)
-                        .blur(radius: 5)
-                        .clipped()
-                }
-            } // edit button
-            .clipShape(Circle())
-            .padding(3)
-    }
 }
 
