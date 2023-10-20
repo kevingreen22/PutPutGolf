@@ -12,6 +12,8 @@ struct ScoreCardView: View {
     @EnvironmentObject var navVM: NavigationStore
     @StateObject var vm: ScoreCardViewModel
     @FocusState var isFocused: Bool
+    @State private var currentZoom = 0.0
+    @State private var totalZoom = 1.0
     
     init(course: Course, players: [Player], isResumingGame resuming: Bool = false) {
         _vm = StateObject(wrappedValue: ScoreCardViewModel(course: course, players: players, isResumingGame: resuming))
@@ -19,7 +21,7 @@ struct ScoreCardView: View {
     
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .leading) {
             Color.white.ignoresSafeArea()
             ScrollView(.horizontal, showsIndicators: false) {
                 ScrollView(.vertical, showsIndicators: false) {
@@ -27,6 +29,35 @@ struct ScoreCardView: View {
                         holeNumRow
                         parRow
                         playersRowAndScores
+                    }
+                    .scaleEffect(currentZoom + totalZoom)
+                    .gesture(
+                        MagnificationGesture()
+                            .onChanged { value in
+                                currentZoom = value.magnitude-1
+                            }
+                            .onEnded { value in
+                                totalZoom += currentZoom
+                                currentZoom = 0
+                            }
+                    )
+                    // iOS 17+
+            //        .gesture(
+            //            MagnifyGesture()
+            //                .onChanged { value in
+            //                    currentZoom = value.magnification - 1
+            //                }
+            //                .onEnded { value in
+            //                    totalZoom += currentZoom
+            //                    currentZoom = 0
+            //                }
+            //        )
+                    .accessibilityZoomAction { action in
+                        if action.direction == .zoomIn {
+                            totalZoom += 1
+                        } else {
+                            totalZoom -= 1
+                        }
                     }
                 }
             }
