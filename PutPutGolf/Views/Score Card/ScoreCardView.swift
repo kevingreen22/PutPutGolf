@@ -11,6 +11,7 @@ import Combine
 struct ScoreCardView: View {
     @EnvironmentObject var navVM: NavigationStore
     @StateObject var vm: ScoreCardViewModel
+    @FocusState var isFocused: Bool
     
     init(course: Course, players: [Player], isResumingGame resuming: Bool = false) {
         _vm = StateObject(wrappedValue: ScoreCardViewModel(course: course, players: players, isResumingGame: resuming))
@@ -19,7 +20,7 @@ struct ScoreCardView: View {
     
     var body: some View {
         ZStack {
-            Color.red.ignoresSafeArea()
+            Color.white.ignoresSafeArea()
             ScrollView(.horizontal, showsIndicators: false) {
                 ScrollView(.vertical, showsIndicators: false) {
                     Grid(horizontalSpacing: -1, verticalSpacing: -1) {
@@ -31,8 +32,28 @@ struct ScoreCardView: View {
             }
             .padding(.top)
             .toolbar(.hidden, for: .navigationBar)
-            .overlay(alignment: .bottomTrailing) {
-                closeButton.padding(.trailing)
+            .overlay(alignment: .topTrailing) {
+                closeButton
+                    .padding(.trailing)
+                    .offset(y: -35.0)
+            }
+            .overlay(alignment: .bottomTrailing) { // Custom keyboard top-area button.
+                if isFocused {
+                    VStack(spacing: 0) {
+                        Rectangle()
+                            .fill(Color(uiColor: .separator))
+                            .frame(height: 0.5)
+                        Rectangle()
+                            .fill(Color(uiColor: .secondarySystemBackground))
+                            .frame(height: 45)
+                            .overlay(alignment: .trailing) {
+                                Button("Done") {
+                                    isFocused = false
+                                }.padding()
+                            }
+                    }
+                    .animation(.linear, value: isFocused)
+                }
             }
         }
     }
@@ -111,14 +132,18 @@ extension ScoreCardView {
                 GridRow {
                     // Score box cells
                     ForEach(vm.course.holes) { hole in
-                        ScoreBoxCell(holeScore: $vm.players[idx].scores[hole.number-1], hole: hole, playerColor:vm.players[idx].color)
+//                        ScoreBoxCell(holeScore: $vm.players[idx].scores[hole.number-1], hole: hole, playerColor:vm.players[idx].color)
+//                            .environmentObject(vm)
+                        scoreBoxCell(holeScore: $vm.players[idx].scores[hole.number-1], hole: hole, playerColor:vm.players[idx].color)
                     }
                     
                     TotalScoreCell(totalScore: $vm.totals[idx])
 
                     // Challenge Score cells
                     ForEach(vm.course.challenges.indices, id: \.self) { i in
-                        ChallengeScoreCell(challengeScore: $vm.players[idx].challengeScores[i], playerColor: vm.players[idx].color)
+//                        ChallengeScoreCell(challengeScore: $vm.players[idx].challengeScores[i], playerColor: vm.players[idx].color)
+//                            .environmentObject(vm)
+                        challengeScoreCell(challengeScore: $vm.players[idx].challengeScores[i], playerColor: vm.players[idx].color)
                     }
                     
                     FinalTotalScore(finalTotalScore: $vm.finalTotals[idx])
@@ -143,6 +168,77 @@ extension ScoreCardView {
         }
     }
     
+    fileprivate func scoreBoxCell(holeScore: Binding<String>, hole: Hole, playerColor: Color) -> some View {
+        ZStack {
+            Rectangle()
+                .fill(Color.white)
+                .overlay(alignment: .bottom) {
+                    Rectangle()
+                        .fill(playerColor.gradient)
+                        .frame(height: 5)
+                }
+            
+            TextField("", text: holeScore)
+                .focused($isFocused)
+                .foregroundColor(setScoreTextColor(holeScore: holeScore.wrappedValue, hole: hole))
+                .multilineTextAlignment(.center)
+                .font(.largeTitle)
+                .fontWeight(.semibold)
+                .background(Color.white)
+                .keyboardType(.numberPad)
+            
+            strokeType(holeScore: holeScore.wrappedValue, hole: hole)
+        }
+    }
+    
+    @ViewBuilder fileprivate func strokeType(holeScore: String, hole: Hole) -> some View {
+        if let score = Int(holeScore) {
+            if score <= hole.par - 2 {
+                EagleScoreView()
+            } else if score == hole.par - 1 {
+                BirdieScoreView()
+            } else if score == hole.par + 1 {
+                BogieScoreView()
+            } else if score >= hole.par + 1 {
+                DoubleBogieScoreView()
+            }
+        }
+    }
+    
+    fileprivate func setScoreTextColor(holeScore: String, hole: Hole) -> Color {
+        if let score = Int(holeScore) {
+            if score <= hole.par - 2 {
+                return Color.green
+            } else if score == hole.par - 1 {
+                return Color.green
+            } else if score == hole.par + 1 {
+                return Color.red
+            } else if score >= hole.par + 1 {
+                return Color.red
+            }
+        }
+        return Color.black
+    }
+    
+    fileprivate func challengeScoreCell(challengeScore: Binding<String>, playerColor: Color) -> some View {
+        ZStack {
+            Rectangle()
+                .fill(Color.white)
+                .overlay(alignment: .bottom) {
+                    Rectangle()
+                        .fill(playerColor.gradient)
+                        .frame(height: 5)
+                }
+            
+            TextField("", text: challengeScore)
+                .focused($isFocused)
+                .multilineTextAlignment(.center)
+                .font(.largeTitle)
+                .fontWeight(.semibold)
+                .background(Color.white)
+                .keyboardType(.decimalPad)
+        }
+    }
 }
 
 
@@ -242,8 +338,7 @@ fileprivate struct PlayerInfoCell: View {
                 .overlay(alignment: .bottom) {
                     Rectangle()
                         .fill(player.color.gradient)
-                        .frame(height: 10)
-                        .blur(radius: 3)
+                        .frame(height: 5)
                 }
             
             VStack {
@@ -267,10 +362,11 @@ fileprivate struct PlayerInfoCell: View {
 }
 
 fileprivate struct ScoreBoxCell: View {
+    @EnvironmentObject var vm: ScoreCardViewModel
     @Binding var holeScore: String
     var hole: Hole
     var playerColor: Color
-    @FocusState var focusScoreBox
+    @FocusState var isFocused: Bool
     
     var body: some View {
         ZStack {
@@ -279,32 +375,24 @@ fileprivate struct ScoreBoxCell: View {
                 .overlay(alignment: .bottom) {
                     Rectangle()
                         .fill(playerColor.gradient)
-                        .frame(height: 10)
-                        .blur(radius: 3)
+                        .frame(height: 5)
                 }
             
             TextField("", text: $holeScore)
+                .focused($isFocused)
                 .foregroundColor(setScoreTextColor())
                 .multilineTextAlignment(.center)
                 .font(.largeTitle)
                 .fontWeight(.semibold)
-                .keyboardType(.decimalPad)
                 .background(Color.white)
-                .toolbar { // keyboard upper done button
-                    ToolbarItemGroup(placement: .keyboard) {
-                        Spacer()
-                        Button("Done") {
-                            focusScoreBox = false
-                        }
-                    }
-                }
-            
+                .keyboardType(.numberPad)
+                
             strokeType()
         }
-        .onAppear { focusScoreBox = true }
     }
     
-    @ViewBuilder fileprivate func strokeType() -> some View {
+    @ViewBuilder 
+    fileprivate func strokeType() -> some View {
         if let score = Int(holeScore) {
             if score <= hole.par - 2 {
                 EagleScoreView()
@@ -349,9 +437,10 @@ fileprivate struct TotalScoreCell: View {
 }
 
 fileprivate struct ChallengeScoreCell: View {
+    @EnvironmentObject var vm: ScoreCardViewModel
     @Binding var challengeScore: String
     var playerColor: Color
-    @FocusState var focusScoreBox
+    @FocusState var isFocused: Bool
     
     var body: some View {
         ZStack {
@@ -360,34 +449,17 @@ fileprivate struct ChallengeScoreCell: View {
                 .overlay(alignment: .bottom) {
                     Rectangle()
                         .fill(playerColor.gradient)
-                        .frame(height: 10)
-                        .blur(radius: 3)
+                        .frame(height: 5)
                 }
             
             TextField("", text: $challengeScore)
-                .fixedSize(horizontal: true, vertical: false)
+                .focused($isFocused)
                 .multilineTextAlignment(.center)
                 .font(.largeTitle)
                 .fontWeight(.semibold)
-                .keyboardType(.decimalPad)
                 .background(Color.white)
+                .keyboardType(.decimalPad)
         }
-        
-        // keyboard upper done button
-        .toolbar {
-            ToolbarItemGroup(placement: .keyboard) {
-                Spacer()
-                Button {
-                    focusScoreBox = false
-                } label: {
-                    Text("Done")
-                        .fontWeight(.semibold)
-                }
-                Spacer()
-            }
-        }
-        
-        .onAppear { focusScoreBox = true }
     }
 }
 

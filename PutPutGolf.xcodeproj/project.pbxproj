@@ -40,6 +40,7 @@
 		C7E24CE52AE0A36600A3D473 /* KGImageChooser in Frameworks */ = {isa = PBXBuildFile; productRef = C7E24CE42AE0A36600A3D473 /* KGImageChooser */; };
 		C7E24CE72AE1D63700A3D473 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E24CE62AE1D63700A3D473 /* Image.swift */; };
 		C7E24CE92AE1D68A00A3D473 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E24CE82AE1D68A00A3D473 /* Color.swift */; };
+		C7E24CED2AE311C500A3D473 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E24CEC2AE311C500A3D473 /* TestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,7 @@
 		C7CDAFA42AD5CCCA006C0886 /* CourseInfoPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInfoPanel.swift; sourceTree = "<group>"; };
 		C7E24CE62AE1D63700A3D473 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		C7E24CE82AE1D68A00A3D473 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		C7E24CEC2AE311C500A3D473 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 				C74CB2612AC7475D00AC53D7 /* Setup Player Views */,
 				C760EB122ABD0879000DFE09 /* Score Card */,
 				C74CB2682AC88F5100AC53D7 /* Score Card List */,
+				C7E24CEC2AE311C500A3D473 /* TestView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C74CB2702AC892C000AC53D7 /* NavigationStore.swift in Sources */,
+				C7E24CED2AE311C500A3D473 /* TestView.swift in Sources */,
 				C760EB1A2ABE0C1A000DFE09 /* CoursesViewModel.swift in Sources */,
 				C7E24CE72AE1D63700A3D473 /* Image.swift in Sources */,
 				C760EB142ABD0898000DFE09 /* ScoreCardViewModel.swift in Sources */,

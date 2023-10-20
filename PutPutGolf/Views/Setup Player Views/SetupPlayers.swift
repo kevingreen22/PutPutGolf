@@ -11,7 +11,7 @@ import KGImageChooser
 struct SetupPlayers: View {
     @EnvironmentObject var navVM: NavigationStore
     @StateObject var vm = SetupPlayerViewModel()
-    @FocusState var focusedTextField
+    @FocusState var isFocused: Bool
     var course: Course
     var navID: Int = 1
 
@@ -34,7 +34,7 @@ struct SetupPlayers: View {
                 .animation(.easeInOut, value: vm.playerName)
                 .animation(.easeInOut, value: vm.profileImage)
                 .padding(.top)
-                .onAppear { focusedTextField = true }
+                .onAppear { isFocused = true }
                 .navigationTitle("Setup Players")
                 .navigationDestination(for: [Player].self) { players in
                     ScoreCardView(course: course, players: players)
@@ -101,7 +101,7 @@ extension SetupPlayers {
     
     fileprivate var playerNameTextField: some View {
         TextField("Enter Player Name", text: $vm.playerName)
-            .focused($focusedTextField)
+            .focused($isFocused)
             .font(.largeTitle)
             .multilineTextAlignment(.center)
             .padding()
@@ -110,14 +110,12 @@ extension SetupPlayers {
             .toolbar { // keyboard upper done button
                 ToolbarItemGroup(placement: .keyboard) {
                     Spacer()
-                    Button("Done") {
-                        focusedTextField = false
-                    }
+                    Button("Done") { isFocused = false }
                 }
             }
             .onSubmit {
                 vm.textFieldDidSubmit = true
-                focusedTextField = true
+                isFocused = true
             }
     }
     
