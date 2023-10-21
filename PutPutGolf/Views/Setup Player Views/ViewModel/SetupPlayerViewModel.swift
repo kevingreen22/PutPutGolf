@@ -16,7 +16,10 @@ class SetupPlayerViewModel: ObservableObject {
 
     @Published var textFieldDidSubmit: Bool = false
     @Published var showImageChooser: Bool = false
+    @Published var showCurrentGameAlert: Bool = false
     var cancellables: Set<AnyCancellable> = []
+    @AppStorage("savedGame") var savedGameData: Data?
+    var savedGame: SavedGame?
     
     init() {
         textFieldDidSubmitSubscriber()
@@ -56,13 +59,21 @@ class SetupPlayerViewModel: ObservableObject {
     }
     
     
-    /// Creates and array of Player objects from a NewPlayer object.
+    /// Creates an array of Player objects from an array of NewPlayer objects.
     func createPlayers(on course: Course) -> [Player] {
         var players: [Player] = []
         for player in newPlayers {
             players.append(Player(name: player.name, image: player.image, color: player.color, course: course))
         }
         return players
+    }
+ 
+    
+    func checkForCurrentGameOn(course: Course) {
+        if let data = savedGameData, let savedGame = try? JSONDecoder().decode(SavedGame.self, from: data) {
+            self.savedGame = savedGame
+            self.showCurrentGameAlert = true
+        }
     }
     
 }
@@ -75,6 +86,7 @@ struct NewPlayer: Hashable, Identifiable {
     var image: UIImage?
     var color: Color
     
+    // Hashable
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
         hasher.combine(name)
