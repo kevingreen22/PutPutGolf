@@ -39,11 +39,26 @@ struct SetupPlayers: View {
                 .navigationDestination(for: [Player].self) { players in
                     ScoreCardView(course: course, players: players)
                 }
+                .navigationDestination(for: SavedGame.self) { savedGame in
+                    ScoreCardView(course: savedGame.course, players: savedGame.players, isResumingGame: true)
+                }
             }
             .fullScreenCover(isPresented: $vm.showImageChooser) {
                 KGCameraImageChooser(uiImage: $vm.profileImage)
             }
         }
+        
+        .onAppear {
+            vm.checkForCurrentGameOn(course: course)
+        }
+        
+        .alert("It looks like you are already playing a game on this course. Would you like to continue that game?", isPresented: $vm.showCurrentGameAlert) {
+            Button("Yes, Lets Putt!", systemImage: "figure.golf") {
+                navVM.path.append(vm.savedGame)
+            }
+            Button("No, delete that game and I'll start a new one.", systemImage: "xmark", role: .destructive) {}
+        }
+        
         .ignoresSafeArea(.keyboard) // this coupled with the GeometryReader makes it so the view doesn't move up when the key board is shown.
         
     }
@@ -53,7 +68,7 @@ struct SetupPlayersView_Previews: PreviewProvider {
     static let mockdata = MockData.instance
     
     static var previews: some View {
-        SetupPlayers(MockData.instance.courses[0])
+        SetupPlayers(mockdata.courses[0])
             .environmentObject(SetupPlayerViewModel())
             .environmentObject(NavigationStore())
             .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: mockdata)))
