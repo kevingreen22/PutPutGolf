@@ -13,7 +13,6 @@
 		C74CB2522AC6021D00AC53D7 /* martinez.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C74CB24E2AC6021D00AC53D7 /* martinez.jpg */; };
 		C74CB2532AC6021D00AC53D7 /* walnut_creek.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C74CB24F2AC6021D00AC53D7 /* walnut_creek.jpg */; };
 		C74CB2542AC6021D00AC53D7 /* alameda.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C74CB2502AC6021D00AC53D7 /* alameda.jpg */; };
-		C74CB25C2AC62D6500AC53D7 /* SavedScoreCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB25B2AC62D6500AC53D7 /* SavedScoreCards.swift */; };
 		C74CB25E2AC6399E00AC53D7 /* SavedGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB25D2AC6399E00AC53D7 /* SavedGame.swift */; };
 		C74CB2602AC7429D00AC53D7 /* SetupPlayers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB25F2AC7429D00AC53D7 /* SetupPlayers.swift */; };
 		C74CB2632AC7477800AC53D7 /* SetupPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB2622AC7477800AC53D7 /* SetupPlayerViewModel.swift */; };
@@ -51,7 +50,6 @@
 		C74CB24E2AC6021D00AC53D7 /* martinez.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = martinez.jpg; sourceTree = "<group>"; };
 		C74CB24F2AC6021D00AC53D7 /* walnut_creek.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = walnut_creek.jpg; sourceTree = "<group>"; };
 		C74CB2502AC6021D00AC53D7 /* alameda.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = alameda.jpg; sourceTree = "<group>"; };
-		C74CB25B2AC62D6500AC53D7 /* SavedScoreCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedScoreCards.swift; sourceTree = "<group>"; };
 		C74CB25D2AC6399E00AC53D7 /* SavedGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedGame.swift; sourceTree = "<group>"; };
 		C74CB25F2AC7429D00AC53D7 /* SetupPlayers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupPlayers.swift; sourceTree = "<group>"; };
 		C74CB2622AC7477800AC53D7 /* SetupPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupPlayerViewModel.swift; sourceTree = "<group>"; };
@@ -125,14 +123,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		C74CB2682AC88F5100AC53D7 /* Score Card List */ = {
-			isa = PBXGroup;
-			children = (
-				C74CB25B2AC62D6500AC53D7 /* SavedScoreCards.swift */,
-			);
-			path = "Score Card List";
-			sourceTree = "<group>";
-		};
 		C760EAE62AB8F7FF000DFE09 = {
 			isa = PBXGroup;
 			children = (
@@ -192,7 +182,6 @@
 				C760EB182ABE0BEB000DFE09 /* Course Map */,
 				C74CB2612AC7475D00AC53D7 /* Setup Player Views */,
 				C760EB122ABD0879000DFE09 /* Score Card */,
-				C74CB2682AC88F5100AC53D7 /* Score Card List */,
 				C7E24CEC2AE311C500A3D473 /* TestView.swift */,
 			);
 			path = Views;
@@ -374,7 +363,6 @@
 				C760EB0B2AB8F99B000DFE09 /* MockData.swift in Sources */,
 				C760EB092AB8F94B000DFE09 /* ScoreCardView.swift in Sources */,
 				C77B0CB72AD0809500F3E1C5 /* Map.swift in Sources */,
-				C74CB25C2AC62D6500AC53D7 /* SavedScoreCards.swift in Sources */,
 				C7CDAFA52AD5CCCA006C0886 /* CourseInfoPanel.swift in Sources */,
 				C760EB112ABBC4C9000DFE09 /* EnterScoreView.swift in Sources */,
 			);
