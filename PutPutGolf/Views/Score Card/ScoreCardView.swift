@@ -16,12 +16,14 @@ struct ScoreCardView: View {
     @State private var totalZoom = 1.0
     
     init(course: Course, players: [Player], isResumingGame resuming: Bool = false) {
+        print("\(type(of: self)).\(#function)")
         _vm = StateObject(wrappedValue: ScoreCardViewModel(course: course, players: players, isResumingGame: resuming))
     }
     
     
     var body: some View {
-        ZStack(alignment: .leading) {
+        print("\(type(of: self)).\(#function)")
+        return ZStack(alignment: .leading) {
             Color.white.ignoresSafeArea()
             ScrollView(.horizontal, showsIndicators: false) {
                 ScrollView(.vertical, showsIndicators: false) {
@@ -392,66 +394,66 @@ fileprivate struct PlayerInfoCell: View {
     }
 }
 
-fileprivate struct ScoreBoxCell: View {
-    @EnvironmentObject var vm: ScoreCardViewModel
-    @Binding var holeScore: String
-    var hole: Hole
-    var playerColor: Color
-    @FocusState var isFocused: Bool
-    
-    var body: some View {
-        ZStack {
-            Rectangle()
-                .fill(Color.white)
-                .overlay(alignment: .bottom) {
-                    Rectangle()
-                        .fill(playerColor.gradient)
-                        .frame(height: 5)
-                }
-            
-            TextField("", text: $holeScore)
-                .focused($isFocused)
-                .foregroundColor(setScoreTextColor())
-                .multilineTextAlignment(.center)
-                .font(.largeTitle)
-                .fontWeight(.semibold)
-                .background(Color.white)
-                .keyboardType(.numberPad)
-                
-            strokeType()
-        }
-    }
-    
-    @ViewBuilder 
-    fileprivate func strokeType() -> some View {
-        if let score = Int(holeScore) {
-            if score <= hole.par - 2 {
-                EagleScoreView()
-            } else if score == hole.par - 1 {
-                BirdieScoreView()
-            } else if score == hole.par + 1 {
-                BogieScoreView()
-            } else if score >= hole.par + 1 {
-                DoubleBogieScoreView()
-            }
-        }
-    }
-    
-    fileprivate func setScoreTextColor() -> Color {
-        if let score = Int(holeScore) {
-            if score <= hole.par - 2 {
-                return Color.green
-            } else if score == hole.par - 1 {
-                return Color.green
-            } else if score == hole.par + 1 {
-                return Color.red
-            } else if score >= hole.par + 1 {
-                return Color.red
-            }
-        }
-        return Color.black
-    }
-}
+//fileprivate struct ScoreBoxCell: View {
+//    @EnvironmentObject var vm: ScoreCardViewModel
+//    @Binding var holeScore: String
+//    var hole: Hole
+//    var playerColor: Color
+//    @FocusState var isFocused: Bool
+//    
+//    var body: some View {
+//        ZStack {
+//            Rectangle()
+//                .fill(Color.white)
+//                .overlay(alignment: .bottom) {
+//                    Rectangle()
+//                        .fill(playerColor.gradient)
+//                        .frame(height: 5)
+//                }
+//            
+//            TextField("", text: $holeScore)
+//                .focused($isFocused)
+//                .foregroundColor(setScoreTextColor())
+//                .multilineTextAlignment(.center)
+//                .font(.largeTitle)
+//                .fontWeight(.semibold)
+//                .background(Color.white)
+//                .keyboardType(.numberPad)
+//                
+//            strokeType()
+//        }
+//    }
+//    
+//    @ViewBuilder 
+//    fileprivate func strokeType() -> some View {
+//        if let score = Int(holeScore) {
+//            if score <= hole.par - 2 {
+//                EagleScoreView()
+//            } else if score == hole.par - 1 {
+//                BirdieScoreView()
+//            } else if score == hole.par + 1 {
+//                BogieScoreView()
+//            } else if score >= hole.par + 1 {
+//                DoubleBogieScoreView()
+//            }
+//        }
+//    }
+//    
+//    fileprivate func setScoreTextColor() -> Color {
+//        if let score = Int(holeScore) {
+//            if score <= hole.par - 2 {
+//                return Color.green
+//            } else if score == hole.par - 1 {
+//                return Color.green
+//            } else if score == hole.par + 1 {
+//                return Color.red
+//            } else if score >= hole.par + 1 {
+//                return Color.red
+//            }
+//        }
+//        return Color.black
+//    }
+//}
 
 fileprivate struct TotalScoreCell: View {
     @Binding var totalScore: Int
@@ -467,32 +469,32 @@ fileprivate struct TotalScoreCell: View {
     }
 }
 
-fileprivate struct ChallengeScoreCell: View {
-    @EnvironmentObject var vm: ScoreCardViewModel
-    @Binding var challengeScore: String
-    var playerColor: Color
-    @FocusState var isFocused: Bool
-    
-    var body: some View {
-        ZStack {
-            Rectangle()
-                .fill(Color.white)
-                .overlay(alignment: .bottom) {
-                    Rectangle()
-                        .fill(playerColor.gradient)
-                        .frame(height: 5)
-                }
-            
-            TextField("", text: $challengeScore)
-                .focused($isFocused)
-                .multilineTextAlignment(.center)
-                .font(.largeTitle)
-                .fontWeight(.semibold)
-                .background(Color.white)
-                .keyboardType(.decimalPad)
-        }
-    }
-}
+//fileprivate struct ChallengeScoreCell: View {
+//    @EnvironmentObject var vm: ScoreCardViewModel
+//    @Binding var challengeScore: String
+//    var playerColor: Color
+//    @FocusState var isFocused: Bool
+//    
+//    var body: some View {
+//        ZStack {
+//            Rectangle()
+//                .fill(Color.white)
+//                .overlay(alignment: .bottom) {
+//                    Rectangle()
+//                        .fill(playerColor.gradient)
+//                        .frame(height: 5)
+//                }
+//            
+//            TextField("", text: $challengeScore)
+//                .focused($isFocused)
+//                .multilineTextAlignment(.center)
+//                .font(.largeTitle)
+//                .fontWeight(.semibold)
+//                .background(Color.white)
+//                .keyboardType(.decimalPad)
+//        }
+//    }
+//}
 
 fileprivate struct FinalTotalScore: View {
     @Binding var finalTotalScore: Int
