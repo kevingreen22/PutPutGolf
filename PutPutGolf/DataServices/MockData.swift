@@ -197,12 +197,14 @@ public class MockData: MockDataProtocol {
         for player in players {
             player.color = Color.random()
             
-            for _ in 0..<Int.random(in: 0..<21) {
-                player.scores.append(String(Int.random(in: 1...5)))
+            for i in 0..<Int.random(in: 0..<21) {
+                let randInt = Int.random(in: 1...5)
+                player.scores[i] = String(randInt)
             }
             
-            for _ in 0..<Int.random(in: 0..<3) {
-                player.challengeScores.append(String(Int.random(in: 1...5)))
+            for i in 0..<Int.random(in: 0..<3) {
+                let randInt = Int.random(in: 1...5)
+                player.challengeScores[i] = String(randInt)
             }
         }
         
