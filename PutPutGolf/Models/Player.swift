@@ -12,9 +12,9 @@ class Player: Codable, Equatable, Hashable, Comparable, Identifiable {
     var name: String
     var color: Color
     var imageData: Data?
-    var scores: [String] = [] // used only for current/resuming a game
-    var challengeScores: [String] = [] // used only for current/resuming a game
-    var savedScoreCards: [ScoreCard] = []
+    var scores: [String] // used only for current/resuming a game
+    var challengeScores: [String] // used only for current/resuming a game
+    var savedGames: [SavedGame] = []
 
     
     init(name: String, color: Color = .gray, course: Course) {
@@ -37,23 +37,6 @@ class Player: Codable, Equatable, Hashable, Comparable, Identifiable {
         guard let imgData = self.imageData, let image = UIImage(data: imgData) else { return UIImage(systemName: "person.fill")! }
         return image
     }
-    
-    
-    
-    var total: String {
-        let scores: [String] = scores.map({ $0 })
-        return scores.reduce("", +)
-    }
-    
-    
-    var finalTotal: String {
-        var scores: [String] = scores.map({ $0 })
-        let chal: [String] = challengeScores.map({ $0 })
-        let tot: [String] = scores + chal
-        return tot.reduce("", +)
-    }
-    
-    
     
     
     
