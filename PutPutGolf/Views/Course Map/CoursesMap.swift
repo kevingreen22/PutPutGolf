@@ -11,15 +11,31 @@ struct CoursesMap: View {
     @EnvironmentObject var navVM: NavigationStore
     @EnvironmentObject var coursesVM: CoursesViewModel
     @State private var screenSize: CGSize = .zero
-    
+
     
     var body: some View {
         NavigationStack(path: $navVM.path) {
             ZStack {
                 MyMap().environmentObject(coursesVM)
                 
-                VStack(spacing: 0) {
-                    headerBar.padding()
+                    .overlay(alignment: .topTrailing) { // Current game button
+                        Button {
+                            // show current-game/last played score card
+                            navVM.path.append(coursesVM.getSavedGame()?.players)
+                        } label: {
+                            Image(systemName: "figure.golf")
+                                .font(.title)
+                                .frame(width: 55, height: 55)
+                                .background(.thickMaterial)
+                                .cornerRadius(10)
+                                .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 15)
+                                .padding(.trailing)
+                        }
+                        .disabled(coursesVM.getSavedGame() != nil ? false : true)
+                    }
+                
+                VStack(alignment: .leading, spacing: 0) {
+                    headerBar.padding(.leading).padding(.trailing, 80)
                     Spacer()
                     ZStack {
                         ForEach(coursesVM.coursesData) { course in
@@ -30,27 +46,6 @@ struct CoursesMap: View {
                     }
                 }
             }
-            
-            // Show current game button
-            .overlay(alignment: .topTrailing) {
-                Button {
-                    // show current-game/last played score card
-                    
-                } label: {
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.white.opacity(0.7))
-                        .frame(width: 50, height: 50)
-                        .overlay {
-                            Image(systemName: "map")
-                                .font(.title)
-                        }
-                        .padding()
-                }
-                .offset(y: 70)
-                .shadow(radius: 20)
-//                .disabled(vm.course != nil ? false : true)
-            }
-
             
             .sheet(isPresented: $coursesVM.showCourseInfo) {
                 CourseInfo(course: $coursesVM.selectedCourse)

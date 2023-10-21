@@ -12,6 +12,7 @@ import MapKit
 class CoursesViewModel: ObservableObject {
     var dataService: DataServiceProtocol
     var cancellables: Set<AnyCancellable> = []
+    @AppStorage("savedGame") var savedGameData: Data?
     
     // All loaded courses
     var coursesData: [Course] = []
@@ -103,23 +104,10 @@ class CoursesViewModel: ObservableObject {
         }
     }
     
-    
+    func getSavedGame() -> SavedGame? {
+        guard let data = savedGameData, let savedGame = try? JSONDecoder().decode(SavedGame.self, from: data) else { return nil }
+        return savedGame
+    }
     
 }
 
-
-
-
-//extension MKCoordinateRegion {
-//    static var myRegion: MKCoordinateRegion {
-//        return MKCoordinateRegion(
-//            center: CLLocationCoordinate2D(
-//                latitude: 37.72,
-//                longitude: -122.19
-//            ),
-//            span: MKCoordinateSpan(
-//                latitudeDelta: 0.8,
-//                longitudeDelta: 0.4)
-//        )
-//    }
-//}
