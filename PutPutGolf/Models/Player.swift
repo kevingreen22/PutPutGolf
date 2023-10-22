@@ -14,8 +14,6 @@ class Player: Codable, Equatable, Hashable, Comparable, Identifiable {
     var imageData: Data?
     var scores: [String] // used only for current/resuming a game
     var challengeScores: [String] // used only for current/resuming a game
-    var savedGames: [SavedGame] = []
-
     
     init(name: String, color: Color = .gray, course: Course) {
         self.name = name
