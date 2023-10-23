@@ -12,7 +12,8 @@ import MapKit
 class CoursesViewModel: ObservableObject {
     var dataService: DataServiceProtocol
     var cancellables: Set<AnyCancellable> = []
-    @AppStorage("savedGame") var savedGameData: Data?
+    @AppStorage(AppStorageKeys.currentGame.rawValue) var currentGame: SavedGame?
+    @AppStorage(AppStorageKeys.allSavedGames.rawValue) var allSavedGames: [SavedGame] = []
     
     // All loaded courses
     var coursesData: [Course] = []
