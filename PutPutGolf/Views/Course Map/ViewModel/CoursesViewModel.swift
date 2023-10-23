@@ -69,6 +69,8 @@ class CoursesViewModel: ObservableObject {
         }
     }
     
+    /// Shows the course info panel on the map.
+    /// - Parameter course: The Course to show.
     func showNextCourse(course: Course?) {
         withAnimation(.easeInOut) {
             if let course = course {
@@ -95,6 +97,7 @@ class CoursesViewModel: ObservableObject {
         }
     }
     
+    /// Opens the Maps.app with directions to the selected course.
     func getDirections() {
         if let selectedCourse = selectedCourse {
             let directionsURL = URL(string: "maps://?saddr=&daddr=\(selectedCourse.latitude),\(selectedCourse.longitude)")
