@@ -16,34 +16,16 @@ struct CoursesMap: View {
     var body: some View {
         NavigationStack(path: $navVM.path) {
             ZStack {
-                MyMap().environmentObject(coursesVM)
-                
-                    .overlay(alignment: .topTrailing) { // Current game button
-                        Button {
-                            // show current-game/last played score card
-                            navVM.path.append(coursesVM.getSavedGame()?.players)
-                        } label: {
-                            Image(systemName: "figure.golf")
-                                .font(.title)
-                                .frame(width: 55, height: 55)
-                                .background(.thickMaterial)
-                                .cornerRadius(10)
-                                .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 15)
-                                .padding(.trailing)
-                        }
-                        .disabled(coursesVM.getSavedGame() != nil ? false : true)
-                    }
+                MyMap()
+                    .environmentObject(coursesVM)
+                    .overlay(alignment: .topTrailing) {                        
+                        savedGamesMenu
+                    } // Saved games button/menu
                 
                 VStack(alignment: .leading, spacing: 0) {
                     headerBar.padding(.leading).padding(.trailing, 80)
                     Spacer()
-                    ZStack {
-                        ForEach(coursesVM.coursesData) { course in
-                            if coursesVM.selectedCourse == course {
-                                courseInfoPanel
-                            }
-                        }
-                    }
+                    courseInfoPanel
                 }
             }
             
@@ -54,24 +36,24 @@ struct CoursesMap: View {
                     .presentationCornerRadius(20)
             }
             
-            
             // Navigation
+            .navigationBarTitleDisplayMode(.large)
             .navigationDestination(for: Int.self) { navID in
                 if let course = coursesVM.selectedCourse {
                     SetupPlayers(course)
                 }
             }
-            .navigationBarTitleDisplayMode(.large)
             
             // Screen size
             .overlay(
-                GeometryReader { proxy in
-                    Color.clear.preference(key: SizePreferenceKey.self, value: proxy.size)
+                GeometryReader {
+                    Color.clear.preference(key: SizePreferenceKey.self, value: $0.size)
                 }
             )
-            .onPreferenceChange(SizePreferenceKey.self) { value in
-                screenSize = value
+            .onPreferenceChange(SizePreferenceKey.self) {
+                screenSize = $0
             }
+            
         }
     }
 }
@@ -125,11 +107,55 @@ extension CoursesMap {
         .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 15)
     }
     
+    fileprivate var savedGamesMenu: some View {
+        Menu {
+            if let current = coursesVM.currentGame {
+                Section("Current Game") {
+                    Button("\(current.course.address) - \(current.dateString)") {
+                        navVM.path.append(current.players)
+                    }
+                }
+            }
+            Section("Previous Games") {
+                ForEach(coursesVM.allSavedGames) { savedGame in
+                    Button("\(savedGame.course.address) - \(savedGame.dateString)") {
+                        navVM.path.append(savedGame.players)
+                    }
+                }
+            }
+        } label: {
+            Image(systemName: "figure.golf")
+                .font(.title)
+                .frame(width: 55, height: 55)
+                .background(.thickMaterial)
+                .cornerRadius(10)
+                .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 15)
+                .overlay(alignment: .bottomTrailing) {
+                    Image(systemName: "chevron.down")
+                        .resizable()
+                        .frame(width: 8, height: 5)
+                        .padding(5)
+                }
+                .padding(.trailing)
+        } primaryAction: {
+            // show current-game/last played score card
+            if let players = coursesVM.currentGame?.players {
+                navVM.path.append(players)
+            }
+        }
+    }
+    
     fileprivate var courseInfoPanel: some View {
-        CourseInfoPanel(course: $coursesVM.selectedCourse)
-                    .shadow(color: .black.opacity(0.3), radius: 20)
-                    .padding(.horizontal)
-                    .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+        ZStack {
+            ForEach(coursesVM.coursesData) { course in
+                if coursesVM.selectedCourse == course {
+                    CourseInfoPanel(course: $coursesVM.selectedCourse)
+                                .shadow(color: .black.opacity(0.3), radius: 20)
+                                .padding(.horizontal)
+                                .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                }
+            }
+        }
     }
     
 }

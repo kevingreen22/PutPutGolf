@@ -105,10 +105,5 @@ class CoursesViewModel: ObservableObject {
         }
     }
     
-    func getSavedGame() -> SavedGame? {
-        guard let data = savedGameData, let savedGame = try? JSONDecoder().decode(SavedGame.self, from: data) else { return nil }
-        return savedGame
-    }
-    
 }
 
