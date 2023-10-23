@@ -9,19 +9,24 @@ import SwiftUI
 import Combine
 
 @MainActor class ScoreCardViewModel: ObservableObject {
+    typealias Totals = Int
+    typealias FinalTotals = Int
     var course: Course
     @Published var players: [Player]
-    @Published var totals: [Int] = []
-    @Published var finalTotals: [Int] = []
+    @Published var totals: [Totals] = []
+    @Published var finalTotals: [FinalTotals] = []
     var cancellables: Set<AnyCancellable> = []
-    @AppStorage("savedGame") var savedGameData: Data?
+    @AppStorage(AppStorageKeys.currentGame.rawValue) var currentGame: SavedGame?
+    @AppStorage(AppStorageKeys.allSavedGames.rawValue) var allSavedGames: [SavedGame] = []
+    var isGameCompleted: Bool = false
+
     
     init(course: Course, players: [Player], isResumingGame: Bool = false) {
         print("\(type(of: self)).\(#function)")
         self.course = course
         self.players = players
         initTotals(isResumingGame: isResumingGame)
-//        subscribe()
+        subscribeForGameIsFinished()
     }
     
     
@@ -46,27 +51,30 @@ import Combine
     }
     
     
-//    func subscribe() {
-//        $players
-//            .sink { [weak self] players in
-//                guard let self = self else { return }
-//                for (i,player) in players.enumerated() {
-//                    let total = Int(player.scores.map({ Int($0) ?? 0 }).reduce(0, +))
-//                    let challenges = Int(player.challengeScores.map({ Int($0) ?? 0 }).reduce(0, +))
-//                    self.totals[i] = total
-//                    self.finalTotals[i] = total + challenges
-////                    print("subscibed.totals: \(String(describing: self.totals))")
-////                    print("subscibed.finals: \(String(describing: self.finalTotals))")
-//                }
-//            }
-//            .store(in: &cancellables)
-//    }
+    /// Checks if the game is completed and sets the isGameCompleted variable.
+    /// This is specifically used for saving the game, as there are two keys of app storage for games.
+    fileprivate func subscribeForGameIsFinished() {
+        $players
+            .sink { [weak self] values in
+                for player in values {
+                    guard player.scores.allSatisfy({ $0 != "" }) else { return }
+                    guard player.challengeScores.allSatisfy({ $0 != "" }) else { return }
+                    self?.isGameCompleted = true
+                }
+            }
+            .store(in: &cancellables)
+    }
     
     
+    /// Saves the current game to the appropriate AppStorage key.
     func saveCurrentGame() {
-        let savedGame = SavedGame(course: self.course, players: self.players)
-        guard let data = try? JSONEncoder().encode(savedGame) else { return }
-        self.savedGameData = data
+        let game = SavedGame(course: self.course, players: self.players)
+        
+        if isGameCompleted {
+            self.allSavedGames.append(game)
+        } else {
+            self.currentGame = game
+        }
     }
     
 }
