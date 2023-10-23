@@ -33,34 +33,8 @@ struct ScoreCardView: View {
                         playersRowAndScores
                     }
                     .scaleEffect(currentZoom + totalZoom)
-                    .gesture(
-                        MagnificationGesture()
-                            .onChanged { value in
-                                currentZoom = value.magnitude-1
-                            }
-                            .onEnded { value in
-                                totalZoom += currentZoom
-                                currentZoom = 0
-                            }
-                    )
-                    // iOS 17+
-            //        .gesture(
-            //            MagnifyGesture()
-            //                .onChanged { value in
-            //                    currentZoom = value.magnification - 1
-            //                }
-            //                .onEnded { value in
-            //                    totalZoom += currentZoom
-            //                    currentZoom = 0
-            //                }
-            //        )
-                    .accessibilityZoomAction { action in
-                        if action.direction == .zoomIn {
-                            totalZoom += 1
-                        } else {
-                            totalZoom -= 1
-                        }
-                    }
+                    .gesture(zoom)
+                    .modifier(AccessibilityZoom(zoom: $totalZoom))
                 }
             }
             .padding(.top)
@@ -69,36 +43,23 @@ struct ScoreCardView: View {
                 closeButton
                     .padding(.trailing)
                     .offset(y: -35.0)
-            }
-            .overlay(alignment: .bottomTrailing) { // Custom keyboard top-area button.
+            } // Close Button
+            .overlay(alignment: .bottomTrailing) {
                 if isFocused {
-                    VStack(spacing: 0) {
-                        Rectangle()
-                            .fill(Color(uiColor: .separator))
-                            .frame(height: 0.5)
-                        Rectangle()
-                            .fill(Color(uiColor: .secondarySystemBackground))
-                            .frame(height: 45)
-                            .overlay(alignment: .trailing) {
-                                Button("Done") {
-                                    isFocused = false
-                                }.padding()
-                            }
-                    }
-                    .animation(.linear, value: isFocused)
+                    keyboardDoneButton.animation(.linear, value: isFocused)
                 }
-            }
+            } // Custom keyboard top-area button.
         }
     }
 }
 
 struct ScoreCardView_Previews: PreviewProvider {
-    static let data = MockData.instance
+    static let mockdata = MockData.instance
     
     static var previews: some View {
         ScoreCardView(
-            course: data.courses[0],
-            players: data.players,
+            course: mockdata.courses[0],
+            players: mockdata.players,
             isResumingGame: true
         )
     }
@@ -107,6 +68,29 @@ struct ScoreCardView_Previews: PreviewProvider {
 
 
 extension ScoreCardView {
+    
+    fileprivate var zoom: some Gesture {
+        if #available(iOS 17.0, *) {
+            return MagnifyGesture()
+                .onChanged { value in
+                    currentZoom = value.magnification - 1
+                }
+                .onEnded { value in
+                    totalZoom += currentZoom
+                    currentZoom = 0
+                }
+        } else {
+            // Fallback on earlier versions
+            return MagnificationGesture()
+                .onChanged { value in
+                    currentZoom = value.magnitude-1
+                }
+                .onEnded { value in
+                    totalZoom += currentZoom
+                    currentZoom = 0
+                }
+        }
+    }
     
     fileprivate var holeNumRow: some View {
         // Hole-num row
@@ -144,7 +128,7 @@ extension ScoreCardView {
         // Par row
         GridRow {
             StandardTextCell(title: "Par", color: .brown, textColor: .white)
-
+            
             // Hole par cells
             ForEach(vm.course.holes) { hole in
                 HoleParNumberCell(hole: hole)
@@ -165,17 +149,13 @@ extension ScoreCardView {
                 GridRow {
                     // Score box cells
                     ForEach(vm.course.holes) { hole in
-//                        ScoreBoxCell(holeScore: $vm.players[idx].scores[hole.number-1], hole: hole, playerColor:vm.players[idx].color)
-//                            .environmentObject(vm)
                         scoreBoxCell(holeScore: $vm.players[idx].scores[hole.number-1], hole: hole, playerColor:vm.players[idx].color)
                     }
                     
                     TotalScoreCell(totalScore: $vm.totals[idx])
-
+                    
                     // Challenge Score cells
                     ForEach(vm.course.challenges.indices, id: \.self) { i in
-//                        ChallengeScoreCell(challengeScore: $vm.players[idx].challengeScores[i], playerColor: vm.players[idx].color)
-//                            .environmentObject(vm)
                         challengeScoreCell(challengeScore: $vm.players[idx].challengeScores[i], playerColor: vm.players[idx].color)
                     }
                     
@@ -186,9 +166,10 @@ extension ScoreCardView {
         .frame(width: 80, height: 120)
         .border(Color.black)
     }
-
+    
     fileprivate var closeButton: some View {
         Button {
+            vm.saveCurrentGame()
             navVM.path = NavigationPath()
         } label: {
             Image(systemName: "xmark")
@@ -272,7 +253,45 @@ extension ScoreCardView {
                 .keyboardType(.decimalPad)
         }
     }
+    
+    fileprivate var keyboardDoneButton: some View {
+        VStack(spacing: 0) {
+            Rectangle()
+                .fill(Color(uiColor: .separator))
+                .frame(height: 0.5)
+            Rectangle()
+                .fill(Color(uiColor: .secondarySystemBackground))
+                .frame(height: 45)
+                .overlay(alignment: .trailing) {
+                    Button("Done") {
+                        isFocused = false
+                    }.padding()
+                }
+        }
+        
+    }
+    
 }
+
+
+
+
+// Custom accesability Modifier(s)
+struct AccessibilityZoom: ViewModifier {
+    @Binding var zoom: Double
+    
+    func body(content: Content) -> some View {
+        content
+            .accessibilityZoomAction { action in
+                if action.direction == .zoomIn {
+                    zoom += 1
+                } else {
+                    zoom -= 1
+                }
+            }
+    }
+}
+
 
 
 
@@ -394,67 +413,6 @@ fileprivate struct PlayerInfoCell: View {
     }
 }
 
-//fileprivate struct ScoreBoxCell: View {
-//    @EnvironmentObject var vm: ScoreCardViewModel
-//    @Binding var holeScore: String
-//    var hole: Hole
-//    var playerColor: Color
-//    @FocusState var isFocused: Bool
-//    
-//    var body: some View {
-//        ZStack {
-//            Rectangle()
-//                .fill(Color.white)
-//                .overlay(alignment: .bottom) {
-//                    Rectangle()
-//                        .fill(playerColor.gradient)
-//                        .frame(height: 5)
-//                }
-//            
-//            TextField("", text: $holeScore)
-//                .focused($isFocused)
-//                .foregroundColor(setScoreTextColor())
-//                .multilineTextAlignment(.center)
-//                .font(.largeTitle)
-//                .fontWeight(.semibold)
-//                .background(Color.white)
-//                .keyboardType(.numberPad)
-//                
-//            strokeType()
-//        }
-//    }
-//    
-//    @ViewBuilder 
-//    fileprivate func strokeType() -> some View {
-//        if let score = Int(holeScore) {
-//            if score <= hole.par - 2 {
-//                EagleScoreView()
-//            } else if score == hole.par - 1 {
-//                BirdieScoreView()
-//            } else if score == hole.par + 1 {
-//                BogieScoreView()
-//            } else if score >= hole.par + 1 {
-//                DoubleBogieScoreView()
-//            }
-//        }
-//    }
-//    
-//    fileprivate func setScoreTextColor() -> Color {
-//        if let score = Int(holeScore) {
-//            if score <= hole.par - 2 {
-//                return Color.green
-//            } else if score == hole.par - 1 {
-//                return Color.green
-//            } else if score == hole.par + 1 {
-//                return Color.red
-//            } else if score >= hole.par + 1 {
-//                return Color.red
-//            }
-//        }
-//        return Color.black
-//    }
-//}
-
 fileprivate struct TotalScoreCell: View {
     @Binding var totalScore: Int
     
@@ -468,33 +426,6 @@ fileprivate struct TotalScoreCell: View {
         }
     }
 }
-
-//fileprivate struct ChallengeScoreCell: View {
-//    @EnvironmentObject var vm: ScoreCardViewModel
-//    @Binding var challengeScore: String
-//    var playerColor: Color
-//    @FocusState var isFocused: Bool
-//    
-//    var body: some View {
-//        ZStack {
-//            Rectangle()
-//                .fill(Color.white)
-//                .overlay(alignment: .bottom) {
-//                    Rectangle()
-//                        .fill(playerColor.gradient)
-//                        .frame(height: 5)
-//                }
-//            
-//            TextField("", text: $challengeScore)
-//                .focused($isFocused)
-//                .multilineTextAlignment(.center)
-//                .font(.largeTitle)
-//                .fontWeight(.semibold)
-//                .background(Color.white)
-//                .keyboardType(.decimalPad)
-//        }
-//    }
-//}
 
 fileprivate struct FinalTotalScore: View {
     @Binding var finalTotalScore: Int
@@ -510,7 +441,10 @@ fileprivate struct FinalTotalScore: View {
     }
 }
 
-// Custom score identifier views
+
+
+
+/// Custom golf score cell "identifier" views.
 fileprivate struct EagleScoreView: View {
     var body: some View {
         ZStack {
