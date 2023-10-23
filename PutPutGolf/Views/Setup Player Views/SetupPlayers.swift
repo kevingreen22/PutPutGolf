@@ -56,7 +56,7 @@ struct SetupPlayers: View {
             Button("Yes, Lets Putt!", systemImage: "figure.golf") {
                 navVM.path.append(vm.savedGame)
             }
-            Button("No, delete that game and I'll start a new one.", systemImage: "xmark", role: .destructive) {}
+            Button("No, lets restart that game.", systemImage: "xmark", role: .destructive) {}
         }
         
         .ignoresSafeArea(.keyboard) // this coupled with the GeometryReader makes it so the view doesn't move up when the key board is shown.
@@ -175,16 +175,18 @@ extension SetupPlayers {
             let players = vm.createPlayers(on: course)
             navVM.path.append(players)
         } label: {
-            Text("Let's Putt!")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding()
+            Image("plain_ball")
+                .resizable()
+                .frame(width: 150, height: 150)
+                .overlay {
+                    Text("Start Putting!")
+                        .foregroundStyle(Color.red)
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .padding()
+                }
         }
-        .disabled(vm.newPlayers.count < 1)
         .padding(.top)
-        .buttonStyle(.borderedProminent)
-        .buttonBorderShape(.capsule)
-        .controlSize(.large)
     }
     
 }
