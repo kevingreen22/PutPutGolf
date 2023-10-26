@@ -29,10 +29,7 @@ class CoursesViewModel: ObservableObject {
 //    @Published var mapRegioniOS17: MapCameraPosition = MKCoordinateRegion()
     let mapSpan = MKCoordinateSpan(latitudeDelta: 0.6, longitudeDelta: 0.6)
     
-    // Show list of courses
     @Published var showCoursesList: Bool = false
-
-    // Show course info sheet
     @Published var showCourseInfo: Bool = false
 
     
