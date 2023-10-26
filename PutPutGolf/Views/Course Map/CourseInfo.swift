@@ -93,13 +93,11 @@ extension CourseInfo {
                     Button {
                         coursesVM.getDirections()
                     } label: {
-                        Image(systemName: "arrow.uturn.right.circle.fill")
-                        Text("Go")
-                            .font(.title3)
-                            .fontWeight(.thin)
+                        Label("Go", systemImage: "arrow.uturn.right.circle.fill")
                     }
-                    .buttonStyle(.borderedProminent)
-                    .buttonBorderShape(.capsule)
+                    .buttonStyle(.bordered)
+                    .background(Material.ultraThinMaterial)
+                    .clipShape(.capsule)
                     .padding()
             }
     }
@@ -110,9 +108,14 @@ extension CourseInfo {
             navVM.path.append(1)
             coursesVM.showCourseInfo = false
         } label: {
-            Text("Play Course")
-                .font(.largeTitle)
-                .fontWeight(.semibold)
+            HStack {
+                Image("plain_ball")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                Text("Play Course")
+                    .font(.title)
+                    .fontWeight(.semibold)
+            }
         }
         .controlSize(.large)
         .buttonStyle(.borderedProminent)
@@ -126,6 +129,7 @@ extension CourseInfo {
             difficultyCell(difficulty: course.difficulty, text: "\(course.difficulty.rawValue)", infoItem: $infoItem)
                 .padding(.leading)
             
+            Spacer()
             Divider()
             Spacer()
             
@@ -133,11 +137,11 @@ extension CourseInfo {
             
             Spacer()
             Divider()
+            Spacer()
             
             challengeInfoCell(iconName: "trophy.circle.fill", text: "\(course.challenges.count)", infoItem: $infoItem)
                 .padding(.trailing, 20)
         }
-
     }
     
     fileprivate var courseRules: some View {
