@@ -34,14 +34,17 @@ struct CourseInfoPanel: View {
     }
 }
 
-#Preview {
-    let mockData = MockData.instance
-    return ZStack {
-        Color.green.ignoresSafeArea()
-        CourseInfoPanel(course: .constant(mockData.courses[0]))
-            .padding()
-            .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: mockData)))
-            .environmentObject(NavigationStore())
+struct CourseInfoPanel_Preview: PreviewProvider {
+    static let mockData = MockData.instance
+    
+    static var previews: some View {
+        ZStack {
+            Color.green.ignoresSafeArea()
+            CourseInfoPanel(course: .constant(mockData.courses[0]))
+                .padding()
+                .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: mockData)))
+                .environmentObject(NavigationStore())
+        }
     }
 }
 

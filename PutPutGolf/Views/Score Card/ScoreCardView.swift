@@ -22,34 +22,39 @@ struct ScoreCardView: View {
     
     
     var body: some View {
-        print("\(type(of: self)).\(#function)")
-        return ZStack(alignment: .leading) {
-            Color.white.ignoresSafeArea()
-            ScrollView(.horizontal, showsIndicators: false) {
-                ScrollView(.vertical, showsIndicators: false) {
-                    Grid(horizontalSpacing: -1, verticalSpacing: -1) {
-                        holeNumRow
-                        parRow
-                        playersRowAndScores
+//        return GeometryReader { proxy in
+            ZStack(alignment: .leading) {
+                Color.white.ignoresSafeArea()
+                ScrollView(.horizontal, showsIndicators: false) {
+                    ScrollView(.vertical, showsIndicators: false) {
+                        Grid(horizontalSpacing: -1, verticalSpacing: -1) {
+                            holeNumRow
+                            parRow
+                            playersRowAndScores
+                        }
+                        .scaleEffect(currentZoom + totalZoom)
+                        .gesture(zoom)
+                        .modifier(AccessibilityZoom(zoom: $totalZoom))
                     }
-                    .scaleEffect(currentZoom + totalZoom)
-                    .gesture(zoom)
-                    .modifier(AccessibilityZoom(zoom: $totalZoom))
                 }
+                .padding(.top)
+                .toolbar(.hidden, for: .navigationBar)
+                .overlay(alignment: .topLeading) {
+                    closeButton
+                        .padding()
+                } // Close Button
+                .toolbar {
+                    ToolbarItemGroup(placement: .keyboard) {
+                        Spacer()
+                        Button("Done") { isFocused = false }
+                    }
+                }// keyboard upper done button
             }
-            .padding(.top)
-            .toolbar(.hidden, for: .navigationBar)
-            .overlay(alignment: .topTrailing) {
-                closeButton
-                    .padding(.trailing)
-                    .offset(y: -35.0)
-            } // Close Button
-            .overlay(alignment: .bottomTrailing) {
-                if isFocused {
-                    keyboardDoneButton.animation(.linear, value: isFocused)
-                }
-            } // Custom keyboard top-area button.
-        }
+            .ignoresSafeArea()
+//            .rotationEffect(.degrees(-90), anchor: .bottom)
+//            .frame(width: proxy.size.height, height: proxy.size.width)
+//        }
+        
     }
 }
 
@@ -253,30 +258,13 @@ extension ScoreCardView {
                 .keyboardType(.decimalPad)
         }
     }
-    
-    fileprivate var keyboardDoneButton: some View {
-        VStack(spacing: 0) {
-            Rectangle()
-                .fill(Color(uiColor: .separator))
-                .frame(height: 0.5)
-            Rectangle()
-                .fill(Color(uiColor: .secondarySystemBackground))
-                .frame(height: 45)
-                .overlay(alignment: .trailing) {
-                    Button("Done") {
-                        isFocused = false
-                    }.padding()
-                }
-        }
         
-    }
-    
 }
 
 
 
 
-// Custom accesability Modifier(s)
+// Custom accessibility Modifier(s)
 struct AccessibilityZoom: ViewModifier {
     @Binding var zoom: Double
     

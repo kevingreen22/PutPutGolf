@@ -8,6 +8,22 @@
 import SwiftUI
 import Combine
 
+struct NewPlayer: Hashable, Identifiable {
+    var id: UUID = UUID()
+    var name: String
+    var image: UIImage?
+    var color: Color
+    
+    // Hashable
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(name)
+        hasher.combine(image)
+        hasher.combine(color)
+    }
+}
+
+
 class SetupPlayerViewModel: ObservableObject {
     @Published var newPlayers: [NewPlayer] = []
     @Published var profileImage: UIImage?
@@ -80,17 +96,3 @@ class SetupPlayerViewModel: ObservableObject {
 
 
 
-struct NewPlayer: Hashable, Identifiable {
-    var id: UUID = UUID()
-    var name: String
-    var image: UIImage?
-    var color: Color
-    
-    // Hashable
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-        hasher.combine(name)
-        hasher.combine(image)
-        hasher.combine(color)
-    }
-}
