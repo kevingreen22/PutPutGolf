@@ -18,7 +18,7 @@ struct CoursesMap: View {
             ZStack {
                 MyMap()
                     .environmentObject(coursesVM)
-                    .overlay(alignment: .topTrailing) {                        
+                    .overlay(alignment: .topTrailing) {              
                         savedGamesMenu
                     } // Saved games button/menu
                 
@@ -43,6 +43,9 @@ struct CoursesMap: View {
                     SetupPlayers(course)
                 }
             }
+            .navigationDestination(for: [Player].self) { players in
+                ScoreCardView(course: coursesVM.selectedCourse, players: players)
+            }
             
             // Screen size
             .overlay(
@@ -59,9 +62,11 @@ struct CoursesMap: View {
 }
 
 struct CoursesMap_Previews: PreviewProvider {
+    static let mockData = MockData.instance
+    
     static var previews: some View {
         CoursesMap()
-            .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: MockData.instance)))
+            .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: mockData)))
             .environmentObject(NavigationStore())
     }
 }
@@ -109,16 +114,10 @@ extension CoursesMap {
     
     fileprivate var savedGamesMenu: some View {
         Menu {
-            if let current = coursesVM.currentGame {
-                Section("Current Game") {
-                    Button("\(current.course.address) - \(current.dateString)") {
-                        navVM.path.append(current.players)
-                    }
-                }
-            }
             Section("Previous Games") {
-                ForEach(coursesVM.allSavedGames) { savedGame in
-                    Button("\(savedGame.course.address) - \(savedGame.dateString)") {
+                ForEach(coursesVM.savedGames) { savedGame in
+                    Button("\(savedGame.course.address) - \(savedGame.dateString) \(savedGame.isCompleted ? "✅" : "⚠️")") {
+                        coursesVM.selectedCourse = savedGame.course
                         navVM.path.append(savedGame.players)
                     }
                 }
@@ -137,11 +136,6 @@ extension CoursesMap {
                         .padding(5)
                 }
                 .padding(.trailing)
-        } primaryAction: {
-            // show current-game/last played score card
-            if let players = coursesVM.currentGame?.players {
-                navVM.path.append(players)
-            }
         }
     }
     
