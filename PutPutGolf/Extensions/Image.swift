@@ -13,7 +13,7 @@ public extension Image {
     /// - Parameters:
     ///   - uiimage: An optional UIImage object.
     ///   - systemName: The name of an SF symbol. Default if "person.fill":
-    init(uiimage: UIImage?, systemName: String = "person.fill") {
+    init(uiimage: UIImage?, systemName: String = "person.circle.fill") {
         if let uiimage = uiimage {
             self.init(uiImage: uiimage)
         } else {
