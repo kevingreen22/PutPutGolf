@@ -46,4 +46,53 @@ extension SavedGame: RawRepresentable {
         else { return "" }
         return result
     }
+    
+    
+    
+    
+    /// https://stackoverflow.com/questions/74190477/app-crashes-when-setting-custom-struct-value-in-appstorage
+    
+    /// Implementing this solves the infinite recursion issue when types that conforms to both Encodable and RawRepresentable automatically get this encode(to:) implementation(sourceA), which encodes the raw value. This means that when you call JSONEncoder().encode, it would try to call the getter of rawValue, which calls JSONEncoder().encode, forming the infinite recursion.
+    ///
+    /// To solve this, you can implement encode(to:) explicitly.
+    /// Note that you should also implement init(from:) explicitly. (see below)
+    ///
+    /// ```
+    /// func encode(to encoder: Encoder) throws {
+    ///     var container = encoder.unkeyedContainer()
+    ///     try container.encode(id) <-- where "id" is one of the struct's properties.
+    /// }
+    /// ```
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.unkeyedContainer()
+        try container.encode(id)
+        try container.encode(course)
+        try container.encode(players)
+        try container.encode(isCompleted)
+        try container.encode(date)
+    }
+    
+    /// https://stackoverflow.com/questions/74190477/app-crashes-when-setting-custom-struct-value-in-appstorage
+    
+    /// Implementing this solves the infinite recursion issue when types that conforms to both Encodable and RawRepresentable automatically get this encode(to:) implementation(sourceA), which encodes the raw value. This means that when you call JSONEncoder().encode, it would try to call the getter of rawValue, which calls JSONEncoder().encode, forming the infinite recursion.
+    ///
+    ///
+    /// To solve this, you can implement init(from:) explicitly, because you also get a init(from:) implementation that tries to decode your JSON as a single JSON string, which you certainly do not want.
+    /// Note that you should also implement encode(to:) explicitly. (see above)
+    ///
+    /// ```
+    /// init(from decoder: Decoder) throws {
+    ///     var container = try decoder.unkeyedContainer()
+    ///     id = try container.decode(UUID.self) <-- adding all properies types. Including all duplicates.
+    /// }
+    /// ```
+    init(from decoder: Decoder) throws {
+        var container = try decoder.unkeyedContainer()
+        id = try container.decode(UUID.self)
+        course = try container.decode(Course.self)
+        players = try container.decode([Player].self)
+        isCompleted = try container.decode(Bool.self)
+        date = try container.decode(Date.self)
+    }
+    
 }
