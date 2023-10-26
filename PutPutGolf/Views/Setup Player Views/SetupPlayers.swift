@@ -36,9 +36,6 @@ struct SetupPlayers: View {
                 .padding(.top)
                 .onAppear { isFocused = true }
                 .navigationTitle("Setup Players")
-                .navigationDestination(for: [Player].self) { players in
-                    ScoreCardView(course: course, players: players)
-                }
                 .navigationDestination(for: SavedGame.self) { savedGame in
                     ScoreCardView(course: savedGame.course, players: savedGame.players, isResumingGame: true)
                 }
@@ -83,9 +80,8 @@ extension SetupPlayers {
     fileprivate var profileImage: some View {
         Image(uiimage: vm.profileImage)
             .resizable()
-            .scaledToFill()
             .frame(width: 150, height: 150)
-            .foregroundStyle(vm.profileImage == nil ? Color.gray.opacity(0.5) : Color.clear)
+            .foregroundStyle(vm.profileImage == nil ? Color.gray.opacity(0.2) : Color.clear)
             .background { Color.white }
             .clipShape(Circle())
             .shadow(radius: 10)
@@ -125,7 +121,7 @@ extension SetupPlayers {
             .toolbar { // keyboard upper done button
                 ToolbarItemGroup(placement: .keyboard) {
                     Spacer()
-                    Button("Done") { isFocused = false }
+                    Button("Done") { vm.textFieldDidSubmit = true; isFocused = false }
                 }
             }
             .onSubmit {
@@ -160,13 +156,12 @@ extension SetupPlayers {
     fileprivate func profileImageThumb(image: UIImage?, color: Color) -> some View {
         Image(uiimage: image)
             .resizable()
-            .scaledToFill()
             .frame(width: 50, height: 50)
             .foregroundStyle(image == nil ? Color.gray : Color.clear)
             .background(Color.white)
             .clipShape(Circle())
             .padding(3)
-            .overlay { Circle().stroke(color, lineWidth: 2) }
+            .overlay { Circle().stroke(color, lineWidth: 2) } // border
     }
     
     fileprivate var letsPuttButton: some View {
@@ -177,16 +172,19 @@ extension SetupPlayers {
         } label: {
             Image("plain_ball")
                 .resizable()
-                .frame(width: 150, height: 150)
+                .frame(width: 100, height: 100)
                 .overlay {
-                    Text("Start Putting!")
+                    Text("Lets Putt!")
                         .foregroundStyle(Color.red)
-                        .font(.title)
+                        .font(.title3)
                         .fontWeight(.bold)
                         .padding()
                 }
         }
-        .padding(.top)
+        .padding([.top, .bottom])
+        .disabled(vm.newPlayers.count > 0 ? false : true)
+        .grayscale(vm.newPlayers.count > 0 ? 0 : 1)
+        .opacity(vm.newPlayers.count > 0 ? 1 : 0.5)
     }
     
 }
