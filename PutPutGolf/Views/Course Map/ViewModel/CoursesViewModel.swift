@@ -36,19 +36,20 @@ class CoursesViewModel: ObservableObject {
     init(dataService: DataServiceProtocol) {
         self.dataService = dataService
         loadCourses()
-        guard let firstCourse = coursesData.first else { return }
-        selectedCourse = firstCourse
-        updateMapRegion(course: firstCourse)
     }
     
     private func loadCourses() {
         dataService.getCourses()
-            .sink { _ in
+            .retry(3) // good for retrying api calls that error out.
+            .timeout(10, scheduler: DispatchQueue.main) // terminates publishing after amount of time.
+            .sink { error in
                 // error or success
-                
+                print("load Courses error: \(error)")
             } receiveValue: { [weak self] courses in
                 guard let self = self else { return }
                 self.coursesData = courses
+                self.selectedCourse = courses.first
+                updateMapRegion(course: self.selectedCourse)
             }
             .store(in: &cancellables)
     }
