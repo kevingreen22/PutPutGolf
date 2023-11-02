@@ -50,7 +50,7 @@ class SetupPlayerViewModel: ObservableObject {
                 
                 // Checks that the user pressed "return" on keyboard, that they actually typed in a name, and if that name is already in the list of names.
                 if didSubmit == true, playerName != "", !newPlayers.contains(where: { [weak self] player in
-                    return player.name == self?.playerName
+                    return player.name.lowercased() == self?.playerName.lowercased()
                 }) {
                     // Initializes a NewPlayer object and appends it to the newPlayers property.
                     let newPlayer = NewPlayer(name: playerName, image: profileImage, color: self.pickedColor)
