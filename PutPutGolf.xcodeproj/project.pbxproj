@@ -33,7 +33,6 @@
 		C760EB1A2ABE0C1A000DFE09 /* CoursesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB192ABE0C1A000DFE09 /* CoursesViewModel.swift */; };
 		C760EB1E2ABF57B8000DFE09 /* CourseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB1D2ABF57B8000DFE09 /* CourseInfo.swift */; };
 		C77B0CB72AD0809500F3E1C5 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77B0CB62AD0809500F3E1C5 /* Map.swift */; };
-		C7859A142AF2C1AE00F4CF82 /* PutPutGolf_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7859A132AF2C1AE00F4CF82 /* PutPutGolf_Tests.swift */; };
 		C7859A1B2AF2C51700F4CF82 /* CoursesViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7859A1A2AF2C51700F4CF82 /* CoursesViewModel_Tests.swift */; };
 		C7859A1D2AF31AE600F4CF82 /* MockDataService_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7859A1C2AF31AE600F4CF82 /* MockDataService_Tests.swift */; };
 		C7859A1F2AF4268000F4CF82 /* SetupPlayerViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7859A1E2AF4268000F4CF82 /* SetupPlayerViewModel_Tests.swift */; };
@@ -87,7 +86,6 @@
 		C760EB1D2ABF57B8000DFE09 /* CourseInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInfo.swift; sourceTree = "<group>"; };
 		C77B0CB62AD0809500F3E1C5 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		C7859A112AF2C1AE00F4CF82 /* PutPutGolf_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PutPutGolf_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7859A132AF2C1AE00F4CF82 /* PutPutGolf_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutPutGolf_Tests.swift; sourceTree = "<group>"; };
 		C7859A1A2AF2C51700F4CF82 /* CoursesViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewModel_Tests.swift; sourceTree = "<group>"; };
 		C7859A1C2AF31AE600F4CF82 /* MockDataService_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataService_Tests.swift; sourceTree = "<group>"; };
 		C7859A1E2AF4268000F4CF82 /* SetupPlayerViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupPlayerViewModel_Tests.swift; sourceTree = "<group>"; };
@@ -269,7 +267,6 @@
 		C7859A122AF2C1AE00F4CF82 /* PutPutGolf_Tests */ = {
 			isa = PBXGroup;
 			children = (
-				C7859A132AF2C1AE00F4CF82 /* PutPutGolf_Tests.swift */,
 				C7859A1C2AF31AE600F4CF82 /* MockDataService_Tests.swift */,
 				C7859A1A2AF2C51700F4CF82 /* CoursesViewModel_Tests.swift */,
 				C7859A1E2AF4268000F4CF82 /* SetupPlayerViewModel_Tests.swift */,
@@ -445,7 +442,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7859A142AF2C1AE00F4CF82 /* PutPutGolf_Tests.swift in Sources */,
 				C7859A1B2AF2C51700F4CF82 /* CoursesViewModel_Tests.swift in Sources */,
 				C7859A1F2AF4268000F4CF82 /* SetupPlayerViewModel_Tests.swift in Sources */,
 				C7859A1D2AF31AE600F4CF82 /* MockDataService_Tests.swift in Sources */,
