@@ -33,6 +33,10 @@
 		C760EB1A2ABE0C1A000DFE09 /* CoursesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB192ABE0C1A000DFE09 /* CoursesViewModel.swift */; };
 		C760EB1E2ABF57B8000DFE09 /* CourseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB1D2ABF57B8000DFE09 /* CourseInfo.swift */; };
 		C77B0CB72AD0809500F3E1C5 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77B0CB62AD0809500F3E1C5 /* Map.swift */; };
+		C7859A142AF2C1AE00F4CF82 /* PutPutGolf_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7859A132AF2C1AE00F4CF82 /* PutPutGolf_Tests.swift */; };
+		C7859A1B2AF2C51700F4CF82 /* CoursesViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7859A1A2AF2C51700F4CF82 /* CoursesViewModel_Tests.swift */; };
+		C7859A1D2AF31AE600F4CF82 /* MockDataService_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7859A1C2AF31AE600F4CF82 /* MockDataService_Tests.swift */; };
+		C7859A1F2AF4268000F4CF82 /* SetupPlayerViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7859A1E2AF4268000F4CF82 /* SetupPlayerViewModel_Tests.swift */; };
 		C7A9BA902AC4AA3100A69B81 /* CoursesMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A9BA8F2AC4AA3100A69B81 /* CoursesMap.swift */; };
 		C7CDAF9B2AD1E8CD006C0886 /* CoursesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CDAF9A2AD1E8CD006C0886 /* CoursesList.swift */; };
 		C7CDAFA52AD5CCCA006C0886 /* CourseInfoPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CDAFA42AD5CCCA006C0886 /* CourseInfoPanel.swift */; };
@@ -42,6 +46,16 @@
 		C7E24CED2AE311C500A3D473 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E24CEC2AE311C500A3D473 /* TestView.swift */; };
 		C7E24CEF2AE472BC00A3D473 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E24CEE2AE472BB00A3D473 /* Array.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C7859A152AF2C1AE00F4CF82 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C760EAE72AB8F7FF000DFE09 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C760EAEE2AB8F7FF000DFE09;
+			remoteInfo = PutPutGolf;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		C74CB2432AC4CD1000AC53D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -72,6 +86,11 @@
 		C760EB192ABE0C1A000DFE09 /* CoursesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewModel.swift; sourceTree = "<group>"; };
 		C760EB1D2ABF57B8000DFE09 /* CourseInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInfo.swift; sourceTree = "<group>"; };
 		C77B0CB62AD0809500F3E1C5 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		C7859A112AF2C1AE00F4CF82 /* PutPutGolf_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PutPutGolf_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7859A132AF2C1AE00F4CF82 /* PutPutGolf_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutPutGolf_Tests.swift; sourceTree = "<group>"; };
+		C7859A1A2AF2C51700F4CF82 /* CoursesViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewModel_Tests.swift; sourceTree = "<group>"; };
+		C7859A1C2AF31AE600F4CF82 /* MockDataService_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataService_Tests.swift; sourceTree = "<group>"; };
+		C7859A1E2AF4268000F4CF82 /* SetupPlayerViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupPlayerViewModel_Tests.swift; sourceTree = "<group>"; };
 		C7A9BA8F2AC4AA3100A69B81 /* CoursesMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesMap.swift; sourceTree = "<group>"; };
 		C7CDAF9A2AD1E8CD006C0886 /* CoursesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesList.swift; sourceTree = "<group>"; };
 		C7CDAFA42AD5CCCA006C0886 /* CourseInfoPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInfoPanel.swift; sourceTree = "<group>"; };
@@ -87,6 +106,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7E24CE52AE0A36600A3D473 /* KGImageChooser in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C7859A0E2AF2C1AE00F4CF82 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				C760EAF12AB8F7FF000DFE09 /* PutPutGolf */,
+				C7859A122AF2C1AE00F4CF82 /* PutPutGolf_Tests */,
 				C760EAF02AB8F7FF000DFE09 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -138,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				C760EAEF2AB8F7FF000DFE09 /* PutPutGolf.app */,
+				C7859A112AF2C1AE00F4CF82 /* PutPutGolf_Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -238,6 +266,17 @@
 			path = SubViews;
 			sourceTree = "<group>";
 		};
+		C7859A122AF2C1AE00F4CF82 /* PutPutGolf_Tests */ = {
+			isa = PBXGroup;
+			children = (
+				C7859A132AF2C1AE00F4CF82 /* PutPutGolf_Tests.swift */,
+				C7859A1C2AF31AE600F4CF82 /* MockDataService_Tests.swift */,
+				C7859A1A2AF2C51700F4CF82 /* CoursesViewModel_Tests.swift */,
+				C7859A1E2AF4268000F4CF82 /* SetupPlayerViewModel_Tests.swift */,
+			);
+			path = PutPutGolf_Tests;
+			sourceTree = "<group>";
+		};
 		C7CDAF9D2AD21578006C0886 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +324,24 @@
 			productReference = C760EAEF2AB8F7FF000DFE09 /* PutPutGolf.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C7859A102AF2C1AE00F4CF82 /* PutPutGolf_Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C7859A172AF2C1AE00F4CF82 /* Build configuration list for PBXNativeTarget "PutPutGolf_Tests" */;
+			buildPhases = (
+				C7859A0D2AF2C1AE00F4CF82 /* Sources */,
+				C7859A0E2AF2C1AE00F4CF82 /* Frameworks */,
+				C7859A0F2AF2C1AE00F4CF82 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C7859A162AF2C1AE00F4CF82 /* PBXTargetDependency */,
+			);
+			name = PutPutGolf_Tests;
+			productName = PutPutGolf_Tests;
+			productReference = C7859A112AF2C1AE00F4CF82 /* PutPutGolf_Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -292,11 +349,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					C760EAEE2AB8F7FF000DFE09 = {
 						CreatedOnToolsVersion = 14.3.1;
+					};
+					C7859A102AF2C1AE00F4CF82 = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = C760EAEE2AB8F7FF000DFE09;
 					};
 				};
 			};
@@ -317,6 +378,7 @@
 			projectRoot = "";
 			targets = (
 				C760EAEE2AB8F7FF000DFE09 /* PutPutGolf */,
+				C7859A102AF2C1AE00F4CF82 /* PutPutGolf_Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -334,6 +396,13 @@
 				C760EAF72AB8F801000DFE09 /* Assets.xcassets in Resources */,
 				C74CB2492AC6000800AC53D7 /* putter_banner.png in Resources */,
 				C74CB24B2AC601C000AC53D7 /* plain_ball.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C7859A0F2AF2C1AE00F4CF82 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,7 +441,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C7859A0D2AF2C1AE00F4CF82 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7859A142AF2C1AE00F4CF82 /* PutPutGolf_Tests.swift in Sources */,
+				C7859A1B2AF2C51700F4CF82 /* CoursesViewModel_Tests.swift in Sources */,
+				C7859A1F2AF4268000F4CF82 /* SetupPlayerViewModel_Tests.swift in Sources */,
+				C7859A1D2AF31AE600F4CF82 /* MockDataService_Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C7859A162AF2C1AE00F4CF82 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C760EAEE2AB8F7FF000DFE09 /* PutPutGolf */;
+			targetProxy = C7859A152AF2C1AE00F4CF82 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		C760EAFB2AB8F801000DFE09 /* Debug */ = {
@@ -559,6 +647,51 @@
 			};
 			name = Release;
 		};
+		C7859A182AF2C1AE00F4CF82 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KY6DPH5Y6J;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kevinGreen.PutPutGolf-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PutPutGolf.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PutPutGolf";
+			};
+			name = Debug;
+		};
+		C7859A192AF2C1AE00F4CF82 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KY6DPH5Y6J;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kevinGreen.PutPutGolf-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PutPutGolf.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PutPutGolf";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -576,6 +709,15 @@
 			buildConfigurations = (
 				C760EAFE2AB8F801000DFE09 /* Debug */,
 				C760EAFF2AB8F801000DFE09 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C7859A172AF2C1AE00F4CF82 /* Build configuration list for PBXNativeTarget "PutPutGolf_Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C7859A182AF2C1AE00F4CF82 /* Debug */,
+				C7859A192AF2C1AE00F4CF82 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
