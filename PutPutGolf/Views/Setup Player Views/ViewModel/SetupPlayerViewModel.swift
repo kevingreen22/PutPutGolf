@@ -88,9 +88,13 @@ class SetupPlayerViewModel: ObservableObject {
  
     
     func checkForCurrentGameOn(course: Course) {
-        if let data = savedGameData, let savedGame = try? JSONDecoder().decode(SavedGame.self, from: data) {
-            self.savedGame = savedGame
-            self.showCurrentGameAlert = true
+        guard savedGames != nil else { return }
+        for game in savedGames! {
+            if !game.isCompleted && game.course == course {
+                self.savedGame = game
+                self.showCurrentGameAlert = true
+                break
+            }
         }
     }
     
