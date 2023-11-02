@@ -10,19 +10,16 @@ import Combine
 import MapKit
 
 class CoursesViewModel: ObservableObject {
-    var dataService: DataServiceProtocol
+    var dataService: any DataServiceProtocol
     var cancellables: Set<AnyCancellable> = []
-    @AppStorage(AppStorageKeys.savedGames.description) var savedGames: [SavedGame] = []
-    
-    // All loaded courses
-    var coursesData: [Course] = []
     
     // Current coures on map
-    @Published var selectedCourse: Course! {
-        didSet {
-            updateMapRegion(course: selectedCourse ?? Course())
-        }
-    }
+    @Published var selectedCourse: Course! { didSet { updateMapRegion(course: selectedCourse ?? Course()) } }
+    
+//    @AppStorage(AppStorageKeys.savedGames.description) var savedGames: [SavedGame]?
+    
+    // All loaded courses
+    @Published var coursesData: [Course] = []
     
     // Current region on map
     @Published var mapRegion: MKCoordinateRegion = MKCoordinateRegion()
@@ -33,15 +30,16 @@ class CoursesViewModel: ObservableObject {
     @Published var showCourseInfo: Bool = false
 
     
-    init(dataService: DataServiceProtocol) {
+    init(dataService: any DataServiceProtocol) {
         self.dataService = dataService
         loadCourses()
     }
     
+    
     private func loadCourses() {
         dataService.getCourses()
             .retry(3) // good for retrying api calls that error out.
-            .timeout(10, scheduler: DispatchQueue.main) // terminates publishing after amount of time.
+            .timeout(10, scheduler: DispatchQueue.global()) // terminates publishing after amount of time.
             .sink { error in
                 // error or success
                 print("load Courses error: \(error)")
@@ -49,10 +47,12 @@ class CoursesViewModel: ObservableObject {
                 guard let self = self else { return }
                 self.coursesData = courses
                 self.selectedCourse = courses.first
-                updateMapRegion(course: self.selectedCourse)
+//                guard let course = selectedCourse else { return }
+//                updateMapRegion(course: course)
             }
             .store(in: &cancellables)
     }
+    
     
     func updateMapRegion(course: Course) {
         withAnimation(.easeInOut) {
@@ -60,11 +60,13 @@ class CoursesViewModel: ObservableObject {
         }
     }
     
+    
     func toggleCoursesList() {
         withAnimation(.easeInOut) {
             showCoursesList.toggle()
         }
     }
+    
     
     /// Shows the course info panel on the map.
     /// - Parameter course: The Course to show.
@@ -93,6 +95,7 @@ class CoursesViewModel: ObservableObject {
             }
         }
     }
+    
     
     /// Opens the Maps.app with directions to the selected course.
     func getDirections() {
