@@ -41,6 +41,7 @@ class SetupPlayerViewModel: ObservableObject {
     
     init() {
         textFieldDidSubmitSubscriber()
+        setupNewPlayerSubscriber()
     }
     
     func textFieldDidSubmitSubscriber() {
