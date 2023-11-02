@@ -25,6 +25,8 @@ struct NewPlayer: Hashable, Identifiable {
 
 
 class SetupPlayerViewModel: ObservableObject {
+    @AppStorage(AppStorageKeys.savedGames.description) var savedGames: [SavedGame]?
+
     @Published var newPlayers: [NewPlayer] = []
     @Published var profileImage: UIImage?
     @Published var playerName: String = ""
@@ -33,8 +35,8 @@ class SetupPlayerViewModel: ObservableObject {
     @Published var textFieldDidSubmit: Bool = false
     @Published var showImageChooser: Bool = false
     @Published var showCurrentGameAlert: Bool = false
+    
     var cancellables: Set<AnyCancellable> = []
-    @AppStorage("savedGame") var savedGameData: Data?
     var savedGame: SavedGame?
     
     init() {
