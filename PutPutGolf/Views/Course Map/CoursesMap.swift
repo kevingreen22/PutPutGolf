@@ -112,32 +112,32 @@ extension CoursesMap {
         .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 15)
     }
     
-    fileprivate var savedGamesMenu: some View {
-        Menu {
-            Section("Previous Games") {
-                ForEach(coursesVM.savedGames) { savedGame in
-                    Button("\(savedGame.course.address) - \(savedGame.dateString) \(savedGame.isCompleted ? "✅" : "⚠️")") {
-                        coursesVM.selectedCourse = savedGame.course
-                        navVM.path.append(savedGame.players)
-                    }
-                }
-            }
-        } label: {
-            Image(systemName: "figure.golf")
-                .font(.title)
-                .frame(width: 55, height: 55)
-                .background(.thickMaterial)
-                .cornerRadius(10)
-                .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 15)
-                .overlay(alignment: .bottomTrailing) {
-                    Image(systemName: "chevron.down")
-                        .resizable()
-                        .frame(width: 8, height: 5)
-                        .padding(5)
-                }
-                .padding(.trailing)
-        }
-    }
+//    fileprivate var savedGamesMenu: some View {
+//        Menu {
+//            Section("Previous Games") {
+//                ForEach(coursesVM.savedGames) { savedGame in
+//                    Button("\(savedGame.course.address) - \(savedGame.dateString) \(savedGame.isCompleted ? "✅" : "⚠️")") {
+//                        coursesVM.selectedCourse = savedGame.course
+//                        navVM.path.append(savedGame.players)
+//                    }
+//                }
+//            }
+//        } label: {
+//            Image(systemName: "figure.golf")
+//                .font(.title)
+//                .frame(width: 55, height: 55)
+//                .background(.thickMaterial)
+//                .cornerRadius(10)
+//                .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 15)
+//                .overlay(alignment: .bottomTrailing) {
+//                    Image(systemName: "chevron.down")
+//                        .resizable()
+//                        .frame(width: 8, height: 5)
+//                        .padding(5)
+//                }
+//                .padding(.trailing)
+//        }
+//    }
     
     fileprivate var courseInfoPanel: some View {
         ZStack {

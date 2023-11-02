@@ -65,7 +65,7 @@ import Combine
     }
     
     
-    /// Saves the current game to the appropriate AppStorage key.
+    /// Saves the current game to AppStorage.
     func saveCurrentGame() {
         let game = SavedGame(course: self.course, players: self.players, isCompleted: isGameCompleted)
         self.savedGames.append(game)
