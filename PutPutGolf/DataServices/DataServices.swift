@@ -8,12 +8,13 @@
 import SwiftUI
 import Combine
 
-protocol DataServiceProtocol {
+protocol DataServiceProtocol: Equatable {
     func getCourses() -> AnyPublisher<[Course], Error>
 }
 
 
 class ProductionDataService: DataServiceProtocol {
+    
     let url: URL
     
     init(url: URL) {
@@ -27,10 +28,16 @@ class ProductionDataService: DataServiceProtocol {
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
+    
+    // Equatable
+    static func == (lhs: ProductionDataService, rhs: ProductionDataService) -> Bool {
+        return lhs.url == rhs.url
+    }
 }
 
 
 class MockDataService<T>: DataServiceProtocol where T: MockDataProtocol {
+    
     let mockCourses: [Course]
     
     init(mockData: T) {
@@ -39,8 +46,18 @@ class MockDataService<T>: DataServiceProtocol where T: MockDataProtocol {
     
     func getCourses() -> AnyPublisher<[Course], Error> {
         Just(mockCourses)
-            .tryMap({ $0 })
+            .tryMap({ courses in
+                guard !courses.isEmpty else {
+                    throw URLError(.badServerResponse)
+                }
+                return courses
+            })
             .eraseToAnyPublisher()
+    }
+    
+    // Equatable
+    static func == (lhs: MockDataService<T>, rhs: MockDataService<T>) -> Bool {
+        return lhs.mockCourses == rhs.mockCourses
     }
     
 }
