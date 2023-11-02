@@ -11,12 +11,14 @@ import Combine
 @MainActor class ScoreCardViewModel: ObservableObject {
     typealias Totals = Int
     typealias FinalTotals = Int
-    var course: Course
+    @AppStorage(AppStorageKeys.savedGames.description) var savedGames: [SavedGame]?
+    
     @Published var players: [Player]
     @Published var totals: [Totals] = []
     @Published var finalTotals: [FinalTotals] = []
+    
+    var course: Course
     var cancellables: Set<AnyCancellable> = []
-    @AppStorage(AppStorageKeys.savedGames.description) var savedGames: [SavedGame] = []
     var isGameCompleted: Bool = false
 
     
@@ -51,13 +53,18 @@ import Combine
     
     
     /// Checks if the game is completed and sets the isGameCompleted variable.
-    /// This is specifically used for saving the game, as there are two keys of app storage for games.
     fileprivate func subscribeForGameIsFinished() {
         $players
             .sink { [weak self] values in
                 for player in values {
-                    guard player.scores.allSatisfy({ $0 != "" }) else { return }
-                    guard player.challengeScores.allSatisfy({ $0 != "" }) else { return }
+                    guard player.scores.allSatisfy({ $0 != "" }) else {
+                        self?.isGameCompleted = false
+                        return
+                    }
+                    guard player.challengeScores.allSatisfy({ $0 != "" }) else {
+                        self?.isGameCompleted = false
+                        return
+                    }
                     self?.isGameCompleted = true
                 }
             }
@@ -68,7 +75,11 @@ import Combine
     /// Saves the current game to AppStorage.
     func saveCurrentGame() {
         let game = SavedGame(course: self.course, players: self.players, isCompleted: isGameCompleted)
-        self.savedGames.append(game)
+        if savedGames != nil {
+            self.savedGames!.append(game)
+        } else {
+            self.savedGames = [game]
+        }
     }
     
 }
