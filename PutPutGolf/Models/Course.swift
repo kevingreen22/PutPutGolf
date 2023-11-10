@@ -73,7 +73,7 @@ struct Course: Codable, Hashable, Equatable, Identifiable {
     func getImage() -> Image {
         guard let data = self.imageData,
                 let img = UIImage(data: data) else {
-            return Image(systemName: "photo.fill")
+            return Image("plain_ball")
         }
         return Image(uiImage: img)
     }
