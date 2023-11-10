@@ -11,7 +11,7 @@ struct CourseInfo: View {
     @EnvironmentObject var navVM: NavigationStore
     @EnvironmentObject var coursesVM: CoursesViewModel
     @Binding var course: Course
-    @State private var courseImage: Image = Image("walnut_creek") /*Image(systemName: "photo")*/ /* Image("placeholder") */
+    @State private var courseImage: Image = Image("putter_banner")
     @State private var infoItem: InfoItem?
     
     init(course: Binding<Course>) {
