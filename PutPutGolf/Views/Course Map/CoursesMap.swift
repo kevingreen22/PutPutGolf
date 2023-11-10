@@ -39,9 +39,7 @@ struct CoursesMap: View {
             // Navigation
             .navigationBarTitleDisplayMode(.large)
             .navigationDestination(for: Int.self) { navID in
-                if let course = coursesVM.selectedCourse {
-                    SetupPlayers(course)
-                }
+                SetupPlayers(coursesVM.selectedCourse)
             }
             .navigationDestination(for: [Player].self) { players in
                 ScoreCardView(course: coursesVM.selectedCourse, players: players)
@@ -88,7 +86,7 @@ extension CoursesMap {
     fileprivate var headerBar: some View {
         VStack {
             Button(action: coursesVM.toggleCoursesList) {
-                Text(coursesVM.selectedCourse?.address ?? "Unknown")
+                Text(coursesVM.selectedCourse.address)
                     .font(.title2)
                     .fontWeight(.black)
                     .foregroundColor(.primary)

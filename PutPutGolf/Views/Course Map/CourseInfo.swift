@@ -10,14 +10,14 @@ import SwiftUI
 struct CourseInfo: View {
     @EnvironmentObject var navVM: NavigationStore
     @EnvironmentObject var coursesVM: CoursesViewModel
-    @Binding var course: Course!
+    @Binding var course: Course
     @State private var courseImage: Image = Image("walnut_creek") /*Image(systemName: "photo")*/ /* Image("placeholder") */
     @State private var infoItem: InfoItem?
     
-    init(course: Binding<Course?>) {
+    init(course: Binding<Course>) {
         _course = course
         
-        if let course = course.wrappedValue, let data = course.imageData, let img = UIImage(data: data) {
+        if let data = course.wrappedValue.imageData, let img = UIImage(data: data) {
             courseImage = Image(uiImage: img)
         }
         

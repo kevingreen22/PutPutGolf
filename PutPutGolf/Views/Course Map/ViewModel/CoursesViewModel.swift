@@ -14,12 +14,10 @@ class CoursesViewModel: ObservableObject {
     var cancellables: Set<AnyCancellable> = []
     
     // Current coures on map
-    @Published var selectedCourse: Course! { didSet { updateMapRegion(course: selectedCourse ?? Course()) } }
-    
-//    @AppStorage(AppStorageKeys.savedGames.description) var savedGames: [SavedGame]?
+    @Published var selectedCourse: Course = Course()
     
     // All loaded courses
-    @Published var coursesData: [Course] = []
+    var coursesData: [Course] = []
     
     // Current region on map
     @Published var mapRegion: MKCoordinateRegion = MKCoordinateRegion()
@@ -33,22 +31,34 @@ class CoursesViewModel: ObservableObject {
     init(dataService: any DataServiceProtocol) {
         self.dataService = dataService
         loadCourses()
+        subToSelectedCourse()
     }
     
     
     private func loadCourses() {
         dataService.getCourses()
             .retry(3) // good for retrying api calls that error out.
-            .timeout(10, scheduler: DispatchQueue.global()) // terminates publishing after amount of time.
+//            .timeout(10, scheduler: DispatchQueue.global()) // terminates publishing after amount of time.
             .sink { error in
-                // error or success
-                print("load Courses error: \(error)")
+                switch error {
+                case .finished: print("Courses Loaded")
+                case .failure(let error):  print("load Courses error: \(error)")
+                }
             } receiveValue: { [weak self] courses in
-                guard let self = self else { return }
+                guard let self = self, let firstCourse = courses.first else { return }
                 self.coursesData = courses
-                self.selectedCourse = courses.first
-//                guard let course = selectedCourse else { return }
-//                updateMapRegion(course: course)
+                self.selectedCourse = firstCourse
+            }
+            .store(in: &cancellables)
+    }
+    
+    
+    private func subToSelectedCourse() {
+        $selectedCourse
+            .receive(on:  DispatchQueue.main)
+            .sink { [weak self] course in
+                guard let self = self else { return }
+                self.updateMapRegion(course: course)
             }
             .store(in: &cancellables)
     }
@@ -68,7 +78,7 @@ class CoursesViewModel: ObservableObject {
     }
     
     
-    /// Shows the course info panel on the map.
+    /// Shows the next course info panel on the map.
     /// - Parameter course: The Course to show.
     func showNextCourse(course: Course?) {
         withAnimation(.easeInOut) {
@@ -99,13 +109,13 @@ class CoursesViewModel: ObservableObject {
     
     /// Opens the Maps.app with directions to the selected course.
     func getDirections() {
-        if let selectedCourse = selectedCourse {
+//        if let selectedCourse = selectedCourse {
             let directionsURL = URL(string: "maps://?saddr=&daddr=\(selectedCourse.latitude),\(selectedCourse.longitude)")
             if let url = directionsURL, UIApplication.shared.canOpenURL(url) {
                 print("\(type(of: self)).\(#function) - opening maps with directions: \(url)")
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
-        }
+//        }
     }
     
 }
