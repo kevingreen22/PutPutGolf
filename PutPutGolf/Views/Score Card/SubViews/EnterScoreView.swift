@@ -55,6 +55,6 @@ struct EnterScoreView: View {
 
 struct EnterScoreView_Previews: PreviewProvider {
     static var previews: some View {
-        EnterScoreView(player: Player(name: "Temp Player", course: MockData.instance.courses.first!))
+        EnterScoreView(player: Player(id: UUID().uuidString, name: "Temp Player", course: MockData.instance.courses.first!))
     }
 }

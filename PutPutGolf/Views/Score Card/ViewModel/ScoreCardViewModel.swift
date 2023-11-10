@@ -74,7 +74,7 @@ import Combine
     
     /// Saves the current game to AppStorage.
     func saveCurrentGame() {
-        let game = SavedGame(course: self.course, players: self.players, isCompleted: isGameCompleted)
+        let game = SavedGame(id: UUID().uuidString, course: self.course, players: self.players, isCompleted: isGameCompleted)
         if savedGames != nil {
             self.savedGames!.append(game)
         } else {

@@ -82,7 +82,7 @@ class SetupPlayerViewModel: ObservableObject {
     func createPlayers(on course: Course) -> [Player] {
         var players: [Player] = []
         for player in newPlayers {
-            players.append(Player(name: player.name, image: player.image, color: player.color, course: course))
+            players.append(Player(id: UUID().uuidString, name: player.name, image: player.image, color: player.color, course: course))
         }
         return players
     }
