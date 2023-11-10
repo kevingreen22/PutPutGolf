@@ -27,39 +27,40 @@ public class MockData: MockDataProtocol {
     private init() {
         // creates holes for course
         let holes = [
-            Hole(number: 1, par: 2, difficulty: .medium),
-            Hole(number: 2, par: 3, difficulty: .hard),
-            Hole(number: 3, par: 3, difficulty: .easy),
-            Hole(number: 4, par: 4, difficulty: .easy),
-            Hole(number: 5, par: 2, difficulty: .medium),
-            Hole(number: 6, par: 3, difficulty: .medium),
-            Hole(number: 7, par: 1, difficulty: .medium),
-            Hole(number: 8, par: 3, difficulty: .hard),
-            Hole(number: 9, par: 1, difficulty: .medium),
-            Hole(number: 10, par: 4, difficulty: .medium),
-            Hole(number: 11, par: 3, difficulty: .veryHard),
-            Hole(number: 12, par: 2, difficulty: .medium),
-            Hole(number: 13, par: 2, difficulty: .medium),
-            Hole(number: 14, par: 2, difficulty: .easy),
-            Hole(number: 15, par: 2, difficulty: .medium),
-            Hole(number: 16, par: 2, difficulty: .easy),
-            Hole(number: 17, par: 2, difficulty: .easy),
-            Hole(number: 18, par: 1, difficulty: .medium),
-            Hole(number: 19, par: 2, difficulty: .medium),
-            Hole(number: 20, par: 2, difficulty: .hard),
-            Hole(number: 21, par: 1, difficulty: .easy)
+            Hole(id: UUID().uuidString, number: 1, par: 2, difficulty: .medium),
+            Hole(id: UUID().uuidString, number: 2, par: 3, difficulty: .hard),
+            Hole(id: UUID().uuidString, number: 3, par: 3, difficulty: .easy),
+            Hole(id: UUID().uuidString, number: 4, par: 4, difficulty: .easy),
+            Hole(id: UUID().uuidString, number: 5, par: 2, difficulty: .medium),
+            Hole(id: UUID().uuidString, number: 6, par: 3, difficulty: .medium),
+            Hole(id: UUID().uuidString, number: 7, par: 1, difficulty: .medium),
+            Hole(id: UUID().uuidString, number: 8, par: 3, difficulty: .hard),
+            Hole(id: UUID().uuidString, number: 9, par: 1, difficulty: .medium),
+            Hole(id: UUID().uuidString, number: 10, par: 4, difficulty: .medium),
+            Hole(id: UUID().uuidString, number: 11, par: 3, difficulty: .veryHard),
+            Hole(id: UUID().uuidString, number: 12, par: 2, difficulty: .medium),
+            Hole(id: UUID().uuidString, number: 13, par: 2, difficulty: .medium),
+            Hole(id: UUID().uuidString, number: 14, par: 2, difficulty: .easy),
+            Hole(id: UUID().uuidString, number: 15, par: 2, difficulty: .medium),
+            Hole(id: UUID().uuidString, number: 16, par: 2, difficulty: .easy),
+            Hole(id: UUID().uuidString, number: 17, par: 2, difficulty: .easy),
+            Hole(id: UUID().uuidString, number: 18, par: 1, difficulty: .medium),
+            Hole(id: UUID().uuidString, number: 19, par: 2, difficulty: .medium),
+            Hole(id: UUID().uuidString, number: 20, par: 2, difficulty: .hard),
+            Hole(id: UUID().uuidString, number: 21, par: 1, difficulty: .easy)
         ]
         
         // creates challenges for course
         let challenges = [
-            Challenge(name: "Time Trial", rules: "there are the rules for time trials", difficulty: .easy),
-            Challenge(name: "Closest To the Hole", rules: "there are the rules for time trials", difficulty: .medium),
-            Challenge(name: "First In wins.", rules: "there are the rules for time trials", difficulty: .hard),
+            Challenge(id: UUID().uuidString, name: "Time Trial", rules: "These are the rules for time trials", difficulty: .easy),
+            Challenge(id: UUID().uuidString, name: "Closest To the Hole", rules: "These are the rules for time trials", difficulty: .medium),
+            Challenge(id: UUID().uuidString, name: "First In wins.", rules: "These are the rules for time trials", difficulty: .hard),
         ]
         
         // puts courses in to courses property array
         courses.append(contentsOf: [
             Course(
+                id: UUID().uuidString,
                 name: "Goat Track Country Club",
                 address: "Walnut Creek, Ca",
                 latitude: 37.9101,
@@ -89,6 +90,7 @@ public class MockData: MockDataProtocol {
                     "*Hours are weather permitting. Rain, high heat or extreme cold may cause us to close. Please call ahead if you are unsure if we may not be open. \nGolfers welcome to begin playing up to 15 minutes before close"
                 ]),
             Course(
+                id: UUID().uuidString,
                 name: "Cow Track Country Club",
                 address: "Martinez, Ca",
                 latitude: 38.0194,
@@ -118,6 +120,7 @@ public class MockData: MockDataProtocol {
                     "*Hours are weather permitting. Rain, high heat or extreme cold may cause us to close. Please call ahead if you are unsure if we may not be open. \nGolfers welcome to begin playing up to 15 minutes before close"
                 ]),
             Course(
+                id: UUID().uuidString,
                 name: "Pig Track Country Club",
                 address: "Alameda, Ca",
                 latitude: 37.7799,
@@ -147,6 +150,7 @@ public class MockData: MockDataProtocol {
                     "*Hours are weather permitting. Rain, high heat or extreme cold may cause us to close. Please call ahead if you are unsure if we may not be open. \nGolfers welcome to begin playing up to 15 minutes before close"
                 ]),
             Course(
+                id: UUID().uuidString,
                 name: "Sheep Track Country Club",
                 address: "Palo Alto, Ca",
                 latitude: 37.4419,
@@ -187,26 +191,29 @@ public class MockData: MockDataProtocol {
         
         // creates players
         players = [
-            Player(name: "Kevin", course: courses.first!),
-            Player(name: "Nell", course: courses.first!),
-            Player(name: "Holly", course: courses.first!),
-            Player(name: "Whitney", course: courses.first!)
+            Player(id: UUID().uuidString, name: "Kevin", course: courses.first!),
+            Player(id: UUID().uuidString, name: "Nell", course: courses.first!),
+            Player(id: UUID().uuidString, name: "Holly", course: courses.first!),
+            Player(id: UUID().uuidString, name: "Whitney", course: courses.first!)
         ]
         
         // creates player scores
         for player in players {
             player.color = Color.random()
             
-            for i in 0..<Int.random(in: 0..<21) {
+            for i in 0..<21 {
                 let randInt = Int.random(in: 1...5)
                 player.scores[i] = String(randInt)
             }
             
-            for i in 0..<Int.random(in: 0..<3) {
+            for i in 0..<3 {
                 let randInt = Int.random(in: 1...5)
                 player.challengeScores[i] = String(randInt)
             }
         }
+        
+        print(players.first!.scores)
+        print(players.first!.challengeScores)
         
     }
     
