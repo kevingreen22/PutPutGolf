@@ -14,6 +14,8 @@ struct ScoreCardView: View {
     @FocusState var isFocused: Bool
     @State private var currentZoom = 0.0
     @State private var totalZoom = 1.0
+    @State private var position: CGSize = .zero
+    
     
     init(course: Course, players: [Player], isResumingGame resuming: Bool = false) {
         print("\(type(of: self)).\(#function)")
@@ -22,38 +24,44 @@ struct ScoreCardView: View {
     
     
     var body: some View {
-//        return GeometryReader { proxy in
-            ZStack(alignment: .leading) {
-                Color.white.ignoresSafeArea()
-                ScrollView(.horizontal, showsIndicators: false) {
-                    ScrollView(.vertical, showsIndicators: false) {
-                        Grid(horizontalSpacing: -1, verticalSpacing: -1) {
-                            holeNumRow
-                            parRow
-                            playersRowAndScores
-                        }
-                        .scaleEffect(currentZoom + totalZoom)
-                        .gesture(zoom)
-                        .modifier(AccessibilityZoom(zoom: $totalZoom))
+        ZStack(alignment: .leading) {
+            Color
+                .white
+                .ignoresSafeArea()
+                .onTapGesture(count: 2) {
+                    withAnimation(.easeOut) {
+                        position = .zero
+                        currentZoom = 0
+                        totalZoom = 1
                     }
                 }
-                .padding(.top)
-                .toolbar(.hidden, for: .navigationBar)
-                .overlay(alignment: .topLeading) {
-                    closeButton
-                        .padding()
-                } // Close Button
-                .toolbar {
-                    ToolbarItemGroup(placement: .keyboard) {
-                        Spacer()
-                        Button("Done") { isFocused = false }
-                    }
-                }// keyboard upper done button
+            GeometryReader { proxy in
+                Grid(horizontalSpacing: -1, verticalSpacing: -1) {
+                    holeNumRow
+                    parRow
+                    playersRowAndScores
+                }
+                .padding()
+                .scaleEffect(currentZoom + totalZoom)
+                .offset(position)
+                .gesture(SmoothDrag(location: $position))
+                .gesture(zoomGesture)
+                .modifier(AccessibilityZoom(zoom: $totalZoom))
             }
-            .ignoresSafeArea()
-//            .rotationEffect(.degrees(-90), anchor: .bottom)
-//            .frame(width: proxy.size.height, height: proxy.size.width)
-//        }
+            
+        }
+        .toolbar(.hidden, for: .navigationBar)
+        .overlay(alignment: .topLeading) {
+            closeButton
+                .padding()
+                .ignoresSafeArea()
+        } // Close Button
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button("Done") { isFocused = false }
+            }
+        }// keyboard upper done button
         
     }
 }
@@ -74,11 +82,11 @@ struct ScoreCardView_Previews: PreviewProvider {
 
 extension ScoreCardView {
     
-    fileprivate var zoom: some Gesture {
+    fileprivate var zoomGesture: some Gesture {
         if #available(iOS 17.0, *) {
             return MagnifyGesture()
                 .onChanged { value in
-                    currentZoom = value.magnification - 1
+                    currentZoom = value.magnification-1
                 }
                 .onEnded { value in
                     totalZoom += currentZoom
@@ -478,5 +486,31 @@ fileprivate struct DoubleBogieScoreView: View {
                 .scaleEffect(0.8)
                 .aspectRatio(contentMode: .fit)
         }.padding()
+    }
+}
+
+
+
+
+
+struct SmoothDrag: Gesture {
+    @Binding var location: CGSize
+    @GestureState private var startLocation: CGSize? = nil
+    
+    var body: some Gesture {
+        simpleDrag
+    }
+    
+    fileprivate var simpleDrag: some Gesture {
+        DragGesture()
+            .onChanged { value in
+                var newLocation = startLocation ?? location
+                newLocation.width += value.translation.width
+                newLocation.height += value.translation.height
+                self.location = newLocation
+            }
+            .updating($startLocation) { (value, startLocation, transaction) in
+                startLocation = startLocation ?? location
+            }
     }
 }
