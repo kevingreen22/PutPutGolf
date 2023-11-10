@@ -19,13 +19,21 @@ enum AppStorageKeys: CustomStringConvertible {
 
 
 struct SavedGame: Codable, Equatable, Hashable, Identifiable {
-    var id = UUID()
+    var id: String
     var course: Course
     var players: [Player]
     var isCompleted: Bool
-    var date: Date = Date()
+    var date: Date
     var dateString: String {
         self.date.formatted(date: .abbreviated, time: .omitted)
+    }
+    
+    init(id: String, course: Course, players: [Player], isCompleted: Bool, date: Date = Date()) {
+        self.id = id
+        self.course = course
+        self.players = players
+        self.isCompleted = isCompleted
+        self.date = date
     }
 }
 
@@ -83,12 +91,12 @@ extension SavedGame: RawRepresentable {
     /// ```
     /// init(from decoder: Decoder) throws {
     ///     var container = try decoder.unkeyedContainer()
-    ///     id = try container.decode(UUID.self) <-- adding all properies types. Including all duplicates.
+    ///     id = try container.decode(UUID.self) <-- **Adding all properies types.** Including all duplicates.
     /// }
     /// ```
     init(from decoder: Decoder) throws {
         var container = try decoder.unkeyedContainer()
-        id = try container.decode(UUID.self)
+        id = try container.decode(String.self)
         course = try container.decode(Course.self)
         players = try container.decode([Player].self)
         isCompleted = try container.decode(Bool.self)

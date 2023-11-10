@@ -11,7 +11,7 @@ import SwiftUI
 import MapKit
 
 struct Course: Codable, Hashable, Equatable, Identifiable {
-    var id = UUID()
+    var id: String
     var name: String
     var address: String
     var latitude: Double = 0.0
@@ -29,8 +29,8 @@ struct Course: Codable, Hashable, Equatable, Identifiable {
         return CLLocation(latitude: latitude, longitude: longitude)
     }
     
-    init(name: String, address: String, latitude: Double, longitude: Double, imageData: Data? = nil, difficulty: Difficulty, holes: [Hole], challenges: [Challenge], rules: [String], hours: [String]) {
-        self.id = UUID()
+    init(id: String, name: String, address: String, latitude: Double, longitude: Double, imageData: Data? = nil, difficulty: Difficulty, holes: [Hole], challenges: [Challenge], rules: [String], hours: [String]) {
+        self.id = id
         self.name = name
         self.address = address
         self.latitude = latitude
@@ -46,7 +46,7 @@ struct Course: Codable, Hashable, Equatable, Identifiable {
     
     /// Initialzes a blank Course.
     init() {
-        self.id = UUID()
+        self.id = UUID().uuidString
         self.name = "Unknown"
         self.address = "Unknown"
         self.latitude = 0

@@ -9,10 +9,17 @@ import Foundation
 import SwiftUI
 
 struct Hole: Codable, Hashable, Equatable, Identifiable {
-    var id = UUID()
+    var id: String
     var number: Int
     var par: Int
     var difficulty: Difficulty
+    
+    init(id: String, number: Int, par: Int, difficulty: Difficulty) {
+        self.id = id
+        self.number = number
+        self.par = par
+        self.difficulty = difficulty
+    }
 }
 
 
