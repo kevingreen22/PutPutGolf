@@ -62,10 +62,11 @@ struct CoursesMap: View {
 
 struct CoursesMap_Previews: PreviewProvider {
     static let mockData = MockData.instance
+    static let dataService = MockDataService(mockData: mockData)
     
     static var previews: some View {
-        CoursesMap()
-            .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: mockData)))
+        CoursesMap(coursesData: mockData.courses)
+            .environmentObject(CoursesViewModel(coursesData: mockData.courses))
             .environmentObject(NavigationStore())
     }
 }

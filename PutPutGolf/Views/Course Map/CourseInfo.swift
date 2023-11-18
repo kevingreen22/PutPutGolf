@@ -49,7 +49,7 @@ struct CourseInfo_Previews: PreviewProvider {
     
     static var previews: some View {
         CourseInfo(course: .constant(mockData.courses.first!))
-            .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: mockData)))
+            .environmentObject(CoursesViewModel(coursesData: mockData.courses))
             .environmentObject(NavigationStore())
     }
 }

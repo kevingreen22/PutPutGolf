@@ -53,7 +53,7 @@ struct MyMap: View {
     }
 }
 
-struct Map_Previews: PreviewProvider {
+struct MyMap_Previews: PreviewProvider {
     static let mockData = MockData.instance
     
     static var previews: some View {

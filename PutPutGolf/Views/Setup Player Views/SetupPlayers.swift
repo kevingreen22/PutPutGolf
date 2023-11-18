@@ -63,13 +63,13 @@ struct SetupPlayers: View {
 }
 
 struct SetupPlayersView_Previews: PreviewProvider {
-    static let mockdata = MockData.instance
+    static let mockData = MockData.instance
     
     static var previews: some View {
-        SetupPlayers(mockdata.courses[0])
+        SetupPlayers(mockData.courses[0])
             .environmentObject(SetupPlayerViewModel())
             .environmentObject(NavigationStore())
-            .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: mockdata)))
+            .environmentObject(CoursesViewModel(coursesData: mockData.courses))
     }
 }
 
@@ -123,6 +123,7 @@ extension SetupPlayers {
                 ToolbarItemGroup(placement: .keyboard) {
                     Spacer()
                     Button("Done") { vm.textFieldDidSubmit = true; isFocused = false }
+                        .buttonStyle(.automatic)
                 }
             }
             .onSubmit {

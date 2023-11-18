@@ -29,7 +29,7 @@ struct CoursesList: View {
 #Preview {
     let mockData = MockData.instance
     return CoursesList()
-        .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: mockData)))
+        .environmentObject(CoursesViewModel(coursesData: mockData.courses))
 }
 
 

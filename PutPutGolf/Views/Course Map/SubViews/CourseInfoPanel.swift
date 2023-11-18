@@ -42,7 +42,7 @@ struct CourseInfoPanel_Preview: PreviewProvider {
             Color.green.ignoresSafeArea()
             CourseInfoPanel(course: .constant(mockData.courses[0]))
                 .padding()
-                .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: mockData)))
+                .environmentObject(CoursesViewModel(coursesData: mockData.courses))
                 .environmentObject(NavigationStore())
         }
     }
