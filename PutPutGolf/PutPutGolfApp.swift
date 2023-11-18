@@ -13,6 +13,7 @@ struct PutPutGolfApp: App {
     @StateObject var navVM: NavigationStore = NavigationStore()
     
     init() {
+        print("\(type(of: self)).\(#function)-app.main")
         // PRODUCTION SERVICE
 //        guard let url = URL(string: "https://my.apiEndpoint.courses") else { return }
 //        let dataService = ProductionDataService(url: url)

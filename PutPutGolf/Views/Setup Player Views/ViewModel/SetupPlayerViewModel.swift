@@ -40,6 +40,7 @@ class SetupPlayerViewModel: ObservableObject {
     var savedGame: SavedGame?
     
     init() {
+        print("\(type(of: self)).\(#function)")
         textFieldDidSubmitSubscriber()
         setupNewPlayerSubscriber()
     }

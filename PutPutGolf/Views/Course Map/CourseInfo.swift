@@ -15,6 +15,7 @@ struct CourseInfo: View {
     @State private var infoItem: InfoItem?
     
     init(course: Binding<Course>) {
+        print("\(type(of: self)).\(#function)")
         _course = course
         
         if let data = course.wrappedValue.imageData, let img = UIImage(data: data) {

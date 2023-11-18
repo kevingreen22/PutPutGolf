@@ -16,6 +16,7 @@ struct SetupPlayers: View {
     var navID: Int = 1
 
     init(_ course: Course) {
+        print("\(type(of: self)).\(#function)")
         self.course = course
     }
     

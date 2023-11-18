@@ -97,8 +97,10 @@ class MockDataService<T>: DataServiceProtocol where T: MockDataProtocol {
         Just(mockCourses)
             .tryMap({ courses in
                 guard !courses.isEmpty else {
+                    print("\(type(of: self)).\(#function)-\(URLError(.badServerResponse).localizedDescription)")
                     throw URLError(.badServerResponse)
                 }
+                print("\(type(of: self)).\(#function)-mock courses retrieved")
                 return courses
             })
             .eraseToAnyPublisher()
