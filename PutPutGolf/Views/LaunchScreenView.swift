@@ -8,11 +8,32 @@
 import SwiftUI
 
 struct LaunchScreenView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    
+    init() {
+        print("\(type(of: self)).\(#function)")
     }
+    
+    
+    var body: some View {
+        VStack {
+            Image("putter_banner")
+                .resizable()
+                .scaledToFit()
+                .padding()
+                
+            ProgressView()
+        }
+        .transition(.opacity)
+    }
+
 }
 
 #Preview {
     LaunchScreenView()
 }
+
+
+
+
+
+
