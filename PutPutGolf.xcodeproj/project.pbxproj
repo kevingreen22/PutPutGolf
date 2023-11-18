@@ -32,20 +32,22 @@
 		C760EB172ABE0AD6000DFE09 /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB162ABE0AD6000DFE09 /* DataServices.swift */; };
 		C760EB1A2ABE0C1A000DFE09 /* CoursesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB192ABE0C1A000DFE09 /* CoursesViewModel.swift */; };
 		C760EB1E2ABF57B8000DFE09 /* CourseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB1D2ABF57B8000DFE09 /* CourseInfo.swift */; };
-		C77B0CB72AD0809500F3E1C5 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77B0CB62AD0809500F3E1C5 /* Map.swift */; };
+		C77B0CB72AD0809500F3E1C5 /* MyMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77B0CB62AD0809500F3E1C5 /* MyMap.swift */; };
 		C7859A1B2AF2C51700F4CF82 /* CoursesViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7859A1A2AF2C51700F4CF82 /* CoursesViewModel_Tests.swift */; };
 		C7859A1D2AF31AE600F4CF82 /* MockDataService_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7859A1C2AF31AE600F4CF82 /* MockDataService_Tests.swift */; };
 		C7859A1F2AF4268000F4CF82 /* SetupPlayerViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7859A1E2AF4268000F4CF82 /* SetupPlayerViewModel_Tests.swift */; };
 		C7859A212AF4550700F4CF82 /* ScoreCardViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7859A202AF4550700F4CF82 /* ScoreCardViewModel_Tests.swift */; };
 		C7859A242AF6AF5D00F4CF82 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C7859A232AF6AF5D00F4CF82 /* Alamofire */; };
+		C7A70BDC2B0037D9002DC403 /* ScreenSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A70BDB2B0037D9002DC403 /* ScreenSize.swift */; };
 		C7A9BA902AC4AA3100A69B81 /* CoursesMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A9BA8F2AC4AA3100A69B81 /* CoursesMap.swift */; };
+		C7B0FEF32B000852005C9617 /* CourseAnnotationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0FEF22B000852005C9617 /* CourseAnnotationItem.swift */; };
 		C7CDAF9B2AD1E8CD006C0886 /* CoursesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CDAF9A2AD1E8CD006C0886 /* CoursesList.swift */; };
 		C7CDAFA52AD5CCCA006C0886 /* CourseInfoPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CDAFA42AD5CCCA006C0886 /* CourseInfoPanel.swift */; };
 		C7E24CE52AE0A36600A3D473 /* KGImageChooser in Frameworks */ = {isa = PBXBuildFile; productRef = C7E24CE42AE0A36600A3D473 /* KGImageChooser */; };
 		C7E24CE72AE1D63700A3D473 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E24CE62AE1D63700A3D473 /* Image.swift */; };
 		C7E24CE92AE1D68A00A3D473 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E24CE82AE1D68A00A3D473 /* Color.swift */; };
-		C7E24CED2AE311C500A3D473 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E24CEC2AE311C500A3D473 /* TestView.swift */; };
 		C7E24CEF2AE472BC00A3D473 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E24CEE2AE472BB00A3D473 /* Array.swift */; };
+		C7ED6B3F2B07FE9800643604 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ED6B3E2B07FE9800643604 /* LaunchScreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,19 +88,21 @@
 		C760EB162ABE0AD6000DFE09 /* DataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
 		C760EB192ABE0C1A000DFE09 /* CoursesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewModel.swift; sourceTree = "<group>"; };
 		C760EB1D2ABF57B8000DFE09 /* CourseInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInfo.swift; sourceTree = "<group>"; };
-		C77B0CB62AD0809500F3E1C5 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		C77B0CB62AD0809500F3E1C5 /* MyMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMap.swift; sourceTree = "<group>"; };
 		C7859A112AF2C1AE00F4CF82 /* PutPutGolf_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PutPutGolf_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7859A1A2AF2C51700F4CF82 /* CoursesViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewModel_Tests.swift; sourceTree = "<group>"; };
 		C7859A1C2AF31AE600F4CF82 /* MockDataService_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataService_Tests.swift; sourceTree = "<group>"; };
 		C7859A1E2AF4268000F4CF82 /* SetupPlayerViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupPlayerViewModel_Tests.swift; sourceTree = "<group>"; };
 		C7859A202AF4550700F4CF82 /* ScoreCardViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCardViewModel_Tests.swift; sourceTree = "<group>"; };
+		C7A70BDB2B0037D9002DC403 /* ScreenSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSize.swift; sourceTree = "<group>"; };
 		C7A9BA8F2AC4AA3100A69B81 /* CoursesMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesMap.swift; sourceTree = "<group>"; };
+		C7B0FEF22B000852005C9617 /* CourseAnnotationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseAnnotationItem.swift; sourceTree = "<group>"; };
 		C7CDAF9A2AD1E8CD006C0886 /* CoursesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesList.swift; sourceTree = "<group>"; };
 		C7CDAFA42AD5CCCA006C0886 /* CourseInfoPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInfoPanel.swift; sourceTree = "<group>"; };
 		C7E24CE62AE1D63700A3D473 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		C7E24CE82AE1D68A00A3D473 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		C7E24CEC2AE311C500A3D473 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		C7E24CEE2AE472BB00A3D473 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		C7ED6B3E2B07FE9800643604 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +189,7 @@
 				C74CB24C2AC601EF00AC53D7 /* Images */,
 				C760EAF62AB8F801000DFE09 /* Assets.xcassets */,
 				C760EAF82AB8F801000DFE09 /* Preview Content */,
+				C7A70BDB2B0037D9002DC403 /* ScreenSize.swift */,
 			);
 			path = PutPutGolf;
 			sourceTree = "<group>";
@@ -212,10 +217,10 @@
 		C760EB072AB8F923000DFE09 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C7ED6B3E2B07FE9800643604 /* LaunchScreenView.swift */,
 				C760EB182ABE0BEB000DFE09 /* Course Map */,
 				C74CB2612AC7475D00AC53D7 /* Setup Player Views */,
 				C760EB122ABD0879000DFE09 /* Score Card */,
-				C7E24CEC2AE311C500A3D473 /* TestView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -261,7 +266,8 @@
 		C760EB222AC2527F000DFE09 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
-				C77B0CB62AD0809500F3E1C5 /* Map.swift */,
+				C77B0CB62AD0809500F3E1C5 /* MyMap.swift */,
+				C7B0FEF22B000852005C9617 /* CourseAnnotationItem.swift */,
 				C7CDAF9A2AD1E8CD006C0886 /* CoursesList.swift */,
 				C7CDAFA42AD5CCCA006C0886 /* CourseInfoPanel.swift */,
 			);
@@ -418,11 +424,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C74CB2702AC892C000AC53D7 /* NavigationStore.swift in Sources */,
-				C7E24CED2AE311C500A3D473 /* TestView.swift in Sources */,
 				C760EB1A2ABE0C1A000DFE09 /* CoursesViewModel.swift in Sources */,
 				C7E24CE72AE1D63700A3D473 /* Image.swift in Sources */,
 				C760EB142ABD0898000DFE09 /* ScoreCardViewModel.swift in Sources */,
 				C74CB25E2AC6399E00AC53D7 /* SavedGame.swift in Sources */,
+				C7A70BDC2B0037D9002DC403 /* ScreenSize.swift in Sources */,
 				C7E24CE92AE1D68A00A3D473 /* Color.swift in Sources */,
 				C7CDAF9B2AD1E8CD006C0886 /* CoursesList.swift in Sources */,
 				C760EB042AB8F877000DFE09 /* Hole.swift in Sources */,
@@ -436,10 +442,12 @@
 				C760EB022AB8F825000DFE09 /* Course.swift in Sources */,
 				C74CB2632AC7477800AC53D7 /* SetupPlayerViewModel.swift in Sources */,
 				C760EB0D2AB8F9FA000DFE09 /* Challenge.swift in Sources */,
+				C7B0FEF32B000852005C9617 /* CourseAnnotationItem.swift in Sources */,
 				C760EB0B2AB8F99B000DFE09 /* MockData.swift in Sources */,
 				C760EB092AB8F94B000DFE09 /* ScoreCardView.swift in Sources */,
+				C7ED6B3F2B07FE9800643604 /* LaunchScreenView.swift in Sources */,
 				C7E24CEF2AE472BC00A3D473 /* Array.swift in Sources */,
-				C77B0CB72AD0809500F3E1C5 /* Map.swift in Sources */,
+				C77B0CB72AD0809500F3E1C5 /* MyMap.swift in Sources */,
 				C7CDAFA52AD5CCCA006C0886 /* CourseInfoPanel.swift in Sources */,
 				C760EB112ABBC4C9000DFE09 /* EnterScoreView.swift in Sources */,
 			);
@@ -661,7 +669,7 @@
 				DEVELOPMENT_TEAM = KY6DPH5Y6J;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kevinGreen.PutPutGolf-Tests";
@@ -684,7 +692,7 @@
 				DEVELOPMENT_TEAM = KY6DPH5Y6J;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kevinGreen.PutPutGolf-Tests";

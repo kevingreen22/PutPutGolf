@@ -20,6 +20,7 @@ struct MyMap: View {
 //                            .foregroundStyle(coursesVM.selectedCourse == course ? Color.clear : Color.gray)
 //                            .scaleEffect(coursesVM.selectedCourse == course ? 1.0 : 0.6)
 //                            .shadow(radius: 10)
+//                            .animation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 1), value: coursesVM.selectedCourse)
 //                            .onTapGesture {
 //                                withAnimation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 1)) {
 //                                    coursesVM.selectedCourse = course
@@ -35,10 +36,11 @@ struct MyMap: View {
                 annotationItems: coursesVM.coursesData,
                 annotationContent: { course in
                 MapAnnotation(coordinate: course.coordinates) {
-                    CourseAnnotationItem(course: course)
+                    CourseAnnotationItem()
                         .scaleEffect(coursesVM.selectedCourse == course ? 1.0 : 0.7)
                         .shadow(radius: coursesVM.selectedCourse == course ? 10 : 5)
                         .grayscale(coursesVM.selectedCourse == course ? 0.0 : 1.0)
+                        .animation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 1), value: coursesVM.selectedCourse)
                         .onTapGesture {
                             withAnimation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 1)) {
                                 coursesVM.selectedCourse = course
@@ -52,14 +54,13 @@ struct MyMap: View {
 }
 
 struct Map_Previews: PreviewProvider {
+    static let mockData = MockData.instance
+    
     static var previews: some View {
-        let mockData = MockData.instance
-        return Group {
-            MyMap()
-                .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: mockData)))
-            
-            CourseAnnotationItem(course: mockData.courses.first!)
-        }
+        MyMap()
+            .environmentObject(CoursesViewModel(dataService: MockDataService(mockData: mockData)))
+        
+        CourseAnnotationItem()
     }
 }
 
@@ -69,13 +70,11 @@ struct Map_Previews: PreviewProvider {
 
 
 struct CourseAnnotationItem: View {
-    var course: Course
-    
     var body: some View {
         Circle()
             .stroke(.black, lineWidth: 3)
             .overlay {
-                course.getImage()
+                Image("plain_ball")
                     .resizable()
                     .scaledToFill()
                     .saturation(1.0)
