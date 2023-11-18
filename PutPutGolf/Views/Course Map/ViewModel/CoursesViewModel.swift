@@ -10,52 +10,60 @@ import Combine
 import MapKit
 
 class CoursesViewModel: ObservableObject {
-    var dataService: any DataServiceProtocol
+//    var dataService: any DataServiceProtocol
     var cancellables: Set<AnyCancellable> = []
+    
+    // All loaded courses
+    @Published var coursesData: [Course] = []
     
     // Current coures on map
     @Published var selectedCourse: Course = Course()
     
-    // All loaded courses
-    var coursesData: [Course] = []
-    
     // Current region on map
     @Published var mapRegion: MKCoordinateRegion = MKCoordinateRegion()
-//    @Published var mapRegioniOS17: MapCameraPosition = MKCoordinateRegion()
     let mapSpan = MKCoordinateSpan(latitudeDelta: 0.6, longitudeDelta: 0.6)
     
     @Published var showCoursesList: Bool = false
     @Published var showCourseInfo: Bool = false
 
     
-    init(dataService: any DataServiceProtocol) {
-        self.dataService = dataService
-        loadCourses()
+    init(coursesData: [Course]) {
+        print("\(type(of: self)).\(#function)")
+        self.coursesData = coursesData
+        if let first = coursesData.first {
+            self.selectedCourse = first
+        }
+//        loadCourses()
         subToSelectedCourse()
     }
     
     
-    private func loadCourses() {
-        dataService.getCourses()
-            .retry(3) // good for retrying api calls that error out.
-//            .timeout(10, scheduler: DispatchQueue.global()) // terminates publishing after amount of time.
-            .sink { error in
-                switch error {
-                case .finished: print("Courses Loaded")
-                case .failure(let error):  print("load Courses error: \(error)")
-                }
-            } receiveValue: { [weak self] courses in
-                guard let self = self, let firstCourse = courses.first else { return }
-                self.coursesData = courses
-                self.selectedCourse = firstCourse
-            }
-            .store(in: &cancellables)
-    }
+//    private func loadCourses() {
+////        dataService.gettCourses { courses in
+////            guard let courses = courses, let firstCourse = courses.first else { return }
+////            self.coursesData = courses
+////            self.selectedCourse = firstCourse
+////        }
+//        
+//        dataService.getCourses()
+//            .retry(3) // good for retrying api calls that error out.
+////            .timeout(10, scheduler: DispatchQueue.global()) // terminates publishing after amount of time.
+//            .sink { error in
+//                switch error {
+//                case .finished: print("Courses Loaded")
+//                case .failure(let error):  print("load Courses error: \(error)")
+//                }
+//            } receiveValue: { [weak self] courses in
+//                guard let self = self, let firstCourse = courses.first else { return }
+//                self.coursesData = courses
+//                self.selectedCourse = firstCourse
+//            }
+//            .store(in: &cancellables)
+//    }
     
     
     private func subToSelectedCourse() {
         $selectedCourse
-            .receive(on:  DispatchQueue.main)
             .sink { [weak self] course in
                 guard let self = self else { return }
                 self.updateMapRegion(course: course)

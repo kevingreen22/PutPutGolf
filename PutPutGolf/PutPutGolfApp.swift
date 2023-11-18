@@ -9,27 +9,44 @@ import SwiftUI
 
 @main
 struct PutPutGolfApp: App {
-    @StateObject var coursesVM: CoursesViewModel
     @StateObject var navVM: NavigationStore = NavigationStore()
+    var dataService: any DataServiceProtocol
+    @State private var coursesData: [Course]?
     
     init() {
         print("\(type(of: self)).\(#function)-app.main")
         // PRODUCTION SERVICE
-//        guard let url = URL(string: "https://my.apiEndpoint.courses") else { return }
-//        let dataService = ProductionDataService(url: url)
-//        _coursesVM = StateObject(wrappedValue: CoursesViewModel(dataService: dataService) )
-        
+        let url = URL(string: "https://try3rg28fg.execute-api.us-west-1.amazonaws.com/live/courses")!
+        dataService = ProductionDataService(url: url)
         
         // DEVELOPMENT MOCK SERVICE
-        let dataService = MockDataService(mockData: MockData.instance)
-        _coursesVM = StateObject(wrappedValue: CoursesViewModel(dataService: dataService))
+//        dataService = MockDataService(mockData: MockData.instance)
     }
     
     var body: some Scene {
         WindowGroup {
-            CoursesMap()
-                .environmentObject(coursesVM)
-                .environmentObject(navVM)
+            Group {
+                if let coursesData = self.coursesData {
+                    CoursesMap(coursesData: coursesData)
+                        .environmentObject(navVM)
+                } else {
+                    LaunchScreenView()
+                }
+            }
+            .task {
+                await loadCourses() { courses in
+                    self.coursesData = courses
+                }
+            }
+        }
+    }
+    
+    
+    private func loadCourses(completion: @escaping ([Course]?)->()) async {
+        dataService.fetchCourses { coursesData in
+            guard let coursesData = coursesData else { return }
+            print("\(type(of: self)).\(#function)-courses loaded")
+            completion(coursesData)
         }
     }
 }
