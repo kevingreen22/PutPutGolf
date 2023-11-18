@@ -8,20 +8,25 @@
 import SwiftUI
 
 struct CoursesMap: View {
+    @StateObject var coursesVM: CoursesViewModel
     @EnvironmentObject var navVM: NavigationStore
-    @EnvironmentObject var coursesVM: CoursesViewModel
-    @AppStorage(AppStorageKeys.savedGames.description) var savedGames: [SavedGame] = []
-    @State private var screenSize: CGSize = .zero
-
+//    @AppStorage(AppStorageKeys.savedGames.description) var savedGames: [SavedGame] = []
+    var navID: Int = 0
+    
+    init(coursesData: [Course]) {
+        print("\(type(of: self)).\(#function)")
+        _coursesVM = StateObject(wrappedValue: CoursesViewModel(coursesData: coursesData))
+    }
+    
     
     var body: some View {
         NavigationStack(path: $navVM.path) {
             ZStack {
                 MyMap()
                     .environmentObject(coursesVM)
-                    .overlay(alignment: .topTrailing) {              
-                        savedGamesMenu
-                    } // Saved games button/menu
+//                    .overlay(alignment: .topTrailing) {              
+//                        savedGamesMenu
+//                    } // Saved games button/menu
                 
                 VStack(alignment: .leading, spacing: 0) {
                     headerBar.padding(.leading).padding(.trailing, 80)
@@ -46,16 +51,6 @@ struct CoursesMap: View {
                 ScoreCardView(course: coursesVM.selectedCourse, players: players)
             }
             
-            // Screen size
-            .overlay(
-                GeometryReader {
-                    Color.clear.preference(key: SizePreferenceKey.self, value: $0.size)
-                }
-            )
-            .onPreferenceChange(SizePreferenceKey.self) {
-                screenSize = $0
-            }
-            
         }
     }
 }
@@ -72,15 +67,6 @@ struct CoursesMap_Previews: PreviewProvider {
 }
 
 
-
-
-
-struct SizePreferenceKey: PreferenceKey {
-    static var defaultValue: CGSize = .zero
-    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {
-        value = nextValue()
-    }
-}
 
 
 extension CoursesMap {
@@ -104,7 +90,7 @@ extension CoursesMap {
                     }
             }
             if coursesVM.showCoursesList {
-                CoursesList()
+                CoursesList().environmentObject(coursesVM)
             }
         }
         .background(.thickMaterial)
@@ -112,41 +98,45 @@ extension CoursesMap {
         .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 15)
     }
     
-    fileprivate var savedGamesMenu: some View {
-        Menu {
-            Section("Previous Games") {
-                ForEach(savedGames) { savedGame in
-                    Button("\(savedGame.course.address) - \(savedGame.dateString) \(savedGame.isCompleted ? "✅" : "⚠️")") {
-                        coursesVM.selectedCourse = savedGame.course
-                        navVM.path.append(savedGame.players)
-                    }
-                }
-            }
-        } label: {
-            Image(systemName: "figure.golf")
-                .font(.title)
-                .frame(width: 55, height: 55)
-                .background(.thickMaterial)
-                .cornerRadius(10)
-                .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 15)
-                .overlay(alignment: .bottomTrailing) {
-                    Image(systemName: "chevron.down")
-                        .resizable()
-                        .frame(width: 8, height: 5)
-                        .padding(5)
-                }
-                .padding(.trailing)
-        }
-    }
+//    fileprivate var savedGamesMenu: some View {
+//        Menu {
+//            Section("Previous Games") {
+//                ForEach(savedGames) { savedGame in
+//                    Button("\(savedGame.course.address) - \(savedGame.dateString) \(savedGame.isCompleted ? "✅" : "⚠️")") {
+//                        coursesVM.selectedCourse = savedGame.course
+//                        navVM.path.append(savedGame.players)
+//                    }
+//                }
+//            }
+//        } label: {
+//            Image(systemName: "figure.golf")
+//                .font(.title)
+//                .frame(width: 55, height: 55)
+//                .background(.thickMaterial)
+//                .cornerRadius(10)
+//                .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 15)
+//                .overlay(alignment: .bottomTrailing) {
+//                    Image(systemName: "chevron.down")
+//                        .resizable()
+//                        .frame(width: 8, height: 5)
+//                        .padding(5)
+//                }
+//                .padding(.trailing)
+//        }
+//    }
     
     fileprivate var courseInfoPanel: some View {
         ZStack {
             ForEach(coursesVM.coursesData) { course in
                 if coursesVM.selectedCourse == course {
                     CourseInfoPanel(course: $coursesVM.selectedCourse)
+                        .environmentObject(coursesVM)
                                 .shadow(color: .black.opacity(0.3), radius: 20)
                                 .padding(.horizontal)
-                                .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                                .transition(.asymmetric(
+                                    insertion: .move(edge: .trailing),
+                                    removal: .move(edge: .leading))
+                                )
                 }
             }
         }
