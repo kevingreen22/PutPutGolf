@@ -46,7 +46,7 @@ struct SetupPlayers: View {
             }
         }
         
-        .onAppear {
+        .task {
             vm.checkForCurrentGameOn(course: course)
         }
         
@@ -54,7 +54,7 @@ struct SetupPlayers: View {
             Button("Yes, Lets Putt!", systemImage: "figure.golf") {
                 navVM.path.append(vm.savedGame)
             }
-            Button("No, lets restart that game.", systemImage: "xmark", role: .destructive) {}
+            Button("No, start a new game.", systemImage: "xmark", role: .cancel) {}
         }
         
         .ignoresSafeArea(.keyboard) // this coupled with the GeometryReader makes it so the view doesn't move up when the key board is shown.
