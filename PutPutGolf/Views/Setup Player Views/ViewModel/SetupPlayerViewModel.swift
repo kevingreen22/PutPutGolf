@@ -25,7 +25,7 @@ struct NewPlayer: Hashable, Identifiable {
 
 
 class SetupPlayerViewModel: ObservableObject {
-    @AppStorage(AppStorageKeys.savedGames.description) var savedGames: [SavedGame]?
+//    @AppStorage(AppStorageKeys.savedGames.description) var savedGames: [SavedGame]?
 
     @Published var newPlayers: [NewPlayer] = []
     @Published var profileImage: UIImage?
@@ -37,7 +37,7 @@ class SetupPlayerViewModel: ObservableObject {
     @Published var showCurrentGameAlert: Bool = false
     
     var cancellables: Set<AnyCancellable> = []
-    var savedGame: SavedGame?
+//    var savedGame: SavedGame?
     
     init() {
         print("\(type(of: self)).\(#function)")
@@ -89,16 +89,16 @@ class SetupPlayerViewModel: ObservableObject {
     }
  
     
-    func checkForCurrentGameOn(course: Course) {
-        guard savedGames != nil else { return }
-        for game in savedGames! {
-            if !game.isCompleted && game.course == course {
-                self.savedGame = game
-                self.showCurrentGameAlert = true
-                break
-            }
-        }
-    }
+//    func checkForCurrentGameOn(course: Course) {
+//        guard savedGames != nil else { return }
+//        for game in savedGames! {
+//            if !game.isCompleted && game.course == course {
+//                self.savedGame = game
+//                self.showCurrentGameAlert = true
+//                break
+//            }
+//        }
+//    }
     
 }
 

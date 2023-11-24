@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C729EC922B11249200994DDC /* View extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C729EC912B11249200994DDC /* View extensions.swift */; };
 		C74CB2492AC6000800AC53D7 /* putter_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = C74CB2482AC6000800AC53D7 /* putter_banner.png */; };
 		C74CB24B2AC601C000AC53D7 /* plain_ball.png in Resources */ = {isa = PBXBuildFile; fileRef = C74CB24A2AC601C000AC53D7 /* plain_ball.png */; };
 		C74CB2512AC6021D00AC53D7 /* closeup_ball_hole.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C74CB24D2AC6021D00AC53D7 /* closeup_ball_hole.jpg */; };
@@ -44,9 +45,9 @@
 		C7CDAF9B2AD1E8CD006C0886 /* CoursesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CDAF9A2AD1E8CD006C0886 /* CoursesList.swift */; };
 		C7CDAFA52AD5CCCA006C0886 /* CourseInfoPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CDAFA42AD5CCCA006C0886 /* CourseInfoPanel.swift */; };
 		C7E24CE52AE0A36600A3D473 /* KGImageChooser in Frameworks */ = {isa = PBXBuildFile; productRef = C7E24CE42AE0A36600A3D473 /* KGImageChooser */; };
-		C7E24CE72AE1D63700A3D473 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E24CE62AE1D63700A3D473 /* Image.swift */; };
-		C7E24CE92AE1D68A00A3D473 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E24CE82AE1D68A00A3D473 /* Color.swift */; };
-		C7E24CEF2AE472BC00A3D473 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E24CEE2AE472BB00A3D473 /* Array.swift */; };
+		C7E24CE72AE1D63700A3D473 /* Image extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E24CE62AE1D63700A3D473 /* Image extensions.swift */; };
+		C7E24CE92AE1D68A00A3D473 /* Color extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E24CE82AE1D68A00A3D473 /* Color extensions.swift */; };
+		C7E24CEF2AE472BC00A3D473 /* Array extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E24CEE2AE472BB00A3D473 /* Array extensions.swift */; };
 		C7ED6B3F2B07FE9800643604 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ED6B3E2B07FE9800643604 /* LaunchScreenView.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C729EC912B11249200994DDC /* View extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View extensions.swift"; sourceTree = "<group>"; };
 		C74CB2432AC4CD1000AC53D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C74CB2482AC6000800AC53D7 /* putter_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = putter_banner.png; sourceTree = "<group>"; };
 		C74CB24A2AC601C000AC53D7 /* plain_ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plain_ball.png; sourceTree = "<group>"; };
@@ -99,9 +101,9 @@
 		C7B0FEF22B000852005C9617 /* CourseAnnotationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseAnnotationItem.swift; sourceTree = "<group>"; };
 		C7CDAF9A2AD1E8CD006C0886 /* CoursesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesList.swift; sourceTree = "<group>"; };
 		C7CDAFA42AD5CCCA006C0886 /* CourseInfoPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInfoPanel.swift; sourceTree = "<group>"; };
-		C7E24CE62AE1D63700A3D473 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
-		C7E24CE82AE1D68A00A3D473 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		C7E24CEE2AE472BB00A3D473 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		C7E24CE62AE1D63700A3D473 /* Image extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image extensions.swift"; sourceTree = "<group>"; };
+		C7E24CE82AE1D68A00A3D473 /* Color extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color extensions.swift"; sourceTree = "<group>"; };
+		C7E24CEE2AE472BB00A3D473 /* Array extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array extensions.swift"; sourceTree = "<group>"; };
 		C7ED6B3E2B07FE9800643604 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -151,9 +153,10 @@
 			isa = PBXGroup;
 			children = (
 				C74CB2652AC886DB00AC53D7 /* UIImageStringConversions.swift */,
-				C7E24CE62AE1D63700A3D473 /* Image.swift */,
-				C7E24CE82AE1D68A00A3D473 /* Color.swift */,
-				C7E24CEE2AE472BB00A3D473 /* Array.swift */,
+				C7E24CE62AE1D63700A3D473 /* Image extensions.swift */,
+				C7E24CE82AE1D68A00A3D473 /* Color extensions.swift */,
+				C7E24CEE2AE472BB00A3D473 /* Array extensions.swift */,
+				C729EC912B11249200994DDC /* View extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -425,11 +428,11 @@
 			files = (
 				C74CB2702AC892C000AC53D7 /* NavigationStore.swift in Sources */,
 				C760EB1A2ABE0C1A000DFE09 /* CoursesViewModel.swift in Sources */,
-				C7E24CE72AE1D63700A3D473 /* Image.swift in Sources */,
+				C7E24CE72AE1D63700A3D473 /* Image extensions.swift in Sources */,
 				C760EB142ABD0898000DFE09 /* ScoreCardViewModel.swift in Sources */,
 				C74CB25E2AC6399E00AC53D7 /* SavedGame.swift in Sources */,
 				C7A70BDC2B0037D9002DC403 /* ScreenSize.swift in Sources */,
-				C7E24CE92AE1D68A00A3D473 /* Color.swift in Sources */,
+				C7E24CE92AE1D68A00A3D473 /* Color extensions.swift in Sources */,
 				C7CDAF9B2AD1E8CD006C0886 /* CoursesList.swift in Sources */,
 				C760EB042AB8F877000DFE09 /* Hole.swift in Sources */,
 				C74CB2662AC886DB00AC53D7 /* UIImageStringConversions.swift in Sources */,
@@ -438,6 +441,7 @@
 				C760EAF32AB8F7FF000DFE09 /* PutPutGolfApp.swift in Sources */,
 				C760EB062AB8F8D9000DFE09 /* Player.swift in Sources */,
 				C7A9BA902AC4AA3100A69B81 /* CoursesMap.swift in Sources */,
+				C729EC922B11249200994DDC /* View extensions.swift in Sources */,
 				C760EB172ABE0AD6000DFE09 /* DataServices.swift in Sources */,
 				C760EB022AB8F825000DFE09 /* Course.swift in Sources */,
 				C74CB2632AC7477800AC53D7 /* SetupPlayerViewModel.swift in Sources */,
@@ -446,7 +450,7 @@
 				C760EB0B2AB8F99B000DFE09 /* MockData.swift in Sources */,
 				C760EB092AB8F94B000DFE09 /* ScoreCardView.swift in Sources */,
 				C7ED6B3F2B07FE9800643604 /* LaunchScreenView.swift in Sources */,
-				C7E24CEF2AE472BC00A3D473 /* Array.swift in Sources */,
+				C7E24CEF2AE472BC00A3D473 /* Array extensions.swift in Sources */,
 				C77B0CB72AD0809500F3E1C5 /* MyMap.swift in Sources */,
 				C7CDAFA52AD5CCCA006C0886 /* CourseInfoPanel.swift in Sources */,
 				C760EB112ABBC4C9000DFE09 /* EnterScoreView.swift in Sources */,
@@ -606,8 +610,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -640,8 +643,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -11,7 +11,7 @@ import Combine
 @MainActor class ScoreCardViewModel: ObservableObject {
     typealias Totals = Int
     typealias FinalTotals = Int
-    @AppStorage(AppStorageKeys.savedGames.description) var savedGames: [SavedGame]?
+//    @AppStorage(AppStorageKeys.savedGames.description) var savedGames: [SavedGame]?
     
     @Published var players: [Player]
     @Published var totals: [Totals] = []
@@ -20,6 +20,7 @@ import Combine
     var course: Course
     var cancellables: Set<AnyCancellable> = []
     var isGameCompleted: Bool = false
+    
 
     
     init(course: Course, players: [Player], isResumingGame: Bool = false) {
@@ -73,14 +74,14 @@ import Combine
     
     
     /// Saves the current game to AppStorage.
-    func saveCurrentGame() {
-        let game = SavedGame(id: UUID().uuidString, course: self.course, players: self.players, isCompleted: isGameCompleted)
-        if savedGames != nil {
-            self.savedGames!.append(game)
-        } else {
-            self.savedGames = [game]
-        }
-    }
+//    func saveCurrentGame() {
+//        let game = SavedGame(id: UUID().uuidString, course: self.course, players: self.players, isCompleted: isGameCompleted)
+//        if savedGames != nil {
+//            self.savedGames!.append(game)
+//        } else {
+//            self.savedGames = [game]
+//        }
+//    }
     
 }
 

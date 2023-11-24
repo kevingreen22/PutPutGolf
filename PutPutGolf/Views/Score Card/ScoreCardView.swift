@@ -182,7 +182,7 @@ extension ScoreCardView {
     
     fileprivate var closeButton: some View {
         Button {
-            vm.saveCurrentGame()
+//            vm.saveCurrentGame()
             navVM.path = NavigationPath()
         } label: {
             Image(systemName: "xmark")
