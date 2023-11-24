@@ -22,7 +22,7 @@ struct SetupPlayers: View {
     
     
     var body: some View {
-        GeometryReader { _ in
+//        GeometryReader { _ in
             ZStack {
                 Color.green.ignoresSafeArea()
                 VStack {
