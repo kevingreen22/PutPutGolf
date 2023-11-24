@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C729EC922B11249200994DDC /* View extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C729EC912B11249200994DDC /* View extensions.swift */; };
-		C74CB2492AC6000800AC53D7 /* putter_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = C74CB2482AC6000800AC53D7 /* putter_banner.png */; };
+		C74CB2492AC6000800AC53D7 /* logo_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = C74CB2482AC6000800AC53D7 /* logo_banner.png */; };
 		C74CB24B2AC601C000AC53D7 /* plain_ball.png in Resources */ = {isa = PBXBuildFile; fileRef = C74CB24A2AC601C000AC53D7 /* plain_ball.png */; };
 		C74CB2512AC6021D00AC53D7 /* closeup_ball_hole.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C74CB24D2AC6021D00AC53D7 /* closeup_ball_hole.jpg */; };
 		C74CB2522AC6021D00AC53D7 /* martinez.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C74CB24E2AC6021D00AC53D7 /* martinez.jpg */; };
@@ -64,7 +64,7 @@
 /* Begin PBXFileReference section */
 		C729EC912B11249200994DDC /* View extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View extensions.swift"; sourceTree = "<group>"; };
 		C74CB2432AC4CD1000AC53D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		C74CB2482AC6000800AC53D7 /* putter_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = putter_banner.png; sourceTree = "<group>"; };
+		C74CB2482AC6000800AC53D7 /* logo_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_banner.png; sourceTree = "<group>"; };
 		C74CB24A2AC601C000AC53D7 /* plain_ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plain_ball.png; sourceTree = "<group>"; };
 		C74CB24D2AC6021D00AC53D7 /* closeup_ball_hole.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = closeup_ball_hole.jpg; sourceTree = "<group>"; };
 		C74CB24E2AC6021D00AC53D7 /* martinez.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = martinez.jpg; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 				C74CB24F2AC6021D00AC53D7 /* walnut_creek.jpg */,
 				C74CB24A2AC601C000AC53D7 /* plain_ball.png */,
 				C74CB24D2AC6021D00AC53D7 /* closeup_ball_hole.jpg */,
-				C74CB2482AC6000800AC53D7 /* putter_banner.png */,
+				C74CB2482AC6000800AC53D7 /* logo_banner.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -407,7 +407,7 @@
 				C74CB2532AC6021D00AC53D7 /* walnut_creek.jpg in Resources */,
 				C74CB2542AC6021D00AC53D7 /* alameda.jpg in Resources */,
 				C760EAF72AB8F801000DFE09 /* Assets.xcassets in Resources */,
-				C74CB2492AC6000800AC53D7 /* putter_banner.png in Resources */,
+				C74CB2492AC6000800AC53D7 /* logo_banner.png in Resources */,
 				C74CB24B2AC601C000AC53D7 /* plain_ball.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

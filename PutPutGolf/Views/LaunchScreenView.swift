@@ -16,7 +16,7 @@ struct LaunchScreenView: View {
     
     var body: some View {
         VStack {
-            Image("putter_banner")
+            Image("logo_banner")
                 .resizable()
                 .scaledToFit()
                 .padding()
