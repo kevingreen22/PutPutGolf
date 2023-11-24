@@ -22,31 +22,30 @@ struct SetupPlayers: View {
     
     
     var body: some View {
-//        GeometryReader { _ in
-            ZStack {
-                Color.green.ignoresSafeArea()
-                VStack {
-                    profileImage
-                    playerNameTextField
-                    Spacer()
-                    playerList
-                    letsPuttButton
-                }
-                .animation(.easeInOut, value: vm.playerName)
-                .animation(.easeInOut, value: vm.profileImage)
-                .padding(.top)
-                .onAppear { isFocused = true }
-                .navigationTitle("Setup Players")
-                .navigationDestination(for: SavedGame.self) { savedGame in
-                    ScoreCardView(course: savedGame.course, players: savedGame.players, isResumingGame: true)
-                }
+        ZStack {
+            Color.green.ignoresSafeArea()
+            VStack {
+                profileImage
+                playerNameTextField
+                Spacer()
+                playerList
+                letsPuttButton
             }
-            .fullScreenCover(isPresented: $vm.showImageChooser) {
-                KGCameraImageChooser(uiImage: $vm.profileImage)
+            .animation(.easeInOut, value: vm.playerName)
+            .animation(.easeInOut, value: vm.profileImage)
+            .padding(.top)
+            .onAppear { isFocused = true }
+            .navigationTitle("Setup Players")
+            .navigationDestination(for: SavedGame.self) { savedGame in
+                ScoreCardView(course: savedGame.course, players: savedGame.players, isResumingGame: true)
             }
-//        }
+        }
         
-            .staticViewWithKeyboard()
+        .fullScreenCover(isPresented: $vm.showImageChooser) {
+            KGCameraImageChooser(uiImage: $vm.profileImage)
+        }
+        
+        .staticViewWithKeyboard()
         
 //        .task {
 //            vm.checkForCurrentGameOn(course: course)
