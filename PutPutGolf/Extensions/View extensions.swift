@@ -10,7 +10,7 @@ import SwiftUI
 extension View {
     
     /// Prevents the view from moving upwards when the keyboard is shown.
-    func staticKeyboard() -> some View {
+    func staticViewWithKeyboard() -> some View {
         GeometryReader { _ in
             self
         }

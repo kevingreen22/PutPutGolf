@@ -46,7 +46,7 @@ struct SetupPlayers: View {
             }
 //        }
         
-            .staticKeyboard()
+            .staticViewWithKeyboard()
         
 //        .task {
 //            vm.checkForCurrentGameOn(course: course)
