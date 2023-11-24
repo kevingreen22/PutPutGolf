@@ -48,14 +48,18 @@ struct ScoreCardView: View {
                 .gesture(zoomGesture)
                 .modifier(AccessibilityZoom(zoom: $totalZoom))
             }
-            
+            .rotationEffect(.degrees(-90))
+            .offset(x: 200, y: 200)
         }
-        .toolbar(.hidden, for: .navigationBar)
-        .overlay(alignment: .topLeading) {
+        
+        .overlay(alignment: .bottomLeading) {
             closeButton
                 .padding()
                 .ignoresSafeArea()
         } // Close Button
+        
+        .toolbar(.hidden, for: .navigationBar)
+        
         .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
                 Spacer()
@@ -63,6 +67,13 @@ struct ScoreCardView: View {
             }
         }// keyboard upper done button
         
+        .statusBar(hidden: vm.showStatusBar)
+        .onAppear {
+            vm.showStatusBar = false
+        }
+        .onDisappear {
+            vm.showStatusBar = true
+        }
     }
 }
 

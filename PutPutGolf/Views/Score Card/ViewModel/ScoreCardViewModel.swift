@@ -16,6 +16,7 @@ import Combine
     @Published var players: [Player]
     @Published var totals: [Totals] = []
     @Published var finalTotals: [FinalTotals] = []
+    @Published var showStatusBar = true
     
     var course: Course
     var cancellables: Set<AnyCancellable> = []
