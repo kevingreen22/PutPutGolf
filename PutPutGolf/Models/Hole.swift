@@ -20,6 +20,13 @@ struct Hole: Codable, Hashable, Equatable, Identifiable {
         self.par = par
         self.difficulty = difficulty
     }
+    
+    init() {
+        self.id = UUID().uuidString
+        self.number = 1
+        self.par = 3
+        self.difficulty = .easy
+    }
 }
 
 
