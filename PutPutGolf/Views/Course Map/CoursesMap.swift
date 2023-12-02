@@ -32,12 +32,8 @@ struct CoursesMap: View {
 //                        savedGamesMenu
 //                    } // Saved games button/menu
                 
-                    .overlay(alignment: .topTrailing) {
-                        settingsButton
-                    } // settings button
-                
                 VStack(alignment: .leading, spacing: 0) {
-                    headerBar.padding(.leading).padding(.trailing, 80)
+                    headerBar.padding(.leading).padding(.trailing/*, 80*/)
                     Spacer()
                     courseInfoPanel
                 }
@@ -53,6 +49,7 @@ struct CoursesMap: View {
             .fullScreenCover(isPresented: $showLogin) {
                 if loginCredentialsValid {
                     AddCourseInfo(loginCredentialsValid: $loginCredentialsValid, dataService: self.dataService, courses: coursesVM.coursesData)
+
                         .animation(.easeInOut(duration: 1), value: loginCredentialsValid)
                         .transition(.opacity.combined(with: .scale))
                 } else {
@@ -94,21 +91,30 @@ extension CoursesMap {
     
     fileprivate var headerBar: some View {
         VStack {
-            Button(action: coursesVM.toggleCoursesList) {
-                Text(coursesVM.selectedCourse.address)
-                    .font(.title2)
-                    .fontWeight(.black)
-                    .foregroundColor(.primary)
-                    .frame(height: 55)
-                    .frame(maxWidth: .infinity)
-                    .animation(.none, value: coursesVM.selectedCourse)
-                    .overlay (alignment: .leading) {
-                        Image (systemName: "arrow.down")
-                            .font (.headline)
-                            .foregroundColor(.primary)
-                            .padding()
-                            .rotationEffect(Angle(degrees: coursesVM.showCoursesList ? 180 : 0))
-                    }
+            HStack {
+                Button(action: coursesVM.toggleCoursesList) {
+                    Text(coursesVM.selectedCourse.address)
+                        .font(.title2)
+                        .fontWeight(.black)
+                        .foregroundColor(.primary)
+                        .frame(height: 55)
+                        .frame(maxWidth: .infinity)
+                        .animation(.none, value: coursesVM.selectedCourse)
+                        .overlay (alignment: .leading) {
+                            Image (systemName: "arrow.down")
+                                .font (.headline)
+                                .foregroundColor(.primary)
+                                .padding()
+                                .rotationEffect(Angle(degrees: coursesVM.showCoursesList ? 180 : 0))
+                        }
+                }
+                
+                Button {
+                    self.showLogin.toggle()
+                } label: {
+                    Image(systemName: "gearshape.fill")
+                        .frame(width: 40, height: 40)
+                }.padding(.trailing) // Settings Button
             }
             if coursesVM.showCoursesList {
                 CoursesList().environmentObject(coursesVM)
@@ -145,20 +151,6 @@ extension CoursesMap {
 //                .padding(.trailing)
 //        }
 //    }
-    
-    fileprivate var settingsButton: some View {
-            Button {
-                self.showLogin.toggle()
-            } label: {
-                Image(systemName: "gearshape.fill")
-                    .font(.title)
-                    .frame(width: 55, height: 55)
-                    .background(.thickMaterial)
-                    .cornerRadius(10)
-                    .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 15)
-                    .padding(.trailing)
-            }
-        }
     
     fileprivate var courseInfoPanel: some View {
         ZStack {
