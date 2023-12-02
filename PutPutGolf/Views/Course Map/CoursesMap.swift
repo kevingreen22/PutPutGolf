@@ -32,6 +32,10 @@ struct CoursesMap: View {
 //                        savedGamesMenu
 //                    } // Saved games button/menu
                 
+                    .overlay(alignment: .topTrailing) {
+                        settingsButton
+                    } // settings button
+                
                 VStack(alignment: .leading, spacing: 0) {
                     headerBar.padding(.leading).padding(.trailing, 80)
                     Spacer()
