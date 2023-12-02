@@ -17,6 +17,15 @@
         "branch" : "main",
         "revision" : "bea2ea7f106fa7c8db9b364448f811b061f87f3c"
       }
+    },
+    {
+      "identity" : "kgviews",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kevingreen22/KGViews",
+      "state" : {
+        "branch" : "main",
+        "revision" : "a642481927da9f51926573514fd1f448db73f1c0"
+      }
     }
   ],
   "version" : 2

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C729EC922B11249200994DDC /* View extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C729EC912B11249200994DDC /* View extensions.swift */; };
+		C729EC942B1130C500994DDC /* AddCourseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C729EC932B1130C500994DDC /* AddCourseInfo.swift */; };
+		C7343A6F2B16B9C20043C9C0 /* KGViews in Frameworks */ = {isa = PBXBuildFile; productRef = C7343A6E2B16B9C20043C9C0 /* KGViews */; };
 		C74CB2492AC6000800AC53D7 /* logo_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = C74CB2482AC6000800AC53D7 /* logo_banner.png */; };
 		C74CB24B2AC601C000AC53D7 /* plain_ball.png in Resources */ = {isa = PBXBuildFile; fileRef = C74CB24A2AC601C000AC53D7 /* plain_ball.png */; };
 		C74CB2512AC6021D00AC53D7 /* closeup_ball_hole.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C74CB24D2AC6021D00AC53D7 /* closeup_ball_hole.jpg */; };
@@ -19,6 +21,8 @@
 		C74CB2632AC7477800AC53D7 /* SetupPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB2622AC7477800AC53D7 /* SetupPlayerViewModel.swift */; };
 		C74CB2662AC886DB00AC53D7 /* UIImageStringConversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB2652AC886DB00AC53D7 /* UIImageStringConversions.swift */; };
 		C74CB2702AC892C000AC53D7 /* NavigationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74CB26F2AC892C000AC53D7 /* NavigationStore.swift */; };
+		C75751752B1AA23000308F73 /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75751742B1AA23000308F73 /* test.swift */; };
+		C75751772B1BA8AF00308F73 /* ErrorAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75751762B1BA8AF00308F73 /* ErrorAlerts.swift */; };
 		C760EAF32AB8F7FF000DFE09 /* PutPutGolfApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EAF22AB8F7FF000DFE09 /* PutPutGolfApp.swift */; };
 		C760EAF72AB8F801000DFE09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C760EAF62AB8F801000DFE09 /* Assets.xcassets */; };
 		C760EAFA2AB8F801000DFE09 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C760EAF92AB8F801000DFE09 /* Preview Assets.xcassets */; };
@@ -63,6 +67,7 @@
 
 /* Begin PBXFileReference section */
 		C729EC912B11249200994DDC /* View extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View extensions.swift"; sourceTree = "<group>"; };
+		C729EC932B1130C500994DDC /* AddCourseInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseInfo.swift; sourceTree = "<group>"; };
 		C74CB2432AC4CD1000AC53D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C74CB2482AC6000800AC53D7 /* logo_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_banner.png; sourceTree = "<group>"; };
 		C74CB24A2AC601C000AC53D7 /* plain_ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plain_ball.png; sourceTree = "<group>"; };
@@ -75,6 +80,8 @@
 		C74CB2622AC7477800AC53D7 /* SetupPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupPlayerViewModel.swift; sourceTree = "<group>"; };
 		C74CB2652AC886DB00AC53D7 /* UIImageStringConversions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageStringConversions.swift; sourceTree = "<group>"; };
 		C74CB26F2AC892C000AC53D7 /* NavigationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStore.swift; sourceTree = "<group>"; };
+		C75751742B1AA23000308F73 /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		C75751762B1BA8AF00308F73 /* ErrorAlerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorAlerts.swift; sourceTree = "<group>"; };
 		C760EAEF2AB8F7FF000DFE09 /* PutPutGolf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PutPutGolf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C760EAF22AB8F7FF000DFE09 /* PutPutGolfApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutPutGolfApp.swift; sourceTree = "<group>"; };
 		C760EAF62AB8F801000DFE09 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -112,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7343A6F2B16B9C20043C9C0 /* KGViews in Frameworks */,
 				C7E24CE52AE0A36600A3D473 /* KGImageChooser in Frameworks */,
 				C7859A242AF6AF5D00F4CF82 /* Alamofire in Frameworks */,
 			);
@@ -193,6 +201,7 @@
 				C760EAF62AB8F801000DFE09 /* Assets.xcassets */,
 				C760EAF82AB8F801000DFE09 /* Preview Content */,
 				C7A70BDB2B0037D9002DC403 /* ScreenSize.swift */,
+				C75751742B1AA23000308F73 /* test.swift */,
 			);
 			path = PutPutGolf;
 			sourceTree = "<group>";
@@ -213,6 +222,7 @@
 				C760EB0C2AB8F9FA000DFE09 /* Challenge.swift */,
 				C760EB052AB8F8D9000DFE09 /* Player.swift */,
 				C74CB25D2AC6399E00AC53D7 /* SavedGame.swift */,
+				C75751762B1BA8AF00308F73 /* ErrorAlerts.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -224,6 +234,7 @@
 				C760EB182ABE0BEB000DFE09 /* Course Map */,
 				C74CB2612AC7475D00AC53D7 /* Setup Player Views */,
 				C760EB122ABD0879000DFE09 /* Score Card */,
+				C729EC932B1130C500994DDC /* AddCourseInfo.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -331,6 +342,7 @@
 			packageProductDependencies = (
 				C7E24CE42AE0A36600A3D473 /* KGImageChooser */,
 				C7859A232AF6AF5D00F4CF82 /* Alamofire */,
+				C7343A6E2B16B9C20043C9C0 /* KGViews */,
 			);
 			productName = PutPutGolf;
 			productReference = C760EAEF2AB8F7FF000DFE09 /* PutPutGolf.app */;
@@ -385,6 +397,7 @@
 			packageReferences = (
 				C7E24CE32AE0A36600A3D473 /* XCRemoteSwiftPackageReference "KGImageChooser" */,
 				C7859A222AF6AF5D00F4CF82 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				C7343A6D2B16B9C20043C9C0 /* XCRemoteSwiftPackageReference "KGViews" */,
 			);
 			productRefGroup = C760EAF02AB8F7FF000DFE09 /* Products */;
 			projectDirPath = "";
@@ -431,13 +444,16 @@
 				C7E24CE72AE1D63700A3D473 /* Image extensions.swift in Sources */,
 				C760EB142ABD0898000DFE09 /* ScoreCardViewModel.swift in Sources */,
 				C74CB25E2AC6399E00AC53D7 /* SavedGame.swift in Sources */,
+				C75751772B1BA8AF00308F73 /* ErrorAlerts.swift in Sources */,
 				C7A70BDC2B0037D9002DC403 /* ScreenSize.swift in Sources */,
 				C7E24CE92AE1D68A00A3D473 /* Color extensions.swift in Sources */,
 				C7CDAF9B2AD1E8CD006C0886 /* CoursesList.swift in Sources */,
 				C760EB042AB8F877000DFE09 /* Hole.swift in Sources */,
 				C74CB2662AC886DB00AC53D7 /* UIImageStringConversions.swift in Sources */,
+				C729EC942B1130C500994DDC /* AddCourseInfo.swift in Sources */,
 				C760EB1E2ABF57B8000DFE09 /* CourseInfo.swift in Sources */,
 				C74CB2602AC7429D00AC53D7 /* SetupPlayers.swift in Sources */,
+				C75751752B1AA23000308F73 /* test.swift in Sources */,
 				C760EAF32AB8F7FF000DFE09 /* PutPutGolfApp.swift in Sources */,
 				C760EB062AB8F8D9000DFE09 /* Player.swift in Sources */,
 				C7A9BA902AC4AA3100A69B81 /* CoursesMap.swift in Sources */,
@@ -739,6 +755,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C7343A6D2B16B9C20043C9C0 /* XCRemoteSwiftPackageReference "KGViews" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kevingreen22/KGViews";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		C7859A222AF6AF5D00F4CF82 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -758,6 +782,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C7343A6E2B16B9C20043C9C0 /* KGViews */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C7343A6D2B16B9C20043C9C0 /* XCRemoteSwiftPackageReference "KGViews" */;
+			productName = KGViews;
+		};
 		C7859A232AF6AF5D00F4CF82 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C7859A222AF6AF5D00F4CF82 /* XCRemoteSwiftPackageReference "Alamofire" */;
