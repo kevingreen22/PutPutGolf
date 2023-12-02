@@ -67,7 +67,9 @@ struct ScoreCardView: View {
             }
         }// keyboard upper done button
         
-        .statusBar(hidden: vm.showStatusBar)
+        .staticViewWithKeyboard()
+
+        .statusBarHidden(vm.showStatusBar)
         .onAppear {
             vm.showStatusBar = false
         }
