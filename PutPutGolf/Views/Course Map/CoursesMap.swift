@@ -10,12 +10,16 @@ import SwiftUI
 struct CoursesMap: View {
     @StateObject var coursesVM: CoursesViewModel
     @EnvironmentObject var navVM: NavigationStore
+    @State private var showLogin = false
+    @State private var loginCredentialsValid = false
+    let dataService: any DataServiceProtocol
 //    @AppStorage(AppStorageKeys.savedGames.description) var savedGames: [SavedGame] = []
     var navID: Int = 0
     
-    init(coursesData: [Course]) {
+    init(coursesData: [Course], dataService: any DataServiceProtocol) {
         print("\(type(of: self)).\(#function)")
         _coursesVM = StateObject(wrappedValue: CoursesViewModel(coursesData: coursesData))
+        self.dataService = dataService
     }
     
     
@@ -42,15 +46,28 @@ struct CoursesMap: View {
                     .presentationCornerRadius(20)
             }
             
+            .fullScreenCover(isPresented: $showLogin) {
+                if loginCredentialsValid {
+                    AddCourseInfo(loginCredentialsValid: $loginCredentialsValid, dataService: self.dataService, courses: coursesVM.coursesData)
+                        .animation(.easeInOut(duration: 1), value: loginCredentialsValid)
+                        .transition(.opacity.combined(with: .scale))
+                } else {
+                    LoginView(loginCredentialsValid: $loginCredentialsValid)
+                        .animation(.easeInOut(duration: 1), value: loginCredentialsValid)
+                        .transition(.opacity.combined(with: .scale))
+                }
+            }
+            
             // Navigation
             .navigationBarTitleDisplayMode(.large)
             .navigationDestination(for: Int.self) { navID in
-                SetupPlayers(coursesVM.selectedCourse)
+                if navID == 1 {
+                    SetupPlayers(coursesVM.selectedCourse)
+                }
             }
             .navigationDestination(for: [Player].self) { players in
                 ScoreCardView(course: coursesVM.selectedCourse, players: players)
             }
-            
         }
     }
 }
@@ -60,7 +77,7 @@ struct CoursesMap_Previews: PreviewProvider {
     static let dataService = MockDataService(mockData: mockData)
     
     static var previews: some View {
-        CoursesMap(coursesData: mockData.courses)
+        CoursesMap(coursesData: mockData.courses, dataService: dataService)
             .environmentObject(CoursesViewModel(coursesData: mockData.courses))
             .environmentObject(NavigationStore())
     }
@@ -124,6 +141,20 @@ extension CoursesMap {
 //                .padding(.trailing)
 //        }
 //    }
+    
+    fileprivate var settingsButton: some View {
+            Button {
+                self.showLogin.toggle()
+            } label: {
+                Image(systemName: "gearshape.fill")
+                    .font(.title)
+                    .frame(width: 55, height: 55)
+                    .background(.thickMaterial)
+                    .cornerRadius(10)
+                    .shadow(color: .black.opacity(0.3), radius: 10, x: 0, y: 15)
+                    .padding(.trailing)
+            }
+        }
     
     fileprivate var courseInfoPanel: some View {
         ZStack {

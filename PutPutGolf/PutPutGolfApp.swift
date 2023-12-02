@@ -15,9 +15,9 @@ struct PutPutGolfApp: App {
     
     init() {
         print("\(type(of: self)).\(#function)-app.main")
+        
         // PRODUCTION SERVICE
-        let url = URL(string: "https://try3rg28fg.execute-api.us-west-1.amazonaws.com/live/courses")!
-        dataService = ProductionDataService(url: url)
+        dataService = ProductionDataService()
         
         // DEVELOPMENT MOCK SERVICE
 //        dataService = MockDataService(mockData: MockData.instance)
@@ -27,7 +27,7 @@ struct PutPutGolfApp: App {
         WindowGroup {
             Group {
                 if let coursesData = self.coursesData {
-                    CoursesMap(coursesData: coursesData)
+                    CoursesMap(coursesData: coursesData, dataService: dataService)
                         .environmentObject(navVM)
                 } else {
                     LaunchScreenView()
