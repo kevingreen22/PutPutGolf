@@ -112,7 +112,7 @@ extension CoursesMap {
                 Button {
                     self.showLogin.toggle()
                 } label: {
-                    Image(systemName: "gearshape.fill")
+                    Image(systemName: "rectangle.portrait.and.arrow.forward")
                         .frame(width: 40, height: 40)
                 }.padding(.trailing) // Settings Button
             }
