@@ -198,7 +198,7 @@ struct AddCourseInfo: View {
 
 
 struct AddCourseView: View {
-    @EnvironmentObject var navVM: NavigationStore
+    @EnvironmentObject var navStore: NavigationStore
     @StateObject var vm: AddCourseInfoVM
     let dataService: any DataServiceProtocol
     let navID = 1
@@ -325,7 +325,7 @@ struct AddCourseView: View {
                 
                 vm.uploadNewCourse()
                 
-                navVM.path.removeLast()
+                navStore.path.removeLast()
             } else {
                 // maybe show alert here ??
                 
