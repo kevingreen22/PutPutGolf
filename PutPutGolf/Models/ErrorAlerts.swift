@@ -31,11 +31,18 @@ extension View {
 enum ErrorAlerts: Error, LocalizedError, AppAlert  {
     case basic(String)
     case advanced(action: ()->Void)
+    case decodeFailure
+    case fetchFailed
+    case postFailed
+    
     
     var errorDescription: String? {
         switch self {
         case .basic(error: let error): "There was and error: \(error.description)"
         case .advanced: "Opps, something went really wrong."
+        case .decodeFailure: "Error decoding JSON."
+        case .fetchFailed: "Error fetching data."
+        case .postFailed: "Error posting data."
         }
     }
     
@@ -43,13 +50,18 @@ enum ErrorAlerts: Error, LocalizedError, AppAlert  {
         switch self {
         case .basic: "Error"
         case .advanced: "Major Error"
+        case .decodeFailure: "Decode Error"
+        case .fetchFailed: "Fetching Failed"
+        case .postFailed: "Posting Failed"
         }
     }
     
     var message: String? {
         switch self {
         case .basic: "Someting went wrong, please try again."
-        case .advanced: nil
+        case .advanced: "Something went horibly wrong."
+        case .decodeFailure: "There was an error decoding JSON object."
+        case .fetchFailed, .postFailed: nil
         }
     }
     
@@ -59,7 +71,7 @@ enum ErrorAlerts: Error, LocalizedError, AppAlert  {
     
     @ViewBuilder var getButtons: some View {
         switch self {
-        case .basic:
+        case .basic, .decodeFailure, .fetchFailed, .postFailed:
             Button("Ok") { }
         case .advanced(action: let action):
             Button("Ok") { action() }
