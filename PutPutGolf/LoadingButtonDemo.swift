@@ -1,5 +1,5 @@
 //
-//  test.swift
+//  LoadingButtonDemo.swift
 //  PutPutGolf
 //
 //  Created by Kevin Green on 12/1/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct test: View {
+struct LoadingButtonDemo: View {
     @State private var showLoader1 = false
     @State private var showLoader2 = false
     
@@ -41,7 +41,7 @@ struct test: View {
 }
 
 #Preview {
-    test()
+    LoadingButtonDemo()
 }
 
 
