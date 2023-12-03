@@ -219,6 +219,7 @@ extension ScoreCardView {
                 }
             
             TextField("", text: holeScore)
+                .limitCharacterLength(limit: 1, text: holeScore)
                 .focused($isFocused)
                 .foregroundColor(setScoreTextColor(holeScore: holeScore.wrappedValue, hole: hole))
                 .multilineTextAlignment(.center)
@@ -271,6 +272,7 @@ extension ScoreCardView {
                 }
             
             TextField("", text: challengeScore)
+                .limitCharacterLength(limit: 1, text: challengeScore)
                 .focused($isFocused)
                 .multilineTextAlignment(.center)
                 .font(.largeTitle)
