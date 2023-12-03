@@ -48,18 +48,17 @@ struct SetupPlayers: View {
         
         .staticViewWithKeyboard()
         
-//        .task {
-//            vm.checkForCurrentGameOn(course: course)
-//        }
-        
-//        .alert("It looks like you are already playing a game on this course. Would you like to continue that game?", isPresented: $vm.showCurrentGameAlert) {
-//            Button("Yes, Lets Putt!", systemImage: "figure.golf") {
-//                navVM.path.append(vm.savedGame)
-//            }
-//            Button("No, start a new game.", systemImage: "xmark", role: .cancel) {}
-//        }
-        
-//        .ignoresSafeArea(.keyboard) // this coupled with the GeometryReader makes it so the view doesn't move up when the key board is shown.
+        // Used for SavedGame
+        //        .task {
+        //            vm.checkForCurrentGameOn(course: course)
+        //        }
+        //
+        //        .alert("It looks like you are already playing a game on this course. Would you like to continue that game?", isPresented: $vm.showCurrentGameAlert) {
+        //            Button("Yes, Lets Putt!", systemImage: "figure.golf") {
+        //                navVM.goto(.savedGame(vm.savedGame))
+        //            }
+        //            Button("No, start a new game.", systemImage: "xmark", role: .cancel) {}
+        //        }
         
     }
 }
