@@ -13,7 +13,8 @@ struct SetupPlayers: View {
     @StateObject var vm = SetupPlayerViewModel()
     @FocusState var isFocused: Bool
     var course: Course
-    var navID: Int = 1
+//    var navID: Int = 1
+    var navID: Int = NavigationStore.DestinationID.playerSetup
 
     init(_ course: Course) {
         print("\(type(of: self)).\(#function)")
@@ -171,7 +172,7 @@ extension SetupPlayers {
         Button {
             // Navigate to ScoreCard here
             let players = vm.createPlayers(on: course)
-            navVM.path.append(players)
+            navVM.goto(.scoreCard(players: players))
         } label: {
             Image("plain_ball")
                 .resizable()

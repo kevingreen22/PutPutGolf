@@ -76,7 +76,7 @@ extension CourseInfoPanel {
     
     fileprivate var playCourseButton: some View {
         Button {
-            navVM.path.append(1)
+            navVM.goto(.playerSetup)
         } label: {
             Text("Play Course")
                 .font(.headline)

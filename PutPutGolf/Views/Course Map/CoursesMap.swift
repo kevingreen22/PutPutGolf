@@ -14,7 +14,8 @@ struct CoursesMap: View {
     @State private var loginCredentialsValid = false
     let dataService: any DataServiceProtocol
 //    @AppStorage(AppStorageKeys.savedGames.description) var savedGames: [SavedGame] = []
-    var navID: Int = 0
+//    var navID: Int = 0
+    var navID: Int = NavigationStore.DestinationID.mapView
     
     init(coursesData: [Course], dataService: any DataServiceProtocol) {
         print("\(type(of: self)).\(#function)")

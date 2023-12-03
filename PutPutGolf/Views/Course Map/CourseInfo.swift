@@ -106,7 +106,7 @@ extension CourseInfo {
     fileprivate var playCourseButton: some View {
         Button {
             // Navigate to PlayerSetup here
-            navVM.path.append(1)
+            navVM.goto(.playerSetup)
             coursesVM.showCourseInfo = false
         } label: {
             HStack {
