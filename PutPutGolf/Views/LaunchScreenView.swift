@@ -15,15 +15,21 @@ struct LaunchScreenView: View {
     
     
     var body: some View {
-        VStack {
-            Image("logo_banner")
+        ZStack {
+            Image("golf_course")
                 .resizable()
-                .scaledToFit()
-                .padding()
-                
-            ProgressView()
+                .ignoresSafeArea()
+            
+            VStack {
+                Image("logo_banner")
+                    .resizable()
+                    .scaledToFit()
+                    .padding()
+                Spacer(minLength: 200)
+                ProgressView()
+            }
+            .transition(.opacity)
         }
-        .transition(.opacity)
     }
 
 }
