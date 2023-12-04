@@ -27,7 +27,6 @@
 		C760EB092AB8F94B000DFE09 /* ScoreCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB082AB8F94B000DFE09 /* ScoreCardView.swift */; };
 		C760EB0B2AB8F99B000DFE09 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB0A2AB8F99B000DFE09 /* MockData.swift */; };
 		C760EB0D2AB8F9FA000DFE09 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB0C2AB8F9FA000DFE09 /* Challenge.swift */; };
-		C760EB112ABBC4C9000DFE09 /* EnterScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB102ABBC4C9000DFE09 /* EnterScoreView.swift */; };
 		C760EB142ABD0898000DFE09 /* ScoreCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB132ABD0898000DFE09 /* ScoreCardViewModel.swift */; };
 		C760EB172ABE0AD6000DFE09 /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB162ABE0AD6000DFE09 /* DataServices.swift */; };
 		C760EB1A2ABE0C1A000DFE09 /* CoursesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C760EB192ABE0C1A000DFE09 /* CoursesViewModel.swift */; };
@@ -82,7 +81,6 @@
 		C760EB082AB8F94B000DFE09 /* ScoreCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCardView.swift; sourceTree = "<group>"; };
 		C760EB0A2AB8F99B000DFE09 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		C760EB0C2AB8F9FA000DFE09 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
-		C760EB102ABBC4C9000DFE09 /* EnterScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterScoreView.swift; sourceTree = "<group>"; };
 		C760EB132ABD0898000DFE09 /* ScoreCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCardViewModel.swift; sourceTree = "<group>"; };
 		C760EB162ABE0AD6000DFE09 /* DataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
 		C760EB192ABE0C1A000DFE09 /* CoursesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewModel.swift; sourceTree = "<group>"; };
@@ -220,7 +218,6 @@
 			isa = PBXGroup;
 			children = (
 				C760EB082AB8F94B000DFE09 /* ScoreCardView.swift */,
-				C760EB212AC2523F000DFE09 /* SubViews */,
 				C7CDAF9F2AD215BC006C0886 /* ViewModel */,
 			);
 			path = "Score Card";
@@ -244,14 +241,6 @@
 				C7CDAF9D2AD21578006C0886 /* ViewModel */,
 			);
 			path = "Course Map";
-			sourceTree = "<group>";
-		};
-		C760EB212AC2523F000DFE09 /* SubViews */ = {
-			isa = PBXGroup;
-			children = (
-				C760EB102ABBC4C9000DFE09 /* EnterScoreView.swift */,
-			);
-			path = SubViews;
 			sourceTree = "<group>";
 		};
 		C760EB222AC2527F000DFE09 /* SubViews */ = {
@@ -441,7 +430,6 @@
 				C7E24CEF2AE472BC00A3D473 /* Array extensions.swift in Sources */,
 				C77B0CB72AD0809500F3E1C5 /* MyMap.swift in Sources */,
 				C7CDAFA52AD5CCCA006C0886 /* CourseInfoPanel.swift in Sources */,
-				C760EB112ABBC4C9000DFE09 /* EnterScoreView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

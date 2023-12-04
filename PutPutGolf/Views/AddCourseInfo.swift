@@ -18,119 +18,125 @@ struct LoginView: View {
     
     var body: some View {
         ZStack {
-            Color.green.ignoresSafeArea()
+            Image("golf_course")
+                .resizable()
+                .ignoresSafeArea()
             
-            VStack {
-                Image(uiImage: UIImage(named: "logo_banner")!)
-                    .resizable()
-                    .scaledToFit()
-                    .padding()
-                    .padding(.top, 20)
-                Spacer()
-            }
-            
-            VStack(spacing: 30) {
-                Text("Login")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundStyle(Color.green)
-                    .padding(.top)
-                
-                TextField("Username", text: $username)
-                    .textFieldStyle(KGTextFieldStyle(
-                        image: Image(systemName: "person.fill"),
-                        imageColor: .green,
-                        keyboardType: .emailAddress)
-                    )
-                    .bordered(shape: Capsule(), color: Color.green, lineWidth: 2)
-                    .padding(.horizontal)
-                
-                TextField("Password", text: $password)
-                    .textFieldStyle(                KGPasswordTextFieldStyle(placeholder: "Password", text: $password, imageColor: .green, shape: Capsule())
-                    )
-                    .bordered(shape: Capsule(), color: Color.green, lineWidth: 2)
-                    .padding(.horizontal)
-                
-//                Button(action: {
-//                    // login code here
-//                    showButtonLoader = true
-//                    validateCredentials(username: username, password: password) { success in
-//                        if success {
-//                            withAnimation {
-//                                loginCredentialsValid = true
-//                            }
-//                            showButtonLoader = false
-//                        } else {
-//                            showButtonLoader = false
-//                            // show login error
-//                            
-//                        }
-//                    }
-//                }, label: {
-//                    if showButtonLoader {
-//                        ProgressView()
-//                    } else {
-//                        Text("LOGIN")
-//                            .fontWeight(.semibold)
-//                            .frame(maxWidth: .infinity)
-//                    }
-//                })
-//                .controlSize(.large)
-//                .buttonBorderShape(ButtonBorderShape.capsule)
-//                .buttonStyle(.borderedProminent)
-//                .padding([.horizontal, .bottom])
-                
-                ButtonWithLoader(showLoader: $showButtonLoader) {
-                    validateCredentials(username: username, password: password) { success in
-                        if success {
-                            withAnimation {
-                                loginCredentialsValid = true
-                                showButtonLoader = false
+            LoginRectangle()
+                .strokeBorder(Color.green, lineWidth: 4)
+                .background(LoginRectangle().foregroundColor(Color.white).shadow(radius: 10))
+                .frame(height: 410)
+                .overlay(alignment: .bottom) { // <
+                    VStack(spacing: 30) {
+                        Text("Login")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundStyle(Color.green)
+                            .padding(.top)
+                        
+                        TextField("Username", text: $username)
+                            .textFieldStyle(KGTextFieldStyle(
+                                image: Image(systemName: "person.fill"),
+                                imageColor: .green,
+                                keyboardType: .emailAddress)
+                            )
+                            .bordered(shape: Capsule(), color: Color.green, lineWidth: 2)
+                            .padding(.horizontal)
+                        
+                        TextField("Password", text: $password)
+                            .textFieldStyle(                KGPasswordTextFieldStyle(placeholder: "Password", text: $password, imageColor: .green, shape: Capsule())
+                            )
+                            .bordered(shape: Capsule(), color: Color.green, lineWidth: 2)
+                            .padding(.horizontal)
+                        
+                        //                Button(action: {
+                        //                    // login code here
+                        //                    showButtonLoader = true
+                        //                    validateCredentials(username: username, password: password) { success in
+                        //                        if success {
+                        //                            withAnimation {
+                        //                                loginCredentialsValid = true
+                        //                            }
+                        //                            showButtonLoader = false
+                        //                        } else {
+                        //                            showButtonLoader = false
+                        //                            // show login error
+                        //
+                        //                        }
+                        //                    }
+                        //                }, label: {
+                        //                    if showButtonLoader {
+                        //                        ProgressView()
+                        //                    } else {
+                        //                        Text("LOGIN")
+                        //                            .fontWeight(.semibold)
+                        //                            .frame(maxWidth: .infinity)
+                        //                    }
+                        //                })
+                        //                .controlSize(.large)
+                        //                .buttonBorderShape(ButtonBorderShape.capsule)
+                        //                .buttonStyle(.borderedProminent)
+                        //                .padding([.horizontal, .bottom])
+                        
+                        ButtonWithLoader(showLoader: $showButtonLoader) {
+                            validateCredentials(username: username, password: password) { success in
+                                if success {
+                                    withAnimation {
+                                        loginCredentialsValid = true
+                                        showButtonLoader = false
+                                    }
+                                } else {
+                                    showButtonLoader = false
+                                    // show login error
+                                    
+                                }
                             }
-                        } else {
-                            showButtonLoader = false
-                            // show login error
-                            
+                        } content: {
+                            Text("LOGIN")
+                                .fontWeight(.semibold)
+                                .frame(maxWidth: .infinity)
                         }
+                        .controlSize(.large)
+                        .buttonBorderShape(ButtonBorderShape.capsule)
+                        .buttonStyle(.borderedProminent)
+                        .padding([.horizontal, .bottom])
+                    } // login fields
+                    .padding()
+                } // login fields
+                .overlay(alignment: .top) { // <
+                    ZStack {
+                        Image(uiImage: UIImage(named: "plain_ball")!)
+                            .resizable()
+                            .frame(width: 110, height: 110)
+                            .shadow(radius: 10)
                     }
-                } content: {
-                    Text("LOGIN")
-                        .fontWeight(.semibold)
-                        .frame(maxWidth: .infinity)
-                }
-                .controlSize(.large)
-                .buttonBorderShape(ButtonBorderShape.capsule)
-                .buttonStyle(.borderedProminent)
-                .padding([.horizontal, .bottom])
-
-            }
-            .frame(height: 350)
-            .bordered(shape: RoundedRectangle(cornerRadius: 20), color: Color.green, lineWidth: 2)
-            .background(
-                RoundedRectangle(cornerRadius: 20)
-                    .foregroundStyle(Color.white)
-                    .shadow(radius: 10, y: 8)
-            )
-            .padding(.horizontal, 35)
+                    .padding(8)
+                    .offset(y: -62.5)
+                } // Ball
+                .padding(.horizontal, 35)
             
+            VStack { // <
+                HStack {
+                    Spacer()
+                    Button {
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.title)
+                            .foregroundStyle(Color.gray)
+                            .padding(.trailing)
+                    }
+                }
+                Spacer()
+            } // close button
         }
-        .overlay(alignment: .topTrailing) {
-            Button {
-                presentationMode.wrappedValue.dismiss()
-            } label: {
-                Image(systemName: "xmark.circle.fill")
-                    .font(.title)
-                    .foregroundStyle(Color.white)
-                    .padding(.trailing)
-            }
-        }
-        
     }
     
     /// Validates login credentials.
     private func validateCredentials(username: String, password: String, completion: @escaping (Bool)->Void) {
-        
-        completion(true)
+        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+            completion(true)
+        }
     }
     
 }
@@ -627,4 +633,98 @@ public extension View {
             }
     }
     
+}
+
+
+
+
+
+
+struct LoginRectangle: InsettableShape {
+    var insetAmount = 0.0
+    let imageNegativeRect: CGRect = CGRect(origin: .zero, size: CGSize(width: 120, height: 120))
+    let radius: CGFloat = 20
+    
+    func path(in rect: CGRect) -> Path {
+        let topLeadingAfterRadius = CGPoint(x: rect.minX+radius, y: rect.minY)
+        let topLeadingBeforeRadius = CGPoint(x: rect.minX, y: rect.minY+radius)
+        let topTrailing = CGPoint(x: rect.maxX-radius, y: rect.minY)
+        let bottomTrailing = CGPoint(x: rect.maxX, y: rect.maxY-radius)
+        let bottomLeading = CGPoint(x: rect.minX+radius, y: rect.maxY)
+        
+        return Path { path in
+            //start point origin + radius
+            path.move(to: topLeadingAfterRadius)
+            
+            // START point of image negative space arc. i.e. half circle
+            path.addLine(to: CGPoint(x: rect.midX-imageNegativeRect.width/2, y: rect.minY))
+            
+            // image negative space arc. i.e. half circle
+            path.addArc(center:
+                            CGPoint(x: rect.midX, y: rect.minY),
+                        radius: imageNegativeRect.height/2,
+                        startAngle: Angle(degrees: 180),
+                        endAngle: Angle(degrees: 0),
+                        clockwise: true)
+            
+            // finish top trailing horizontal line to just before corner radius
+            path.addLine(to: topTrailing)
+            
+            // top trailing corner
+            path.addArc(center: 
+                            CGPoint(x: rect.maxX-radius, y: rect.minY+radius),
+                        radius: radius,
+                        startAngle: Angle(degrees: 270),
+                        endAngle: Angle(degrees: 0),
+                        clockwise: false)
+                                          
+            // trailing vertical line to bottom just before corner radius
+            path.addLine(to: bottomTrailing)
+            
+            // bottom trailing corner
+            path.addArc(center:
+                            CGPoint(x: rect.maxX-radius, y: rect.maxY-radius),
+                        radius: radius,
+                        startAngle: Angle(degrees: 0),
+                        endAngle: Angle(degrees: 90),
+                        clockwise: false)
+            
+            // bottom horizontal line to bottom leading just before corner radius
+            path.addLine(to: bottomLeading)
+            
+            // bottom leading corner
+            path.addArc(center:
+                            CGPoint(x: rect.minX+radius, y: rect.maxY-radius),
+                        radius: radius,
+                        startAngle: Angle(degrees: 90),
+                        endAngle: Angle(degrees: 180),
+                        clockwise: false)
+            
+            // leading line from bottom to top/origin just before corner radius
+            path.addLine(to: topLeadingBeforeRadius)
+            
+            // origin corner
+            path.addArc(center:
+                            CGPoint(x: rect.minX+radius, y: rect.minY+radius),
+                        radius: radius,
+                        startAngle: Angle(degrees: 180),
+                        endAngle: Angle(degrees: 270),
+                        clockwise: false)
+        }
+    }
+    
+    func inset(by amount: CGFloat) -> some InsettableShape {
+        var shape = self
+        shape.insetAmount += amount
+        return shape
+    }
+    
+}
+
+#Preview {
+    LoginRectangle()
+        .strokeBorder(Color.black, lineWidth: 3)
+        .background(LoginRectangle().foregroundColor(Color.green))
+        .frame(height: 350)
+        .padding(.horizontal, 35)
 }
