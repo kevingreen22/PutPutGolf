@@ -11,7 +11,7 @@ struct CourseInfo: View {
     @EnvironmentObject var navVM: NavigationStore
     @EnvironmentObject var coursesVM: CoursesViewModel
     @Binding var course: Course
-    @State private var courseImage: Image = Image(systemName: "photo")
+    @State private var courseImage: Image = Image("golf_course")
     @State private var infoItem: InfoItem?
     
     init(course: Binding<Course>) {
@@ -27,7 +27,7 @@ struct CourseInfo: View {
     
     var body: some View {
         ScrollView(showsIndicators: false) {
-            courseImageHeader
+            courseImageHeader.grayscale(1)
                 .overlay(alignment: .top) {
                     playCourseButton
                 }
