@@ -12,7 +12,9 @@ import KGImageChooser
 struct LoginView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var loginCredentialsValid: Bool
+    let dataService: any DataServiceProtocol
     @State var showButtonLoader = false
+    @State private var errorAlert: ErrorAlert?
     @State private var username = ""
     @State private var password = ""
     
@@ -48,49 +50,9 @@ struct LoginView: View {
                             )
                             .bordered(shape: Capsule(), color: Color.green, lineWidth: 2)
                             .padding(.horizontal)
-                        
-                        //                Button(action: {
-                        //                    // login code here
-                        //                    showButtonLoader = true
-                        //                    validateCredentials(username: username, password: password) { success in
-                        //                        if success {
-                        //                            withAnimation {
-                        //                                loginCredentialsValid = true
-                        //                            }
-                        //                            showButtonLoader = false
-                        //                        } else {
-                        //                            showButtonLoader = false
-                        //                            // show login error
-                        //
-                        //                        }
-                        //                    }
-                        //                }, label: {
-                        //                    if showButtonLoader {
-                        //                        ProgressView()
-                        //                    } else {
-                        //                        Text("LOGIN")
-                        //                            .fontWeight(.semibold)
-                        //                            .frame(maxWidth: .infinity)
-                        //                    }
-                        //                })
-                        //                .controlSize(.large)
-                        //                .buttonBorderShape(ButtonBorderShape.capsule)
-                        //                .buttonStyle(.borderedProminent)
-                        //                .padding([.horizontal, .bottom])
-                        
+                                                
                         ButtonWithLoader(showLoader: $showButtonLoader) {
-                            validateCredentials(username: username, password: password) { success in
-                                if success {
-                                    withAnimation {
-                                        loginCredentialsValid = true
-                                        showButtonLoader = false
-                                    }
-                                } else {
-                                    showButtonLoader = false
-                                    // show login error
-                                    
-                                }
-                            }
+                            validateCredentials()
                         } content: {
                             Text("LOGIN")
                                 .fontWeight(.semibold)
@@ -112,7 +74,7 @@ struct LoginView: View {
                     }
                     .padding(8)
                     .offset(y: -62.5)
-                } // Ball
+                } // ball image
                 .padding(.horizontal, 35)
             
             VStack { // <
@@ -130,18 +92,29 @@ struct LoginView: View {
                 Spacer()
             } // close button
         }
+        
+        .showErrorAlert(alert: $errorAlert)
     }
     
-    /// Validates login credentials.
-    private func validateCredentials(username: String, password: String, completion: @escaping (Bool)->Void) {
+    /// Sends call to server to validates login credentials.
+    private func validateCredentials() {
         DispatchQueue.main.asyncAfter(deadline: .now()+2) {
-            completion(true)
+//            do {
+//                try await dataService.validateCredentials(user: username, password: password)
+                withAnimation {
+                    loginCredentialsValid = true
+                    showButtonLoader = false
+                }
+//            } catch {
+//                showButtonLoader = false
+//                errorAlert = ErrorAlert.loginFailed
+//            }
         }
     }
     
 }
 #Preview {
-    LoginView(loginCredentialsValid: .constant(true))
+    LoginView(loginCredentialsValid: .constant(true), dataService: MockDataService(mockData: MockData.instance))
 }
 
 
@@ -329,12 +302,18 @@ struct AddCourseView: View {
         Button(action: {
             if vm.validateCourse(id: id, name: name, address: address, latitude: latitude, longitude: longitude, imageData: imageData, difficulty: difficulty, holes: holes, challenges: challenges, rules: rules, hours: hours) {
                 
-                vm.uploadNewCourse()
+                Task {
+                    do {
+                        try await vm.uploadNewCourse()
+                    } catch {
+                        throw ErrorAlert.basic(error.localizedDescription)
+                    }
+                }
                 
                 navStore.path.removeLast()
             } else {
                 // maybe show alert here ??
-                
+//                $vm.errorAlert = ErrorAlert.basic("Failed to validate course. Please make sure all required fields.")
             }
         }, label: {
             Text(course == nil ? "Add Course" : "Update Course")
@@ -356,6 +335,8 @@ struct AddCourseView: View {
         .sheet(isPresented: $showAddRuleSheet) {
             AddCourseRulesView()
         }
+        
+        .showErrorAlert(alert: $vm.errorAlert)
         
         .onAppear {
             if let course = course {
@@ -522,29 +503,17 @@ struct DifficultyPicker: View {
 final class AddCourseInfoVM: ObservableObject {
     let dataService: any DataServiceProtocol
     @Published var newCourse: Course?
+    @Published var errorAlert: ErrorAlert?
     var newHoles: [Hole]?
     var newChallenges: [Challenge]?
     var courseRules: [String]?
-    var userName: String?
+    var username: String?
     var password: String?
-
     
     init(dataService: any DataServiceProtocol) {
         self.dataService = dataService
-//        Task {
-//            dataService.fetchCourses(handler: { courses in
-//                guard let courses = courses else { return }
-//                self.courses = courses
-//            })
-//        }
     }
     
-//    /// Validates login credentials.
-//    func validateCredentials(username: String, password: String, completion: @escaping (Bool)->Void) {
-//        
-//        completion(true)
-//    }
-//    
     /// Check that all properties are inputed.
     /// then maybe show a review view to double check that everything is proper?
     func validateCourse(id: String, name: String, address: String, latitude: Double?, longitude: Double?, imageData: Data?, difficulty: Difficulty, holes: [Hole], challenges: [Challenge], rules: [String], hours: [String]) -> Bool {
@@ -607,34 +576,17 @@ final class AddCourseInfoVM: ObservableObject {
     }
     
     /// Uploads a new course.
-    func uploadNewCourse() {
-        guard let course = newCourse, let userName = userName, let password = password else { return }
-        dataService.post(course: course, url: ProductionURLs.post, username: userName, password: password)
+    func uploadNewCourse() async throws {
+        guard let course = newCourse, let username = username, let password = password else { return }
+        do {
+            try await dataService.post(course: course, url: ProductionURLs.post, username: username, password: password)
+        } catch  {
+            throw ErrorAlert.postFailed
+        }
     }
     
-    
+
 }
-
-
-
-
-
-
-
-
-
-public extension View {
-    
-    func bordered<S:Shape>(shape: S, color: Color, lineWidth: CGFloat = 1) -> some View {
-        self
-            .overlay {
-                shape
-                    .stroke(color, lineWidth: lineWidth)
-            }
-    }
-    
-}
-
 
 
 
@@ -720,7 +672,6 @@ struct LoginRectangle: InsettableShape {
     }
     
 }
-
 #Preview {
     LoginRectangle()
         .strokeBorder(Color.black, lineWidth: 3)

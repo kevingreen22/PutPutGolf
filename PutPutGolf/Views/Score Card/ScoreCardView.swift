@@ -16,7 +16,6 @@ struct ScoreCardView: View {
     @State private var totalZoom = 1.0
     @State private var position: CGSize = .zero
     
-    
     init(course: Course, players: [Player], isResumingGame resuming: Bool = false) {
         print("\(type(of: self)).\(#function)")
         _vm = StateObject(wrappedValue: ScoreCardViewModel(course: course, players: players, isResumingGame: resuming))
@@ -24,18 +23,19 @@ struct ScoreCardView: View {
     
     
     var body: some View {
-        ZStack(alignment: .leading) {
-            Color
-                .white
-                .ignoresSafeArea()
-                .onTapGesture(count: 2) {
-                    withAnimation(.easeOut) {
-                        position = .zero
-                        currentZoom = 0
-                        totalZoom = 1
+        GeometryReader { proxy in
+            ZStack(alignment: .leading) {
+                Color
+                    .white
+                    .ignoresSafeArea()
+                    .onTapGesture(count: 2) {
+                        withAnimation(.easeOut) {
+                            position = .zero
+                            currentZoom = 0
+                            totalZoom = 1
+                        }
                     }
-                }
-            GeometryReader { proxy in
+                
                 Grid(horizontalSpacing: -1, verticalSpacing: -1) {
                     holeNumRow
                     parRow
@@ -48,33 +48,21 @@ struct ScoreCardView: View {
                 .gesture(zoomGesture)
                 .modifier(AccessibilityZoom(zoom: $totalZoom))
             }
-            .rotationEffect(.degrees(-90))
-            .offset(x: 200, y: 200)
-        }
-        
-        .overlay(alignment: .bottomLeading) {
-            closeButton
-                .padding()
-                .ignoresSafeArea()
-        } // Close Button
-        
-        .toolbar(.hidden, for: .navigationBar)
-        
-        .toolbar {
-            ToolbarItemGroup(placement: .keyboard) {
-                Spacer()
-                Button("Done") { isFocused = false }
-            }
-        }// keyboard upper done button
-        
-        .staticViewWithKeyboard()
-
-        .statusBarHidden(vm.showStatusBar)
-        .onAppear {
-            vm.showStatusBar = false
-        }
-        .onDisappear {
-            vm.showStatusBar = true
+            .overlay(alignment: .topLeading) {
+                closeButton.padding()
+            } // Close button
+            
+            .toolbar(.hidden, for: .navigationBar)
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button("Done") { isFocused = false }
+                }
+            }// keyboard upper done button
+            
+            .statusBarHidden(vm.showStatusBar)
+            .onAppear { vm.showStatusBar = false }
+            .onDisappear { vm.showStatusBar = true }
         }
     }
 }
@@ -175,7 +163,8 @@ extension ScoreCardView {
                 GridRow {
                     // Score box cells
                     ForEach(vm.course.holes) { hole in
-                        scoreBoxCell(holeScore: $vm.players[idx].scores[hole.number-1], hole: hole, playerColor:vm.players[idx].color)
+//                        scoreBoxCell(holeScore: $vm.players[idx].scores[hole.number-1], hole: hole, player: vm.players[idx])
+                        scoreBoxCell(player: $vm.players[idx], hole: hole)
                     }
                     
                     TotalScoreCell(totalScore: $vm.totals[idx])
@@ -208,27 +197,35 @@ extension ScoreCardView {
         }
     }
     
-    fileprivate func scoreBoxCell(holeScore: Binding<String>, hole: Hole, playerColor: Color) -> some View {
+//    fileprivate func scoreBoxCell(holeScore: Binding<String>, hole: Hole, player: Player) -> some View {
+    fileprivate func scoreBoxCell(player: Binding<Player>, hole: Hole) -> some View {
         ZStack {
             Rectangle()
                 .fill(Color.white)
                 .overlay(alignment: .bottom) {
                     Rectangle()
-                        .fill(playerColor.gradient)
+                        .fill(player.wrappedValue.color.gradient)
                         .frame(height: 5)
                 }
             
-            TextField("", text: holeScore)
-                .limitCharacterLength(limit: 1, text: holeScore)
+            TextField("", text: player.scores[hole.number-1])
+//                .inputView {
+//                    CustomScoreCardKeyboardView(player.scores[hole.number-1], offset: $vm.keyboardOffset, isFocused: _isFocused)
+//                }
+//                .disableDefaultKeyboard()
+                .limitCharacterLength(limit: 1, text: player.scores[hole.number-1])
                 .focused($isFocused)
-                .foregroundColor(setScoreTextColor(holeScore: holeScore.wrappedValue, hole: hole))
+                .foregroundColor(setScoreTextColor(holeScore: player.scores[hole.number-1].wrappedValue, hole: hole))
                 .multilineTextAlignment(.center)
                 .font(.largeTitle)
                 .fontWeight(.semibold)
                 .background(Color.white)
                 .keyboardType(.numberPad)
+//                .onTapGesture {
+//                    withAnimation { vm.keyboardOffset = 0 }
+//                } // shows the custom keyboard
             
-            strokeType(holeScore: holeScore.wrappedValue, hole: hole)
+            strokeType(holeScore: player.scores[hole.number-1].wrappedValue, hole: hole)
         }
     }
     
@@ -283,27 +280,6 @@ extension ScoreCardView {
     }
         
 }
-
-
-
-
-// Custom accessibility Modifier(s)
-struct AccessibilityZoom: ViewModifier {
-    @Binding var zoom: Double
-    
-    func body(content: Content) -> some View {
-        content
-            .accessibilityZoomAction { action in
-                if action.direction == .zoomIn {
-                    zoom += 1
-                } else {
-                    zoom -= 1
-                }
-            }
-    }
-}
-
-
 
 
 // Custom cell Views
@@ -507,25 +483,21 @@ fileprivate struct DoubleBogieScoreView: View {
 
 
 
-
-struct SmoothDrag: Gesture {
-    @Binding var location: CGSize
-    @GestureState private var startLocation: CGSize? = nil
+// Custom accessibility Modifier(s)
+struct AccessibilityZoom: ViewModifier {
+    @Binding var zoom: Double
     
-    var body: some Gesture {
-        simpleDrag
-    }
-    
-    fileprivate var simpleDrag: some Gesture {
-        DragGesture()
-            .onChanged { value in
-                var newLocation = startLocation ?? location
-                newLocation.width += value.translation.width
-                newLocation.height += value.translation.height
-                self.location = newLocation
-            }
-            .updating($startLocation) { (value, startLocation, transaction) in
-                startLocation = startLocation ?? location
+    func body(content: Content) -> some View {
+        content
+            .accessibilityZoomAction { action in
+                if action.direction == .zoomIn {
+                    zoom += 1
+                } else {
+                    zoom -= 1
+                }
             }
     }
 }
+
+
+
