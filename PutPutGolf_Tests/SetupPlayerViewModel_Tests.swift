@@ -10,12 +10,12 @@ import XCTest
 import Combine
 
 final class SetupPlayerViewModel_Tests: XCTestCase {
-    var vm: SetupPlayerViewModel!
+    var vm: SetupPlayers.ViewModel!
     var cancellables: Set<AnyCancellable> = []
     
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        vm = SetupPlayerViewModel()
+        vm = SetupPlayers.ViewModel()
     }
 
     override func tearDownWithError() throws {

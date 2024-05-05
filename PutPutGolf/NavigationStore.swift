@@ -10,7 +10,9 @@ import SwiftUI
 class NavigationStore: ObservableObject {
     @Published var path = NavigationPath()
     
-    func goto(_ destination: Destination) {
+    /// Pushes/pulls a view on the navigation stack.
+    /// - Parameter destination: The view destination to push/pull.
+    func goto(_ destination: PutPutDestination) {
         switch destination {
         case .mapView: self.path = NavigationPath()
         case .playerSetup: self.path.append(1)
@@ -20,7 +22,7 @@ class NavigationStore: ObservableObject {
         }
     }
     
-    public enum Destination {
+    public enum PutPutDestination {
         case mapView
         case playerSetup
         case scoreCard(players: [Player])
@@ -31,6 +33,10 @@ class NavigationStore: ObservableObject {
     public struct DestinationID {
         static let mapView: Int = 0
         static let playerSetup: Int = 1
+        static let scoreCard: Int = 2
+        static let savedGame: Int = 3
+        static let back: Int = 4
     }
     
 }
+

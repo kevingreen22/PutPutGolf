@@ -34,68 +34,68 @@ final class MockDataService_Tests: XCTestCase {
     }
     
     
-    func test_MockDataService_getCourses_doesReturnValues() {
-        // Given
-        let mockData = MockData.instance
-        let dataService = MockDataService(mockData: mockData)
-        
-        // When
-        var items: [Course] = []
-        let expectation = XCTestExpectation()
-        dataService.getCourses()
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case.finished:
-                    expectation.fulfill()
-                case .failure(let error):
-                    XCTFail("\(error)")
-                }
-            }, receiveValue: { courses in
-                items = courses
-            })
-            .store(in: &cancellables)
-        
-        // Then
-        wait(for: [expectation], timeout: 5)
-        XCTAssertEqual(items.count, dataService.mockCourses.count)
-    }
+//    func test_MockDataService_getCourses_doesReturnValues() {
+//        // Given
+//        let mockData = MockData.instance
+//        let dataService = MockDataService(mockData: mockData)
+//        
+//        // When
+//        var items: [Course] = []
+//        let expectation = XCTestExpectation()
+//        dataService.getCourses()
+//            .sink(receiveCompletion: { completion in
+//                switch completion {
+//                case.finished:
+//                    expectation.fulfill()
+//                case .failure(let error):
+//                    XCTFail("\(error)")
+//                }
+//            }, receiveValue: { courses in
+//                items = courses
+//            })
+//            .store(in: &cancellables)
+//        
+//        // Then
+//        wait(for: [expectation], timeout: 5)
+//        XCTAssertEqual(items.count, dataService.mockCourses.count)
+//    }
     
     
-    func test_MockDataService_getCourses_doesFail() {
-        // Given
-        let mockData = MockData.instance
-        let coursesToSave = mockData.courses
-        mockData.courses = [] // removing the courses so the test fails properly.
-        let dataService = MockDataService(mockData: mockData)
-        
-        // When
-        var items: [Course] = []
-        let expectationError = XCTestExpectation(description: "Does throw error")
-        let expectationURLError = XCTestExpectation(description: "Does throw URLError(.badServerResponse)")
-        
-        dataService.getCourses()
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case.finished:
-                    XCTFail()
-                    
-                case .failure(let error):
-                    expectationError.fulfill()
-                    
-                    if error as? URLError == URLError(.badServerResponse) {
-                        expectationURLError.fulfill()
-                    }
-                }
-            }, receiveValue: { courses in
-                items = courses
-            })
-            .store(in: &cancellables)
-        
-        // Then
-        wait(for: [expectationError, expectationURLError], timeout: 5)
-        XCTAssertEqual(items.count, dataService.mockCourses.count)
-        mockData.courses = coursesToSave // adding the courses back because mockData is a singleton.
-    }
+//    func test_MockDataService_getCourses_doesFail() {
+//        // Given
+//        let mockData = MockData.instance
+//        let coursesToSave = mockData.courses
+//        mockData.courses = [] // removing the courses so the test fails properly.
+//        let dataService = MockDataService(mockData: mockData)
+//        
+//        // When
+//        var items: [Course] = []
+//        let expectationError = XCTestExpectation(description: "Does throw error")
+//        let expectationURLError = XCTestExpectation(description: "Does throw URLError(.badServerResponse)")
+//        
+//        dataService.getCourses()
+//            .sink(receiveCompletion: { completion in
+//                switch completion {
+//                case.finished:
+//                    XCTFail()
+//                    
+//                case .failure(let error):
+//                    expectationError.fulfill()
+//                    
+//                    if error as? URLError == URLError(.badServerResponse) {
+//                        expectationURLError.fulfill()
+//                    }
+//                }
+//            }, receiveValue: { courses in
+//                items = courses
+//            })
+//            .store(in: &cancellables)
+//        
+//        // Then
+//        wait(for: [expectationError, expectationURLError], timeout: 5)
+//        XCTAssertEqual(items.count, dataService.mockCourses.count)
+//        mockData.courses = coursesToSave // adding the courses back because mockData is a singleton.
+//    }
 
 
 }

@@ -27,7 +27,7 @@ final class ScoreCardViewModel_Tests: XCTestCase {
         
         // When
         let isResumingGame = true
-        var vm = ScoreCardViewModel(course: mock.courses.first!, players: mock.players, isResumingGame: isResumingGame)
+        var vm = ScoreCardView.ViewModel(course: mock.courses.first!, players: mock.players, isResumingGame: isResumingGame)
         
         // Then
         XCTAssertEqual(vm.totals.count, mock.players.count)
@@ -45,7 +45,7 @@ final class ScoreCardViewModel_Tests: XCTestCase {
         
         // When
         let isResumingGame = false
-        var vm = ScoreCardViewModel(course: mock.courses.first!, players: mock.players, isResumingGame: isResumingGame)
+        var vm = ScoreCardView.ViewModel(course: mock.courses.first!, players: mock.players, isResumingGame: isResumingGame)
         
         // Then
         XCTAssertEqual(vm.totals.count, mock.players.count)
@@ -56,7 +56,7 @@ final class ScoreCardViewModel_Tests: XCTestCase {
     @MainActor func test_UnitTestScoreCardViewModel_setGameIsCompletedTrue() {
         // Given
         let mock = MockData.instance
-        var vm = ScoreCardViewModel(course: mock.courses.first!, players: mock.players)
+        var vm = ScoreCardView.ViewModel(course: mock.courses.first!, players: mock.players)
         
         // When
         let expectation = XCTestExpectation()

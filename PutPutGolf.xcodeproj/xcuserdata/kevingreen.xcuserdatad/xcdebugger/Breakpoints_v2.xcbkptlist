@@ -7,15 +7,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A8610BE6-A678-40B1-AC05-995E415DFA06"
-            shouldBeEnabled = "No"
+            uuid = "A61240D3-C72E-4A46-BBDF-89B4A538423A"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PutPutGolf/Views/AddCourseInfo.swift"
+            filePath = "PutPutGolf/DataServices/DataServices.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "248"
-            endingLineNumber = "248"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "validateCredentials(user:password:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EC41B9F3-D375-41AE-9E26-584EA2BD09F1"
+            shouldBeEnabled = "No"
+            nameForDebugger = "forSavedGame"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PutPutGolf/Views/Course Map/CoursesMap.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "CoursesMap"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1231893F-A979-4C4A-B31A-C0010B1E0FFE"
+            shouldBeEnabled = "No"
+            nameForDebugger = "forSavedGame"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PutPutGolf/Views/Course Map/CoursesMap.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -23,15 +57,33 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1D5738AA-3ECA-45FF-B799-1E8031548440"
+            uuid = "67C21105-EE41-4AB8-8114-48CB634D8B95"
             shouldBeEnabled = "No"
+            nameForDebugger = "forSavedGame"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PutPutGolf/Views/AddCourseInfo.swift"
+            filePath = "PutPutGolf/Views/Course Map/CoursesMap.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "325"
-            endingLineNumber = "325"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "CoursesMap"
+            landmarkType = "21">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E8570B12-014F-4879-BB9F-C4C1E498D04C"
+            shouldBeEnabled = "No"
+            nameForDebugger = "forSavedGame"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PutPutGolf/Views/Setup Player Views/SetupPlayers.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -39,193 +91,330 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3D6AE388-97FE-4338-B33C-C1A2DE70D32B"
+            uuid = "DC067C59-6E23-4845-B9DC-665520C317A0"
             shouldBeEnabled = "No"
+            nameForDebugger = "forSavedGame"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PutPutGolf/Views/AddCourseInfo.swift"
+            filePath = "PutPutGolf/Views/Setup Player Views/ViewModel/SetupPlayerViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "404"
-            endingLineNumber = "404"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "9A677F0B-1CE4-46A5-A4FD-05548DA292ED"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PutPutGolf/Views/AddCourseInfo.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "443"
-            endingLineNumber = "443"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D20CA487-17A1-4EF3-AABD-887019246A8D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PutPutGolf/Views/AddCourseInfo.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "446"
-            endingLineNumber = "446"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "02143BD9-4A75-421F-9A22-78CDC10B70E4"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PutPutGolf/Views/AddCourseInfo.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "481"
-            endingLineNumber = "481"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "494D541D-451F-4061-8E32-A65BC24F2D35"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PutPutGolf/Views/AddCourseInfo.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "407"
-            endingLineNumber = "407"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DDF42990-8E08-40DB-8566-14FFD2640AD5"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PutPutGolf/Views/AddCourseInfo.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "336"
-            endingLineNumber = "336"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B12FAC40-A9D4-4C13-8AD3-3B2DC480CC5A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PutPutGolf/Views/AddCourseInfo.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "330"
-            endingLineNumber = "330"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FDB78777-023F-4BC0-912F-F76E27FEB087"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PutPutGolf/Views/AddCourseInfo.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "549"
-            endingLineNumber = "549"
-            landmarkName = "AddCourseInfoVM"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "SetupPlayerViewModel"
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "630A9322-E8F1-40CD-8127-9EAA1F09C30E"
+            uuid = "D0AD723C-2CF2-48D3-8138-56B105FB888D"
+            shouldBeEnabled = "No"
+            nameForDebugger = "forSavedGame"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PutPutGolf/Views/Setup Player Views/ViewModel/SetupPlayerViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "SetupPlayerViewModel"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5A93A091-B018-4012-8606-559ABCFB3DF2"
+            shouldBeEnabled = "No"
+            nameForDebugger = "forSavedGame"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PutPutGolf/Views/Setup Player Views/ViewModel/SetupPlayerViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "SetupPlayerViewModel"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "437DDDC2-D078-4831-A818-87F97AE32064"
+            shouldBeEnabled = "No"
+            nameForDebugger = "forSavedGame"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PutPutGolf/Views/Score Card/ViewModel/ScoreCardViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "ViewModel"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "25B660BB-6C27-4280-A97B-DF4A905BDC5E"
+            shouldBeEnabled = "No"
+            nameForDebugger = "forSavedGame"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PutPutGolf/Views/Score Card/ViewModel/ScoreCardViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "ViewModel"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D19EEB15-D605-4511-9145-A869ECCA36EB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PutPutGolf/TestScoreCardNoLiteralSizes.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "holeNumRow"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "69801D1E-0EA4-4852-9541-D025293132D5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PutPutGolf/TestScoreCardNoLiteralSizes.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "holeNumRow"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A9BD5934-92E7-44A3-9B8B-BCF6064726FF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PutPutGolf/TestScoreCardNoLiteralSizes.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
+            landmarkName = "parRow"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9FE06D36-70A5-4931-BB38-7B142D4BCD92"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PutPutGolf/TestScoreCardNoLiteralSizes.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
+            landmarkName = "playersRowAndScores"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "92629580-1D07-441A-BAC0-985A2988AA99"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PutPutGolf/TestScoreCardNoLiteralSizes.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "386"
+            endingLineNumber = "386"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8D959C32-0495-4448-86FE-5C6650B39FEE"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PutPutGolf/Views/AddCourseInfo.swift"
+            filePath = "PutPutGolf/Views/Score Card/ViewModel/ScoreCardViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "validateCredentials(username:password:completion:)"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "checkIfGameIsFinished(for:at:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E601D27C-F4F2-441B-9AE5-EC96F1DA0B3D"
+            uuid = "B5550FC0-7CA2-4382-8471-1C0ED79DC701"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PutPutGolf/DataServices/DataServices.swift"
+            filePath = "PutPutGolf/Views/Score Card/ScoreCardView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "fetchCourses(handler:)"
+            startingLineNumber = "459"
+            endingLineNumber = "459"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8F32419A-3FCA-486E-B419-E1F753B82EBA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PutPutGolf/Views/Add New Courses Views/AddNewCoursesViews.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "34F12506-80B7-4782-AB3D-D2A7FE3A2A24"
+            shouldBeEnabled = "No"
+            nameForDebugger = "forSavedGame"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PutPutGolf/Views/Setup Player Views/SetupPlayers.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DC16D981-FF6F-4DE1-8C2D-EF9DF6FF7CCC"
+            shouldBeEnabled = "No"
+            nameForDebugger = "forSavedGame"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PutPutGolf/Views/Setup Player Views/ViewModel/SetupPlayer_ViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "SetupPlayers"
+            landmarkType = "21">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5C3DD274-759F-4012-9016-4DE33BE5590B"
+            shouldBeEnabled = "No"
+            nameForDebugger = "forSavedGame"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PutPutGolf/Views/Setup Player Views/ViewModel/SetupPlayer_ViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "setupNewPlayerSubscriber()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "304FDCB0-32D0-439E-9007-E41723132B54"
+            uuid = "21C87278-7BE0-48C3-AB42-8A10B3DEC70A"
+            shouldBeEnabled = "No"
+            nameForDebugger = "forSavedGame"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PutPutGolf/Views/Setup Player Views/ViewModel/SetupPlayer_ViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "NewPlayer"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "74208368-A38A-4F41-A4A9-B2DA04EE3301"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PutPutGolf/DataServices/DataServices.swift"
+            filePath = "PutPutGolf/Views/Add New Courses Views/AddNewCoursesViews.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
-            landmarkName = "fetchCourses(handler:)"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "validateCredentials()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "467D9A65-8B66-4B27-9D45-31BE421D996C"
+            uuid = "83DB793E-8E56-4056-B709-C6504FFEC75C"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PutPutGolf/DataServices/DataServices.swift"
+            filePath = "PutPutGolf/Views/Add New Courses Views/AddNewCoursesViews.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "post(course:url:username:password:)"
-            landmarkType = "7">
+            startingLineNumber = "754"
+            endingLineNumber = "754"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "05F84698-D76D-4287-BACE-6F274A6D8E44"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PutPutGolf/Views/Quick Play Views/QuickPlaySetup.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "body"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

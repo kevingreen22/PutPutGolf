@@ -15,7 +15,7 @@ protocol MockDataProtocol {
 }
 
 public class MockData: MockDataProtocol {
-        
+    
     static let instance: MockData = MockData()
     
     var courses: [Course] = []
@@ -24,8 +24,10 @@ public class MockData: MockDataProtocol {
     
     var newPlayers: [NewPlayer] = []
     
+    var quickPlayers: [QuickPlayer] = []
+    
     private init() {
-        // creates holes for course
+        // creates Holes for course
         let holes = [
             Hole(id: UUID().uuidString, number: 1, par: 2, difficulty: .medium),
             Hole(id: UUID().uuidString, number: 2, par: 3, difficulty: .hard),
@@ -50,14 +52,14 @@ public class MockData: MockDataProtocol {
             Hole(id: UUID().uuidString, number: 21, par: 1, difficulty: .easy)
         ]
         
-        // creates challenges for course
+        // creates Challenges for course
         let challenges = [
             Challenge(id: UUID().uuidString, name: "Time Trial", rules: "These are the rules for time trials", difficulty: .easy),
             Challenge(id: UUID().uuidString, name: "Closest To the Hole", rules: "These are the rules for time trials", difficulty: .medium),
             Challenge(id: UUID().uuidString, name: "First In wins.", rules: "These are the rules for time trials", difficulty: .hard),
         ]
         
-        // puts courses in to courses property array
+        // puts courses into courses property array
         courses.append(contentsOf: [
             Course(
                 id: UUID().uuidString,
@@ -87,7 +89,7 @@ public class MockData: MockDataProtocol {
                     "Friday: 3pm - 8pm",
                     "Saturday: 12:30pm - 7:30pm",
                     "Sunday: 11:30am - 6pm",
-                    "*Hours are weather permitting. Rain, high heat or extreme cold may cause us to close. Please call ahead if you are unsure if we may not be open. \nGolfers welcome to begin playing up to 15 minutes before close"
+                    "Other Info: *Hours are weather permitting. Rain, high heat or extreme cold may cause us to close. Please call ahead if you are unsure if we may not be open. \nGolfers welcome to begin playing up to 15 minutes before close."
                 ]),
             Course(
                 id: UUID().uuidString,
@@ -117,7 +119,7 @@ public class MockData: MockDataProtocol {
                     "Friday: 3pm - 8pm",
                     "Saturday: 12:30pm - 7:30pm",
                     "Sunday: 11:30am - 6pm",
-                    "*Hours are weather permitting. Rain, high heat or extreme cold may cause us to close. Please call ahead if you are unsure if we may not be open. \nGolfers welcome to begin playing up to 15 minutes before close"
+                    "Other Info: *Hours are weather permitting. Rain, high heat or extreme cold may cause us to close. Please call ahead if you are unsure if we may not be open. \nGolfers welcome to begin playing up to 15 minutes before close."
                 ]),
             Course(
                 id: UUID().uuidString,
@@ -147,7 +149,7 @@ public class MockData: MockDataProtocol {
                     "Friday: 3pm - 8pm",
                     "Saturday: 12:30pm - 7:30pm",
                     "Sunday: 11:30am - 6pm",
-                    "*Hours are weather permitting. Rain, high heat or extreme cold may cause us to close. Please call ahead if you are unsure if we may not be open. \nGolfers welcome to begin playing up to 15 minutes before close"
+                    "Other Info: *Hours are weather permitting. Rain, high heat or extreme cold may cause us to close. Please call ahead if you are unsure if we may not be open. \nGolfers welcome to begin playing up to 15 minutes before close."
                 ]),
             Course(
                 id: UUID().uuidString,
@@ -177,11 +179,11 @@ public class MockData: MockDataProtocol {
                     "Friday: 3pm - 8pm",
                     "Saturday: 12:30pm - 7:30pm",
                     "Sunday: 11:30am - 6pm",
-                    "*Hours are weather permitting. Rain, high heat or extreme cold may cause us to close. Please call ahead if you are unsure if we may not be open. \nGolfers welcome to begin playing up to 15 minutes before close"
+                    "Other Info: *Hours are weather permitting. Rain, high heat or extreme cold may cause us to close. Please call ahead if you are unsure if we may not be open.\nGolfers welcome to begin playing up to 15 minutes before close."
                 ])
         ])
         
-        // creates new players
+        // creates NewPlayers
         newPlayers = [
             NewPlayer(name: "Kevin", color: .random()),
             NewPlayer(name: "Nell", color: .random()),
@@ -189,7 +191,7 @@ public class MockData: MockDataProtocol {
             NewPlayer(name: "Whit", color: .random())
         ]
         
-        // creates players
+        // creates Players
         players = [
             Player(id: UUID().uuidString, name: "Kevin", course: courses.first!),
             Player(id: UUID().uuidString, name: "Nell", course: courses.first!),
@@ -212,8 +214,21 @@ public class MockData: MockDataProtocol {
             }
         }
         
-        print(players.first!.scores)
-        print(players.first!.challengeScores)
+        
+        // creates QuickPlayers
+        quickPlayers = [
+            QuickPlayer(name: "Kevin"),
+            QuickPlayer(name: "Nell"),
+            QuickPlayer(name: "Holly"),
+            QuickPlayer(name: "Whitney")
+        ]
+        
+        for player in quickPlayers {
+            player.scores = Array(repeating: "", count: 1)
+        }
+        
+        //        print("MockData_players.scores: \(players.first!.scores)")
+        //        print("MockData_players.challengeScores: \(players.first!.challengeScores)")
         
     }
     

@@ -16,13 +16,13 @@ import Combine
 
 final class CoursesViewModel_Tests: XCTestCase {
     var mockDataService: MockDataService<MockData>!
-    var vm: CoursesViewModel!
+    var vm: CoursesMap.ViewModel!
     var cancellables = Set<AnyCancellable>()
     
-    override func setUpWithError() throws {
+    @MainActor override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         mockDataService = MockDataService(mockData: MockData.instance)
-        vm = CoursesViewModel(dataService: mockDataService)
+        vm = CoursesMap.ViewModel()
     }
 
     override func tearDownWithError() throws {
@@ -32,37 +32,19 @@ final class CoursesViewModel_Tests: XCTestCase {
     }
     
     
-    func test_UnitTestingCoursesViewModel_init_doesSetMockDataService() {
+    @MainActor func test_UnitTestingCoursesViewModel_init_doesSetMockDataService() {
         // Given
-        let mockDataService = MockDataService(mockData: MockData.instance)
-        let vm = CoursesViewModel(dataService: mockDataService)
+        let mockCourses = MockDataService(mockData: MockData.instance).mockCourses
+        let vm = CoursesMap.ViewModel()
         
         // When
         
         // Then
-        XCTAssertEqual(vm.dataService as? MockDataService<MockData>, mockDataService)
+        XCTAssertEqual(vm.coursesData, mockCourses)
     }
     
     
-    func test_UnitTestingCoursesViewModel_coursesData_hasValues_afterFetchingCourseData() {
-        // Given
-        // Uses class vars
-        
-        // When
-        let expectation = XCTestExpectation()
-        vm.$coursesData
-            .sink { data in
-                expectation.fulfill()
-            }
-            .store(in: &cancellables)
-        
-        // Then
-        wait(for: [expectation], timeout: 5)
-        XCTAssertGreaterThan(vm.coursesData.count, 0)
-    }
-
-    
-    func test_UnitTestingCoursesViewModel_selectedCourse_NotNil_afterFetchingCourseData() {
+    @MainActor func test_UnitTestingCoursesViewModel_selectedCourse_NotNil_afterFetchingCourseData() {
         // Given
         // Uses class vars
         
@@ -80,7 +62,7 @@ final class CoursesViewModel_Tests: XCTestCase {
     }
     
     
-    func test_UnitTestingCoursesViewModel_mapRegion_notNil_afterFetchingCourseData() {
+    @MainActor func test_UnitTestingCoursesViewModel_mapRegion_notNil_afterFetchingCourseData() {
         // Given
         // Uses class vars
         

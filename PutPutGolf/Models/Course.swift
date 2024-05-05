@@ -46,9 +46,9 @@ struct Course: Codable, Hashable, Equatable, Identifiable {
     
     /// Initialzes a blank Course.
     init() {
-        self.id = UUID().uuidString
-        self.name = "Unknown"
-        self.address = "Unknown"
+        self.id = ""
+        self.name = ""
+        self.address = ""
         self.latitude = 0
         self.longitude = 0
         self.imageData = nil
@@ -69,13 +69,13 @@ struct Course: Codable, Hashable, Equatable, Identifiable {
         return totalPar
     }
     
-    
-    func getImage() -> Image {
+    var getImage: Image {
         guard let data = self.imageData, let img = UIImage(data: data) else {
-            return Image("plain_ball")
+            return Image("golf_ball")
         }
         return Image(uiImage: img)
     }
+    
     
     // Equatable
     static func == (lhs: Course, rhs: Course) -> Bool {

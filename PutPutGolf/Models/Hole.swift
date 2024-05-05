@@ -36,6 +36,25 @@ enum Difficulty: String, Codable {
     case hard = "Hard"
     case veryHard = "Very Hard"
     
+    func icon() -> some View {
+        switch self {
+        case .easy:
+            Image(systemName: "circle.circle.fill")
+                .foregroundStyle(Difficulty.color(for: self))
+        case .medium:
+            Image(systemName: "square.circle.fill")
+                .foregroundStyle(Difficulty.color(for: self))
+        case .hard:
+            Image(systemName: "triangle.circle.fill")
+                .foregroundStyle(Difficulty.color(for: self))
+        case .veryHard:
+            Image(systemName: "diamond.circle.fill")
+                .foregroundStyle(Difficulty.color(for: self))
+        }
+    }
+    
+    
+    
     static func icon(_ difficulty: Difficulty) -> Image {
         switch difficulty {
         case .easy:
