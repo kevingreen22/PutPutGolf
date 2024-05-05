@@ -116,6 +116,7 @@ struct LoginView: View {
             }
         }
 
+        #warning("Unocomment for production use: validate credentials.")
 //        Task { // <-- For Production only
 //            do {
 //                try await dataService.validateCredentials(user: username, password: password)
@@ -751,8 +752,6 @@ struct AddCourseRulesView: View {
         }
         
         .dismissKeyboardOnTap($isFocused)
-//        .keyboardDoneButton(isFocused: $isFocused)
-        
     }
 }
 
