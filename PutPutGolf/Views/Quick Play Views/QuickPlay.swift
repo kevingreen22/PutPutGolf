@@ -129,6 +129,7 @@ extension QuickPlay {
                             })
                     )
                     HapticManager.instance.impact(.heavy)
+                    try? SoundManager.instance.playeffect("clapping_and_cheering")
                     return completion
                 }
                 return false
