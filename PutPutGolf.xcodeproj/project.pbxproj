@@ -13,6 +13,7 @@
 		C721611C2BE42307009BDEF8 /* AccessibilityZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C721611B2BE42307009BDEF8 /* AccessibilityZoom.swift */; };
 		C721611E2BE44349009BDEF8 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C721611D2BE44349009BDEF8 /* SoundManager.swift */; };
 		C72161212BE45346009BDEF8 /* SoundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72161202BE45346009BDEF8 /* SoundEffect.swift */; };
+		C72161232BE8543E009BDEF8 /* golf_swing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C72161222BE8543E009BDEF8 /* golf_swing.mp3 */; };
 		C72241D12B87B20A004C0444 /* golfBallLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72241D02B87B20A004C0444 /* golfBallLoader.swift */; };
 		C729EC922B11249200994DDC /* staticViewWithKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C729EC912B11249200994DDC /* staticViewWithKeyboard.swift */; };
 		C729EC942B1130C500994DDC /* AddNewCoursesViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C729EC932B1130C500994DDC /* AddNewCoursesViews.swift */; };
@@ -92,6 +93,7 @@
 		C721611B2BE42307009BDEF8 /* AccessibilityZoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityZoom.swift; sourceTree = "<group>"; };
 		C721611D2BE44349009BDEF8 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		C72161202BE45346009BDEF8 /* SoundEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundEffect.swift; sourceTree = "<group>"; };
+		C72161222BE8543E009BDEF8 /* golf_swing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = golf_swing.mp3; sourceTree = "<group>"; };
 		C72241D02B87B20A004C0444 /* golfBallLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = golfBallLoader.swift; sourceTree = "<group>"; };
 		C729EC912B11249200994DDC /* staticViewWithKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = staticViewWithKeyboard.swift; sourceTree = "<group>"; };
 		C729EC932B1130C500994DDC /* AddNewCoursesViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCoursesViews.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				C72161202BE45346009BDEF8 /* SoundEffect.swift */,
+				C72161222BE8543E009BDEF8 /* golf_swing.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 			files = (
 				C760EAFA2AB8F801000DFE09 /* Preview Assets.xcassets in Resources */,
 				C760EAF72AB8F801000DFE09 /* Assets.xcassets in Resources */,
+				C72161232BE8543E009BDEF8 /* golf_swing.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

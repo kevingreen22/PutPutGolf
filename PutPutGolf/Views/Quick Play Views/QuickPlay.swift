@@ -138,6 +138,7 @@ extension QuickPlay {
                 if areAllPlayerScoresEnteredFor(hole: holeNumber) {
                     setupForNextHole()
                     HapticManager.instance.impact(.soft)
+                    try? SoundManager.instance.playeffect("golf_swing")
                     return true
                 }
                 return false

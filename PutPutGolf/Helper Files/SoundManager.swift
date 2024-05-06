@@ -27,5 +27,16 @@ public class SoundManager {
         }
     }
     
+    /// Plays a sound file contained in the main bundle.
+    func playeffect(_ forResource: String, withExtension: String? = ".mp3") async throws {
+        guard let url = Bundle.main.url(forResource: forResource, withExtension: withExtension) else { return }
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            player?.play()
+        } catch {
+            throw error
+        }
+    }
+    
 }
 
