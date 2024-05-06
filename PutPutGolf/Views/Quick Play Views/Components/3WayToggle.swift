@@ -104,9 +104,9 @@ public struct Toggle3Way: View {
                 }
             } // Trailing image
         
-            .overlay { // Toggle handle
+            .overlay { // Handle
                 toggleHandle
-            } // Toggle handle
+            } // Handle
         
             .task {
                 dragPosition.x = guideRect.midX
@@ -145,7 +145,6 @@ public struct Toggle3Way: View {
                 .rectReader($sliderRect, in: .named("slider_guide"))
                 .position(dragPosition)
                 .gesture(dragGesture)
-//                .animation(.snappy(duration: 0.4), value: dragPosition)
         } else {
             Image(systemName: "circle.fill")
                 .resizable()
@@ -156,7 +155,6 @@ public struct Toggle3Way: View {
                 .rectReader($sliderRect, in: .named("slider_guide"))
                 .position(dragPosition)
                 .gesture(dragGesture)
-//                .animation(.snappy(duration: 0.4), value: dragPosition)
         }
     }
     
@@ -165,23 +163,22 @@ public struct Toggle3Way: View {
             .onChanged { value in
                 // Check for sliding to leading edge.
                 if dragPosition.x-sliderRect.width/2 <= guideRect.minX {
-                    dragPosition.x = max(value.location.x, DragPosition.leading.x/*guideRect.minX+sliderRect.width/2*/)
+                    dragPosition.x = max(value.location.x, DragPosition.leading.x)
                     
                 // Check for sliding to trailing edge.
                 } else if dragPosition.x+sliderRect.width/2 >= guideRect.maxX {
-                    dragPosition.x = min(value.location.x, DragPosition.trailing.x/*guideRect.maxX-sliderRect.width/2*/)
+                    dragPosition.x = min(value.location.x, DragPosition.trailing.x)
                 } else {
                     dragPosition.x = value.location.x
                 }
             }
         
             .onEnded { value in
-                if dragPosition.x == DragPosition.leading.x /*leadingX*/ {
+                if dragPosition.x == DragPosition.leading.x {
                     onSlideLeading() ? (resetHandle(.now()+1)) : (resetHandle())
-                } else if dragPosition.x == DragPosition.trailing.x /*trailingX*/ {
+                } else if dragPosition.x == DragPosition.trailing.x {
                     onSlideTrailing() ? (resetHandle(.now()+1)) : (resetHandle())
                 } else {
-//                    dragPosition.x = guideRect.midX
                     dragPosition.x = DragPosition.zero.x
                 }
             }
