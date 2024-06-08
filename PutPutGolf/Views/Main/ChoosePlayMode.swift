@@ -25,7 +25,7 @@ struct ChoosePlayMode: View {
     
         
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
             logo
             quickplayButton
             mapplayButton
@@ -124,18 +124,20 @@ extension ChoosePlayMode {
         Button {
             currentPage = .numOfPlayers
         } label: {
-            ZStack {
-                Image("golf_ball")
-                VStack {
-                    Text("Quick Play")
-                        .foregroundStyle(Color.white)
-                        .font(.title)
-                    Text("Pick players, then putt")
-                        .multilineTextAlignment(.center)
-                        .foregroundStyle(Color.white)
-                        .font(.title3)
-                }.shadow(radius: 3)
+            VStack(spacing: 0) {
+                Text("Quick Play")
+                    .foregroundStyle(Color.white)
+                    .font(.title)
+                    .fontWeight(.semibold)
+                Image("fire_ball")
+                    .resizable()
+                    .scaledToFit()
+                Text("Pick players, then putt")
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(Color.white)
+                    .font(.title3)
             }
+            .shadow(radius: 3)
             .padding()
             .background { KGRealBlur(style: .light) }
             .addBorder(Color.white, lineWidth: 5, cornerRadius: 30)
@@ -143,7 +145,7 @@ extension ChoosePlayMode {
             .animation(.bouncy(duration: 0.7), value: quickPlayButtonOffset)
             .transition(.move(edge: .trailing))
             .shadow(radius: 10)
-            .frame(width: 260, height: 260)
+            .frame(width: 270)
         }
         .forceRotation(orientation: .portrait)
         .haptic(impact: .light, trigger: currentPage) { _ in
@@ -155,18 +157,20 @@ extension ChoosePlayMode {
         Button {
             showMapplayFullScreen.toggle()
         } label: {
-            ZStack {
-                Image("golf_ball")
-                VStack {
-                    Text("Map Play")
-                        .foregroundStyle(Color.white)
-                        .font(.title)
-                    Text("Tailored experience based on your location.")
-                        .multilineTextAlignment(.center)
-                        .foregroundStyle(Color.white)
-                        .font(.title3)
-                }.shadow(radius: 3)
+            VStack(spacing: 0) {
+                Text("Map Play")
+                    .foregroundStyle(Color.white)
+                    .font(.title)
+                    .fontWeight(.semibold)
+                Image("treasure_map")
+                    .resizable()
+                    .scaledToFit()
+                Text("Tailored experience based on your location.")
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(Color.white)
+                    .font(.title3)
             }
+            .shadow(radius: 3)
             .padding()
             .background {
                 KGRealBlur(style: .light)
@@ -176,7 +180,7 @@ extension ChoosePlayMode {
             .animation(.bouncy(duration: 0.7) , value: mapPlayButtonOffset)
             .transition(.move(edge: .leading))
             .shadow(radius: 10)
-            .frame(width: 260, height: 260)
+            .frame(width: 270)
         }
         .disabled(coursesVM.coursesData.isEmpty ? true : false)
         .grayscale(coursesVM.coursesData.isEmpty ? 1 : 0)
