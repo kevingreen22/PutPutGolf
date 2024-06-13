@@ -64,7 +64,7 @@
 		C7A9BA902AC4AA3100A69B81 /* CoursesMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A9BA8F2AC4AA3100A69B81 /* CoursesMap.swift */; };
 		C7AC53D42B93993900496C4B /* MainContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AC53D32B93993900496C4B /* MainContent.swift */; };
 		C7B0FEF32B000852005C9617 /* CourseAnnotationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0FEF22B000852005C9617 /* CourseAnnotationItem.swift */; };
-		C7B2904B2BB793B300DA1776 /* PuttPuttGolfAppNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B2904A2BB793B300DA1776 /* PuttPuttGolfAppNew.swift */; };
+		C7B2904B2BB793B300DA1776 /* PuttPuttGolf.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B2904A2BB793B300DA1776 /* PuttPuttGolf.swift */; };
 		C7BEBDCB2B437B6F0019EA52 /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BEBDCA2B437B6F0019EA52 /* CloseButton.swift */; };
 		C7CDAF9B2AD1E8CD006C0886 /* CoursesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CDAF9A2AD1E8CD006C0886 /* CoursesList.swift */; };
 		C7CDAFA52AD5CCCA006C0886 /* CourseInfoPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CDAFA42AD5CCCA006C0886 /* CourseInfoPanel.swift */; };
@@ -144,7 +144,7 @@
 		C7A9BA8F2AC4AA3100A69B81 /* CoursesMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesMap.swift; sourceTree = "<group>"; };
 		C7AC53D32B93993900496C4B /* MainContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContent.swift; sourceTree = "<group>"; };
 		C7B0FEF22B000852005C9617 /* CourseAnnotationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseAnnotationItem.swift; sourceTree = "<group>"; };
-		C7B2904A2BB793B300DA1776 /* PuttPuttGolfAppNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuttPuttGolfAppNew.swift; sourceTree = "<group>"; };
+		C7B2904A2BB793B300DA1776 /* PuttPuttGolf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuttPuttGolf.swift; sourceTree = "<group>"; };
 		C7B7F1F92BE863D100542629 /* PutPutGolf.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PutPutGolf.entitlements; sourceTree = "<group>"; };
 		C7BEBDCA2B437B6F0019EA52 /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 		C7CDAF9A2AD1E8CD006C0886 /* CoursesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesList.swift; sourceTree = "<group>"; };
@@ -241,7 +241,7 @@
 			children = (
 				C7B7F1F92BE863D100542629 /* PutPutGolf.entitlements */,
 				C74CB2432AC4CD1000AC53D7 /* Info.plist */,
-				C7B2904A2BB793B300DA1776 /* PuttPuttGolfAppNew.swift */,
+				C7B2904A2BB793B300DA1776 /* PuttPuttGolf.swift */,
 				C74CB26F2AC892C000AC53D7 /* NavigationStore.swift */,
 				C760EB072AB8F923000DFE09 /* Views */,
 				C760EB002AB8F80F000DFE09 /* Models */,
@@ -600,7 +600,7 @@
 				C7B0FEF32B000852005C9617 /* CourseAnnotationItem.swift in Sources */,
 				C760EB0B2AB8F99B000DFE09 /* MockData.swift in Sources */,
 				C760EB092AB8F94B000DFE09 /* ScoreCardView.swift in Sources */,
-				C7B2904B2BB793B300DA1776 /* PuttPuttGolfAppNew.swift in Sources */,
+				C7B2904B2BB793B300DA1776 /* PuttPuttGolf.swift in Sources */,
 				C75751792B1BF91C00308F73 /* LimitCharacterLength.swift in Sources */,
 				C7AC53D42B93993900496C4B /* MainContent.swift in Sources */,
 				C78D4EFC2B439E8900BDD1D8 /* CustomSheet.swift in Sources */,
