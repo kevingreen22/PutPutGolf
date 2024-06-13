@@ -132,7 +132,7 @@ extension ChoosePlayMode {
                 Image("fire_ball")
                     .resizable()
                     .scaledToFit()
-                Text("Pick players, then putt")
+                Text("Pick players. Then putt.")
                     .multilineTextAlignment(.center)
                     .foregroundStyle(Color.white)
                     .font(.title3)
