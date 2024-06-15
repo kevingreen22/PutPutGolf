@@ -13,8 +13,8 @@ struct Settings: View {
     
     @EnvironmentObject var coursesVM: CoursesMap.ViewModel
 
-    @AppStorage("app_audio") var allowAudio: Bool = true
-    @AppStorage("app_haptics") var allowHaptics: Bool = true
+    @AppStorage(UDKeys.audio) var allowAudio: Bool = true
+    @AppStorage(UDKeys.haptics) var allowHaptics: Bool = true
     
     @State private var backgroundRectSize: CGRect = .zero
     @State private var showLogin: Bool = false
@@ -76,7 +76,7 @@ struct Settings: View {
 
 
 
-// MARK: Components
+// MARK: View Components
 extension Settings {
     
     var title: some View {
@@ -96,6 +96,11 @@ extension Settings {
                     .labelsHidden()
                     .toggleStyle(GolfToggleStyle())
                     .frame(width: 70)
+                    .onChange(of: allowAudio) { _ in
+                        if allowAudio {
+                            try? SoundManager.instance.playeffect("golf_swing")
+                        }
+                    }
                 
             }
             .frame(alignment: .leading)
@@ -113,6 +118,9 @@ extension Settings {
                     .labelsHidden()
                     .toggleStyle(GolfToggleStyle())
                     .frame(width: 70)
+                    .haptic(impact: .rigid, trigger: allowHaptics) { _ in
+                        allowHaptics ? true : false
+                    }
             }
             .frame(alignment: .leading)
             .padding(.trailing, 8)
@@ -134,6 +142,9 @@ extension Settings {
                 .fontWeight(.semibold)
                 .padding(.vertical, 4)
                 .padding(.horizontal, 28)
+                .haptic(impact: .soft, trigger: showLogin) { _ in
+                    allowHaptics ? true : false
+                }
         }
         .buttonStyle(.borderedProminent)
         .bordered(shape: Capsule(), color: Color.white, lineWidth: 5)
@@ -148,57 +159,8 @@ extension Settings {
 
 
 
-struct GolfToggleStyle: ToggleStyle {
-    @State private var handleRect: CGRect = .zero
-    
-    func makeBody(configuration: Configuration) -> some View {
-        GeometryReader { proxy in
-            ZStack {
-                Capsule()
-                    .fill(configuration.isOn ? Color.accentColor : Color.gray)
-                    .bordered(shape: Capsule(), color: Color.accentColor, lineWidth: 1)
-                
-                    .overlay(alignment: .leading) {
-                        Image(systemName: "checkmark")
-                            .resizable()
-                            .scaledToFit()
-                            .scaleEffect(0.4)
-                            .foregroundStyle(Color.white)
-                            .opacity(configuration.isOn ? 1 : 0)
-                    }
-                
-                    .overlay(alignment: .trailing) {
-                        Image(systemName: "xmark")
-                            .resizable()
-                            .scaledToFit()
-                            .scaleEffect(0.4)
-                            .foregroundStyle(Color.red)
-                            .opacity(configuration.isOn ? 0 : 1)
-                    }
-                
-                    .overlay(alignment: .center) {
-                        Image("golf_ball")
-                            .resizable()
-                            .scaledToFit()
-                            .shadow(radius: 3)
-                            .padding(.vertical, 2)
-                            .padding(.leading, 2)
-                            .padding(.trailing, 1)
-                            .rectReader($handleRect, in: .local)
-                            .offset(x: configuration.isOn ? proxy.size.width/2-handleRect.size.width/2 : -proxy.size.width/2+handleRect.size.width/2)
-                            .onTapGesture {
-                                configuration.isOn.toggle()
-                            }
-                            .gesture(
-                                DragGesture()
-                                    .onEnded { value in
-                                        configuration.isOn.toggle()
-                                    }
-                            )
-                    }
-                configuration.label
-            }.animation(.easeInOut(duration: 0.15), value: configuration.isOn)
-        }.frame(height: 34)
-    }
+// MARK: User Defaults Keys
+struct UDKeys {
+    static let audio = "app_audio"
+    static let haptics = "app_haptics"
 }
-

@@ -15,8 +15,8 @@ struct ChoosePlayMode: View {
     @EnvironmentObject var alertContext : AlertContext
     @EnvironmentObject var coursesVM: CoursesMap.ViewModel
     
-    @AppStorage("app_audio") var allowAudio: Bool = true
-    @AppStorage("app_haptics") var allowHaptics: Bool = true
+    @AppStorage(UDKeys.audio) var allowAudio: Bool = true
+    @AppStorage(UDKeys.haptics) var allowHaptics: Bool = true
     
     @State private var showMapplayFullScreen = false
     @State private var quickPlayButtonOffset: CGSize = CGSize(width: 400, height: 0)
@@ -131,7 +131,7 @@ extension ChoosePlayMode {
             .frame(width: 270)
         }
         .forceRotation(orientation: .portrait)
-        .haptic(impact: .light, trigger: currentPage) { _ in
+        .haptic(impact: .light, trigger: currentPage) { v in
             allowHaptics ? true : false
         }
     }

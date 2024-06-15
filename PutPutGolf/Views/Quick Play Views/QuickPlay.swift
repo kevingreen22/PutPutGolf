@@ -18,6 +18,9 @@ struct QuickPlay: View {
 
     @State private var holeNumber: Int = 0
     
+    @AppStorage(UDKeys.audio) var allowAudio: Bool = true
+    @AppStorage(UDKeys.haptics) var allowHaptics: Bool = true
+    
     init(quickPlayers: Binding<[QuickPlayer]>, showWinnerView: Binding<Bool>, proxy: GeometryProxy, isFocused: FocusState<Bool>.Binding) {
         _quickPlayers = quickPlayers
         _showWinnerView = showWinnerView
@@ -137,8 +140,12 @@ extension QuickPlay {
                                 completion = finished
                             })
                     )
-                    HapticManager.instance.impact(.heavy)
-                    try? SoundManager.instance.playeffect("clapping_and_cheering")
+                    if allowHaptics {
+                        HapticManager.instance.impact(.heavy)
+                    }
+                    if allowAudio {
+                        try? SoundManager.instance.playeffect("clapping_and_cheering")
+                    }
                     return completion
                 }
                 return false
@@ -147,8 +154,12 @@ extension QuickPlay {
                 // Continue to next hole
                 if areAllPlayerScoresEnteredFor(hole: holeNumber) {
                     setupForNextHole()
-                    HapticManager.instance.impact(.soft)
-                    try? SoundManager.instance.playeffect("golf_swing")
+                    if allowHaptics {
+                        HapticManager.instance.impact(.soft)
+                    }
+                    if allowAudio {
+                        try? SoundManager.instance.playeffect("golf_swing")
+                    }
                     return true
                 }
                 return false

@@ -61,6 +61,7 @@
 		C78759662B3E5289004FE7FE /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C78759652B3E5289004FE7FE /* ConfettiSwiftUI */; };
 		C78D4EFC2B439E8900BDD1D8 /* CustomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78D4EFB2B439E8900BDD1D8 /* CustomSheet.swift */; };
 		C78F76362C1CC27D00EF1D75 /* TODO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F76352C1CC27D00EF1D75 /* TODO.swift */; };
+		C78F76392C1E5B1B00EF1D75 /* GolfToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F76382C1E5B1B00EF1D75 /* GolfToggleStyle.swift */; };
 		C79569902B379E2000C24180 /* WinnerVictoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C795698F2B379E2000C24180 /* WinnerVictoryView.swift */; };
 		C7A9BA902AC4AA3100A69B81 /* CoursesMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A9BA8F2AC4AA3100A69B81 /* CoursesMap.swift */; };
 		C7AC53D42B93993900496C4B /* MainContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AC53D32B93993900496C4B /* MainContent.swift */; };
@@ -142,6 +143,7 @@
 		C78609632B408BD500074B18 /* TextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtensions.swift; sourceTree = "<group>"; };
 		C78D4EFB2B439E8900BDD1D8 /* CustomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSheet.swift; sourceTree = "<group>"; };
 		C78F76352C1CC27D00EF1D75 /* TODO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TODO.swift; sourceTree = "<group>"; };
+		C78F76382C1E5B1B00EF1D75 /* GolfToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfToggleStyle.swift; sourceTree = "<group>"; };
 		C795698F2B379E2000C24180 /* WinnerVictoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnerVictoryView.swift; sourceTree = "<group>"; };
 		C7A9BA8F2AC4AA3100A69B81 /* CoursesMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesMap.swift; sourceTree = "<group>"; };
 		C7AC53D32B93993900496C4B /* MainContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContent.swift; sourceTree = "<group>"; };
@@ -286,6 +288,7 @@
 				C7AC53D22B93990000496C4B /* Quick Play Views */,
 				C760EB182ABE0BEB000DFE09 /* Map Play Views */,
 				C74774742B1FBA9B00872705 /* Add New Courses Views */,
+				C78F76372C1E5AFA00EF1D75 /* View Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -350,6 +353,14 @@
 				C7D48A5B2BDC6D0700FCD492 /* Settings.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		C78F76372C1E5AFA00EF1D75 /* View Components */ = {
+			isa = PBXGroup;
+			children = (
+				C78F76382C1E5B1B00EF1D75 /* GolfToggleStyle.swift */,
+			);
+			path = "View Components";
 			sourceTree = "<group>";
 		};
 		C7AA25192BD0694600E01827 /* Components */ = {
@@ -594,6 +605,7 @@
 				C75B9C052BAF48D600945371 /* RectReader.swift in Sources */,
 				C760EB172ABE0AD6000DFE09 /* DataServices.swift in Sources */,
 				C765B6BF2BBA4F7D0052F1D6 /* SetPlayerCountPage.swift in Sources */,
+				C78F76392C1E5B1B00EF1D75 /* GolfToggleStyle.swift in Sources */,
 				C760EB022AB8F825000DFE09 /* Course.swift in Sources */,
 				C78F76362C1CC27D00EF1D75 /* TODO.swift in Sources */,
 				C70BB45F2B2BBE4700604CE5 /* SmoothDrag.swift in Sources */,

@@ -43,6 +43,9 @@ struct MainContent: View {
     @FocusState private var focusedField: FocusedField?
     @FocusState private var isFocused: Bool
     
+    @AppStorage(UDKeys.audio) var allowAudio: Bool = true
+    @AppStorage(UDKeys.haptics) var allowHaptics: Bool = true
+    
     // PRODUCTION SERVICE
 //    var dataService: any DataServiceProtocol = ProductionDataService()
 
@@ -62,6 +65,7 @@ struct MainContent: View {
                                 .id(PageID.chooseMode)
                                 .frame(width: geo.size.width)
                                 .environmentObject(alertContext)
+                                .environmentObject(coursesVM)
                             
                             SetPlayerCountPage(numOfPlayers: $numOfPlayers, focusedField: $focusedField)
                                 .id(PageID.numOfPlayers)
@@ -91,6 +95,9 @@ struct MainContent: View {
                     
                     .onChange(of: currentPage) { page in
                         moveTo(page: page, from: currentPage)
+                    }
+                    .haptic(impact: .light, trigger: currentPage) { v in
+                        allowHaptics ? true : false
                     }
                 }
                 .scrollDisabled(true)
@@ -151,10 +158,14 @@ extension MainContent {
                 scrollTo(page: .setPlayerNames, completion: {
                     updateCurrentPage(to: .setPlayerNames)
                 })
-                HapticManager.instance.feedback(.success)
+                if allowHaptics {
+                    HapticManager.instance.feedback(.success)
+                }
                 focusedField = .playerName
             } else {
-                HapticManager.instance.feedback(.error)
+                if allowHaptics {
+                    HapticManager.instance.feedback(.error)
+                }
                 alertContext.ofType(.wrongPlayerAmount)
             }
             
@@ -170,15 +181,21 @@ extension MainContent {
                 scrollTo(page: .quickPlay, completion: {
                     updateCurrentPage(to: .quickPlay)
                 })
-                HapticManager.instance.feedback(.success)
+                if allowHaptics {
+                    HapticManager.instance.feedback(.success)
+                }
             } else {
-                HapticManager.instance.feedback(.error)
+                if allowHaptics {
+                    HapticManager.instance.feedback(.error)
+                }
                 focusedField = .playerName
             }
             
         default:
             print("____onSubmit: default")
-            HapticManager.instance.feedback(.warning)
+            if allowHaptics {
+                HapticManager.instance.feedback(.warning)
+            }
             focusedField = nil
         }
     }

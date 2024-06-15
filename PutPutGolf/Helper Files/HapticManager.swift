@@ -11,7 +11,7 @@ import CoreHaptics
 public class HapticManager {
     
     static let instance = HapticManager()
-    
+        
     /// Check if the device supports haptics.
     var isSupported: Bool {
         let hapticCapability = CHHapticEngine.capabilitiesForHardware()
