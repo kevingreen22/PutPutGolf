@@ -496,7 +496,7 @@ fileprivate struct ExampleView: View {
                         .foregroundStyle(Color.gray)
                 }
                 Button("Item Sheet") {
-                    item = MockData.instance.courses.first!.challenges.first!
+                    item = MockData.instance.courses.first!.challenges?.first!
                 }
             }
             Spacer()

@@ -4,8 +4,11 @@
 //
 //  Created by Kevin Green on 3/2/24.
 //
+// <a href="https://www.flaticon.com/free-icons/scorecard" title="scorecard icons">Scorecard icons created by juicy_fish - Flaticon</a>
+// <a href="https://www.flaticon.com/free-icons/table" title="table icons">Table icons created by Pixel perfect - Flaticon</a>
 
 import SwiftUI
+import KGViews
 
 /// Page ID's for quick play horizontal scrolling.
 enum PageID: Hashable {
@@ -22,23 +25,28 @@ enum FocusedField: Hashable {
 
 struct MainContent: View {
     @StateObject var alertContext: AlertContext = AlertContext()
+    @Environment(\.colorScheme) var colorScheme
     
     @State private var quickPlayers: [QuickPlayer] = []
     @State private var scrollProxy: ScrollViewProxy?
     @State private var numOfPlayers: Int?
     @State private var playerName = ""
     @State private var showWinnerView = false
+    @State private var showScoreCard = false
     @State private var currentPage: PageID = .chooseMode
+    
+    @State private var scale: CGFloat = 0
+    @State private var rotation: CGFloat = 0
     
     @FocusState private var focusedField: FocusedField?
     @FocusState private var isFocused: Bool
     
     // PRODUCTION SERVICE
-    var dataService: any DataServiceProtocol = ProductionDataService()
+//    var dataService: any DataServiceProtocol = ProductionDataService()
 
     // DEVELOPMENT MOCK SERVICE
     #warning("Development data service insatance.")
-//    var dataService = MockDataService(mockData: MockData.instance)
+    var dataService = MockDataService(mockData: MockData.instance)
 
    
     var body: some View {
@@ -64,7 +72,7 @@ struct MainContent: View {
                                 .frame(width: geo.size.width)
                                 .offset(y: 100)
                             
-                            QuickPlay(quickPlayers: $quickPlayers, showWinnerView: $showWinnerView, isFocused: $isFocused)
+                            QuickPlay(quickPlayers: $quickPlayers, showWinnerView: $showWinnerView, proxy: geo, isFocused: $isFocused)
                                 .id(PageID.quickPlay)
                                 .frame(width: geo.size.width)
                                 .dismissKeyboardOnTap($isFocused)
@@ -82,18 +90,28 @@ struct MainContent: View {
                     .onChange(of: currentPage) { page in
                         moveTo(page: page, from: currentPage)
                     }
-                    
-                }.scrollDisabled(true)
+                }
+                .scrollDisabled(true)
+            }
+            
+            if showScoreCard {
+                quickplayBackground
+                ScoreCardView(quickPlayers: self.quickPlayers, isResumingGame: self.quickPlayers.allSatisfy({ $0.scores.isEmpty }))
+                    .environmentObject(NavigationStore(bind: $showScoreCard))
+                    .transition(.scale(scale: scale))
+                    .offset(y: 60)
             }
         }
-        .ignoresSafeArea()
         
         .overlay(alignment: .topLeading) {
-            backButton
+            backButton.opacity(showScoreCard ? 0 : 1)
         } // Back button
         
-        .showAlert(alert: $alertContext.alert)
+        .overlay(alignment: .topTrailing) {
+            scoreCardButton
+        } // Scorecard Button
         
+        .showAlert(alert: $alertContext.alert)
     }
 }
 
@@ -193,10 +211,10 @@ extension MainContent {
     
 }
 
-// MARK: Components
+// MARK: View Components
 extension MainContent {
     
-    var backButton: some View {
+    fileprivate var backButton: some View {
         CloseButton(iconName: "chevron.left") {
             guard currentPage != .quickPlay else {
                 alertContext.ofType(
@@ -247,7 +265,39 @@ extension MainContent {
         .animation(.easeIn.delay(currentPage == .chooseMode ? 0 : 1), value: currentPage)
     }
     
-    var backgroundImage: some View {
+    fileprivate var scoreCardButton: some View {
+            Button {
+                // show score card
+                withAnimation(.easeInOut(duration: 1.2)) {
+                    showScoreCard.toggle()
+                }
+            } label: {
+                Image("score_card_icon")
+                    .resizable()
+                    .foregroundStyle(Color.white)
+                    .frame(width: 30, height: 30)
+            }
+            .padding(.trailing)
+            .padding(.top, 10)
+            .opacity(currentPage != .quickPlay ? 0 : 1)
+            .animation(.easeIn.delay(currentPage == .quickPlay ? 1 : 0), value: currentPage)
+    }
+    
+    fileprivate var quickplayBackground: some View {
+        ZStack {
+            KGRealBlur(style: .regular, onTap: {
+                withAnimation(.easeInOut(duration: 1.2)) {
+                    showScoreCard.toggle()
+                }
+            }).ignoresSafeArea()
+            
+            Color.black
+                .opacity(colorScheme == .dark ? 0.4 : 0)
+                .allowsHitTesting(false)
+        }
+    }
+    
+    fileprivate var backgroundImage: some View {
         Image("golf_course")
             .resizable()
             .ignoresSafeArea()

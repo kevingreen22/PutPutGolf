@@ -7,8 +7,14 @@
 
 import SwiftUI
 
+protocol PlayerProtocol {
+    var id: String { get set }
+    var name: String { get set }
+    var scores: [String] { get set }
+}
+
 // MARK: Player
-class Player: Codable, Equatable, Hashable, Comparable, Identifiable {
+class Player: PlayerProtocol, Codable, Equatable, Hashable, Comparable, Identifiable {
     var id: String
     var name: String
     var color: Color
@@ -21,7 +27,11 @@ class Player: Codable, Equatable, Hashable, Comparable, Identifiable {
         self.name = name
         self.color = color
         scores = Array(repeating: "0", count: course.holes.count)
-        challengeScores = Array(repeating: "0", count: course.challenges.count)
+        if course.challenges != nil {
+            challengeScores = Array(repeating: "0", count: course.challenges!.count)
+        } else {
+            challengeScores = []
+        }
     }
     
     init(id: String, name: String, image: UIImage?, color: Color = .gray, course: Course) {
@@ -30,7 +40,11 @@ class Player: Codable, Equatable, Hashable, Comparable, Identifiable {
         self.color = color
         self.imageData = image?.jpegData(compressionQuality: 1)
         scores = Array(repeating: "0", count: course.holes.count)
-        challengeScores = Array(repeating: "0", count: course.challenges.count)
+        if course.challenges != nil {
+            challengeScores = Array(repeating: "0", count: course.challenges!.count)
+        } else {
+            challengeScores = []
+        }
     }
     
     init(id: String, name: String, color: Color = .gray) {
@@ -54,9 +68,11 @@ class Player: Codable, Equatable, Hashable, Comparable, Identifiable {
         finalTotal = self.scores.reduce(0) { partialResult, score in
             partialResult + (Int(score) ?? 0)
         }
+        
         finalTotal += self.challengeScores.reduce(0, { partialResult, score in
             partialResult + (Int(score) ?? 0)
         })
+        
         return finalTotal
     }
     
@@ -103,7 +119,7 @@ struct NewPlayer: Hashable, Identifiable {
 
 
 // MARK: QuickPlayer
-class QuickPlayer: Codable, Equatable, Hashable, Comparable, Identifiable {
+class QuickPlayer: PlayerProtocol, Codable, Equatable, Hashable, Comparable, Identifiable {
     var id: String = UUID().uuidString
     var name: String
     var scores: [String]
@@ -119,7 +135,6 @@ class QuickPlayer: Codable, Equatable, Hashable, Comparable, Identifiable {
             partialResult + (Int(score) ?? 0)
         }
     }
-    
     
     // Hashable
     func hash(into hasher: inout Hasher) {
@@ -138,4 +153,23 @@ class QuickPlayer: Codable, Equatable, Hashable, Comparable, Identifiable {
         return lhs.id < rhs.id &&
         lhs.name < rhs.name
     }
+    
 }
+
+
+
+
+extension Array where Array.Element == QuickPlayer {
+    
+    func asPlayerType() -> [Player]  {
+        var players = [Player]()
+        
+        for i in 0..<self.count {
+            let player = Player(id: self[i].id, name: self[i].name)
+            players.append(player)
+        }
+        return players
+    }
+}
+    
+

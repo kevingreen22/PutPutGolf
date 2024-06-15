@@ -9,6 +9,15 @@ import SwiftUI
 
 class NavigationStore: ObservableObject {
     @Published var path = NavigationPath()
+    @Binding var bind: Bool
+    
+    init(bind: Binding<Bool>? = nil) {
+        if bind != nil {
+            _bind = bind!
+        } else {
+            _bind = .constant(false)
+        }
+    }
     
     /// Pushes/pulls a view on the navigation stack.
     /// - Parameter destination: The view destination to push/pull.
@@ -18,7 +27,8 @@ class NavigationStore: ObservableObject {
         case .playerSetup: self.path.append(1)
         case .scoreCard(players: let players): self.path.append(players)
         case .savedGame(let game): self.path.append(game)
-        case .back(let k): self.path.removeLast(k != nil ? k! : 1)
+        case .back(let k): self.path.removeLast(k)
+        case .toggleBinding: self.bind.toggle()
         }
     }
     
@@ -27,7 +37,8 @@ class NavigationStore: ObservableObject {
         case playerSetup
         case scoreCard(players: [Player])
         case savedGame(_ savedGame: SavedGame)
-        case back(k: Int?)
+        case back(k: Int = 1)
+        case toggleBinding
     }
     
     public struct DestinationID {

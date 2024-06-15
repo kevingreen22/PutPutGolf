@@ -31,9 +31,9 @@ struct SetPlayerCountPage: View {
             Spacer()
         }
     }
-    
 }
 
+// MARK: Preview
 #Preview {
     @State var numOfPlayers: Int? = 2
     @FocusState var focusedField: FocusedField?

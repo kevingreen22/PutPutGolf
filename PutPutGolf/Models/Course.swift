@@ -19,7 +19,7 @@ struct Course: Codable, Hashable, Equatable, Identifiable {
     var imageData: Data?
     var difficulty: Difficulty
     var holes: [Hole]
-    var challenges: [Challenge]
+    var challenges: [Challenge]?
     var rules: [String]
     var hours: [String]
     var coordinates: CLLocationCoordinate2D {
@@ -29,7 +29,7 @@ struct Course: Codable, Hashable, Equatable, Identifiable {
         return CLLocation(latitude: latitude, longitude: longitude)
     }
     
-    init(id: String, name: String, address: String, latitude: Double, longitude: Double, imageData: Data? = nil, difficulty: Difficulty, holes: [Hole], challenges: [Challenge], rules: [String], hours: [String]) {
+    init(id: String, name: String, address: String, latitude: Double, longitude: Double, imageData: Data? = nil, difficulty: Difficulty, holes: [Hole], challenges: [Challenge]?, rules: [String], hours: [String]) {
         self.id = id
         self.name = name
         self.address = address
@@ -54,7 +54,7 @@ struct Course: Codable, Hashable, Equatable, Identifiable {
         self.imageData = nil
         self.difficulty = .easy
         self.holes = []
-        self.challenges = []
+        self.challenges = nil
         self.rules = []
         self.hours = []
     }

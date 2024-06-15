@@ -24,7 +24,8 @@ struct ScoreBoxCell: View {
                 .overlay(alignment: .bottom) {
                     Rectangle()
                         .fill(player.color.gradient)
-                        .frame(height: 5)
+                        .frame(height: 8)
+                        .blur(radius: 2)
                 }
             
             TextField("", text: $player.scores[hole.number-1])
@@ -99,7 +100,8 @@ struct ChallengeScoreCell: View {
                 .overlay(alignment: .bottom) {
                     Rectangle()
                         .fill(player.color.gradient)
-                        .frame(height: 5)
+                        .frame(height: 8)
+                        .blur(radius: 2)
                 }
             
             TextField("", text: $player.challengeScores[index])
@@ -132,7 +134,8 @@ struct TotalScoreCell: View {
                 .overlay(alignment: .bottom) {
                     Rectangle()
                         .fill(playerColor.gradient)
-                        .frame(height: 5)
+                        .frame(height: 8)
+                        .blur(radius: 2)
                 }
             
             Text("\(totalScore)")
@@ -152,7 +155,8 @@ struct FinalTotalScore: View {
                 .overlay(alignment: .bottom) {
                     Rectangle()
                         .fill(playerColor.gradient)
-                        .frame(height: 5)
+                        .frame(height: 8)
+                        .blur(radius: 2)
                 }
             
             Text("\(finalTotalScore)")
@@ -223,7 +227,7 @@ struct ChallengeCell: View {
         ZStack {
             Rectangle()
                 .fill(Color.accentColor)
-                .border(Color.black)
+                .border(Color.white, width: 2)
                 
             Text("\(challenge.name)")
                 .fontWeight(.semibold)
@@ -301,7 +305,8 @@ struct PlayerInfoCell: View {
                 .overlay(alignment: .bottom) {
                     Rectangle()
                         .fill(player.color.gradient)
-                        .frame(height: 5)
+                        .frame(height: 8)
+                        .blur(radius: 2)
                 }
             
             VStack {
@@ -319,6 +324,8 @@ struct PlayerInfoCell: View {
                 Text("\(player.name)")
                     .foregroundStyle(colorScheme == .dark ? .white : .black)
                     .font(.title2)
+                    .truncationMode(.tail)
+                    .padding(.horizontal, 4)
                     .padding(.bottom, 10)
             }
         }

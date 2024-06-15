@@ -11,15 +11,17 @@ import KGViews
 struct QuickPlay: View {
     @Binding var quickPlayers: [QuickPlayer]
     @Binding var showWinnerView: Bool
+    var proxy: GeometryProxy
     @FocusState.Binding var isFocused: Bool
     
     @EnvironmentObject var alertContext: AlertContext
 
     @State private var holeNumber: Int = 0
     
-    init(quickPlayers: Binding<[QuickPlayer]>, showWinnerView: Binding<Bool>, isFocused: FocusState<Bool>.Binding) {
+    init(quickPlayers: Binding<[QuickPlayer]>, showWinnerView: Binding<Bool>, proxy: GeometryProxy, isFocused: FocusState<Bool>.Binding) {
         _quickPlayers = quickPlayers
         _showWinnerView = showWinnerView
+        self.proxy = proxy
         _isFocused = isFocused
     }
     
@@ -32,6 +34,11 @@ struct QuickPlay: View {
                     cell(for: quickPlayer)
                         .dismissKeyboardOnTap($isFocused)
                 }
+                
+                // Adds a blank section at the end of the list of players so the last player's entry box is not hidden behind the 3-way-toggle.
+                Rectangle()
+                    .fill(Color.clear)
+                    .frame(height: 100)
             }
             
             .overlay(alignment: .bottom) {
@@ -41,24 +48,26 @@ struct QuickPlay: View {
             if showWinnerView {
                 winnerView
             }
+            
         }
+        .padding(.bottom, 40)
+        .padding(.top, 50)
         .keyboardType(.numberPad)
         
         .onAppear {
             initPlayerScoreArray()
         }
-        
     }
 }
 
+// MARK: Preview
 #Preview {
     @FocusState var isFocused: Bool
     
-    return NavigationView {
+    return GeometryReader { proxy in
         ZStack {
             Image("golf_course").resizable().ignoresSafeArea()
-            
-            QuickPlay(quickPlayers: .constant(MockData.instance.quickPlayers), showWinnerView: .constant(false), isFocused: $isFocused)
+            QuickPlay(quickPlayers: .constant(MockData.instance.quickPlayers), showWinnerView: .constant(false), proxy: proxy, isFocused: $isFocused)
         }
     }
 }
@@ -97,7 +106,7 @@ extension QuickPlay {
 }
 
 
-// MARK: Private Components
+// MARK: View Components
 extension QuickPlay {
     
     fileprivate var title: some View {
@@ -146,7 +155,7 @@ extension QuickPlay {
             }
         )
         .bordered(shape: Capsule(), color: .accentColor, lineWidth: 5)
-        .frame(width: 400, height: 100)
+        .frame(width: proxy.size.width*0.9, height: 100)
         .background(Capsule().shadow(radius: 10))
     }
         

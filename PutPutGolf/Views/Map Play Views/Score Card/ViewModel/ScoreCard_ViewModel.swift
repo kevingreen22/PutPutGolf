@@ -27,14 +27,16 @@ extension ScoreCardView {
         @Published var showBracketView: Bool = false
         @Published var challenge: Challenge? = nil
         @Published var showExitAlert: Bool = false
+        @Published var isQuickPlayGame: Bool = false
         
         var cancellables: Set<AnyCancellable> = []
         var winnerBracket: [Player] = []
         
-        init(course: Course, players: [Player], isResumingGame: Bool = false) {
+        init(course: Course, players: [Player], isResumingGame: Bool = false, isQuickPlayGame: Bool = false) {
             print("\(type(of: self)).\(#function)")
             self.course = course
             self.players = players
+            self.isQuickPlayGame = isQuickPlayGame
             initTotals(isResumingGame: isResumingGame)
             subToPlayers()
         }
@@ -52,7 +54,9 @@ extension ScoreCardView {
             } else {
                 for player in players {
                     player.scores = Array(repeating: "0", count: course.holes.count)
-                    player.challengeScores = Array(repeating: "0", count: course.challenges.count)
+                    if let challenges = course.challenges {
+                        player.challengeScores = Array(repeating: "0", count: challenges.count)
+                    }
                     
                     let total = Int(player.scores.map({ Int($0) ?? 0 }).reduce(0, +))
                     let challenges = Int(player.challengeScores.map({ Int($0) ?? 0 }).reduce(0, +))
@@ -101,16 +105,18 @@ extension ScoreCardView {
         /// Checks if the game is completed and sets the isGameCompleted variable.
         fileprivate func checkIfGameIsFinished(for player: Player, at index: Int) {
             print("\(type(of: self)).\(#function)")
-            for player in self.players {
-                guard player.scores.allSatisfy({ $0 != "" && Character($0).isNumber && $0 != "0" }), player.challengeScores.allSatisfy({ $0 != "" && $0 != " " && $0 != "0" }) else {
-                    self.isGameCompleted = false
-                    self.showWinnerView = false
-                    return
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-                    self.isGameCompleted = true
-                    self.setWinnerBracket()
-                    self.showWinnerView = true
+            if !isQuickPlayGame {
+                for player in self.players {
+                    guard player.scores.allSatisfy({ $0 != "" && Character($0).isNumber && $0 != "0" }), player.challengeScores.allSatisfy({ $0 != "" && $0 != " " && $0 != "0" }) else {
+                        self.isGameCompleted = false
+                        self.showWinnerView = false
+                        return
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                        self.isGameCompleted = true
+                        self.setWinnerBracket()
+                        self.showWinnerView = true
+                    }
                 }
             }
         }

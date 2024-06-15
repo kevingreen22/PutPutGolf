@@ -466,11 +466,13 @@ struct AddCourseView: View {
     
     fileprivate var challengesSection: some View {
         Section {
-            ForEach(vm.newCourse.challenges, id: \.self) { challenge in
-                challengeCell(challenge)
-            }
-            .onDelete{ indexSet in
-                vm.newCourse.challenges.remove(atOffsets: indexSet)
+            if let challenges = vm.newCourse.challenges {
+                ForEach(challenges, id: \.self) { challenge in
+                    challengeCell(challenge)
+                }
+                .onDelete{ indexSet in
+                    vm.newCourse.challenges?.remove(atOffsets: indexSet)
+                }
             }
         } header: {
             HStack {
@@ -912,12 +914,13 @@ final class AddCourseInfoVM: ObservableObject {
     /// Check that all properties are inputed.
     func validateChallenge(id: String, name: String, rules: String, difficulty: Difficulty) async {
         print("\(type(of: self)).\(#function)")
-        if id != "" && name != "" && rules != "Add Challenge Rules" && rules != "" {
-            let challenge = Challenge(id: id, name: name, rules: rules, difficulty: difficulty)
-//            newChallenges == nil ? newChallenges = [challenge] : newChallenges!.append(challenge)
-            self.newCourse.challenges.append(challenge)
-        } else {
-            errorAlert = AlertType.basic(title: "Challenge info incomplete. Please try again.")
+        if self.newCourse.challenges != nil {
+            if id != "" && name != "" && rules != "Add Challenge Rules" && rules != "" {
+                let challenge = Challenge(id: id, name: name, rules: rules, difficulty: difficulty)
+                self.newCourse.challenges!.append(challenge)
+            } else {
+                errorAlert = AlertType.basic(title: "Challenge info incomplete. Please try again.")
+            }
         }
     }
     
@@ -925,7 +928,6 @@ final class AddCourseInfoVM: ObservableObject {
     func validateRule(_ rule: String) async {
         print("\(type(of: self)).\(#function)")
         if rule != "" || rule != "..." {
-//            courseRules == nil ? courseRules = [rule] : courseRules?.append(rule)
             self.newCourse.rules.append(rule)
         } else {
             errorAlert = AlertType.basic(title: "Rule incomplete. Please try again.")

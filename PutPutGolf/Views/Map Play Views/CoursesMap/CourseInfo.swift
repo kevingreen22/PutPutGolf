@@ -133,7 +133,7 @@ extension CourseInfo {
             Spacer()
             Divider()
             Spacer()
-            challengeInfoCell(iconName: "trophy.circle.fill", text: "\(coursesVM.selectedCourse.challenges.count)", infoItem: $infoItem)
+            challengeInfoCell(iconName: "trophy.circle.fill", text: "\(coursesVM.selectedCourse.challenges?.count ?? 0)", infoItem: $infoItem)
         }
         .padding(.horizontal, 20)
     }

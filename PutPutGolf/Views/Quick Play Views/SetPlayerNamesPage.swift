@@ -45,7 +45,6 @@ struct SetPlayerNamesPage: View {
                 playerNum = 1
             }
         }
-        
     }
 }
 

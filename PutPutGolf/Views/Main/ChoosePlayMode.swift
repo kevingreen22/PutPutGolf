@@ -25,11 +25,12 @@ struct ChoosePlayMode: View {
     
         
     var body: some View {
-        VStack(spacing: 20) {
+        VStack {
             logo
             quickplayButton
             mapplayButton
         }
+
         .overlay(alignment: currentPage != .quickPlay ? .bottomTrailing : .topTrailing) {
             SettingsButton {
                 self.showSettings.toggle()
@@ -62,16 +63,14 @@ struct ChoosePlayMode: View {
                 .environmentObject(coursesVM)
         }
     }
-    
 }
 
+// MARK: Preview
 #Preview {
     @State var currentPage: PageID = .chooseMode
     
     return ZStack {
-        Image("golf_course")
-            .resizable()
-            .ignoresSafeArea()
+        Image("golf_course").resizable().ignoresSafeArea()
         ChoosePlayMode(currentPage: $currentPage, dataService: MockDataService(mockData: MockData.instance))
             .environmentObject(CoursesMap.ViewModel())
     }
@@ -104,7 +103,7 @@ extension ChoosePlayMode {
 }
 
 
-// MARK: Components
+// MARK: View Components
 extension ChoosePlayMode {
     
     var backgroundImage: some View {
@@ -117,7 +116,7 @@ extension ChoosePlayMode {
         Image("logo_banner")
             .resizable()
             .scaledToFit()
-            .padding()
+            .padding(.horizontal, 12)
     }
     
     var quickplayButton: some View {

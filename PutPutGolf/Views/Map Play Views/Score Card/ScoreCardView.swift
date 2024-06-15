@@ -26,23 +26,31 @@ struct ScoreCardView: View {
         _vm = StateObject(wrappedValue: ViewModel(course: course, players: players, isResumingGame: resuming))
     }
     
+    init(quickPlayers: [QuickPlayer], isResumingGame resuming: Bool = false) {
+        print("\(type(of: self)).\(#function)")
+        _vm = StateObject(wrappedValue: ViewModel(course: Course(), players: quickPlayers.asPlayerType(), isResumingGame: resuming, isQuickPlayGame: true))
+    }
+    
     
     var body: some View {
         ZStack {
-            background
-            
+            if !vm.isQuickPlayGame {
+                background
+            }
             GeometryReader { _ in scorecard.padding() }
             
-            HStack {
-                VStack {
-                    ScoreCardExitMenuButton(/*showWinnerBracket: $vm.isGameCompleted, */destination: .mapView)
-                        .padding(20)
-                        .environmentObject(navStore)
-                        .environmentObject(vm)
+            if !vm.isQuickPlayGame {
+                HStack {
+                    VStack {
+                        ScoreCardExitMenuButton(destination: .mapView)
+                            .padding(20)
+                            .environmentObject(navStore)
+                            .environmentObject(vm)
+                        Spacer()
+                    }
                     Spacer()
-                }
-                Spacer()
-            } // Close/View Bracket Menu button
+                } // Close/View Bracket Menu button
+            }
             
             if vm.showWinnerView, let winner = vm.getWinner {
                 withAnimation { winnerView(winner) }
@@ -57,14 +65,12 @@ struct ScoreCardView: View {
             ChallengeInfoView(challenge)
                 .presentationDetents([.medium])
                 .presentationDragIndicator(.visible)
-            
                 .cornerRadius(30)
         }
-        
     }
-    
 }
 
+// MARK: Preview
 #Preview {
     let mockdata = MockData.instance
     
@@ -76,19 +82,19 @@ struct ScoreCardView: View {
         )
         .environmentObject(NavigationStore())
         
-        Text("Challenge Info View Preview")
-            .sheet(item: .constant(MockData.instance.courses.first!.challenges.first!)) { challenge in
-                ChallengeInfoView(challenge)
-                    .presentationDetents([.medium])
-                    .presentationDragIndicator(.visible)
-                    .cornerRadius(30)
-            }
+//        Text("Challenge Info View Preview")
+//            .sheet(item: .constant(MockData.instance.courses.first!.challenges.first!)) { challenge in
+//                ChallengeInfoView(challenge)
+//                    .presentationDetents([.medium])
+//                    .presentationDragIndicator(.visible)
+//                    .cornerRadius(30)
+//            }
     }
 }
 
 
 
-// MARK: Private Components
+// MARK: View Components
 extension ScoreCardView {
     
     fileprivate var background: some View {
@@ -115,6 +121,7 @@ extension ScoreCardView {
             parRow
             playersRowAndScores
         }
+        .addBorder(Color.accentColor, lineWidth: 6 , cornerRadius: 25)
         .scaleEffect(currentZoom + totalZoom)
         .offset(position)
         .gesture(SmoothDrag(location: $position))
@@ -158,29 +165,31 @@ extension ScoreCardView {
         GridRow {
             // Header cell
             StandardTextCell(title: "Hole", color: .accentColor, textColor: colorScheme == .dark ? .black : .white)
-                .border(Color.black)
+                .border(Color.white, width: 2)
             
             // Hole number
             ForEach(vm.course.holes) { hole in
                 StandardTextCell(title: "\(hole.number)", color: .accentColor, textColor: colorScheme == .dark ? .black : .white)
-                    .border(Color.black)
+                    .border(Color.white, width: 2)
             }
             
             // TOT footer
             StandardTextCell(title: "TOT", color: .accentColor, textColor: colorScheme == .dark ? .black : .white)
-                .border(Color.black)
+                .border(Color.white, width: 2)
             
             // Challenges desc.
-            ForEach(vm.course.challenges) { challenge in
-                ChallengeCell(challenge: challenge)
-                    .environmentObject(vm)
+            if let challenges = vm.course.challenges {
+                ForEach(challenges) { challenge in
+                    ChallengeCell(challenge: challenge)
+                        .environmentObject(vm)
+                }
             }
             
             // Final total footer
             StandardTextCell(title: "Final", color: .accentColor, textColor: colorScheme == .dark ? .black : .white)
                 .font(.title)
                 .frame(height: 120)
-                .border(Color.black)
+                .border(Color.white, width: 2)
                 .offset(y: 30)
         }
         .frame(width: 80, height: 60)
@@ -199,10 +208,10 @@ extension ScoreCardView {
             TotalParCell(course: vm.course)
         }
         .frame(width: 80, height: 60)
-        .border(Color.black)
+        .border(Color.white, width: 2)
     }
     
-    fileprivate var playersRowAndScores: some View {
+    fileprivate var playersRowAndScores: some View {   
         // Player's row & scores
         ForEach($vm.players.indices, id: \.self) { playerIndex in
             GridRow {
@@ -217,8 +226,10 @@ extension ScoreCardView {
                     TotalScoreCell(totalScore: $vm.totals[playerIndex], playerColor: vm.players[playerIndex].color)
                     
                     // Challenge Score cells
-                    ForEach(vm.course.challenges.indices, id: \.self) { i in
-                        ChallengeScoreCell(player: $vm.players[playerIndex], challengeIndex: i, isFocused: _isFocused)
+                    if let challenges = vm.course.challenges {
+                        ForEach(challenges.indices, id: \.self) { i in
+                            ChallengeScoreCell(player: $vm.players[playerIndex], challengeIndex: i, isFocused: _isFocused)
+                        }
                     }
                     
                     FinalTotalScore(finalTotalScore: $vm.finalTotals[playerIndex], playerColor: vm.players[playerIndex].color)
@@ -226,7 +237,7 @@ extension ScoreCardView {
             }
         }
         .frame(width: 80, height: 120)
-        .border(Color.black)
+        .border(Color.accentColor, width: 2)
     }
     
 }
