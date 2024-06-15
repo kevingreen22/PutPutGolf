@@ -13,12 +13,11 @@ struct ChoosePlayMode: View {
     var dataService: any DataServiceProtocol
     
     @EnvironmentObject var alertContext : AlertContext
-    @StateObject var coursesVM: CoursesMap.ViewModel = CoursesMap.ViewModel()
+    @EnvironmentObject var coursesVM: CoursesMap.ViewModel
     
     @AppStorage("app_audio") var allowAudio: Bool = true
     @AppStorage("app_haptics") var allowHaptics: Bool = true
     
-    @State private var showSettings = false
     @State private var showMapplayFullScreen = false
     @State private var quickPlayButtonOffset: CGSize = CGSize(width: 400, height: 0)
     @State private var mapPlayButtonOffset: CGSize = CGSize(width: -400, height: 0)
@@ -30,15 +29,6 @@ struct ChoosePlayMode: View {
             quickplayButton
             mapplayButton
         }
-
-        .overlay(alignment: currentPage != .quickPlay ? .bottomTrailing : .topTrailing) {
-            SettingsButton {
-                self.showSettings.toggle()
-            }
-            .foregroundStyle(Color.white)
-            .frame(width: 40, height: 40)
-            .padding(.trailing, 16)
-        } // Settings button
         
         .transition(.opacity)
         
@@ -57,11 +47,6 @@ struct ChoosePlayMode: View {
                 .environmentObject(coursesVM)
                 .transition(.opacity.combined(with: .scale))
         })
-        
-        .fullScreenCover(isPresented: $showSettings) {
-            Settings(dataService: dataService)
-                .environmentObject(coursesVM)
-        }
     }
 }
 
@@ -72,7 +57,6 @@ struct ChoosePlayMode: View {
     return ZStack {
         Image("golf_course").resizable().ignoresSafeArea()
         ChoosePlayMode(currentPage: $currentPage, dataService: MockDataService(mockData: MockData.instance))
-            .environmentObject(CoursesMap.ViewModel())
     }
 }
 

@@ -25,6 +25,7 @@ enum FocusedField: Hashable {
 
 struct MainContent: View {
     @StateObject var alertContext: AlertContext = AlertContext()
+    @StateObject var coursesVM: CoursesMap.ViewModel = CoursesMap.ViewModel()
     @Environment(\.colorScheme) var colorScheme
     
     @State private var quickPlayers: [QuickPlayer] = []
@@ -34,6 +35,7 @@ struct MainContent: View {
     @State private var showWinnerView = false
     @State private var showScoreCard = false
     @State private var currentPage: PageID = .chooseMode
+    @State private var showSettings = false
     
     @State private var scale: CGFloat = 0
     @State private var rotation: CGFloat = 0
@@ -111,6 +113,20 @@ struct MainContent: View {
             scoreCardButton
         } // Scorecard Button
         
+        .overlay(alignment: currentPage != .quickPlay ? .bottomTrailing : .topTrailing) {
+            SettingsButton {
+                self.showSettings.toggle()
+            }
+            .foregroundStyle(Color.white)
+            .frame(width: 40, height: 40)
+            .padding(.trailing, 16)
+        } // Settings button
+        
+        .fullScreenCover(isPresented: $showSettings) {
+            Settings(dataService: dataService)
+                .environmentObject(coursesVM)
+        }
+        
         .showAlert(alert: $alertContext.alert)
     }
 }
@@ -118,6 +134,7 @@ struct MainContent: View {
 #Preview {
     MainContent()
         .environmentObject(AlertContext())
+        .environmentObject(CoursesMap.ViewModel())
 }
 
 
