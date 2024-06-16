@@ -12,7 +12,7 @@
 		C70BB45F2B2BBE4700604CE5 /* SmoothDrag.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70BB45E2B2BBE4700604CE5 /* SmoothDrag.swift */; };
 		C721611C2BE42307009BDEF8 /* AccessibilityZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C721611B2BE42307009BDEF8 /* AccessibilityZoom.swift */; };
 		C721611E2BE44349009BDEF8 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C721611D2BE44349009BDEF8 /* SoundManager.swift */; };
-		C72161212BE45346009BDEF8 /* SoundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72161202BE45346009BDEF8 /* SoundEffect.swift */; };
+		C72161212BE45346009BDEF8 /* MiscModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72161202BE45346009BDEF8 /* MiscModels.swift */; };
 		C72161232BE8543E009BDEF8 /* golf_swing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C72161222BE8543E009BDEF8 /* golf_swing.mp3 */; };
 		C72161252BE856D2009BDEF8 /* clapping_and_cheering.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C72161242BE856D2009BDEF8 /* clapping_and_cheering.mp3 */; };
 		C72241D12B87B20A004C0444 /* golfBallLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72241D02B87B20A004C0444 /* golfBallLoader.swift */; };
@@ -95,7 +95,7 @@
 		C70BB45E2B2BBE4700604CE5 /* SmoothDrag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmoothDrag.swift; sourceTree = "<group>"; };
 		C721611B2BE42307009BDEF8 /* AccessibilityZoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityZoom.swift; sourceTree = "<group>"; };
 		C721611D2BE44349009BDEF8 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
-		C72161202BE45346009BDEF8 /* SoundEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundEffect.swift; sourceTree = "<group>"; };
+		C72161202BE45346009BDEF8 /* MiscModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscModels.swift; sourceTree = "<group>"; };
 		C72161222BE8543E009BDEF8 /* golf_swing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = golf_swing.mp3; sourceTree = "<group>"; };
 		C72161242BE856D2009BDEF8 /* clapping_and_cheering.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = clapping_and_cheering.mp3; sourceTree = "<group>"; };
 		C72241D02B87B20A004C0444 /* golfBallLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = golfBallLoader.swift; sourceTree = "<group>"; };
@@ -184,14 +184,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C721611F2BE4474C009BDEF8 /* Sounds */ = {
+		C721611F2BE4474C009BDEF8 /* Audio Files */ = {
 			isa = PBXGroup;
 			children = (
 				C72161242BE856D2009BDEF8 /* clapping_and_cheering.mp3 */,
-				C72161202BE45346009BDEF8 /* SoundEffect.swift */,
 				C72161222BE8543E009BDEF8 /* golf_swing.mp3 */,
 			);
-			path = Sounds;
+			path = "Audio Files";
 			sourceTree = "<group>";
 		};
 		C74774742B1FBA9B00872705 /* Add New Courses Views */ = {
@@ -253,7 +252,7 @@
 				C760EB152ABE0AB3000DFE09 /* DataServices */,
 				C74CB2642AC886CE00AC53D7 /* App Specific Extensions */,
 				C7AA251B2BD069AA00E01827 /* Helper Files */,
-				C721611F2BE4474C009BDEF8 /* Sounds */,
+				C721611F2BE4474C009BDEF8 /* Audio Files */,
 				C760EAF62AB8F801000DFE09 /* Assets.xcassets */,
 				C760EAF82AB8F801000DFE09 /* Preview Content */,
 			);
@@ -277,6 +276,7 @@
 				C760EB052AB8F8D9000DFE09 /* Player.swift */,
 				C74CB25D2AC6399E00AC53D7 /* SavedGame.swift */,
 				C75751762B1BA8AF00308F73 /* AlertType.swift */,
+				C72161202BE45346009BDEF8 /* MiscModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -288,7 +288,6 @@
 				C7AC53D22B93990000496C4B /* Quick Play Views */,
 				C760EB182ABE0BEB000DFE09 /* Map Play Views */,
 				C74774742B1FBA9B00872705 /* Add New Courses Views */,
-				C78F76372C1E5AFA00EF1D75 /* View Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -351,23 +350,24 @@
 				C7AC53D32B93993900496C4B /* MainContent.swift */,
 				C70ABA5E2B91010200A11A5F /* ChoosePlayMode.swift */,
 				C7D48A5B2BDC6D0700FCD492 /* Settings.swift */,
+				C78F763B2C1E618E00EF1D75 /* Components */,
 			);
 			path = Main;
 			sourceTree = "<group>";
 		};
-		C78F76372C1E5AFA00EF1D75 /* View Components */ = {
+		C78F763A2C1E617400EF1D75 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C73F11B52BD1F0F900225C39 /* QuickPlayWinnerView.swift */,
+				C730C7E02BA8AF3D0083B84E /* 3WayToggle.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		C78F763B2C1E618E00EF1D75 /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				C78F76382C1E5B1B00EF1D75 /* GolfToggleStyle.swift */,
-			);
-			path = "View Components";
-			sourceTree = "<group>";
-		};
-		C7AA25192BD0694600E01827 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				C730C7E02BA8AF3D0083B84E /* 3WayToggle.swift */,
-				C73F11B52BD1F0F900225C39 /* QuickPlayWinnerView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -415,7 +415,7 @@
 				C765B6BE2BBA4F7D0052F1D6 /* SetPlayerCountPage.swift */,
 				C765B6C02BBA4FD00052F1D6 /* SetPlayerNamesPage.swift */,
 				C730C7D32B96999C0083B84E /* QuickPlay.swift */,
-				C7AA25192BD0694600E01827 /* Components */,
+				C78F763A2C1E617400EF1D75 /* Components */,
 			);
 			path = "Quick Play Views";
 			sourceTree = "<group>";
@@ -578,7 +578,7 @@
 				C721611C2BE42307009BDEF8 /* AccessibilityZoom.swift in Sources */,
 				C72241D12B87B20A004C0444 /* golfBallLoader.swift in Sources */,
 				C721611E2BE44349009BDEF8 /* SoundManager.swift in Sources */,
-				C72161212BE45346009BDEF8 /* SoundEffect.swift in Sources */,
+				C72161212BE45346009BDEF8 /* MiscModels.swift in Sources */,
 				C74CB25E2AC6399E00AC53D7 /* SavedGame.swift in Sources */,
 				C7D48A5C2BDC6D0800FCD492 /* Settings.swift in Sources */,
 				C75751772B1BA8AF00308F73 /* AlertType.swift in Sources */,

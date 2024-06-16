@@ -144,7 +144,7 @@ extension QuickPlay {
                         HapticManager.instance.impact(.heavy)
                     }
                     if allowAudio {
-                        try? SoundManager.instance.playeffect("clapping_and_cheering")
+                        try? SoundManager.instance.playeffect(SoundEffect.clapping)
                     }
                     return completion
                 }
@@ -158,7 +158,7 @@ extension QuickPlay {
                         HapticManager.instance.impact(.soft)
                     }
                     if allowAudio {
-                        try? SoundManager.instance.playeffect("golf_swing")
+                        try? SoundManager.instance.playeffect(SoundEffect.golfSwing)
                     }
                     return true
                 }

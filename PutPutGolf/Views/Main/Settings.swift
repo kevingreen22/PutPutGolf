@@ -155,12 +155,3 @@ extension Settings {
     }
     
 }
-
-
-
-
-// MARK: User Defaults Keys
-struct UDKeys {
-    static let audio = "app_audio"
-    static let haptics = "app_haptics"
-}
