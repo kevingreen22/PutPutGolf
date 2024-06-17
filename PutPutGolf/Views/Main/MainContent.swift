@@ -34,7 +34,7 @@ struct MainContent: View {
     @State private var playerName = ""
     @State private var showWinnerView = false
     @State private var showScoreCard = false
-    @State private var currentPage: PageID = .chooseMode
+    @State private var currentPage: PageID = .quickPlay
     @State private var showSettings = false
     
     @State private var scale: CGFloat = 0
@@ -120,13 +120,8 @@ struct MainContent: View {
             scoreCardButton
         } // Scorecard Button
         
-        .overlay(alignment: currentPage != .quickPlay ? .bottomTrailing : .topTrailing) {
-            SettingsButton {
-                self.showSettings.toggle()
-            }
-            .foregroundStyle(Color.white)
-            .frame(width: 40, height: 40)
-            .padding(.trailing, 16)
+        .overlay(alignment: currentPage == .quickPlay ? .topTrailing : .bottomTrailing) {
+            settingsButton
         } // Settings button
         
         .fullScreenCover(isPresented: $showSettings) {
@@ -138,6 +133,7 @@ struct MainContent: View {
     }
 }
 
+// MARK: Preview
 #Preview {
     MainContent()
         .environmentObject(AlertContext())
@@ -314,7 +310,19 @@ extension MainContent {
             .padding(.trailing)
             .padding(.top, 10)
             .opacity(currentPage != .quickPlay ? 0 : 1)
+            .offset(x: currentPage == .quickPlay ? -45 : 0)
             .animation(.easeIn.delay(currentPage == .quickPlay ? 1 : 0), value: currentPage)
+    }
+    
+    fileprivate var settingsButton: some View {
+        SettingsButton {
+            self.showSettings.toggle()
+        }
+        .foregroundStyle(Color.white)
+        .frame(width: 30, height: 30)
+        .padding(.top, 11)
+        .padding(.trailing, /*currentPage == .quickPlay ? 10 :*/ 16)
+        .animation(.easeIn.delay(currentPage == .quickPlay ? 1 : 0), value: currentPage)
     }
     
     fileprivate var quickplayBackground: some View {
