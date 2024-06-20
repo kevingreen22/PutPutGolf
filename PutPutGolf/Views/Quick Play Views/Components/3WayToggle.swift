@@ -184,44 +184,6 @@ public struct Toggle3Way: View {
             }
     }
     
-//    fileprivate var dragGesture: some Gesture {
-//        DragGesture()
-//            .onChanged { value in
-////                hideArrows(true)
-//                
-//                // Check for sliding to leading edge.
-//                if dragPosition.x-sliderRect.width/2 <= guideRect.minX {
-//                    dragPosition.x = guideRect.minX+sliderRect.width/2
-//                    if onSlideLeading() == true {
-//                        slideCompleted = true
-//                    } else {
-//                        dragPosition.x = max(value.location.x, guideRect.minX+sliderRect.width/2)
-//                        slideCompleted = false
-//                    }
-//                    
-//                // Check for sliding to trailing edge.
-//                } else if dragPosition.x+sliderRect.width/2 >= guideRect.maxX {
-//                    dragPosition.x = guideRect.maxX-sliderRect.width/2
-//                    if onSlideTrailing() == true {
-//                        slideCompleted = true
-//                    } else {
-//                        dragPosition.x = min(value.location.x, guideRect.maxX-sliderRect.width/2)
-//                        slideCompleted = false
-//                    }
-//                } else {
-//                    dragPosition.x = value.location.x
-//                }
-//            }
-//        
-//            .onEnded { value in
-//                if !slideCompleted {
-//                    dragPosition.x = guideRect.midX
-////                    hideArrows(false)
-//                } else {
-//                    resetHandle()
-//                }
-//            }
-//    }
     
     //    fileprivate func hideArrows(_ hide: Bool) {
     //        if hide {
@@ -245,9 +207,11 @@ public struct Toggle3Way: View {
     //      timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     //    }
     
-    fileprivate func resetHandle(_ delay: DispatchTime = .now()) {
+    fileprivate func resetHandle(_ delay: DispatchTime = .now(), animation: Animation = .bouncy) {
         DispatchQueue.main.asyncAfter(deadline: delay) {
-            dragPosition.x = guideRect.midX
+            withAnimation(animation) {
+                dragPosition.x = guideRect.midX
+            }
         }
     }
 }
@@ -279,19 +243,4 @@ public struct Toggle3Way: View {
         .padding(.horizontal, 16)
     }
 }
-
-
-
-
-//fileprivate extension View {
-//    func rectReader(_ binding: Binding<CGRect>, in space: CoordinateSpace) -> some View {
-//        self.background(GeometryReader { (geometry) -> AnyView in
-//            let rect = CGRectMake(0, 0, geometry.frame(in: space).width, geometry.frame(in: space).height)
-//            DispatchQueue.main.async {
-//                binding.wrappedValue = rect
-//            }
-//            return AnyView(Rectangle().fill(Color.clear))
-//        })
-//    }
-//}
 
