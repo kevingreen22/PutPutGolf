@@ -35,6 +35,7 @@ struct SetPlayerNamesPage: View {
                 .padding(.horizontal)
             Spacer()
         }
+        .padding(.top)
         .onSubmit {
             if let num = numOfPlayers, playerNum < num  {
                 playerNum += 1

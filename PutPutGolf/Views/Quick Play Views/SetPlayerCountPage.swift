@@ -29,7 +29,7 @@ struct SetPlayerCountPage: View {
                 .submitLabel(.next)
                 .keyboardType(.numbersAndPunctuation)
             Spacer()
-        }
+        }.padding(.top)
     }
 }
 

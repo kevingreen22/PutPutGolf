@@ -11,19 +11,21 @@ import KGViews
 struct QuickPlay: View {
     @Binding var quickPlayers: [QuickPlayer]
     @Binding var showWinnerView: Bool
+    @Binding var holeNumber: Int
     var proxy: GeometryProxy
     @FocusState.Binding var isFocused: Bool
     
+    @State private var cellAnimatables: (CGFloat, Double) = (0,1)
+    
     @EnvironmentObject var alertContext: AlertContext
-
-    @State private var holeNumber: Int = 0
     
     @AppStorage(UDKeys.audio) var allowAudio: Bool = true
     @AppStorage(UDKeys.haptics) var allowHaptics: Bool = true
     
-    init(quickPlayers: Binding<[QuickPlayer]>, showWinnerView: Binding<Bool>, proxy: GeometryProxy, isFocused: FocusState<Bool>.Binding) {
+    init(quickPlayers: Binding<[QuickPlayer]>, showWinnerView: Binding<Bool>, holeNumber: Binding<Int>, proxy: GeometryProxy, isFocused: FocusState<Bool>.Binding) {
         _quickPlayers = quickPlayers
         _showWinnerView = showWinnerView
+        _holeNumber = holeNumber
         self.proxy = proxy
         _isFocused = isFocused
     }
@@ -32,11 +34,10 @@ struct QuickPlay: View {
     var body: some View {
         ZStack(alignment: .top) {
             ScrollView(showsIndicators: false) {
-                title
                 ForEach($quickPlayers, id: \.self) { quickPlayer in
                     cell(for: quickPlayer)
                         .dismissKeyboardOnTap($isFocused)
-                }
+                }.offset(y: proxy.safeAreaInsets.top+58)
                 
                 // Adds a blank section at the end of the list of players so the last player's entry box is not hidden behind the 3-way-toggle.
                 Rectangle()
@@ -45,18 +46,14 @@ struct QuickPlay: View {
             }
             
             .overlay(alignment: .bottom) {
-                toggle3Way
+                toggle3Way.offset(y: -proxy.safeAreaInsets.bottom)
             } // 3 Way Toggle
             
             if showWinnerView {
                 winnerView
             }
-            
         }
-        .padding(.bottom, 40)
-        .padding(.top, 50)
         .keyboardType(.numberPad)
-        
         .onAppear {
             initPlayerScoreArray()
         }
@@ -65,12 +62,14 @@ struct QuickPlay: View {
 
 // MARK: Preview
 #Preview {
+    @State var holeNumber: Int = 0
     @FocusState var isFocused: Bool
-    
-    return GeometryReader { proxy in
-        ZStack {
-            Image("golf_course").resizable().ignoresSafeArea()
-            QuickPlay(quickPlayers: .constant(MockData.instance.quickPlayers), showWinnerView: .constant(false), proxy: proxy, isFocused: $isFocused)
+        
+    return ZStack(alignment: .topLeading) {
+        Image("golf_course").resizable().ignoresSafeArea()
+        GeometryReader { geo in
+            QuickPlay(quickPlayers: .constant(MockData.instance.quickPlayers), showWinnerView: .constant(false), holeNumber: $holeNumber, proxy: geo, isFocused: $isFocused)
+                .frame(width: geo.size.width)
         }
     }
 }
@@ -90,7 +89,9 @@ extension QuickPlay {
     /// Increments the hole number and adds and empty score to each player for one more hole.
     fileprivate func setupForNextHole() {
         print("\(type(of: self)).\(#function)")
-        holeNumber += 1
+        withAnimation {
+            holeNumber += 1
+        }
         
         // Add next empty element in scores array for each player.
         for player in quickPlayers {
@@ -111,12 +112,6 @@ extension QuickPlay {
 
 // MARK: View Components
 extension QuickPlay {
-    
-    fileprivate var title: some View {
-        Text("Hole \(holeNumber+1)")
-            .font(.largeTitle)
-            .fontWeight(.bold)
-    }
     
     fileprivate var toggle3Way: some View {
         Toggle3Way(
@@ -160,6 +155,17 @@ extension QuickPlay {
                     if allowAudio {
                         try? SoundManager.instance.playeffect(SoundEffect.golfSwing)
                     }
+                    withAnimation(.bouncy) {
+                        cellAnimatables.0 = -500
+                        cellAnimatables.1 = 0
+                        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+                            cellAnimatables.0 = 500
+                            withAnimation(.bouncy) {
+                                cellAnimatables.0 = 0
+                                cellAnimatables.1 = 1
+                            }
+                        }
+                    }
                     return true
                 }
                 return false
@@ -199,6 +205,8 @@ extension QuickPlay {
                 .dismissKeyboardOnTap($isFocused)
         }
         .dismissKeyboardOnTap($isFocused)
+        .offset(x: cellAnimatables.0)
+        .opacity(cellAnimatables.1)
     }
     
     fileprivate var winnerView: some View {

@@ -7,10 +7,12 @@
 
 import SwiftUI
 import KGViews
+import AMPopTip
 
 struct ChoosePlayMode: View {
     @Binding var currentPage: PageID
     var dataService: any DataServiceProtocol
+    var proxy: GeometryProxy
     
     @EnvironmentObject var alertContext : AlertContext
     @EnvironmentObject var coursesVM: CoursesMap.ViewModel
@@ -29,18 +31,15 @@ struct ChoosePlayMode: View {
             quickplayButton
             mapplayButton
         }
-        
+//        .padding(.top, proxy.safeAreaInsets.top)
         .transition(.opacity)
-        
         .onAppear {
             quickPlayButtonOffset = .zero
             mapPlayButtonOffset = .zero
         }
-        
         .task {
             await fetchCourses()
         }
-        
         .fullScreenCover(isPresented: $showMapplayFullScreen, content: {
             CoursesMap(dataService: dataService)
                 .forceRotation(orientation: .portrait)
@@ -54,9 +53,11 @@ struct ChoosePlayMode: View {
 #Preview {
     @State var currentPage: PageID = .chooseMode
     
-    return ZStack {
-        Image("golf_course").resizable().ignoresSafeArea()
-        ChoosePlayMode(currentPage: $currentPage, dataService: MockDataService(mockData: MockData.instance))
+    return GeometryReader { geo in
+        ZStack {
+            Image("golf_course").resizable().ignoresSafeArea()
+            ChoosePlayMode(currentPage: $currentPage, dataService: MockDataService(mockData: MockData.instance), proxy: geo)
+        }
     }
 }
 
@@ -134,6 +135,7 @@ extension ChoosePlayMode {
         .haptic(impact: .light, trigger: currentPage) { v in
             allowHaptics ? true : false
         }
+        
     }
         
     var mapplayButton: some View {

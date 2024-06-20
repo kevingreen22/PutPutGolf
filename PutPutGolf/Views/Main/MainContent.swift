@@ -34,11 +34,14 @@ struct MainContent: View {
     @State private var playerName = ""
     @State private var showWinnerView = false
     @State private var showScoreCard = false
-    @State private var currentPage: PageID = .quickPlay
+    @State private var currentPage: PageID = .chooseMode
     @State private var showSettings = false
     
     @State private var scale: CGFloat = 0
     @State private var rotation: CGFloat = 0
+    @State private var navBlurOffset: CGFloat = -110
+    
+    @State private var holeNumber: Int = 0
     
     @FocusState private var focusedField: FocusedField?
     @FocusState private var isFocused: Bool
@@ -60,8 +63,8 @@ struct MainContent: View {
             GeometryReader { geo in
                 ScrollViewReader { scroll in
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(alignment: .center) {
-                            ChoosePlayMode(currentPage: $currentPage, dataService: dataService)
+                        HStack {
+                            ChoosePlayMode(currentPage: $currentPage, dataService: dataService, proxy: geo)
                                 .id(PageID.chooseMode)
                                 .frame(width: geo.size.width)
                                 .environmentObject(alertContext)
@@ -78,31 +81,33 @@ struct MainContent: View {
                                 .frame(width: geo.size.width)
                                 .offset(y: 100)
                             
-                            QuickPlay(quickPlayers: $quickPlayers, showWinnerView: $showWinnerView, proxy: geo, isFocused: $isFocused)
+                            QuickPlay(quickPlayers: $quickPlayers, showWinnerView: $showWinnerView, holeNumber: $holeNumber, proxy: geo, isFocused: $isFocused)
                                 .id(PageID.quickPlay)
                                 .frame(width: geo.size.width)
                                 .dismissKeyboardOnTap($isFocused)
                                 .environmentObject(alertContext)
-                            
                         }
-                        .frame(height: geo.size.height)
+                        .overlay(alignment: .top) {
+                            customBlurNavBar(proxy: geo)
+                        }
                     }
+                    .ignoresSafeArea()
+                    .scrollDisabled(true)
                     .onAppear { scrollProxy = scroll }
-                    
                     .onSubmit {
                         focusSubmition()
                     }
-                    
                     .onChange(of: currentPage) { page in
                         moveTo(page: page, from: currentPage)
+                        if currentPage != .chooseMode {
+                            navBlurOffset = 0
+                        }
                     }
                     .haptic(impact: .light, trigger: currentPage) { v in
                         allowHaptics ? true : false
                     }
-                }
-                .scrollDisabled(true)
+                }.ignoresSafeArea(edges: .bottom)
             }
-            
             if showScoreCard {
                 quickplayBackground
                 ScoreCardView(quickPlayers: self.quickPlayers, isResumingGame: self.quickPlayers.allSatisfy({ $0.scores.isEmpty }))
@@ -111,6 +116,10 @@ struct MainContent: View {
                     .offset(y: 60)
             }
         }
+                
+        .overlay(alignment: .top) {
+            title.opacity(currentPage == .quickPlay ? 1 : 0)
+        } // Hole number title
         
         .overlay(alignment: .topLeading) {
             backButton.opacity(showScoreCard ? 0 : 1)
@@ -118,7 +127,7 @@ struct MainContent: View {
         
         .overlay(alignment: .topTrailing) {
             scoreCardButton
-        } // Scorecard Button
+        } // Scorecard button
         
         .overlay(alignment: currentPage == .quickPlay ? .topTrailing : .bottomTrailing) {
             settingsButton
@@ -139,7 +148,6 @@ struct MainContent: View {
         .environmentObject(AlertContext())
         .environmentObject(CoursesMap.ViewModel())
 }
-
 
 
 // MARK: Helper Methods
@@ -244,6 +252,21 @@ extension MainContent {
 // MARK: View Components
 extension MainContent {
     
+    fileprivate func customBlurNavBar(proxy: GeometryProxy) -> some View {
+        KGRealBlur(style: .regular)
+            .ignoresSafeArea()
+            .frame(height: proxy.safeAreaInsets.top+46)
+            .offset(y: navBlurOffset)
+            .opacity(currentPage == .chooseMode ? 0 : 1)
+            .animation(.easeOut.delay(0.8), value: navBlurOffset)
+    }
+    
+    fileprivate var title: some View {
+        Text("Hole \(holeNumber+1)")
+            .font(.largeTitle)
+            .fontWeight(.bold)
+    }
+    
     fileprivate var backButton: some View {
         CloseButton(iconName: "chevron.left") {
             guard currentPage != .quickPlay else {
@@ -304,25 +327,27 @@ extension MainContent {
             } label: {
                 Image("score_card_icon")
                     .resizable()
-                    .foregroundStyle(Color.white)
+                    .foregroundStyle(Color.accentColor)
+                    .background(Color.white.opacity(0.7).blur(radius: 3.0))
                     .frame(width: 30, height: 30)
             }
             .padding(.trailing)
             .padding(.top, 10)
             .opacity(currentPage != .quickPlay ? 0 : 1)
             .offset(x: currentPage == .quickPlay ? -45 : 0)
-            .animation(.easeIn.delay(currentPage == .quickPlay ? 1 : 0), value: currentPage)
+            .animation(.easeIn, value: currentPage)
     }
     
     fileprivate var settingsButton: some View {
         SettingsButton {
             self.showSettings.toggle()
         }
-        .foregroundStyle(Color.white)
+        .foregroundStyle(Color.accentColor)
+        .background(Color.white.opacity(0.7).blur(radius: 3.0).clipShape(Circle()))
         .frame(width: 30, height: 30)
         .padding(.top, 11)
-        .padding(.trailing, /*currentPage == .quickPlay ? 10 :*/ 16)
-        .animation(.easeIn.delay(currentPage == .quickPlay ? 1 : 0), value: currentPage)
+        .padding(.trailing, 16)
+        .animation(.easeIn, value: currentPage)
     }
     
     fileprivate var quickplayBackground: some View {
