@@ -192,7 +192,7 @@ struct ChallengeInfoView: View {
                     .padding(.horizontal)
             }
         }
-        .closeButton(fontSize: .title2).padding(.top)
+        .closeButton().padding(.top).font(.title2)
     }
 }
 

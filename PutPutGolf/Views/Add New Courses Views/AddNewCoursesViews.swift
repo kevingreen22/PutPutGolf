@@ -97,13 +97,8 @@ struct LoginView: View {
             
                 .padding(.horizontal, 35)
         }
-        
-        .overlay(alignment: .bottom) {
-            CloseButton()
-        } // Close Button
-        
+        .closeButton(alignment: .bottom)
         .showAlert(alert: $errorAlert)
-        
     }
     
     /// Sends call to server to validates login credentials.

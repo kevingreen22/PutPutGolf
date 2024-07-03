@@ -52,6 +52,8 @@
 		C765B6BF2BBA4F7D0052F1D6 /* SetPlayerCountPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C765B6BE2BBA4F7D0052F1D6 /* SetPlayerCountPage.swift */; };
 		C765B6C12BBA4FD00052F1D6 /* SetPlayerNamesPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C765B6C02BBA4FD00052F1D6 /* SetPlayerNamesPage.swift */; };
 		C776AE292B29761A00AE611C /* ForceOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C776AE282B29761A00AE611C /* ForceOrientation.swift */; };
+		C779733B2C249EB2000CAE8C /* Tips.swift in Sources */ = {isa = PBXBuildFile; fileRef = C779733A2C249EB2000CAE8C /* Tips.swift */; };
+		C779733E2C24A22D000CAE8C /* AMPopTip in Frameworks */ = {isa = PBXBuildFile; productRef = C779733D2C24A22D000CAE8C /* AMPopTip */; };
 		C7859A1B2AF2C51700F4CF82 /* CoursesViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7859A1A2AF2C51700F4CF82 /* CoursesViewModel_Tests.swift */; };
 		C7859A1D2AF31AE600F4CF82 /* MockDataService_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7859A1C2AF31AE600F4CF82 /* MockDataService_Tests.swift */; };
 		C7859A1F2AF4268000F4CF82 /* SetupPlayerViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7859A1E2AF4268000F4CF82 /* SetupPlayerViewModel_Tests.swift */; };
@@ -63,6 +65,7 @@
 		C78F76362C1CC27D00EF1D75 /* TODO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F76352C1CC27D00EF1D75 /* TODO.swift */; };
 		C78F76392C1E5B1B00EF1D75 /* GolfToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78F76382C1E5B1B00EF1D75 /* GolfToggleStyle.swift */; };
 		C79569902B379E2000C24180 /* WinnerVictoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C795698F2B379E2000C24180 /* WinnerVictoryView.swift */; };
+		C7A810D62C24D0FD00E8DF6B /* KGTipKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A810D52C24D0FD00E8DF6B /* KGTipKit.swift */; };
 		C7A9BA902AC4AA3100A69B81 /* CoursesMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A9BA8F2AC4AA3100A69B81 /* CoursesMap.swift */; };
 		C7AC53D42B93993900496C4B /* MainContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7AC53D32B93993900496C4B /* MainContent.swift */; };
 		C7B0FEF32B000852005C9617 /* CourseAnnotationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B0FEF22B000852005C9617 /* CourseAnnotationItem.swift */; };
@@ -74,6 +77,7 @@
 		C7D48A5F2BDD89A000FCD492 /* SettingsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D48A5E2BDD89A000FCD492 /* SettingsButton.swift */; };
 		C7D48A612BE00D8900FCD492 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D48A602BE00D8900FCD492 /* HapticManager.swift */; };
 		C7D48A642BE1C34300FCD492 /* ScoreCardComponentViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D48A632BE1C34300FCD492 /* ScoreCardComponentViews.swift */; };
+		C7D6EEFA2C30D0FC008A7586 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D6EEF92C30D0FC008A7586 /* Triangle.swift */; };
 		C7E24CE72AE1D63700A3D473 /* Image extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E24CE62AE1D63700A3D473 /* Image extensions.swift */; };
 		C7E24CE92AE1D68A00A3D473 /* Color extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E24CE82AE1D68A00A3D473 /* Color extensions.swift */; };
 		C7E24CEF2AE472BC00A3D473 /* Array extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E24CEE2AE472BB00A3D473 /* Array extensions.swift */; };
@@ -135,6 +139,7 @@
 		C765B6BE2BBA4F7D0052F1D6 /* SetPlayerCountPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPlayerCountPage.swift; sourceTree = "<group>"; };
 		C765B6C02BBA4FD00052F1D6 /* SetPlayerNamesPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPlayerNamesPage.swift; sourceTree = "<group>"; };
 		C776AE282B29761A00AE611C /* ForceOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceOrientation.swift; sourceTree = "<group>"; };
+		C779733A2C249EB2000CAE8C /* Tips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tips.swift; sourceTree = "<group>"; };
 		C7859A112AF2C1AE00F4CF82 /* PutPutGolf_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PutPutGolf_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7859A1A2AF2C51700F4CF82 /* CoursesViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewModel_Tests.swift; sourceTree = "<group>"; };
 		C7859A1C2AF31AE600F4CF82 /* MockDataService_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataService_Tests.swift; sourceTree = "<group>"; };
@@ -145,6 +150,7 @@
 		C78F76352C1CC27D00EF1D75 /* TODO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TODO.swift; sourceTree = "<group>"; };
 		C78F76382C1E5B1B00EF1D75 /* GolfToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolfToggleStyle.swift; sourceTree = "<group>"; };
 		C795698F2B379E2000C24180 /* WinnerVictoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinnerVictoryView.swift; sourceTree = "<group>"; };
+		C7A810D52C24D0FD00E8DF6B /* KGTipKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KGTipKit.swift; sourceTree = "<group>"; };
 		C7A9BA8F2AC4AA3100A69B81 /* CoursesMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesMap.swift; sourceTree = "<group>"; };
 		C7AC53D32B93993900496C4B /* MainContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContent.swift; sourceTree = "<group>"; };
 		C7B0FEF22B000852005C9617 /* CourseAnnotationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseAnnotationItem.swift; sourceTree = "<group>"; };
@@ -157,6 +163,7 @@
 		C7D48A5E2BDD89A000FCD492 /* SettingsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsButton.swift; sourceTree = "<group>"; };
 		C7D48A602BE00D8900FCD492 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		C7D48A632BE1C34300FCD492 /* ScoreCardComponentViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCardComponentViews.swift; sourceTree = "<group>"; };
+		C7D6EEF92C30D0FC008A7586 /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
 		C7E24CE62AE1D63700A3D473 /* Image extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image extensions.swift"; sourceTree = "<group>"; };
 		C7E24CE82AE1D68A00A3D473 /* Color extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color extensions.swift"; sourceTree = "<group>"; };
 		C7E24CEE2AE472BB00A3D473 /* Array extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array extensions.swift"; sourceTree = "<group>"; };
@@ -169,6 +176,7 @@
 			files = (
 				C75B9C0B2BAF4C2100945371 /* KGViews in Frameworks */,
 				C78759662B3E5289004FE7FE /* ConfettiSwiftUI in Frameworks */,
+				C779733E2C24A22D000CAE8C /* AMPopTip in Frameworks */,
 				C75B9C0E2BAF4C3500945371 /* KGImageChooser in Frameworks */,
 				C7859A242AF6AF5D00F4CF82 /* Alamofire in Frameworks */,
 			);
@@ -255,6 +263,9 @@
 				C721611F2BE4474C009BDEF8 /* Audio Files */,
 				C760EAF62AB8F801000DFE09 /* Assets.xcassets */,
 				C760EAF82AB8F801000DFE09 /* Preview Content */,
+				C779733A2C249EB2000CAE8C /* Tips.swift */,
+				C7A810D52C24D0FD00E8DF6B /* KGTipKit.swift */,
+				C7D6EEF92C30D0FC008A7586 /* Triangle.swift */,
 			);
 			path = PutPutGolf;
 			sourceTree = "<group>";
@@ -473,6 +484,7 @@
 				C78759652B3E5289004FE7FE /* ConfettiSwiftUI */,
 				C75B9C0A2BAF4C2100945371 /* KGViews */,
 				C75B9C0D2BAF4C3500945371 /* KGImageChooser */,
+				C779733D2C24A22D000CAE8C /* AMPopTip */,
 			);
 			productName = PutPutGolf;
 			productReference = C760EAEF2AB8F7FF000DFE09 /* PutPutGolf.app */;
@@ -531,6 +543,7 @@
 				C78759642B3E5289004FE7FE /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
 				C75B9C092BAF4C2100945371 /* XCRemoteSwiftPackageReference "KGViews" */,
 				C75B9C0C2BAF4C3500945371 /* XCRemoteSwiftPackageReference "KGImageChooser" */,
+				C779733C2C24A22D000CAE8C /* XCRemoteSwiftPackageReference "AMPopTip" */,
 			);
 			productRefGroup = C760EAF02AB8F7FF000DFE09 /* Products */;
 			projectDirPath = "";
@@ -574,15 +587,18 @@
 				C760EB1A2ABE0C1A000DFE09 /* CoursesMap_ViewModel.swift in Sources */,
 				C746C3902B421FAE0021C5C3 /* KeyboardExtensions.swift in Sources */,
 				C7E24CE72AE1D63700A3D473 /* Image extensions.swift in Sources */,
+				C779733B2C249EB2000CAE8C /* Tips.swift in Sources */,
 				C760EB142ABD0898000DFE09 /* ScoreCard_ViewModel.swift in Sources */,
 				C721611C2BE42307009BDEF8 /* AccessibilityZoom.swift in Sources */,
 				C72241D12B87B20A004C0444 /* golfBallLoader.swift in Sources */,
 				C721611E2BE44349009BDEF8 /* SoundManager.swift in Sources */,
 				C72161212BE45346009BDEF8 /* MiscModels.swift in Sources */,
+				C7D6EEFA2C30D0FC008A7586 /* Triangle.swift in Sources */,
 				C74CB25E2AC6399E00AC53D7 /* SavedGame.swift in Sources */,
 				C7D48A5C2BDC6D0800FCD492 /* Settings.swift in Sources */,
 				C75751772B1BA8AF00308F73 /* AlertType.swift in Sources */,
 				C730C7D42B96999C0083B84E /* QuickPlay.swift in Sources */,
+				C7A810D62C24D0FD00E8DF6B /* KGTipKit.swift in Sources */,
 				C7E24CE92AE1D68A00A3D473 /* Color extensions.swift in Sources */,
 				C79569902B379E2000C24180 /* WinnerVictoryView.swift in Sources */,
 				C7CDAF9B2AD1E8CD006C0886 /* CoursesList.swift in Sources */,
@@ -789,7 +805,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -828,7 +844,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -857,7 +873,7 @@
 				DEVELOPMENT_TEAM = KY6DPH5Y6J;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kevinGreen.PutPutGolf-Tests";
@@ -880,7 +896,7 @@
 				DEVELOPMENT_TEAM = KY6DPH5Y6J;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kevinGreen.PutPutGolf-Tests";
@@ -941,6 +957,14 @@
 				kind = branch;
 			};
 		};
+		C779733C2C24A22D000CAE8C /* XCRemoteSwiftPackageReference "AMPopTip" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/andreamazz/AMPopTip.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.12.0;
+			};
+		};
 		C7859A222AF6AF5D00F4CF82 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -969,6 +993,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C75B9C0C2BAF4C3500945371 /* XCRemoteSwiftPackageReference "KGImageChooser" */;
 			productName = KGImageChooser;
+		};
+		C779733D2C24A22D000CAE8C /* AMPopTip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C779733C2C24A22D000CAE8C /* XCRemoteSwiftPackageReference "AMPopTip" */;
+			productName = AMPopTip;
 		};
 		C7859A232AF6AF5D00F4CF82 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

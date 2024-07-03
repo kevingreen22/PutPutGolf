@@ -43,11 +43,7 @@ struct Settings: View {
             .clipShape(RoundedRectangle(cornerRadius: 25))
             .bordered(shape: RoundedRectangle(cornerRadius: 25), color: Color.accentColor, lineWidth: 5)
         }
-        
-        .overlay(alignment: .bottom) {
-            CloseButton()
-                .padding(.bottom, 8)
-        } // Close Button
+        .closeButton(alignment: .bottom)
         
         .fullScreenCover(isPresented: $showLogin) {
             if loginCredentialsValid {

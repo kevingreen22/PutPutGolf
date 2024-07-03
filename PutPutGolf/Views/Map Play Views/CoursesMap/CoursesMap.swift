@@ -112,7 +112,8 @@ extension CoursesMap {
     fileprivate var headerBar: some View {
         VStack {
             HStack(spacing: 16) {
-                CloseButton(iconName: "chevron.left").scaleEffect(0.7).padding(.leading)
+                CloseButton(iconName: "chevron.left")
+                    .padding(.leading)
                 Divider().frame(height: 36)
                 Button(action: coursesVM.toggleCoursesList) {
                     Text(coursesVM.selectedCourse.address)
@@ -151,7 +152,8 @@ extension CoursesMap {
     fileprivate var bottomBar: some View {
         VStack {
             HStack(spacing: 16) {
-                CloseButton(iconName: "chevron.left").scaleEffect(0.7).padding(.leading)
+                CloseButton(iconName: "chevron.left")
+                    .padding(.leading)
                 Divider().frame(height: 36)
                 Button(action: coursesVM.toggleCoursesList) {
                     Text(coursesVM.selectedCourse.address)

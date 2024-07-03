@@ -7,6 +7,7 @@
 
 import SwiftUI
 import KGViews
+import TipKit
 
 struct QuickPlay: View {
     @Binding var quickPlayers: [QuickPlayer]
@@ -174,6 +175,7 @@ extension QuickPlay {
         .bordered(shape: Capsule(), color: .accentColor, lineWidth: 5)
         .frame(width: proxy.size.width*0.9, height: 100)
         .background(Capsule().shadow(radius: 10))
+//        .popoverTip(AppTips.FirstTip())
     }
         
     fileprivate func cell(for quickPlayer: Binding<QuickPlayer>) -> some View {
