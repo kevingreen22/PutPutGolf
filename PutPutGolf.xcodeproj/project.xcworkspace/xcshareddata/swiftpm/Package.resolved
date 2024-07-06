@@ -1,0 +1,51 @@
+{
+  "originHash" : "3d2f24d84a71bd40663e6891551f13ea6ed4e9e6d91075807d404247f20ef882",
+  "pins" : [
+    {
+      "identity" : "alamofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/Alamofire.git",
+      "state" : {
+        "revision" : "f455c2975872ccd2d9c81594c658af65716e9b9a",
+        "version" : "5.9.1"
+      }
+    },
+    {
+      "identity" : "ampoptip",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/andreamazz/AMPopTip.git",
+      "state" : {
+        "revision" : "db495eea0747a3493ca8b3c737d037c0090973db",
+        "version" : "4.12.0"
+      }
+    },
+    {
+      "identity" : "confettiswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/simibac/ConfettiSwiftUI.git",
+      "state" : {
+        "revision" : "f45961f97bbae6fff6e2e64546fea0189425ad92",
+        "version" : "1.1.0"
+      }
+    },
+    {
+      "identity" : "kgimagechooser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kevingreen22/KGImageChooser",
+      "state" : {
+        "branch" : "main",
+        "revision" : "bea2ea7f106fa7c8db9b364448f811b061f87f3c"
+      }
+    },
+    {
+      "identity" : "kgviews",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kevingreen22/KGViews",
+      "state" : {
+        "branch" : "main",
+        "revision" : "69b8854fb63e5baf8859b96cc7ebc18901ceb971"
+      }
+    }
+  ],
+  "version" : 3
+}
