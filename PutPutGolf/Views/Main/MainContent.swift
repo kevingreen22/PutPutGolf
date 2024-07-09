@@ -253,7 +253,7 @@ extension MainContent {
 extension MainContent {
     
     fileprivate func customBlurNavBar(proxy: GeometryProxy) -> some View {
-        KGRealBlur(style: .regular)
+        RealBlur(style: .regular)
             .ignoresSafeArea()
             .frame(height: proxy.safeAreaInsets.top+46)
             .offset(y: navBlurOffset)
@@ -352,7 +352,7 @@ extension MainContent {
     
     fileprivate var quickplayBackground: some View {
         ZStack {
-            KGRealBlur(style: .regular, onTap: {
+            RealBlur(style: .regular, onTap: {
                 withAnimation(.easeInOut(duration: 1.2)) {
                     showScoreCard.toggle()
                 }

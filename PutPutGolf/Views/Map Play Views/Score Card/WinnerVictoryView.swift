@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 import ConfettiSwiftUI
+import KGViews
 
 struct WinnerVictoryView: View {
     var winner: Player
@@ -183,14 +184,10 @@ extension WinnerVictoryView {
         VStack {
             HStack {
                 Spacer()
-                Button(action: {
+                CloseButton(iconName: "xmark.circle.fill", withBackground: true) {
                     withAnimation { vm.showWinnerView = false }
-                }, label: {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.title)
-                        .foregroundStyle(Color.white)
-                        .padding([.top, .trailing])
-                }).padding([.top, .trailing])
+                }
+                .padding()
             }
             Spacer()
         }

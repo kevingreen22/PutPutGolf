@@ -7,6 +7,8 @@
 
 import SwiftUI
 import KGImageChooser
+import KGViews
+import KGToolbelt
 
 struct SetupPlayers: View {
     var course: Course

@@ -200,7 +200,7 @@ extension QuickPlay {
         }
         .padding(.horizontal, 20)
         .background {
-            KGRealBlur(style: .regular)
+            RealBlur(style: .regular)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
                 .padding(.horizontal)
                 .shadow(radius: 8)

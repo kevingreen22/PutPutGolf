@@ -1,5 +1,5 @@
 {
-  "originHash" : "3d2f24d84a71bd40663e6891551f13ea6ed4e9e6d91075807d404247f20ef882",
+  "originHash" : "b3594a1ae9c4010dc52e62315786528ba0d80cee665a406a6cf161f4bd99bc8e",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -33,8 +33,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kevingreen22/KGImageChooser",
       "state" : {
-        "branch" : "main",
-        "revision" : "bea2ea7f106fa7c8db9b364448f811b061f87f3c"
+        "revision" : "bea2ea7f106fa7c8db9b364448f811b061f87f3c",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "kgtoolbelt",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kevingreen22/KGToolbelt",
+      "state" : {
+        "revision" : "b1d20f41ce143ad4a38b3cc5256ffcc5cc04a4d5",
+        "version" : "1.0.3"
       }
     },
     {
@@ -42,8 +51,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kevingreen22/KGViews",
       "state" : {
-        "branch" : "main",
-        "revision" : "69b8854fb63e5baf8859b96cc7ebc18901ceb971"
+        "revision" : "9d8e1f4244984d4cb1576837444134160695446a",
+        "version" : "1.0.10"
       }
     }
   ],

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import KGViews
 
 struct CoursesMap: View {
     let dataService: any DataServiceProtocol

@@ -23,7 +23,7 @@ struct Settings: View {
     
     var body: some View {
         ZStack {
-            KGRealBlur(style: .dark).ignoresSafeArea()
+            RealBlur(style: .dark).ignoresSafeArea()
                 .rectReader($backgroundRectSize, in: .global)
                 
             ZStack {

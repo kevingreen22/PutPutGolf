@@ -7,7 +7,6 @@
 
 import SwiftUI
 import KGViews
-import AMPopTip
 
 struct ChoosePlayMode: View {
     @Binding var currentPage: PageID
@@ -123,7 +122,7 @@ extension ChoosePlayMode {
             }
             .shadow(radius: 3)
             .padding()
-            .background { KGRealBlur(style: .light) }
+            .background { RealBlur(style: .light) }
             .addBorder(Color.white, lineWidth: 5, cornerRadius: 30)
             .offset(quickPlayButtonOffset)
             .animation(.bouncy(duration: 0.7), value: quickPlayButtonOffset)
@@ -158,7 +157,7 @@ extension ChoosePlayMode {
             .shadow(radius: 3)
             .padding()
             .background {
-                KGRealBlur(style: .light)
+                RealBlur(style: .light)
             }
             .addBorder(Color.white, lineWidth: 5, cornerRadius: 30)
             .offset(mapPlayButtonOffset)

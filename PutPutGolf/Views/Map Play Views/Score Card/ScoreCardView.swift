@@ -8,6 +8,8 @@
 import SwiftUI
 import Combine
 import SwiftData
+import KGViews
+import KGToolbelt
 
 struct ScoreCardView: View {
     @StateObject var vm: ViewModel

@@ -1,6 +1,5 @@
 //
 //  Image.swift
-//  PutPutGolf
 //
 //  Created by Kevin Green on 10/19/23.
 //
